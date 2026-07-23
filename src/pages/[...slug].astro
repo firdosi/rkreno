@@ -3,11 +3,16 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import ContactForm from '@components/ContactForm.astro';
 import Batch1Page from '@components/Batch1Page.astro';
+import ArticlePage from '@components/ArticlePage.astro';
+import BlogArchive from '@components/BlogArchive.astro';
+import FaqPage from '@components/FaqPage.astro';
 import PriorityPageHero from '@components/PriorityPageHero.astro';
 import pages from '@data/site-pages.json';
 import routePolicy from '@data/route-policy.json';
 import { batch1Pages } from '@data/batch1-pages';
 import { batch1ServicePages } from '@data/batch1-service-pages';
+import { batch2Pages } from '@data/batch2-pages';
+import { batch2Articles } from '@data/batch2-articles';
 
 interface PageRecord {
   path: string;
@@ -40,7 +45,9 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props as { page: PageRecord };
-const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path];
+const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path] || batch2Pages[page.path];
+const batchArticle = batch2Articles[page.path];
+const nativePage = Boolean(batchPage || batchArticle || page.path === '/faq/' || page.path === '/blog/');
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const repairedLinks = [
   ['/about/', '/about-us/'],
@@ -79,28 +86,61 @@ const content = repairedContent
   .replaceAll('href="/', `href="${base}/`)
   .replaceAll('src="/', `src="${base}/`);
 const showForm = page.path === '/contact-us/';
-const pageSchema = batchPage
+const pageSchema = batchArticle
+  ? [{
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: batchArticle.title,
+      description: batchArticle.summary,
+      dateModified: batchArticle.modified,
+      author: { '@type': 'Organization', name: 'RK Reno Solution' },
+      mainEntityOfPage: page.canonical,
+    }]
+  : page.path === '/faq/'
+  ? [{
+      '@context': 'https://schema.org', '@type': 'FAQPage',
+      name: 'Frequently Asked Questions', url: page.canonical,
+    }]
+  : page.path === '/blog/'
+  ? [{
+      '@context': 'https://schema.org', '@type': 'Blog',
+      name: 'RK Reno Solution Blog', url: page.canonical,
+      description: 'Practical renovation and property-service guides from RK Reno Solution.',
+    }]
+  : nativePage
   ? [{
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       '@id': page.canonical,
       url: page.canonical,
       name: page.title,
-      description: batchPage.summary,
+      description: batchPage?.summary || (page.path === '/faq/'
+        ? 'Answers about renovation, aircond, electrical, waterproofing, ceiling, quotation and service areas.'
+        : 'Practical renovation and property-service guides from RK Reno Solution.'),
       isPartOf: { '@id': 'https://rkrenosolution.com/#website' },
     }]
   : page.schema;
 ---
 <BaseLayout
   title={page.title}
-  description={batchPage?.summary || page.description}
+  description={batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
+    ? 'Practical renovation and property-service guides from RK Reno Solution.'
+    : page.path === '/faq/'
+      ? 'Answers about renovation, aircond, electrical, waterproofing, ceiling, quotation and service areas.'
+      : page.description)}
   canonical={page.canonical}
   ogImage={page.og?.image}
   schema={pageSchema}
   pageType={page.type}
-  externalStyles={batchPage ? [] : page.externalStyles}
+  externalStyles={nativePage ? [] : page.externalStyles}
 >
-  {batchPage ? (
+  {batchArticle ? (
+    <ArticlePage article={batchArticle} path={page.path} />
+  ) : page.path === '/faq/' ? (
+    <FaqPage />
+  ) : page.path === '/blog/' ? (
+    <BlogArchive />
+  ) : batchPage ? (
     <Batch1Page page={batchPage} path={page.path} />
   ) : (
     <>

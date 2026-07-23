@@ -19,6 +19,7 @@
     "check:links": "node scripts/check-built-links.mjs",
     "check:deployment": "node scripts/verify-deployment-build.mjs",
     "check:accessibility": "node scripts/check-batch1-accessibility.mjs",
+    "check:batch2": "node scripts/check-batch2-content.mjs",
     "test:routes": "node scripts/test-deployed-routes.mjs"
   },
   "dependencies": {

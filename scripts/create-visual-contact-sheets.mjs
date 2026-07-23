@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
-const pages = [
+const batch1Pages = [
   'home',
   'services',
   'about',
@@ -14,13 +14,20 @@ const pages = [
   'renovation',
   'electrical-services',
 ];
+const batch2Pages = [
+  'renovation-kl', 'renovation-selangor', 'renovation-subang', 'office-kl',
+  'waterproofing', 'plaster-ceiling', 'faq', 'blog', 'commercial-article',
+  'office-pj-article', 'waterproofing-article', 'plaster-article',
+];
 const viewports = ['desktop', 'tablet', 'mobile'];
 const label = process.argv[2] || 'before';
+const pages = label.startsWith('batch2') ? batch2Pages : batch1Pages;
 const requestedPages = new Set((process.argv[3] || '').split(',').filter(Boolean));
 const requestedViewports = new Set((process.argv[4] || '').split(',').filter(Boolean));
 const root = path.resolve('.audit-cache', 'visual-comparison', label);
 const output = path.join(root, 'comparisons');
-const publicOutput = path.resolve('reports', 'public', 'visuals', 'batch-1');
+const batchName = label.startsWith('batch2') ? 'batch-2' : 'batch-1';
+const publicOutput = path.resolve('reports', 'public', 'visuals', batchName);
 await fs.mkdir(output, { recursive: true });
 await fs.mkdir(publicOutput, { recursive: true });
 const selectedPages = requestedPages.size ? pages.filter((item) => requestedPages.has(item)) : pages;
@@ -71,7 +78,7 @@ for (const viewport of selectedViewports) {
   }).composite(cells).png().toFile(path.join(output, `overview-${viewport}.png`));
   await fs.copyFile(
     path.join(output, `overview-${viewport}.png`),
-    path.join(publicOutput, `batch-1-${viewport}-contact-sheet.png`),
+    path.join(publicOutput, `${batchName}-${viewport}-contact-sheet.png`),
   );
 }
 

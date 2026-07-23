@@ -206,6 +206,26 @@ input, select, textarea, button { font: inherit; }
 .text-link { color: var(--white); font-size: .9rem; font-weight: 800; }
 .form-section { background: var(--surface); }
 .form-section .section-heading { margin-inline: auto; text-align: center; }
+.article-hero { padding: clamp(5rem, 10vw, 9rem) 0; background: var(--ink); color: var(--white); }
+.article-hero__inner { max-width: 980px; margin-inline: auto; text-align: center; }
+.article-hero h1 { font-size: clamp(2.4rem, 5.2vw, 4.8rem); }
+.article-hero .batch-lead { margin-inline: auto; }
+.article-meta { margin-top: 1.5rem; color: #aaa; font-size: .82rem; }
+.article-layout { max-width: 900px; }
+.article-body figure { margin: 0 0 3rem; }
+.article-body figure img { width: 100%; max-height: 540px; object-fit: cover; border-radius: var(--radius); }
+.article-intro { font-size: 1.22rem; color: #333; }
+.article-body > section { margin-block: 3.5rem; }
+.article-body > section p, .article-body > section li { color: var(--muted); }
+.article-body > section li { margin-bottom: .55rem; }
+.article-callout { margin-top: 4rem; padding: clamp(2rem, 5vw, 4rem); border-radius: var(--radius); background: var(--surface); }
+.article-related { display: grid; gap: .65rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+.article-related h2 { font-size: 1.35rem; }
+.article-related a { color: var(--orange-dark); font-weight: 800; }
+.archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.archive-grid .service-card h2 { font-size: 1.25rem; }
+.faq-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem 3rem; }
+.faq-groups h2 { font-size: 1.55rem; }
 
 @media (max-width: 900px) {
   .topbar { display: none; }
@@ -222,6 +242,7 @@ input, select, textarea, button { font: inherit; }
   .faq-layout { grid-template-columns: 1fr; }
   .batch-cta { align-items: start; flex-direction: column; }
   .batch-cta .button-row { justify-content: flex-start; }
+  .archive-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 620px) {
@@ -247,6 +268,8 @@ input, select, textarea, button { font: inherit; }
   .batch-cta { padding: 1.6rem; }
   .contact-actions { right: .6rem; bottom: .6rem; }
   .contact-actions a { padding: .6rem .72rem; }
+  .archive-grid, .faq-groups { grid-template-columns: 1fr; }
+  .article-hero { padding-block: 4rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

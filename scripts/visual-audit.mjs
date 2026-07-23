@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const pages = [
+const batch1Pages = [
   ['home', 'Homepage', '/'],
   ['services', 'Main services page', '/services/'],
   ['about', 'About page', '/about-us/'],
@@ -14,6 +14,20 @@ const pages = [
   ['renovation', 'Main renovation page', '/service/building-renovation/'],
   ['electrical-services', 'Electrical services page', '/electrical-services-selangor/'],
 ];
+const batch2Pages = [
+  ['renovation-kl', 'House renovation Kuala Lumpur', '/house-renovation-in-kuala-lumpur/'],
+  ['renovation-selangor', 'House renovation Selangor', '/house-renovation-in-selangor/'],
+  ['renovation-subang', 'Home renovation Subang Jaya', '/home-renovation-contractor-in-subang-jaya/'],
+  ['office-kl', 'Office renovation Kuala Lumpur', '/office-renovation-in-kuala-lumpur/'],
+  ['waterproofing', 'Waterproofing contractor Kuala Lumpur', '/waterproofing-contractor-kuala-lumpur/'],
+  ['plaster-ceiling', 'Plaster ceiling contractor KL', '/plaster-ceiling-contractor-kl/'],
+  ['faq', 'FAQ', '/faq/'],
+  ['blog', 'Blog archive', '/blog/'],
+  ['commercial-article', 'Commercial retail renovation article', '/commercial-retail-shop-renovation-in-kuala-lumpur/'],
+  ['office-pj-article', 'Office renovation Petaling Jaya article', '/office-renovation-petaling-jaya-corporate-fit-out-experts/'],
+  ['waterproofing-article', 'Waterproofing guide', '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/'],
+  ['plaster-article', 'Plaster ceiling guide', '/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/'],
+];
 
 const viewports = {
   desktop: { width: 1440, height: 1000 },
@@ -23,6 +37,7 @@ const viewports = {
 
 const args = process.argv.slice(2);
 const label = args[0] || 'before';
+const pages = label.startsWith('batch2') ? batch2Pages : batch1Pages;
 const stagingBase = args[1] || 'https://firdosi.github.io/rkreno/';
 const requestedPages = new Set((args[2] || '').split(',').filter(Boolean));
 const requestedViewports = new Set((args[3] || '').split(',').filter(Boolean));

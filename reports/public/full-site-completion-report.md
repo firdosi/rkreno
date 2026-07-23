@@ -1,5 +1,12 @@
 # RK Reno full-site completion audit
 
+## Phase 3 Batch 2 update — 24 July 2026
+
+Twelve additional approved routes now use native structured Astro templates for renovation
+locations, office/commercial work, waterproofing, plaster ceiling, FAQ, blog archive and
+articles. Batch 1 and Batch 2 now complete 22 of 47 approved staging content routes (46.8%).
+See the [Batch 2 completion report](batch-2-completion-report.md).
+
 ## Phase 3 Batch 1 update — 24 July 2026
 
 The approved ten-page Batch 1 is complete in native Astro components: Homepage, Services,

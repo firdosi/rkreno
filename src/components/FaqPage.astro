@@ -1,0 +1,42 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+const groups = [
+  ['Renovation', [
+    ['How should I start a renovation enquiry?', 'Share the property type, location, photos and a list of the work or problems to review.'],
+    ['Can cost and timing be confirmed immediately?', 'They depend on measurements, existing conditions, access, materials and the final scope. A site inspection may be needed.']]],
+  ['Aircond', [
+    ['What details help with aircond work?', 'Include unit horsepower, the issue or installation requirement, property type and photos of indoor and outdoor areas.']]],
+  ['Electrical', [
+    ['What should I do with a burning smell or exposed wiring?', 'Switch off the affected circuit when safe and avoid touching damaged parts. Arrange assessment by an appropriately qualified person.']]],
+  ['Waterproofing', [
+    ['Can the leak source be identified from the stain alone?', 'Not always. Water can travel, so the surrounding roof, wall, wet area, drainage and joints may need inspection.']]],
+  ['Plaster ceiling', [
+    ['What affects plaster ceiling planning?', 'Room measurements, levels, lighting, aircond access, existing damage and required finishes affect the scope.']]],
+  ['Quotation and site inspection', [
+    ['Why might a site inspection be required?', 'It replaces assumptions with measurements and visible site conditions before the scope is confirmed.']]],
+  ['Service areas', [
+    ['Which areas does RK Reno Solution serve?', 'Enquiries are accepted for Kuala Lumpur and Selangor. Provide the exact area so availability can be discussed.']]],
+  ['Contact and scheduling', [
+    ['How can I contact RK Reno Solution?', 'Call or WhatsApp +60 11 1133 4496, email rkrenosolution@gmail.com, or use the contact page.']]],
+] as const;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<div class="batch-page">
+  <section class="article-hero"><div class="wrap article-hero__inner">
+    <p class="eyebrow">Helpful information</p><h1>Frequently Asked Questions</h1>
+    <p class="batch-lead">Practical answers about RK Reno Solution services, site information and the enquiry process.</p>
+  </div></section>
+  <Breadcrumbs path="/faq/" title="Frequently Asked Questions" />
+  <section class="section-space"><div class="wrap faq-groups">
+    {groups.map(([title, questions]) => <section>
+      <h2>{title}</h2>
+      <div class="faq-list">{questions.map(([question, answer]) => <details>
+        <summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p>
+      </details>)}</div>
+    </section>)}
+  </div></section>
+  <section class="section-space section-tint"><div class="wrap batch-cta">
+    <div><p class="eyebrow">Still have a question?</p><h2>Send the property details</h2><p>Include the location and service needed so the enquiry can be reviewed.</p></div>
+    <a class="button" href={`${base}/contact-us/`}>Contact RK Reno Solution</a>
+  </div></section>
+</div>

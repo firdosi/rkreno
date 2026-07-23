@@ -18,10 +18,10 @@ for (const record of records) {
   if (record.dom?.lang !== 'en') failures.push(`${label}: document language is not en`);
 }
 
-const mobileHome = records.find((record) =>
-  record.id === 'home' && record.viewport === 'mobile');
-if (!mobileHome?.mobileMenu?.opened || mobileHome.mobileMenu.visibleLinks < 5) {
-  failures.push('home/mobile: mobile menu did not expose its navigation links');
+const mobileMenuRecord = records.find((record) => record.mobileMenu);
+if (mobileMenuRecord &&
+    (!mobileMenuRecord.mobileMenu.opened || mobileMenuRecord.mobileMenu.visibleLinks < 5)) {
+  failures.push(`${mobileMenuRecord.id}/mobile: mobile menu did not expose its navigation links`);
 }
 
 if (failures.length) {

@@ -54,6 +54,10 @@ const excluded = records
   .map((record) => record['Current route'])
   .filter((route) => route?.startsWith('/'))
   .sort();
+for (const route of ['/blog/page/3/']) {
+  if (!excluded.includes(route)) excluded.push(route);
+}
+excluded.sort();
 
 await writeFile(
   destination,
