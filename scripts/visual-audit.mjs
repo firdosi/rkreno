@@ -5,13 +5,13 @@ import path from 'node:path';
 const pages = [
   ['home', 'Homepage', '/'],
   ['services', 'Main services page', '/services/'],
+  ['about', 'About page', '/about-us/'],
+  ['contact', 'Contact page', '/contact-us/'],
   ['aircond-servicing', 'Aircond servicing page', '/servis-aircond-murah-kl/'],
   ['aircond-installation-kl', 'Aircond installation Kuala Lumpur page', '/aircond-installation-kl/'],
   ['aircond-installation-selangor', 'Aircond installation Selangor page', '/upah-pasang-aircond-selangor/'],
   ['aircond-price-guide', 'Aircond price guide', '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/'],
   ['renovation', 'Main renovation page', '/service/building-renovation/'],
-  ['house-renovation-kl', 'House renovation Kuala Lumpur page', '/house-renovation-in-kuala-lumpur/'],
-  ['house-renovation-selangor', 'House renovation Selangor page', '/house-renovation-in-selangor/'],
   ['electrical-services', 'Electrical services page', '/electrical-services-selangor/'],
 ];
 

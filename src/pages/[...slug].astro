@@ -2,8 +2,12 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import ContactForm from '@components/ContactForm.astro';
+import Batch1Page from '@components/Batch1Page.astro';
 import PriorityPageHero from '@components/PriorityPageHero.astro';
 import pages from '@data/site-pages.json';
+import routePolicy from '@data/route-policy.json';
+import { batch1Pages } from '@data/batch1-pages';
+import { batch1ServicePages } from '@data/batch1-service-pages';
 
 interface PageRecord {
   path: string;
@@ -21,8 +25,14 @@ interface PageRecord {
 }
 
 export function getStaticPaths() {
+  const excluded = new Set(routePolicy.excluded);
   return (pages as PageRecord[])
-    .filter((page) => page.status === 200 && page.type !== 'template' && page.title)
+    .filter((page) =>
+      page.status === 200
+      && page.type !== 'template'
+      && page.title
+      && !excluded.has(page.path)
+    )
     .map((page) => ({
       params: { slug: page.path === '/' ? undefined : page.path.replace(/^\/|\/$/g, '') },
       props: { page }
@@ -30,6 +40,7 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props as { page: PageRecord };
+const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path];
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const repairedLinks = [
   ['/about/', '/about-us/'],
@@ -43,6 +54,11 @@ const repairedLinks = [
   ['/portfolio/stadium/', '/our-projects/'],
   ['/portfolio/waterproofing/', '/our-projects/'],
   ['/home-2/', '/home-2-2/'],
+  ['/blog/page/2/', '/blog/'],
+  ['/blog/page/4/', '/blog/'],
+  ['/tag/ceiling-works/', '/category/interior-design/'],
+  ['/tag/kuala-lumpur/', '/category/servis-pembersihan/'],
+  ['/tag/wiring/', '/category/technical-guides/'],
   ['/wp-admin/', '/']
 ];
 let repairedContent = page.content;
@@ -62,17 +78,32 @@ for (const filename of missingImages) {
 const content = repairedContent
   .replaceAll('href="/', `href="${base}/`)
   .replaceAll('src="/', `src="${base}/`);
-const showForm = page.path === '/' || page.path.includes('contact');
+const showForm = page.path === '/contact-us/';
+const pageSchema = batchPage
+  ? [{
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': page.canonical,
+      url: page.canonical,
+      name: page.title,
+      description: batchPage.summary,
+      isPartOf: { '@id': 'https://rkrenosolution.com/#website' },
+    }]
+  : page.schema;
 ---
 <BaseLayout
   title={page.title}
-  description={page.description}
+  description={batchPage?.summary || page.description}
   canonical={page.canonical}
   ogImage={page.og?.image}
-  schema={page.schema}
+  schema={pageSchema}
   pageType={page.type}
-  externalStyles={page.externalStyles}
+  externalStyles={batchPage ? [] : page.externalStyles}
 >
+  {batchPage ? (
+    <Batch1Page page={batchPage} path={page.path} />
+  ) : (
+    <>
   {page.path !== '/' && !page.customLayout && (
     <>
       <section class="page-hero">
@@ -102,5 +133,17 @@ const showForm = page.path === '/' || page.path.includes('contact');
     ]}
     set:html={content}
   />
-  {showForm && <div class="wrap section-space"><ContactForm /></div>}
+    </>
+  )}
+  {showForm && (
+    <section class="section-space form-section">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Enquiry form</p>
+          <h2>Send Your Project Details</h2>
+        </div>
+        <ContactForm />
+      </div>
+    </section>
+  )}
 </BaseLayout>

@@ -1,5 +1,17 @@
 # RK Reno route disposition and authenticity report
 
+## Phase 3 implementation update — 24 July 2026
+
+The owner approved the Phase 2 recommendations. GitHub Pages now omits all 66
+`REMOVE_AND_410` routes, all 18 `MERGE_AND_301_REDIRECT` source routes and the five
+`OWNER_DECISION_REQUIRED` pages. The ten Phase 3 Batch 1 routes are implemented with
+native Astro components.
+
+GitHub Pages cannot return true server-side 301 or 410 status codes. The approved rules
+are documented in `ops/nginx/redirects.conf` for a future separately approved VPS
+deployment; they are not active on staging. Removed demo and shop routes are not
+redirected to the homepage.
+
 Generated: 2026-07-23T19:12:24.404Z
 
 ## Decision boundary

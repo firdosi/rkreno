@@ -1,6 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { load } from 'cheerio';
+import routePolicy from '../src/data/route-policy.json' with { type: 'json' };
 
 const target = process.env.DEPLOY_TARGET || 'local';
 const indexable = target === 'vps';
@@ -44,18 +45,26 @@ if (indexable) {
 
 const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-if (sitemapUrls.length !== 130) failures.push(`Expected 130 sitemap URLs, found ${sitemapUrls.length}`);
+const expectedSitemapUrls = htmlFiles.length - 1;
+if (sitemapUrls.length !== expectedSitemapUrls) {
+  failures.push(`Expected ${expectedSitemapUrls} sitemap URLs, found ${sitemapUrls.length}`);
+}
 if (sitemapUrls.some((url) => !url.startsWith('https://rkrenosolution.com/'))) {
   failures.push('Sitemap contains a non-production URL');
 }
+if (routePolicy.excluded.some((route) =>
+  sitemapUrls.includes(`https://rkrenosolution.com${route}`))) {
+  failures.push('Sitemap contains an approved excluded route');
+}
 
 const indexHtml = await readFile(path.join(root, 'index.html'), 'utf8');
-if (indexable && process.env.PUBLIC_FORM_ENDPOINT && !indexHtml.includes(process.env.PUBLIC_FORM_ENDPOINT)) {
-  failures.push('Production form endpoint is missing from the homepage');
+const contactHtml = await readFile(path.join(root, 'contact-us', 'index.html'), 'utf8');
+if (indexable && process.env.PUBLIC_FORM_ENDPOINT && !contactHtml.includes(process.env.PUBLIC_FORM_ENDPOINT)) {
+  failures.push('Production form endpoint is missing from the contact page');
 }
 if (indexable && process.env.PUBLIC_TURNSTILE_SITE_KEY &&
-    !indexHtml.includes(process.env.PUBLIC_TURNSTILE_SITE_KEY)) {
-  failures.push('Turnstile site key is missing from the homepage');
+    !contactHtml.includes(process.env.PUBLIC_TURNSTILE_SITE_KEY)) {
+  failures.push('Turnstile site key is missing from the contact page');
 }
 if (indexable && process.env.PUBLIC_ANALYTICS_ENABLED === 'true' &&
     !/googletagmanager|connect\.facebook\.net/.test(indexHtml)) {

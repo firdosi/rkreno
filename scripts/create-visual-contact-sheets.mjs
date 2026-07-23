@@ -5,13 +5,13 @@ import sharp from 'sharp';
 const pages = [
   'home',
   'services',
+  'about',
+  'contact',
   'aircond-servicing',
   'aircond-installation-kl',
   'aircond-installation-selangor',
   'aircond-price-guide',
   'renovation',
-  'house-renovation-kl',
-  'house-renovation-selangor',
   'electrical-services',
 ];
 const viewports = ['desktop', 'tablet', 'mobile'];
@@ -20,7 +20,9 @@ const requestedPages = new Set((process.argv[3] || '').split(',').filter(Boolean
 const requestedViewports = new Set((process.argv[4] || '').split(',').filter(Boolean));
 const root = path.resolve('.audit-cache', 'visual-comparison', label);
 const output = path.join(root, 'comparisons');
+const publicOutput = path.resolve('reports', 'public', 'visuals', 'batch-1');
 await fs.mkdir(output, { recursive: true });
+await fs.mkdir(publicOutput, { recursive: true });
 const selectedPages = requestedPages.size ? pages.filter((item) => requestedPages.has(item)) : pages;
 const selectedViewports = requestedViewports.size
   ? viewports.filter((item) => requestedViewports.has(item))
@@ -67,6 +69,10 @@ for (const viewport of selectedViewports) {
   await sharp({
     create: { width: 1210, height: rows * 528, channels: 3, background: '#ddd' },
   }).composite(cells).png().toFile(path.join(output, `overview-${viewport}.png`));
+  await fs.copyFile(
+    path.join(output, `overview-${viewport}.png`),
+    path.join(publicOutput, `batch-1-${viewport}-contact-sheet.png`),
+  );
 }
 
-console.log(`Saved contact sheets to ${output}`);
+console.log(`Saved contact sheets to ${output} and ${publicOutput}`);

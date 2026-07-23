@@ -18,10 +18,10 @@
     "check:seo": "node scripts/compare-priority-seo.mjs",
     "check:links": "node scripts/check-built-links.mjs",
     "check:deployment": "node scripts/verify-deployment-build.mjs",
+    "check:accessibility": "node scripts/check-batch1-accessibility.mjs",
     "test:routes": "node scripts/test-deployed-routes.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.3",
     "astro": "^7.1.3",
     "cheerio": "^1.1.0"
   },

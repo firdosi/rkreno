@@ -1,0 +1,102 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+import type { BatchPage } from '@data/batch1-pages';
+
+interface Props {
+  page: BatchPage;
+  path: string;
+}
+
+const { page, path } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const link = (href: string) => `${base}${href}`;
+---
+
+<div class="batch-page">
+  <section class="batch-hero">
+    <div class="wrap batch-hero__grid">
+      <div>
+        <p class="eyebrow">{page.eyebrow}</p>
+        <h1>{page.title}</h1>
+        <p class="batch-lead">{page.summary}</p>
+        <div class="button-row">
+          <a class="button" href={link('/contact-us/')}>Request a Quote</a>
+          <a class="button button--outline" href="https://wa.me/601111334496" data-track="whatsapp">WhatsApp Us</a>
+        </div>
+      </div>
+      <figure>
+        <img src={`${base}${page.image}`} alt={page.imageAlt} width="720" height="620" />
+      </figure>
+    </div>
+  </section>
+
+  {path !== '/' && <Breadcrumbs path={path} title={page.title} />}
+
+  <section class="section-space">
+    <div class="wrap intro-grid">
+      <p class="section-number" aria-hidden="true">01</p>
+      <div>
+        <p class="eyebrow">Clear planning</p>
+        <h2>{page.introTitle}</h2>
+      </div>
+      <p class="section-copy">{page.intro}</p>
+    </div>
+  </section>
+
+  {page.sections.map((section, index) => (
+    <section class:list={['section-space', { 'section-tint': index % 2 === 0 }]}>
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">{String(index + 2).padStart(2, '0')}</p>
+          <h2>{section.title}</h2>
+          {section.text && <p>{section.text}</p>}
+        </div>
+        {section.items && (
+          <div class="card-grid">
+            {section.items.map((item) => (
+              <article class="service-card">
+                <span aria-hidden="true">↗</span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+                {item.href && <a href={link(item.href)}>Explore service <span aria-hidden="true">→</span></a>}
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  ))}
+
+  {page.faqs?.length && (
+    <section class="section-space">
+      <div class="wrap faq-layout">
+        <div>
+          <p class="eyebrow">Useful answers</p>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+          {page.faqs.map((item) => (
+            <details>
+              <summary>{item.question}<span aria-hidden="true">+</span></summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section-space">
+    <div class="wrap batch-cta">
+      <div>
+        <p class="eyebrow">Talk to RK Reno Solution</p>
+        <h2>{page.cta}</h2>
+        <p>{page.ctaText}</p>
+      </div>
+      <div class="button-row">
+        <a class="button" href={link('/contact-us/')}>Send an Enquiry</a>
+        <a class="text-link" href="tel:+601111334496" data-track="phone">+60 11 1133 4496 →</a>
+      </div>
+    </div>
+  </section>
+</div>

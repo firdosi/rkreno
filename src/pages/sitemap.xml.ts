@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import pages from '@data/site-pages.json';
+import routePolicy from '@data/route-policy.json';
 
 export const prerender = true;
 
@@ -21,8 +22,14 @@ const escapeXml = (value: string) =>
   })[character] || character);
 
 export const GET: APIRoute = () => {
+  const excluded = new Set(routePolicy.excluded);
   const urls = (pages as PageRecord[])
-    .filter((page) => page.status === 200 && page.type !== 'template' && page.title)
+    .filter((page) =>
+      page.status === 200
+      && page.type !== 'template'
+      && page.title
+      && !excluded.has(page.path)
+    )
     .map((page) => `  <url><loc>${escapeXml(page.canonical)}</loc></url>`)
     .join('\n');
   const body = [

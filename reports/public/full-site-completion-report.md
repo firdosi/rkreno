@@ -1,5 +1,22 @@
 # RK Reno full-site completion audit
 
+## Phase 3 Batch 1 update — 24 July 2026
+
+The approved ten-page Batch 1 is complete in native Astro components: Homepage, Services,
+About, Contact, Main Renovation, Aircond Servicing, Aircond Installation KL, Aircond
+Installation Selangor, Aircond Price Guide and Electrical Services. All ten have desktop,
+tablet and mobile Playwright evidence, sanitized schema, local images, responsive layouts
+and no published unsupported claims identified by the Phase 2 register.
+
+The 89 routes approved for removal, merge/redirect or owner-decision exclusion are no
+longer generated on GitHub Pages. Because GitHub Pages cannot return true 301 or 410
+responses, the final status rules remain documented for future VPS activation. See the
+[Batch 1 completion report](batch-1-completion-report.md) and
+[visual contact sheets](visuals/batch-1/).
+
+The historical Phase 1 findings below are retained as the baseline for routes outside
+Batch 1; they should not be read as the current status of the ten completed pages.
+
 Generated: 2026-07-23T18:38:39.764Z
 
 ## Scope and acceptance warning

@@ -19,20 +19,22 @@ for (const id of ids) {
   }
   const checks = {
     status: production.status === 200 && staging.status === 200,
-    title: production.dom.title === staging.dom.title,
-    description: production.dom.description === staging.dom.description,
+    title: Boolean(staging.dom.title?.trim()),
+    description: Boolean(staging.dom.description?.trim()),
     canonical:
       production.dom.canonical === staging.dom.canonical &&
       staging.dom.canonical?.startsWith('https://rkrenosolution.com/'),
     robots: /noindex/i.test(staging.dom.robots || '') && /nofollow/i.test(staging.dom.robots || ''),
-    schema: production.dom.schema.length === staging.dom.schema.length,
-    h1: staging.dom.h1.length > 0 && production.dom.h1[0]?.text === staging.dom.h1[0]?.text,
+    schema: staging.dom.schema.length > 0 && !staging.dom.schema.includes('invalid'),
+    h1: staging.dom.h1.length === 1 && Boolean(staging.dom.h1[0]?.text),
     basePaths: staging.dom.internalLinks.every((link) =>
       new URL(link.href).pathname.startsWith('/rkreno/'),
     ),
     overflow: !staging.dom.horizontalOverflow,
     images: staging.dom.brokenImages.length === 0,
   };
+  checks.claims = !/1,250\+|500\+|1000\+|24\/7 emergency|100% safety|4\.9\/5|certified wireman|years? of experience|warrant(?:y|ies)|guarantee/i
+    .test(JSON.stringify(staging.dom));
   for (const [name, passed] of Object.entries(checks)) {
     if (!passed) failures.push(`${id}: ${name}`);
   }
