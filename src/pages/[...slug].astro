@@ -1,0 +1,85 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import ContactForm from '@components/ContactForm.astro';
+import pages from '@data/site-pages.json';
+
+interface PageRecord {
+  path: string;
+  status: number;
+  type: string;
+  title: string;
+  description: string;
+  canonical: string;
+  h1: string;
+  content: string;
+  schema: unknown[];
+  og?: { image?: string };
+}
+
+export function getStaticPaths() {
+  return (pages as PageRecord[])
+    .filter((page) => page.status === 200 && page.type !== 'template' && page.title)
+    .map((page) => ({
+      params: { slug: page.path === '/' ? undefined : page.path.replace(/^\/|\/$/g, '') },
+      props: { page }
+    }));
+}
+
+const { page } = Astro.props as { page: PageRecord };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const repairedLinks = [
+  ['/about/', '/about-us/'],
+  ['/services/%20https://rkrenosolution.com/about-us/', '/about-us/'],
+  ['/6-ways-to-get-the-most-out-of-your-project-search-software', '/blog/'],
+  ['/portfolio/commercial/', '/our-projects/'],
+  ['/portfolio/electrical/', '/our-projects/'],
+  ['/portfolio/home-renovation/', '/our-projects/'],
+  ['/portfolio/office-renovation/', '/our-projects/'],
+  ['/portfolio/residential/', '/our-projects/'],
+  ['/portfolio/stadium/', '/our-projects/'],
+  ['/portfolio/waterproofing/', '/our-projects/'],
+  ['/home-2/', '/home-2-2/'],
+  ['/wp-admin/', '/']
+];
+let repairedContent = page.content;
+for (const [source, target] of repairedLinks) repairedContent = repairedContent.replaceAll(source, target);
+const missingImages = [
+  'deep-cleaning-rumah-kuala-lumpur.webp',
+  'cuci-bilik-air-rumah-kl.webp',
+  'pakej-cuci-rumah-hari-raya.webp',
+  'cucian-selepas-renovasi-rumah.webp',
+  'cuci-dapur-rumah-berminyak.webp',
+  'cuci-habuk-plaster-ceiling.webp',
+  'servis-aircond-dan-cuci-rumah.webp'
+];
+for (const filename of missingImages) {
+  repairedContent = repairedContent.replaceAll(`/wp-content/uploads/2026/04/${filename}`, '');
+}
+const content = repairedContent
+  .replaceAll('href="/', `href="${base}/`)
+  .replaceAll('src="/', `src="${base}/`);
+const showForm = page.path === '/' || page.path.includes('contact');
+---
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  canonical={page.canonical}
+  ogImage={page.og?.image}
+  schema={page.schema}
+  pageType={page.type}
+>
+  {page.path !== '/' && (
+    <>
+      <section class="page-hero">
+        <div class="wrap">
+          <p class="eyebrow">{page.type}</p>
+          <h1>{page.h1 || page.title}</h1>
+        </div>
+      </section>
+      <Breadcrumbs path={page.path} title={page.h1 || page.title} />
+    </>
+  )}
+  <article class:list={['legacy-content', { 'home-content': page.path === '/' }]} set:html={content} />
+  {showForm && <div class="wrap section-space"><ContactForm /></div>}
+</BaseLayout>

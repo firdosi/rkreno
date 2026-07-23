@@ -1,0 +1,64 @@
+---
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import ContactActions from '@components/ContactActions.astro';
+import StagingBanner from '@components/StagingBanner.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: unknown[];
+  pageType?: string;
+}
+
+const {
+  title,
+  description = 'Renovation, repair and installation services in Kuala Lumpur and Selangor.',
+  canonical = 'https://rkrenosolution.com/',
+  ogImage,
+  schema = [],
+  pageType = 'website'
+} = Astro.props;
+const staging = import.meta.env.DEPLOY_TARGET === 'github';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const image = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : new URL(`${base}${ogImage}`, Astro.site).href)
+  : undefined;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={staging ? 'noindex, nofollow' : 'index, follow'} />
+    <meta property="og:type" content={pageType === 'post' ? 'article' : 'website'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <meta name="theme-color" content="#f47b20" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    {schema.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <StagingBanner />
+    <Header />
+    <main id="main-content"><slot /></main>
+    <Footer />
+    <ContactActions />
+  </body>
+</html>

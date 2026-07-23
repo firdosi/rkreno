@@ -1,0 +1,17 @@
+wp-old-site-backup/
+*.sql
+*.sql.gz
+*.tar
+*.tar.gz
+*.zip
+*.xml
+.env
+.env.*
+wp-config.php
+node_modules/
+dist/
+.astro/
+
+# Local migration audit output may contain extracted/private source data.
+reports/private/
+.audit-cache/

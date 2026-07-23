@@ -1,0 +1,29 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="brand brand-light" href={`${base}/`}>
+        <span class="brand-mark">RK</span><span>Reno <strong>Solution</strong></span>
+      </a>
+      <p>Building better spaces with practical renovation, repair and installation services.</p>
+    </div>
+    <div>
+      <h2>Contact</h2>
+      <a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a>
+      <a href="tel:+601111334496">+60 11 1133 4496</a>
+      <p>4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</p>
+    </div>
+    <div>
+      <h2>Explore</h2>
+      <a href={`${base}/about-us/`}>About Us</a>
+      <a href={`${base}/blog/`}>Blog</a>
+      <a href={`${base}/contact-us/`}>Contact Us</a>
+    </div>
+  </div>
+  <div class="wrap copyright">
+    <p>Copyright © 2025 RK Reno Solutions. All Rights Reserved.</p>
+  </div>
+</footer>

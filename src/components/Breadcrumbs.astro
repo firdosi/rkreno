@@ -1,0 +1,8 @@
+---
+interface Props { path: string; title: string }
+const { path, title } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<nav class="breadcrumbs wrap" aria-label="Breadcrumb">
+  <a href={`${base}/`}>Home</a><span aria-hidden="true">/</span><span>{title || path}</span>
+</nav>

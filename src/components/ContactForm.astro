@@ -1,0 +1,23 @@
+<section class="contact-panel" aria-labelledby="contact-heading">
+  <div>
+    <p class="eyebrow">Start your project</p>
+    <h2 id="contact-heading">Get a free consultation</h2>
+    <p>Tell us about the work, property location and your preferred contact details.</p>
+  </div>
+  <form action="mailto:rkrenosolution@gmail.com" method="post" enctype="text/plain">
+    <label>Full name<input name="name" autocomplete="name" required /></label>
+    <label>Phone number<input name="phone" type="tel" autocomplete="tel" required /></label>
+    <label>Email address<input name="email" type="email" autocomplete="email" /></label>
+    <label>Service needed
+      <select name="service" required>
+        <option value="">Choose a service</option>
+        <option>Renovation</option><option>Waterproofing</option>
+        <option>Plaster ceiling</option><option>Aircond service</option>
+        <option>Electrical work</option><option>Cleaning</option>
+      </select>
+    </label>
+    <label class="full-field">Project details<textarea name="message" rows="4" required></textarea></label>
+    <button class="button full-field" type="submit">Send enquiry</button>
+    <p class="form-note full-field">Submitting opens your email app. No details are stored by this staging website.</p>
+  </form>
+</section>
