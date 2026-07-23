@@ -8,6 +8,11 @@
     "build": "astro build",
     "preview": "astro preview",
     "audit": "node scripts/audit-live-site.mjs && node scripts/compare-backups.mjs",
+    "refresh:priority": "node scripts/refresh-priority-layouts.mjs",
+    "refresh:theme": "node scripts/refresh-theme-layouts.mjs",
+    "audit:visual": "node scripts/visual-audit.mjs",
+    "audit:visual:contacts": "node scripts/create-visual-contact-sheets.mjs",
+    "check:seo": "node scripts/compare-priority-seo.mjs",
     "check:links": "node scripts/check-built-links.mjs"
   },
   "dependencies": {
@@ -16,6 +21,7 @@
     "cheerio": "^1.1.0"
   },
   "devDependencies": {
+    "playwright": "^1.61.1",
     "sharp": "^0.34.3",
     "typescript": "^5.8.3"
   }

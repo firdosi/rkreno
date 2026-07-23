@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Description Details' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<section
+  class="priority-page-hero"
+  style={`--page-title-image: url("${base}/assets/media/pagtitle1.webp")`}
+>
+  <div class="wrap priority-page-hero__content">
+    <nav aria-label="Breadcrumb">
+      <a href={`${base}/`}>Home</a>
+      <span aria-hidden="true"></span>
+      <span>{title}</span>
+    </nav>
+    <h1>{title}</h1>
+    <p>{description}</p>
+  </div>
+</section>

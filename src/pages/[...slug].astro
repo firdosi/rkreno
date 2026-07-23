@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import ContactForm from '@components/ContactForm.astro';
+import PriorityPageHero from '@components/PriorityPageHero.astro';
 import pages from '@data/site-pages.json';
 
 interface PageRecord {
@@ -15,6 +16,8 @@ interface PageRecord {
   content: string;
   schema: unknown[];
   og?: { image?: string };
+  customLayout?: boolean;
+  externalStyles?: string[];
 }
 
 export function getStaticPaths() {
@@ -68,8 +71,9 @@ const showForm = page.path === '/' || page.path.includes('contact');
   ogImage={page.og?.image}
   schema={page.schema}
   pageType={page.type}
+  externalStyles={page.externalStyles}
 >
-  {page.path !== '/' && (
+  {page.path !== '/' && !page.customLayout && (
     <>
       <section class="page-hero">
         <div class="wrap">
@@ -80,6 +84,23 @@ const showForm = page.path === '/' || page.path.includes('contact');
       <Breadcrumbs path={page.path} title={page.h1 || page.title} />
     </>
   )}
-  <article class:list={['legacy-content', { 'home-content': page.path === '/' }]} set:html={content} />
+  {page.path !== '/' && page.customLayout && (
+    <PriorityPageHero
+      title={page.h1 || page.title}
+      description={page.path === '/services/'
+        ? 'Our expertise combines visionary design with practical execution, ensuring functional, beautiful spaces that meet the demands of modern life and exceed expectations.'
+        : 'Description Details'}
+    />
+  )}
+  <article
+    class:list={[
+      page.customLayout ? 'custom-content' : 'legacy-content',
+      {
+        'home-content': page.path === '/',
+        'theme-content': Boolean(page.externalStyles?.length)
+      }
+    ]}
+    set:html={content}
+  />
   {showForm && <div class="wrap section-space"><ContactForm /></div>}
 </BaseLayout>
