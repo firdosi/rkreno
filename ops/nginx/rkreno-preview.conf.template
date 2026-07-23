@@ -1,0 +1,22 @@
+# Render PREVIEW_HOST before installation. This file does not use default_server
+# and therefore does not alter ConvortAI or any unrelated virtual host.
+server {
+  listen 80;
+  listen [::]:80;
+  server_name __PREVIEW_HOST__;
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  listen [::]:443 ssl http2;
+  server_name __PREVIEW_HOST__;
+
+  ssl_certificate /etc/letsencrypt/live/__PREVIEW_HOST__/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/__PREVIEW_HOST__/privkey.pem;
+  include /etc/letsencrypt/options-ssl-nginx.conf;
+  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+  add_header X-Robots-Tag "noindex, nofollow" always;
+  include /etc/nginx/snippets/rkreno-site-common.conf;
+}

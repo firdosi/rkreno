@@ -1,0 +1,83 @@
+import { readdir, readFile } from 'node:fs/promises';
+import path from 'node:path';
+import { load } from 'cheerio';
+
+const target = process.env.DEPLOY_TARGET || 'local';
+const indexable = target === 'vps';
+const root = path.resolve('dist');
+const failures = [];
+const htmlFiles = [];
+
+async function walk(directory) {
+  for (const entry of await readdir(directory, { withFileTypes: true })) {
+    const full = path.join(directory, entry.name);
+    if (entry.isDirectory()) await walk(full);
+    else if (entry.name.endsWith('.html')) htmlFiles.push(full);
+  }
+}
+await walk(root);
+
+for (const file of htmlFiles) {
+  const html = await readFile(file, 'utf8');
+  const $ = load(html);
+  const robots = $('meta[name="robots"]').attr('content') || '';
+  const canonical = $('link[rel="canonical"]').attr('href') || '';
+  if (indexable !== /^index,\s*follow$/i.test(robots)) {
+    failures.push(`${path.relative(root, file)} has unexpected robots meta: ${robots}`);
+  }
+  if (!canonical.startsWith('https://rkrenosolution.com/')) {
+    failures.push(`${path.relative(root, file)} has invalid canonical: ${canonical}`);
+  }
+  if (indexable && html.includes('staging-banner')) {
+    failures.push(`${path.relative(root, file)} includes a staging banner`);
+  }
+}
+
+const robots = await readFile(path.join(root, 'robots.txt'), 'utf8');
+if (indexable) {
+  if (!robots.includes('Allow: /') || !robots.includes('https://rkrenosolution.com/sitemap.xml')) {
+    failures.push('Production robots.txt is incomplete');
+  }
+} else if (!robots.includes('Disallow: /')) {
+  failures.push('Non-production robots.txt must disallow crawling');
+}
+
+const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
+const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
+if (sitemapUrls.length !== 130) failures.push(`Expected 130 sitemap URLs, found ${sitemapUrls.length}`);
+if (sitemapUrls.some((url) => !url.startsWith('https://rkrenosolution.com/'))) {
+  failures.push('Sitemap contains a non-production URL');
+}
+
+const indexHtml = await readFile(path.join(root, 'index.html'), 'utf8');
+if (indexable && process.env.PUBLIC_FORM_ENDPOINT && !indexHtml.includes(process.env.PUBLIC_FORM_ENDPOINT)) {
+  failures.push('Production form endpoint is missing from the homepage');
+}
+if (indexable && process.env.PUBLIC_TURNSTILE_SITE_KEY &&
+    !indexHtml.includes(process.env.PUBLIC_TURNSTILE_SITE_KEY)) {
+  failures.push('Turnstile site key is missing from the homepage');
+}
+if (indexable && process.env.PUBLIC_ANALYTICS_ENABLED === 'true' &&
+    !/googletagmanager|connect\.facebook\.net/.test(indexHtml)) {
+  failures.push('Analytics was enabled but no analytics loader was emitted');
+}
+
+const forbidden = [
+  'SMTP_PASS=',
+  'TURNSTILE_SECRET_KEY=',
+  'BEGIN OPENSSH PRIVATE KEY',
+  'wp-old-site-backup',
+];
+for (const marker of forbidden) {
+  if (indexHtml.includes(marker)) failures.push(`Forbidden value found in build: ${marker}`);
+}
+
+if (failures.length) {
+  console.error(`Deployment build verification failed:\n- ${failures.join('\n- ')}`);
+  process.exitCode = 1;
+} else {
+  console.log(
+    `Verified ${htmlFiles.length} HTML files, ${sitemapUrls.length} sitemap URLs, ` +
+    `${indexable ? 'production indexing' : 'non-indexable preview'} and secret exclusions.`,
+  );
+}

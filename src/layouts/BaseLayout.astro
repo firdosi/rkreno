@@ -3,6 +3,9 @@ import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import ContactActions from '@components/ContactActions.astro';
 import StagingBanner from '@components/StagingBanner.astro';
+import TrackingBody from '@components/TrackingBody.astro';
+import TrackingHead from '@components/TrackingHead.astro';
+import { isIndexable, publicConfig } from '../config/runtime';
 import '../styles/global.css';
 
 interface Props {
@@ -24,7 +27,6 @@ const {
   pageType = 'website',
   externalStyles = []
 } = Astro.props;
-const staging = import.meta.env.DEPLOY_TARGET === 'github';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const image = ogImage
   ? (ogImage.startsWith('http') ? ogImage : new URL(`${base}${ogImage}`, Astro.site).href)
@@ -39,7 +41,7 @@ const image = ogImage
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="robots" content={staging ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="robots" content={isIndexable ? 'index, follow' : 'noindex, nofollow'} />
     <meta property="og:type" content={pageType === 'post' ? 'article' : 'website'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -47,6 +49,7 @@ const image = ogImage
     {image && <meta property="og:image" content={image} />}
     <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
     <meta name="theme-color" content="#f47b20" />
+    <TrackingHead />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -54,9 +57,16 @@ const image = ogImage
       rel="stylesheet"
     />
     {externalStyles.map((href) => <link rel="stylesheet" href={href} />)}
+    {publicConfig.turnstileSiteKey && (
+      <>
+        <link rel="preconnect" href="https://challenges.cloudflare.com" />
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      </>
+    )}
     {schema.map((item) => <script type="application/ld+json" set:html={JSON.stringify(item)} />)}
   </head>
   <body>
+    <TrackingBody />
     <a class="skip-link" href="#main-content">Skip to content</a>
     <StagingBanner />
     <Header />

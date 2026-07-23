@@ -1,3 +1,6 @@
 {import.meta.env.DEPLOY_TARGET === 'github' && (
   <aside class="staging-banner">Staging preview — the live WordPress website is unchanged.</aside>
 )}
+{import.meta.env.DEPLOY_TARGET === 'vps-preview' && (
+  <aside class="staging-banner">Private VPS preview — not indexed by search engines.</aside>
+)}

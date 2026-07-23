@@ -1,0 +1,54 @@
+---
+import { publicConfig } from '../config/runtime';
+
+const gtmId = /^GTM-[A-Z0-9]+$/i.test(publicConfig.gtmId) ? publicConfig.gtmId : '';
+const metaPixelId = /^\d{5,20}$/.test(publicConfig.metaPixelId) ? publicConfig.metaPixelId : '';
+const enabled = publicConfig.analyticsEnabled;
+---
+
+{enabled && gtmId && (
+  <noscript>
+    <iframe
+      src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+      title="Google Tag Manager"
+    ></iframe>
+  </noscript>
+)}
+{enabled && metaPixelId && (
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
+      alt=""
+    />
+  </noscript>
+)}
+{enabled && (
+  <script>
+    const sendEvent = (name: string, parameters: Record<string, string> = {}) => {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: name, ...parameters });
+      if (typeof window.gtag === 'function') window.gtag('event', name, parameters);
+    };
+
+    document.addEventListener('click', (event) => {
+      const link = (event.target as Element | null)?.closest('a[href]') as HTMLAnchorElement | null;
+      if (!link) return;
+      if (link.href.startsWith('tel:')) sendEvent('phone_click', { link_url: link.href });
+      if (/wa\.me|whatsapp/i.test(link.href)) sendEvent('whatsapp_click', { link_url: link.href });
+    });
+
+    document.addEventListener('rkreno:lead', ((event: CustomEvent) => {
+      sendEvent('generate_lead', {
+        lead_source: 'website_enquiry_form',
+        service: event.detail?.service || 'not_set',
+      });
+      if (typeof window.fbq === 'function') window.fbq('track', 'Lead');
+    }) as EventListener);
+  </script>
+)}

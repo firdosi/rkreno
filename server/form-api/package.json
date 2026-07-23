@@ -1,0 +1,16 @@
+{
+  "name": "rkreno-form-api",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node app.mjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "nodemailer": "^9.0.3"
+  }
+}

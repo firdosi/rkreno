@@ -41,13 +41,18 @@ Public page content and metadata are stored in `src/data/site-pages.json`. The m
 
 Run `npm run audit` to refresh the URL inventory and public comparison reports. Review generated changes before committing because the live WordPress website may change.
 
-## Contact form
+## Secure contact form
 
-The staging form is a static email-client handoff and stores no personal data. Before production launch, connect it to an approved form endpoint with spam protection and a privacy-compliant retention policy.
+Production uses a dedicated VPS form API with server-side Cloudflare Turnstile
+validation, a honeypot, strict field validation, request-size limits and
+application plus Nginx rate limiting. SMTP and Turnstile secrets live only in
+`/etc/rkreno/form-api.env`; GitHub contains placeholders only.
 
-## Future Nginx deployment
+## VPS deployment
 
-Build without `DEPLOY_TARGET`, copy the contents of `dist/` to the configured web root, and configure Nginx to serve directory indexes and the generated `404.html`. Apply any redirects recorded in `reports/public/redirect-map.csv` before changing DNS.
+The isolated release directory, Nginx configuration, systemd service, GitHub
+Actions workflow, route tests and rollback procedure are documented in
+[`docs/production-deployment.md`](docs/production-deployment.md).
 
 ## Private backup safety
 

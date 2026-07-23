@@ -1,23 +1,148 @@
+---
+import { publicConfig } from '../config/runtime';
+
+const endpoint = /^(?:\/|https:\/\/)/.test(publicConfig.formEndpoint)
+  ? publicConfig.formEndpoint
+  : '';
+const siteKey = /^[A-Za-z0-9_-]+$/.test(publicConfig.turnstileSiteKey)
+  ? publicConfig.turnstileSiteKey
+  : '';
+const configured = Boolean(endpoint && siteKey);
+---
+
 <section class="contact-panel" aria-labelledby="contact-heading">
   <div>
     <p class="eyebrow">Start your project</p>
     <h2 id="contact-heading">Get a free consultation</h2>
     <p>Tell us about the work, property location and your preferred contact details.</p>
   </div>
-  <form action="mailto:rkrenosolution@gmail.com" method="post" enctype="text/plain">
-    <label>Full name<input name="name" autocomplete="name" required /></label>
-    <label>Phone number<input name="phone" type="tel" autocomplete="tel" required /></label>
-    <label>Email address<input name="email" type="email" autocomplete="email" /></label>
+  <form
+    action={endpoint || undefined}
+    method="post"
+    data-enquiry-form
+    data-endpoint={endpoint}
+    data-configured={String(configured)}
+  >
+    <label>Full name
+      <input name="name" autocomplete="name" minlength="2" maxlength="100" required />
+    </label>
+    <label>Phone number
+      <input
+        name="phone"
+        type="tel"
+        autocomplete="tel"
+        inputmode="tel"
+        minlength="7"
+        maxlength="30"
+        required
+      />
+    </label>
+    <label>Email address
+      <input name="email" type="email" autocomplete="email" maxlength="254" />
+    </label>
     <label>Service needed
       <select name="service" required>
         <option value="">Choose a service</option>
-        <option>Renovation</option><option>Waterproofing</option>
-        <option>Plaster ceiling</option><option>Aircond service</option>
-        <option>Electrical work</option><option>Cleaning</option>
+        <option>Renovation</option>
+        <option>Waterproofing</option>
+        <option>Plaster ceiling</option>
+        <option>Aircond service</option>
+        <option>Electrical work</option>
+        <option>Cleaning</option>
+        <option>Other</option>
       </select>
     </label>
-    <label class="full-field">Project details<textarea name="message" rows="4" required></textarea></label>
-    <button class="button full-field" type="submit">Send enquiry</button>
-    <p class="form-note full-field">Submitting opens your email app. No details are stored by this staging website.</p>
+    <label class="full-field">Project details
+      <textarea name="message" rows="5" minlength="10" maxlength="2000" required></textarea>
+    </label>
+    <div class="form-honeypot" aria-hidden="true">
+      <label>Company website
+        <input name="company_website" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+    <input name="form_started_at" type="hidden" value="" />
+    <input name="page_url" type="hidden" value="" />
+    {siteKey && (
+      <div
+        class="cf-turnstile full-field"
+        data-sitekey={siteKey}
+        data-action="contact"
+        data-theme="dark"
+        data-size="flexible"
+      ></div>
+    )}
+    <label class="consent-field full-field">
+      <input name="privacy_consent" type="checkbox" value="yes" required />
+      <span>I agree that RK Reno Solution may use these details to respond to my enquiry.</span>
+    </label>
+    <button class="button full-field" type="submit" disabled={!configured}>
+      {configured ? 'Send secure enquiry' : 'Online form not configured'}
+    </button>
+    <p class="form-status full-field" data-form-status role="status" aria-live="polite">
+      {configured
+        ? 'Protected by validation, rate limiting and Cloudflare Turnstile.'
+        : 'Use WhatsApp or call us while the secure production endpoint is being configured.'}
+    </p>
   </form>
 </section>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>('[data-enquiry-form]');
+
+  for (const form of forms) {
+    const endpoint = form.dataset.endpoint || '';
+    const configured = form.dataset.configured === 'true';
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const status = form.querySelector<HTMLElement>('[data-form-status]');
+    const startedAt = form.elements.namedItem('form_started_at') as HTMLInputElement | null;
+    const pageUrl = form.elements.namedItem('page_url') as HTMLInputElement | null;
+    if (startedAt) startedAt.value = String(Date.now());
+    if (pageUrl) pageUrl.value = location.href;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!configured || !endpoint || !button || !status) return;
+      if (!form.reportValidity()) return;
+
+      const formData = new FormData(form);
+      if (!formData.get('cf-turnstile-response')) {
+        status.dataset.state = 'error';
+        status.textContent = 'Please complete the security check and try again.';
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'Sending…';
+      status.dataset.state = 'pending';
+      status.textContent = 'Sending your enquiry securely…';
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(Object.fromEntries(formData.entries())),
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(result.message || 'Unable to send your enquiry.');
+
+        const service = String(formData.get('service') || '');
+        form.reset();
+        if (startedAt) startedAt.value = String(Date.now());
+        if (pageUrl) pageUrl.value = location.href;
+        window.turnstile?.reset();
+        status.dataset.state = 'success';
+        status.textContent = result.message || 'Thank you. Your enquiry has been sent.';
+        document.dispatchEvent(new CustomEvent('rkreno:lead', { detail: { service } }));
+      } catch (error) {
+        status.dataset.state = 'error';
+        status.textContent = error instanceof Error
+          ? error.message
+          : 'Unable to send your enquiry. Please use WhatsApp or call us.';
+        window.turnstile?.reset();
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Send secure enquiry';
+      }
+    });
+  }
+</script>

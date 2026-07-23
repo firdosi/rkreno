@@ -1,0 +1,29 @@
+[Unit]
+Description=RK Reno secure enquiry form API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=rkreno
+Group=www-data
+WorkingDirectory=/var/www/rkreno/current/form-api
+EnvironmentFile=/etc/rkreno/form-api.env
+ExecStart=/usr/bin/node /var/www/rkreno/current/form-api/app.mjs
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=15
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

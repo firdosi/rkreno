@@ -1,0 +1,107 @@
+name: Deploy RK Reno to VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Build target
+        required: true
+        default: vps-preview
+        type: choice
+        options:
+          - vps-preview
+          - vps
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rkreno-vps
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: ${{ vars.RKRENO_VPS_DEPLOY_ENABLED == 'true' }}
+    runs-on: ubuntu-latest
+    environment: rkreno-vps
+    env:
+      DEPLOY_TARGET: ${{ github.event_name == 'workflow_dispatch' && inputs.deployment_target || vars.RKRENO_DEPLOY_TARGET || 'vps-preview' }}
+      PUBLIC_ANALYTICS_ENABLED: ${{ vars.PUBLIC_ANALYTICS_ENABLED || 'false' }}
+      PUBLIC_FORM_ENDPOINT: /api/enquiry
+      PUBLIC_GOOGLE_SITE_VERIFICATION: ${{ vars.PUBLIC_GOOGLE_SITE_VERIFICATION }}
+      PUBLIC_GOOGLE_TAG_ID: ${{ vars.PUBLIC_GOOGLE_TAG_ID || 'GT-T944JBVZ' }}
+      PUBLIC_GTM_ID: ${{ vars.PUBLIC_GTM_ID }}
+      PUBLIC_META_PIXEL_ID: ${{ vars.PUBLIC_META_PIXEL_ID }}
+      PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.PUBLIC_TURNSTILE_SITE_KEY }}
+      RKRENO_TEST_ORIGIN: ${{ vars.RKRENO_TEST_ORIGIN }}
+      VPS_HOST: ${{ secrets.RKRENO_VPS_HOST }}
+      VPS_PORT: ${{ secrets.RKRENO_VPS_PORT }}
+      VPS_USER: ${{ secrets.RKRENO_VPS_USER }}
+      SSH_PRIVATE_KEY: ${{ secrets.RKRENO_VPS_SSH_KEY }}
+      SSH_KNOWN_HOSTS: ${{ secrets.RKRENO_VPS_KNOWN_HOSTS }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Validate deployment configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in VPS_HOST VPS_PORT VPS_USER SSH_PRIVATE_KEY SSH_KNOWN_HOSTS RKRENO_TEST_ORIGIN PUBLIC_TURNSTILE_SITE_KEY; do
+            if [[ -z "${!name:-}" ]]; then
+              echo "Missing required GitHub secret or variable: $name" >&2
+              exit 1
+            fi
+          done
+      - run: npm ci
+      - run: npm run build
+      - run: npm run check:links
+      - run: npm run check:deployment
+      - name: Test form service package
+        run: |
+          npm --prefix server/form-api ci
+          npm --prefix server/form-api test
+      - name: Package deployment-only files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release/public release/form-api
+          cp -a dist/. release/public/
+          cp server/form-api/{app,config,mailer,rate-limiter,turnstile,validation}.mjs \
+            server/form-api/package.json server/form-api/package-lock.json \
+            release/form-api/
+          if find release -type f \( -name '.env*' -o -name '*.bak' -o -name '*.sql' \
+            -o -name '*.zip' -o -name '*.tar' -o -name '*.gz' \) -print -quit | grep -q .; then
+            echo "Forbidden backup, archive, database, or environment file in release." >&2
+            exit 1
+          fi
+          if grep -RIl -- 'BEGIN OPENSSH PRIVATE KEY' release | grep -q .; then
+            echo "Private key material found in release." >&2
+            exit 1
+          fi
+          tar -czf "rkreno-${GITHUB_SHA}.tar.gz" -C release .
+      - name: Configure SSH
+        shell: bash
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+      - name: Upload and activate release
+        shell: bash
+        run: |
+          set -euo pipefail
+          scp -P "$VPS_PORT" "rkreno-${GITHUB_SHA}.tar.gz" \
+            ops/deploy/activate-release.sh \
+            "${VPS_USER}@${VPS_HOST}:/tmp/"
+          ssh -p "$VPS_PORT" "${VPS_USER}@${VPS_HOST}" \
+            "bash /tmp/activate-release.sh '${GITHUB_SHA}' '/tmp/rkreno-${GITHUB_SHA}.tar.gz'"
+      - name: Test deployed routes
+        env:
+          EXPECT_INDEXABLE: ${{ env.DEPLOY_TARGET == 'vps' }}
+        run: node scripts/test-deployed-routes.mjs "$RKRENO_TEST_ORIGIN"

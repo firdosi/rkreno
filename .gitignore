@@ -7,6 +7,7 @@ wp-old-site-backup/
 *.xml
 .env
 .env.*
+!.env.example
 wp-config.php
 node_modules/
 dist/

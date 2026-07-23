@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://rkrenosolution.com/sitemap-index.xml
