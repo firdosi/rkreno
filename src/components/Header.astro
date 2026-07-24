@@ -8,11 +8,12 @@ const link = (href: string) => `${base}${href}`;
 <header class="site-header">
   <div class="topbar">
     <div class="wrap topbar-inner">
-      <p>Renovation, repair and installation services across KL and Selangor</p>
       <div class="topbar-links">
         <a href="tel:+601111334496">+60 11 1133 4496</a>
         <a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a>
+        <span>4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</span>
       </div>
+      <p>Renovation, repair and installation services in KL and Selangor</p>
     </div>
   </div>
   <div class="wrap nav-row">
@@ -27,7 +28,8 @@ const link = (href: string) => `${base}${href}`;
           {services.map((item) => <a href={link(item.href)}>{item.label}</a>)}
         </div>
       </details>
-      {primaryNavigation.slice(2).map((item) => <a href={link(item.href)}>{item.label}</a>)}
+      {primaryNavigation.filter((item) => ['Blog', 'About Us', 'Contact Us'].includes(item.label))
+        .map((item) => <a href={link(item.href)}>{item.label}</a>)}
     </nav>
     <a class="button nav-quote" href={link('/contact-us/')}>Get a Quote</a>
     <details class="mobile-menu">

@@ -1,7 +1,13 @@
 ---
 import Breadcrumbs from './Breadcrumbs.astro';
+import ParitySections from './ParitySections.astro';
 import type { BatchArticle } from '@data/batch2-articles';
-const { article, path } = Astro.props as { article: BatchArticle; path: string };
+const { article, path, parityContent, sourceH1 } = Astro.props as {
+  article: BatchArticle;
+  path: string;
+  parityContent?: { sections: any[] };
+  sourceH1?: string;
+};
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const imageSrcSet = article.imageSrcSet?.map(({ src, width }) => `${base}${src} ${width}w`).join(', ');
 ---
@@ -9,7 +15,7 @@ const imageSrcSet = article.imageSrcSet?.map(({ src, width }) => `${base}${src} 
   <header class="article-hero">
     <div class="wrap article-hero__inner">
       <p class="eyebrow">{article.category}</p>
-      <h1>{article.title}</h1>
+      <h1>{sourceH1 || article.title}</h1>
       <p class="batch-lead">{article.summary}</p>
       <p class="article-meta">
         Published <time datetime={article.published}>{article.published}</time>
@@ -34,7 +40,9 @@ const imageSrcSet = article.imageSrcSet?.map(({ src, width }) => `${base}${src} 
         {article.imageCaption && <figcaption>{article.imageCaption}</figcaption>}
       </figure>
       <p class="article-intro">{article.summary}</p>
-      {article.sections.map((section) => <section>
+      {parityContent?.sections?.length
+        ? <ParitySections sections={parityContent.sections} variant="article" />
+        : article.sections.map((section) => <section>
         <h2>{section.title}</h2>
         {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
         {section.subheading && <h3>{section.subheading}</h3>}

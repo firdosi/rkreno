@@ -29,6 +29,9 @@ const serviceItems = [
   { title: 'Electrical work', text: 'Wiring, fault checks, fittings and distribution-board work planned around the property’s needs.', href: '/electrical-services-selangor/' },
   { title: 'Waterproofing', text: 'Assessment and repair options for roof, wall, bathroom and balcony leakage.', href: '/waterproofing-contractor-kuala-lumpur/' },
   { title: 'Plaster ceiling', text: 'Ceiling installation and repair with options for lighting features and access requirements.', href: '/plaster-ceiling-contractor-kl/' },
+  { title: 'House renovation', text: 'Planning and coordinated improvement work for houses and residential properties.', href: '/house-renovation-in-kuala-lumpur/' },
+  { title: 'Office renovation', text: 'Office improvement and fit-out scopes shaped around business use and site access.', href: '/office-renovation-in-kuala-lumpur/' },
+  { title: 'Cleaning', text: 'Home, move-in and post-renovation cleaning based on the condition and requested scope.', href: '/servis-cuci-rumah-kl/' },
 ];
 
 export const batch1Pages: Record<string, BatchPage> = {
@@ -42,6 +45,11 @@ export const batch1Pages: Record<string, BatchPage> = {
     intro: 'Tell us what needs attention and where the property is located. We will discuss the scope, arrange a site check when needed and explain the suitable next step before work begins.',
     sections: [
       { title: 'Services for homes and workplaces', items: serviceItems },
+      { title: 'Why customers choose RK Reno Solution', items: [
+        { title: 'Local service experience', text: 'Practical support for renovation, installation and maintenance work across Kuala Lumpur and Selangor.' },
+        { title: 'Careful workmanship', text: 'Site conditions, access and the agreed scope are reviewed before work is scheduled.' },
+        { title: 'Clear communication', text: 'Requirements, next steps and quotation factors are explained without unsupported promises.' },
+      ] },
       { title: 'A straightforward way to get started', items: [
         { title: '1. Share the requirement', text: 'Send photos, measurements and a short description by WhatsApp or through the enquiry form.' },
         { title: '2. Review the site', text: 'For work that needs an on-site assessment, arrange a suitable time for the team to inspect the space.' },

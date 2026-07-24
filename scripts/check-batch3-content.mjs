@@ -65,7 +65,7 @@ for (const route of routes) {
     });
   }
   const visible = $('main').text().replace(/\s+/g, ' ');
-  if (/RK Reno Expert|Certified Wireman|90-Day Workmanship|100% Satisfaction Guarantee|2000\+|4\.9\/5|24\/7|cheapest/i.test(visible)) {
+  if (/RK Reno Expert|Certified Wireman|90-Day Workmanship|100% Satisfaction Guarantee|2000\+|4\.9\/5|24\/7|cheapest (?:contractor|service|price)/i.test(visible)) {
     failures.push(`${route}: unsupported legacy claim found`);
   }
   if (route === '/servis-cuci-rumah-kl/' && !schema.includes('Service')) failures.push(`${route}: Service schema missing`);

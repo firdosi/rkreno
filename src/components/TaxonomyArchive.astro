@@ -11,10 +11,11 @@ interface Archive {
   serviceLabel: string;
 }
 
-const { archive, articles, path } = Astro.props as {
+const { archive, articles, path, sourceH1 } = Astro.props as {
   archive: Archive;
   articles: RetainedArticle[];
   path: string;
+  sourceH1?: string;
 };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -22,7 +23,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <section class="article-hero">
     <div class="wrap article-hero__inner">
       <p class="eyebrow">{archive.type} archive</p>
-      <h1>{archive.title}</h1>
+      <h1>{sourceH1 || archive.title}</h1>
       <p class="batch-lead">{archive.introduction}</p>
     </div>
   </section>

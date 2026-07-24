@@ -1,0 +1,89 @@
+---
+interface ContentBlock {
+  type: 'heading' | 'paragraph' | 'list' | 'table' | 'image';
+  level?: number;
+  text?: string;
+  html?: string;
+  ordered?: boolean;
+  items?: string[];
+  rows?: string[][];
+  src?: string;
+  alt?: string;
+}
+
+interface ContentSection {
+  title: string;
+  blocks: ContentBlock[];
+}
+
+const { sections, variant = 'page' } = Astro.props as {
+  sections: ContentSection[];
+  variant?: 'page' | 'article';
+};
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const faqPairs = (blocks: ContentBlock[]) => {
+  const pairs: { question: string; answer: string }[] = [];
+  for (const block of blocks) {
+    if (block.type === 'heading' && block.text) pairs.push({ question: block.text, answer: '' });
+    else if (block.type === 'paragraph' && block.html && pairs.length) {
+      pairs[pairs.length - 1].answer += `${pairs[pairs.length - 1].answer ? ' ' : ''}${block.html}`;
+    }
+  }
+  return pairs.filter(({ answer }) => answer);
+};
+---
+
+<div class:list={['parity-content', `parity-content--${variant}`]}>
+  {sections.map((section, index) => {
+    const isFaq = /faq|frequently asked|soalan lazim/i.test(section.title);
+    const isCta = /quote|contact|get in touch|ready to|hubungi/i.test(section.title);
+    const faqs = isFaq ? faqPairs(section.blocks) : [];
+    return (
+      <section class:list={['parity-section', { 'parity-section--tint': index % 2 === 1, 'parity-section--cta': isCta }]}>
+        <div class="wrap parity-section__inner">
+          <header class="parity-section__heading">
+            <p class="eyebrow">{variant === 'article' ? 'Guide section' : 'RK Reno Solution'}</p>
+            <h2>{section.title}</h2>
+          </header>
+          {faqs.length ? (
+            <div class="faq-list parity-faqs">
+              {faqs.map(({ question, answer }) => (
+                <details>
+                  <summary>{question}<span aria-hidden="true">+</span></summary>
+                  <div set:html={answer} />
+                </details>
+              ))}
+            </div>
+          ) : (
+            <div class="parity-blocks">
+              {section.blocks.map((block) => (
+                block.type === 'heading' && block.level === 4 ? <h4>{block.text}</h4>
+                  : block.type === 'heading' ? <h3>{block.text}</h3>
+                  : block.type === 'paragraph' ? <p set:html={block.html} />
+                  : block.type === 'list' && block.ordered ? <ol>{block.items?.map((item) => <li>{item}</li>)}</ol>
+                  : block.type === 'list' ? <ul>{block.items?.map((item) => <li>{item}</li>)}</ul>
+                  : block.type === 'table' ? (
+                    <div class="responsive-table" tabindex="0" role="region" aria-label={`${section.title} table`}>
+                      <table>
+                        <tbody>
+                          {block.rows?.map((row, rowIndex) => (
+                            <tr>{row.map((cell) => rowIndex === 0 ? <th scope="col">{cell}</th> : <td>{cell}</td>)}</tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )
+                  : block.type === 'image' ? (
+                    <figure class="parity-image">
+                      <img src={`${base}${block.src}`} alt={block.alt} loading="lazy" decoding="async" />
+                    </figure>
+                  )
+                  : null
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  })}
+</div>

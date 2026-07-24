@@ -19,6 +19,7 @@ import { batch3Articles } from '@data/batch3';
 import { batch3Pages } from '@data/batch3-pages';
 import taxonomyArchives from '@data/taxonomy-archives.json';
 import { retainedArticleByRoute } from '@data/retained-article-catalog';
+import wordpressParityContent from '@data/wordpress-parity-content.json';
 
 interface PageRecord {
   path: string;
@@ -63,6 +64,13 @@ const taxonomyArticles = nativeTaxonomy && 'articles' in nativeTaxonomy
   ? nativeTaxonomy.articles.map((route) => retainedArticleByRoute[route]).filter(Boolean)
   : [];
 const nativePage = Boolean(batchPage || batchArticle || nativeTaxonomy || ['/faq/', '/blog/', '/thank-you/'].includes(page.path));
+const parityContent = wordpressParityContent[page.path as keyof typeof wordpressParityContent];
+const sourceTitleIsSafe = !/\bRM\s*\d|guarantee|warranty|24\s*\/\s*7|\d+\+?\s+(?:customers|projects|years)/i.test(page.title);
+const layoutTitle = sourceTitleIsSafe
+  ? page.title
+  : nativeTaxonomy ? `${nativeTaxonomy.title} - RK Reno Solution`
+    : batchArticle ? `${batchArticle.title} - RK Reno Solution`
+      : batchPage ? `${batchPage.title} - RK Reno Solution` : page.title;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const repairedLinks = [
   ['/about/', '/about-us/'],
@@ -162,9 +170,7 @@ const pageSchema = batchArticle
   : page.schema;
 ---
 <BaseLayout
-  title={nativeTaxonomy ? `${nativeTaxonomy.title} - RK Reno Solution`
-    : batchArticle ? `${batchArticle.title} - RK Reno Solution`
-      : batchPage ? `${batchPage.title} - RK Reno Solution` : page.title}
+  title={layoutTitle}
   description={nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
     ? 'Practical renovation and property-service guides from RK Reno Solution.'
     : page.path === '/faq/'
@@ -179,7 +185,7 @@ const pageSchema = batchArticle
     : page.path === '/thank-you/' ? 'noindex, nofollow' : undefined}
 >
   {batchArticle ? (
-    <ArticlePage article={batchArticle} path={page.path} />
+    <ArticlePage article={batchArticle} path={page.path} parityContent={parityContent} sourceH1={parityContent?.sourceH1} />
   ) : page.path === '/faq/' ? (
     <FaqPage />
   ) : page.path === '/blog/' ? (
@@ -187,9 +193,9 @@ const pageSchema = batchArticle
   ) : page.path === '/thank-you/' ? (
     <ThankYouPage />
   ) : nativeTaxonomy ? (
-    <TaxonomyArchive archive={nativeTaxonomy} articles={taxonomyArticles} path={page.path} />
+    <TaxonomyArchive archive={nativeTaxonomy} articles={taxonomyArticles} path={page.path} sourceH1={page.h1} />
   ) : batchPage ? (
-    <Batch1Page page={batchPage} path={page.path} />
+    <Batch1Page page={batchPage} path={page.path} parityContent={parityContent} sourceH1={parityContent?.sourceH1} />
   ) : (
     <>
   {page.path !== '/' && !page.customLayout && (

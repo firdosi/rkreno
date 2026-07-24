@@ -1,24 +1,30 @@
 ---
 import Breadcrumbs from './Breadcrumbs.astro';
+import ParitySections from './ParitySections.astro';
+import ContactForm from './ContactForm.astro';
 import type { BatchPage } from '@data/batch1-pages';
 
 interface Props {
   page: BatchPage;
   path: string;
+  parityContent?: { sections: any[] };
+  sourceH1?: string;
 }
 
-const { page, path } = Astro.props;
+const { page, path, parityContent, sourceH1 } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const link = (href: string) => `${base}${href}`;
 const imageSrcSet = page.imageSrcSet?.map(({ src, width }) => `${base}${src} ${width}w`).join(', ');
+const parityBlockCount = parityContent?.sections?.reduce((count, section) => count + section.blocks.length, 0) || 0;
+const useParity = !['/', '/services/', '/contact-us/'].includes(path) && parityBlockCount >= 8;
 ---
 
-<div class="batch-page">
-  <section class="batch-hero">
+<div class:list={['batch-page', { 'batch-page--home': path === '/' }]}>
+  {path === '/' ? <section class="batch-hero">
     <div class="wrap batch-hero__grid">
       <div>
         <p class="eyebrow">{page.eyebrow}</p>
-        <h1>{page.title}</h1>
+        <h1>{sourceH1 || page.title}</h1>
         <p class="batch-lead">{page.summary}</p>
         <div class="button-row">
           <a class="button" href={link('/contact-us/')}>Request a Quote</a>
@@ -38,11 +44,45 @@ const imageSrcSet = page.imageSrcSet?.map(({ src, width }) => `${base}${src} ${w
         {page.imageCaption && <figcaption>{page.imageCaption}</figcaption>}
       </figure>
     </div>
-  </section>
+  </section> : (
+    <>
+      <section class="batch-title-hero">
+        <div class="wrap">
+          <p class="eyebrow">{page.eyebrow}</p>
+          <h1>{sourceH1 || page.title}</h1>
+          <p>{page.summary}</p>
+        </div>
+      </section>
+      <Breadcrumbs path={path} title={page.title} />
+      <section class="batch-service-lead section-space">
+        <div class="wrap batch-service-lead__grid">
+          <div>
+            <p class="eyebrow">RK Reno Solution</p>
+            <h2>{page.introTitle}</h2>
+            <p>{page.intro}</p>
+            <div class="button-row">
+              <a class="button" href={link('/contact-us/')}>Request a Quote</a>
+              <a class="button button--dark" href="https://wa.me/601111334496" data-track="whatsapp">WhatsApp Us</a>
+            </div>
+          </div>
+          <figure>
+            <img
+              src={`${base}${page.image}`}
+              srcset={imageSrcSet}
+              sizes="(max-width: 760px) 100vw, 46vw"
+              alt={page.imageAlt}
+              width={page.imageWidth ?? 720}
+              height={page.imageHeight ?? 620}
+              decoding="async"
+            />
+            {page.imageCaption && <figcaption>{page.imageCaption}</figcaption>}
+          </figure>
+        </div>
+      </section>
+    </>
+  )}
 
-  {path !== '/' && <Breadcrumbs path={path} title={page.title} />}
-
-  <section class="section-space">
+  {path === '/' && <section class="section-space">
     <div class="wrap intro-grid">
       <p class="section-number" aria-hidden="true">01</p>
       <div>
@@ -51,9 +91,11 @@ const imageSrcSet = page.imageSrcSet?.map(({ src, width }) => `${base}${src} ${w
       </div>
       <p class="section-copy">{page.intro}</p>
     </div>
-  </section>
+  </section>}
 
-  {page.sections.map((section, index) => (
+  {useParity && <ParitySections sections={parityContent!.sections} variant="page" />}
+
+  {!useParity && page.sections.map((section, index) => (
     <section class:list={['section-space', { 'section-tint': index % 2 === 0 }]}>
       <div class="wrap">
         <div class="section-heading">
@@ -77,7 +119,7 @@ const imageSrcSet = page.imageSrcSet?.map(({ src, width }) => `${base}${src} ${w
     </section>
   ))}
 
-  {page.faqs?.length && (
+  {!useParity && page.faqs?.length && (
     <section class="section-space">
       <div class="wrap faq-layout">
         <div>
@@ -92,6 +134,19 @@ const imageSrcSet = page.imageSrcSet?.map(({ src, width }) => `${base}${src} ${w
             </details>
           ))}
         </div>
+      </div>
+    </section>
+  )}
+
+  {path === '/' && (
+    <section class="section-space home-enquiry">
+      <div class="wrap">
+        <div class="section-heading">
+          <p class="eyebrow">Get in touch with us</p>
+          <h2>Share Your Property Requirements</h2>
+          <p>The GitHub Pages form is available for interface review only. Use the published telephone, WhatsApp or email details to contact RK Reno Solution.</p>
+        </div>
+        <ContactForm />
       </div>
     </section>
   )}
