@@ -28,6 +28,19 @@ const batch2Pages = [
   ['waterproofing-article', 'Waterproofing guide', '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/'],
   ['plaster-article', 'Plaster ceiling guide', '/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/'],
 ];
+const batch3Pages = [
+  ['aircond-installation-article', 'Aircond installation guide', '/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/'],
+  ['electrical-article', 'Electrical safety guide', '/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/'],
+  ['renovation-kl-article', 'Kuala Lumpur renovation guide', '/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/'],
+  ['renovation-selangor-article', 'Selangor extension guide', '/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/'],
+  ['office-kl-article', 'Office fit-out guide', '/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/'],
+  ['deep-cleaning-article', 'Deep cleaning guide', '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/'],
+  ['pu-injection-article', 'PU injection guide', '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/'],
+  ['aircond-servicing-article', 'Aircond servicing guide', '/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/'],
+  ['cleaning-article', 'Home cleaning guide', '/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/'],
+  ['cleaning-service', 'Home cleaning service', '/servis-cuci-rumah-kl/'],
+  ['thank-you', 'Thank-you utility', '/thank-you/'],
+];
 
 const viewports = {
   desktop: { width: 1440, height: 1000 },
@@ -37,7 +50,8 @@ const viewports = {
 
 const args = process.argv.slice(2);
 const label = args[0] || 'before';
-const pages = label.startsWith('batch2') ? batch2Pages : batch1Pages;
+const pages = label.startsWith('batch3') ? batch3Pages
+  : label.startsWith('batch2') ? batch2Pages : batch1Pages;
 const stagingBase = args[1] || 'https://firdosi.github.io/rkreno/';
 const requestedPages = new Set((args[2] || '').split(',').filter(Boolean));
 const requestedViewports = new Set((args[3] || '').split(',').filter(Boolean));
@@ -181,10 +195,10 @@ const results = [];
 
 try {
   for (const [viewportName, viewport] of Object.entries(selectedViewports)) {
-    for (const [source, base] of [
-      ['production', productionBase],
-      ['staging', stagingBase],
-    ]) {
+    const sources = label.startsWith('batch3')
+      ? [['staging', stagingBase]]
+      : [['production', productionBase], ['staging', stagingBase]];
+    for (const [source, base] of sources) {
       const folder = path.join(outputRoot, source, viewportName);
       await fs.mkdir(folder, { recursive: true });
       const context = await browser.newContext({
@@ -215,7 +229,7 @@ try {
         const screenshot = path.join(folder, `${id}.png`);
         await page.screenshot({ path: screenshot, fullPage: true });
         let mobileMenu = null;
-        if (viewportName === 'mobile' && id === 'home' && !navigationError) {
+        if (viewportName === 'mobile' && id === pages[0][0] && !navigationError) {
           const menuTrigger = page.locator(
             '.mobile-menu > summary:visible, .pxl-nav-mobile-button:visible, button[aria-label*="menu" i]:visible, [class*="mobile"][class*="menu"] button:visible',
           ).first();

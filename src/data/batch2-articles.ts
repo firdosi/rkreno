@@ -1,14 +1,22 @@
-export interface ArticleSection { title: string; paragraphs: string[]; points?: string[] }
+export interface ArticleSection {
+  title: string;
+  paragraphs: string[];
+  subheading?: string;
+  points?: string[];
+  table?: { headers: string[]; rows: string[][] };
+}
 export interface BatchArticle {
   category: string; title: string; summary: string; image: string; imageAlt: string;
-  modified: string; sections: ArticleSection[]; serviceHref: string; serviceLabel: string;
+  published: string; modified: string; sections: ArticleSection[];
+  serviceHref: string; serviceLabel: string;
+  related?: { href: string; label: string }[];
 }
 
 export const batch2Articles: Record<string, BatchArticle> = {
   '/commercial-retail-shop-renovation-in-kuala-lumpur/': {
     category: 'Commercial renovation', title: 'Commercial Retail Shop Renovation in Kuala Lumpur',
     summary: 'A practical guide to planning retail layout, services, finishes, access and handover for a Kuala Lumpur shop renovation.',
-    image: '/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg', imageAlt: 'General commercial renovation planning imagery', modified: '2026-04-04',
+    image: '/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg', imageAlt: 'General commercial renovation planning imagery', published: '2026-04-04', modified: '2026-04-04',
     sections: [
       { title: 'Begin with the retail operation', paragraphs: ['Document customer flow, display needs, storage, service counters and staff areas before finalising the layout. Building rules and available services can constrain the plan.'] },
       { title: 'Coordinate the fit-out', paragraphs: ['Partitions, ceilings, lighting, sockets, data, aircond interfaces, flooring and signage should be reviewed together.'], points: ['Confirm landlord or management requirements', 'Record existing defects and services', 'Agree access, protection and handover expectations'] },
@@ -18,7 +26,7 @@ export const batch2Articles: Record<string, BatchArticle> = {
   '/office-renovation-petaling-jaya-corporate-fit-out-experts/': {
     category: 'Office renovation', title: 'Office Renovation Petaling Jaya: Corporate Fit-Out Planning',
     summary: 'Plan a Petaling Jaya office fit-out around layout, services, building requirements, access and the agreed handover condition.',
-    image: '/assets/media/Office-renovation-service-in-Selangor-7928d19d.jpg', imageAlt: 'General office fit-out service imagery', modified: '2026-04-04',
+    image: '/assets/media/Office-renovation-service-in-Selangor-7928d19d.jpg', imageAlt: 'General office fit-out service imagery', published: '2026-04-04', modified: '2026-04-04',
     sections: [
       { title: 'Translate work needs into a layout', paragraphs: ['List teams, meeting requirements, shared spaces, storage and visitor movement. Use that information to review partitions and furniture zones without making unsupported productivity claims.'] },
       { title: 'Services and finishes', paragraphs: ['Coordinate electrical points, lighting, data routes, ceiling access, aircond interfaces, flooring and painting before work is sequenced.'], points: ['Check building fit-out rules', 'Identify work that affects occupied areas', 'Define reinstatement and defect responsibilities'] },
@@ -28,7 +36,7 @@ export const batch2Articles: Record<string, BatchArticle> = {
   '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/': {
     category: 'Waterproofing guide', title: 'Waterproofing Contractor Kuala Lumpur: Leak Inspection Guide (2026)',
     summary: 'Understand common leakage signs, inspection areas and quotation factors without assuming a permanent result before the source is assessed.',
-    image: '/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg', imageAlt: 'General waterproofing inspection imagery', modified: '2026-03-28',
+    image: '/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg', imageAlt: 'General waterproofing inspection imagery', published: '2026-03-28', modified: '2026-03-28',
     sections: [
       { title: 'Visible damage is a clue, not always the source', paragraphs: ['Peeling paint, stains, damp smells and mould show where moisture appears. Water may travel from a roof, joint, pipe, wet area or neighbouring surface.'] },
       { title: 'What an inspection considers', paragraphs: ['The review may include rainfall pattern, drainage, seals, cracks, wet areas and surrounding construction.'], points: ['Photograph when the leak appears', 'Note whether it follows rain or water use', 'Avoid covering the area before inspection'] },
@@ -38,7 +46,7 @@ export const batch2Articles: Record<string, BatchArticle> = {
   '/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/': {
     category: 'Plaster ceiling guide', title: 'Plaster Ceiling Contractor KL: Design & Quotation Guide (2026)',
     summary: 'Review ceiling types, lighting coordination, repair considerations and the site information needed for a useful quotation.',
-    image: '/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg', imageAlt: 'General plaster ceiling installation imagery', modified: '2026-03-28',
+    image: '/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg', imageAlt: 'General plaster ceiling installation imagery', published: '2026-03-28', modified: '2026-03-28',
     sections: [
       { title: 'Select a ceiling approach for the room', paragraphs: ['Flat ceilings provide a simple finish. Dropped levels, light troughs and cornices add detail but require more coordination and measurement.'] },
       { title: 'Coordinate what sits above and through the ceiling', paragraphs: ['Lighting, wiring, aircond services, access panels, curtains and maintenance access should be positioned before the ceiling is closed.'], points: ['Mark fitting locations', 'Confirm ceiling height', 'Keep access to serviceable equipment'] },

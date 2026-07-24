@@ -23,7 +23,10 @@ for (const file of htmlFiles) {
   const $ = load(html);
   const robots = $('meta[name="robots"]').attr('content') || '';
   const canonical = $('link[rel="canonical"]').attr('href') || '';
-  if (indexable !== /^index,\s*follow$/i.test(robots)) {
+  const relative = path.relative(root, file).replaceAll('\\', '/');
+  const utilityNoindex = relative === 'thank-you/index.html';
+  const shouldIndex = indexable && !utilityNoindex;
+  if (shouldIndex !== /^index,\s*follow$/i.test(robots)) {
     failures.push(`${path.relative(root, file)} has unexpected robots meta: ${robots}`);
   }
   if (!canonical.startsWith('https://rkrenosolution.com/')) {
@@ -45,7 +48,7 @@ if (indexable) {
 
 const sitemap = await readFile(path.join(root, 'sitemap.xml'), 'utf8');
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-const expectedSitemapUrls = htmlFiles.length - 1;
+const expectedSitemapUrls = htmlFiles.length - 2;
 if (sitemapUrls.length !== expectedSitemapUrls) {
   failures.push(`Expected ${expectedSitemapUrls} sitemap URLs, found ${sitemapUrls.length}`);
 }
@@ -55,6 +58,9 @@ if (sitemapUrls.some((url) => !url.startsWith('https://rkrenosolution.com/'))) {
 if (routePolicy.excluded.some((route) =>
   sitemapUrls.includes(`https://rkrenosolution.com${route}`))) {
   failures.push('Sitemap contains an approved excluded route');
+}
+if (sitemapUrls.includes('https://rkrenosolution.com/thank-you/')) {
+  failures.push('Sitemap contains the noindex thank-you route');
 }
 
 const indexHtml = await readFile(path.join(root, 'index.html'), 'utf8');

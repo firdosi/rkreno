@@ -16,6 +16,7 @@ interface Props {
   schema?: unknown[];
   pageType?: string;
   externalStyles?: string[];
+  robots?: string;
 }
 
 const {
@@ -25,7 +26,8 @@ const {
   ogImage,
   schema = [],
   pageType = 'website',
-  externalStyles = []
+  externalStyles = [],
+  robots
 } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const image = ogImage
@@ -41,7 +43,7 @@ const image = ogImage
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="robots" content={isIndexable ? 'index, follow' : 'noindex, nofollow'} />
+    <meta name="robots" content={robots || (isIndexable ? 'index, follow' : 'noindex, nofollow')} />
     <meta property="og:type" content={pageType === 'post' ? 'article' : 'website'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

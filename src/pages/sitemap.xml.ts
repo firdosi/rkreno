@@ -22,7 +22,7 @@ const escapeXml = (value: string) =>
   })[character] || character);
 
 export const GET: APIRoute = () => {
-  const excluded = new Set(routePolicy.excluded);
+  const excluded = new Set([...routePolicy.excluded, '/thank-you/']);
   const urls = (pages as PageRecord[])
     .filter((page) =>
       page.status === 200

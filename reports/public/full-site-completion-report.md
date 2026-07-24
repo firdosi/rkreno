@@ -1,5 +1,14 @@
 # RK Reno full-site completion audit
 
+## Phase 3 Batch 3 update — 24 July 2026
+
+Eleven additional approved routes now use native Astro templates: nine retained articles, the
+Kuala Lumpur cleaning service and the thank-you utility. The completion register calculates
+33 of 47 approved routes complete (70.2%), with 14 remaining.
+The blog archive links all 14 retained articles and all 14 use native structured templates.
+See the [Batch 3 completion report](batch-3-completion-report.md).
+
+
 ## Phase 3 Batch 2 update — 24 July 2026
 
 Twelve additional approved routes now use native structured Astro templates for renovation

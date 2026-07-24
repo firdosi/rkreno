@@ -218,6 +218,11 @@ input, select, textarea, button { font: inherit; }
 .article-body > section { margin-block: 3.5rem; }
 .article-body > section p, .article-body > section li { color: var(--muted); }
 .article-body > section li { margin-bottom: .55rem; }
+.responsive-table { margin-block: 1.5rem; overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+.responsive-table:focus { outline: 3px solid var(--orange); outline-offset: 3px; }
+.responsive-table table { width: 100%; min-width: 560px; border-collapse: collapse; }
+.responsive-table th, .responsive-table td { padding: .85rem 1rem; border-bottom: 1px solid var(--line); text-align: left; }
+.responsive-table th { background: var(--ink); color: var(--white); }
 .article-callout { margin-top: 4rem; padding: clamp(2rem, 5vw, 4rem); border-radius: var(--radius); background: var(--surface); }
 .article-related { display: grid; gap: .65rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line); }
 .article-related h2 { font-size: 1.35rem; }
@@ -226,6 +231,12 @@ input, select, textarea, button { font: inherit; }
 .archive-grid .service-card h2 { font-size: 1.25rem; }
 .faq-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem 3rem; }
 .faq-groups h2 { font-size: 1.55rem; }
+.utility-page { min-height: 62vh; display: grid; place-items: center; padding-block: clamp(4rem, 9vw, 8rem); background: var(--surface); }
+.utility-card { max-width: 760px; padding: clamp(2rem, 6vw, 4.5rem); background: var(--white); border-top: 5px solid var(--orange); box-shadow: var(--shadow); }
+.utility-card h1 { font-size: clamp(2.5rem, 7vw, 5rem); }
+.utility-card h1:focus { outline: none; }
+.utility-card p { color: var(--muted); }
+.utility-card p a, .utility-link { color: var(--orange-dark); font-weight: 800; text-decoration: underline; text-underline-offset: .2em; }
 
 @media (max-width: 900px) {
   .topbar { display: none; }

@@ -19,14 +19,22 @@ const batch2Pages = [
   'waterproofing', 'plaster-ceiling', 'faq', 'blog', 'commercial-article',
   'office-pj-article', 'waterproofing-article', 'plaster-article',
 ];
+const batch3Pages = [
+  'aircond-installation-article', 'electrical-article', 'renovation-kl-article',
+  'renovation-selangor-article', 'office-kl-article', 'deep-cleaning-article',
+  'pu-injection-article', 'aircond-servicing-article', 'cleaning-article',
+  'cleaning-service', 'thank-you',
+];
 const viewports = ['desktop', 'tablet', 'mobile'];
 const label = process.argv[2] || 'before';
-const pages = label.startsWith('batch2') ? batch2Pages : batch1Pages;
+const pages = label.startsWith('batch3') ? batch3Pages
+  : label.startsWith('batch2') ? batch2Pages : batch1Pages;
 const requestedPages = new Set((process.argv[3] || '').split(',').filter(Boolean));
 const requestedViewports = new Set((process.argv[4] || '').split(',').filter(Boolean));
 const root = path.resolve('.audit-cache', 'visual-comparison', label);
 const output = path.join(root, 'comparisons');
-const batchName = label.startsWith('batch2') ? 'batch-2' : 'batch-1';
+const batchName = label.startsWith('batch3') ? 'batch-3'
+  : label.startsWith('batch2') ? 'batch-2' : 'batch-1';
 const publicOutput = path.resolve('reports', 'public', 'visuals', batchName);
 await fs.mkdir(output, { recursive: true });
 await fs.mkdir(publicOutput, { recursive: true });
@@ -37,21 +45,21 @@ const selectedViewports = requestedViewports.size
 
 for (const page of selectedPages) {
   for (const viewport of selectedViewports) {
+    const sources = label.startsWith('batch3') ? ['staging'] : ['production', 'staging'];
     const inputs = await Promise.all(
-      ['production', 'staging'].map(async (source) => {
+      sources.map(async (source, sourceIndex) => {
         const file = path.join(root, source, viewport, `${page}.png`);
         const buffer = await sharp(file)
-          .resize({ width: 600 })
-          .extract({ left: 0, top: 0, width: 600, height: 900 })
+          .resize({ width: 600, height: 900, fit: 'cover', position: 'top' })
           .png()
           .toBuffer();
-        return { input: buffer, left: source === 'production' ? 0 : 620, top: 60 };
+        return { input: buffer, left: sourceIndex * 620, top: 60 };
       }),
     );
+    const comparisonWidth = sources.length === 1 ? 600 : 1220;
     const title = Buffer.from(
-      `<svg width="1220" height="980"><rect width="1220" height="980" fill="#eee"/>
-      <text x="300" y="38" text-anchor="middle" font-family="Arial" font-size="24">Production</text>
-      <text x="920" y="38" text-anchor="middle" font-family="Arial" font-size="24">Staging</text></svg>`,
+      `<svg width="${comparisonWidth}" height="960"><rect width="${comparisonWidth}" height="960" fill="#eee"/>
+      ${sources.map((source, index) => `<text x="${300 + (index * 620)}" y="38" text-anchor="middle" font-family="Arial" font-size="24">${source === 'staging' && sources.length === 1 ? 'Native Batch 3' : source}</text>`).join('')}</svg>`,
     );
     await sharp(title)
       .composite(inputs)

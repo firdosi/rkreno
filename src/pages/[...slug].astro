@@ -5,6 +5,7 @@ import ContactForm from '@components/ContactForm.astro';
 import Batch1Page from '@components/Batch1Page.astro';
 import ArticlePage from '@components/ArticlePage.astro';
 import BlogArchive from '@components/BlogArchive.astro';
+import ThankYouPage from '@components/ThankYouPage.astro';
 import FaqPage from '@components/FaqPage.astro';
 import PriorityPageHero from '@components/PriorityPageHero.astro';
 import pages from '@data/site-pages.json';
@@ -13,6 +14,8 @@ import { batch1Pages } from '@data/batch1-pages';
 import { batch1ServicePages } from '@data/batch1-service-pages';
 import { batch2Pages } from '@data/batch2-pages';
 import { batch2Articles } from '@data/batch2-articles';
+import { batch3Articles } from '@data/batch3';
+import { batch3Pages } from '@data/batch3-pages';
 
 interface PageRecord {
   path: string;
@@ -45,9 +48,9 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props as { page: PageRecord };
-const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path] || batch2Pages[page.path];
-const batchArticle = batch2Articles[page.path];
-const nativePage = Boolean(batchPage || batchArticle || page.path === '/faq/' || page.path === '/blog/');
+const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path] || batch2Pages[page.path] || batch3Pages[page.path];
+const batchArticle = batch2Articles[page.path] || batch3Articles[page.path];
+const nativePage = Boolean(batchPage || batchArticle || ['/faq/', '/blog/', '/thank-you/'].includes(page.path));
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const repairedLinks = [
   ['/about/', '/about-us/'],
@@ -92,6 +95,7 @@ const pageSchema = batchArticle
       '@type': 'BlogPosting',
       headline: batchArticle.title,
       description: batchArticle.summary,
+      datePublished: batchArticle.published,
       dateModified: batchArticle.modified,
       author: { '@type': 'Organization', name: 'RK Reno Solution' },
       mainEntityOfPage: page.canonical,
@@ -106,6 +110,16 @@ const pageSchema = batchArticle
       '@context': 'https://schema.org', '@type': 'Blog',
       name: 'RK Reno Solution Blog', url: page.canonical,
       description: 'Practical renovation and property-service guides from RK Reno Solution.',
+    }]
+  : batch3Pages[page.path]
+  ? [{
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: batchPage?.title,
+      description: batchPage?.summary,
+      url: page.canonical,
+      areaServed: 'Kuala Lumpur',
+      provider: { '@type': 'Organization', name: 'RK Reno Solution' },
     }]
   : nativePage
   ? [{
@@ -122,7 +136,7 @@ const pageSchema = batchArticle
   : page.schema;
 ---
 <BaseLayout
-  title={page.title}
+  title={batchArticle ? `${batchArticle.title} - RK Reno Solution` : page.title}
   description={batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
     ? 'Practical renovation and property-service guides from RK Reno Solution.'
     : page.path === '/faq/'
@@ -133,6 +147,7 @@ const pageSchema = batchArticle
   schema={pageSchema}
   pageType={page.type}
   externalStyles={nativePage ? [] : page.externalStyles}
+  robots={page.path === '/thank-you/' ? 'noindex, nofollow' : undefined}
 >
   {batchArticle ? (
     <ArticlePage article={batchArticle} path={page.path} />
@@ -140,6 +155,8 @@ const pageSchema = batchArticle
     <FaqPage />
   ) : page.path === '/blog/' ? (
     <BlogArchive />
+  ) : page.path === '/thank-you/' ? (
+    <ThankYouPage />
   ) : batchPage ? (
     <Batch1Page page={batchPage} path={page.path} />
   ) : (
