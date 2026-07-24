@@ -153,7 +153,7 @@ const pageSchema = batchArticle
       '@type': 'WebPage',
       '@id': page.canonical,
       url: page.canonical,
-      name: page.title,
+      name: batchPage?.title || page.title,
       description: batchPage?.summary || (page.path === '/faq/'
         ? 'Answers about renovation, aircond, electrical, waterproofing, ceiling, quotation and service areas.'
         : 'Practical renovation and property-service guides from RK Reno Solution.'),
@@ -163,7 +163,8 @@ const pageSchema = batchArticle
 ---
 <BaseLayout
   title={nativeTaxonomy ? `${nativeTaxonomy.title} - RK Reno Solution`
-    : batchArticle ? `${batchArticle.title} - RK Reno Solution` : page.title}
+    : batchArticle ? `${batchArticle.title} - RK Reno Solution`
+      : batchPage ? `${batchPage.title} - RK Reno Solution` : page.title}
   description={nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
     ? 'Practical renovation and property-service guides from RK Reno Solution.'
     : page.path === '/faq/'

@@ -36,7 +36,8 @@ const claimStatuses = [
   'VERIFIED_FROM_OWNER_SOURCE', 'PRESENT_ON_PRODUCTION_ONLY', 'IMPORTED_DEMO_CONTENT',
   'NO_SUPPORT_FOUND', 'OWNER_CONFIRMATION_REQUIRED',
   'REMOVED_FROM_BATCH_1_OUTPUT', 'REMOVED_FROM_BATCH_2_OUTPUT',
-  'REMOVED_FROM_BATCH_3_OUTPUT',
+  'REMOVED_FROM_BATCH_3_OUTPUT', 'REMOVED_FROM_PHASE_4_OUTPUT',
+  'TECHNICAL_DISCLAIMER_REQUIRED',
 ];
 const expected = new Set(pages.filter((page) =>
   (page.status === 200 && page.type !== 'template' && page.title) || page.status === 404 ||

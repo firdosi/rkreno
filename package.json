@@ -12,6 +12,9 @@
     "refresh:theme": "node scripts/refresh-theme-layouts.mjs",
     "audit:visual": "node scripts/visual-audit.mjs",
     "audit:visual:contacts": "node scripts/create-visual-contact-sheets.mjs",
+    "audit:final": "node scripts/final-visual-audit.mjs",
+    "audit:final:contacts": "node scripts/create-final-contact-sheets.mjs",
+    "report:phase4": "node scripts/generate-phase4-reports.mjs",
     "audit:completion": "node scripts/generate-full-site-completion-audit.mjs",
     "audit:disposition": "node scripts/generate-route-disposition-plan.mjs && node scripts/validate-route-disposition-plan.mjs",
     "audit:disposition:validate": "node scripts/validate-route-disposition-plan.mjs",
@@ -22,6 +25,7 @@
     "check:batch2": "node scripts/check-batch2-content.mjs",
     "check:batch3": "node scripts/check-batch3-content.mjs",
     "check:batch4": "node scripts/check-batch4-taxonomy.mjs",
+    "check:phase4": "node scripts/check-phase4-acceptance.mjs",
     "test:routes": "node scripts/test-deployed-routes.mjs"
   },
   "dependencies": {
