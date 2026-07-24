@@ -1,11 +1,16 @@
-source,target,status,reason
-/about/,/about-us/,301,Legacy internal alias
-/6-ways-to-get-the-most-out-of-your-project-search-software,/blog/,301,Broken legacy article link
-/portfolio/commercial/,/our-projects/,301,Broken portfolio taxonomy
-/portfolio/electrical/,/our-projects/,301,Broken portfolio taxonomy
-/portfolio/home-renovation/,/our-projects/,301,Broken portfolio taxonomy
-/portfolio/office-renovation/,/our-projects/,301,Broken portfolio taxonomy
-/portfolio/residential/,/our-projects/,301,Broken portfolio taxonomy
-/portfolio/stadium/,/our-projects/,301,Broken portfolio taxonomy
-/portfolio/waterproofing/,/our-projects/,301,Broken portfolio taxonomy
-/home-2/,/home-2-2/,301,Legacy demo page redirects to an image
+"source","target","status","reason"
+"/about/","/about-us/","301","Legacy internal alias"
+"/6-ways-to-get-the-most-out-of-your-project-search-software","/blog/","301","Broken legacy article link"
+"/portfolio/commercial/","/our-projects/","301","Broken portfolio taxonomy"
+"/portfolio/electrical/","/our-projects/","301","Broken portfolio taxonomy"
+"/portfolio/home-renovation/","/our-projects/","301","Broken portfolio taxonomy"
+"/portfolio/office-renovation/","/our-projects/","301","Broken portfolio taxonomy"
+"/portfolio/residential/","/our-projects/","301","Broken portfolio taxonomy"
+"/portfolio/stadium/","/our-projects/","301","Broken portfolio taxonomy"
+"/portfolio/waterproofing/","/our-projects/","301","Broken portfolio taxonomy"
+"/home-2/","/home-2-2/","301","Legacy demo page redirects to an image"
+"/category/interior-design/","/tag/interior-finishing/","301 (future VPS)","The clearer interior-finishing archive covers the retained ceiling and finishing material without implying a broader design library."
+"/tag/aircond-maintenance/","/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/","301 (future VPS)","The servicing guide directly satisfies the tag intent; a separate one-card archive adds no navigation value."
+"/tag/cleaning/","/category/servis-pembersihan/","301 (future VPS)","The cleaning category preserves the same intent and adds the related deep-cleaning guide."
+"/tag/guide/","/blog/","301 (future VPS)","The primary blog archive is the genuine browsing destination for guides; the broad tag has no distinct subject."
+"/tag/pemasangan-aircond/","/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/","301 (future VPS)","The retained aircond installation guide directly satisfies the old tag intent."

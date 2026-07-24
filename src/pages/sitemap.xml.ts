@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import pages from '@data/site-pages.json';
 import routePolicy from '@data/route-policy.json';
+import taxonomyArchives from '@data/taxonomy-archives.json';
 
 export const prerender = true;
 
@@ -22,7 +23,7 @@ const escapeXml = (value: string) =>
   })[character] || character);
 
 export const GET: APIRoute = () => {
-  const excluded = new Set([...routePolicy.excluded, '/thank-you/']);
+  const excluded = new Set([...routePolicy.excluded, '/thank-you/', ...Object.keys(taxonomyArchives)]);
   const urls = (pages as PageRecord[])
     .filter((page) =>
       page.status === 200

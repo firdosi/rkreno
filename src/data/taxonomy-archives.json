@@ -1,0 +1,122 @@
+{
+  "/category/commercial/": {
+    "action": "KEEP_NOINDEX_NATIVE",
+    "type": "Category",
+    "title": "Commercial Renovation Guides",
+    "description": "Planning guides for retail and office renovation, including layout, services, access and handover considerations.",
+    "introduction": "Browse practical guidance for commercial premises in Kuala Lumpur and Petaling Jaya. These articles cover retail planning and office fit-out coordination before a site-based scope is confirmed.",
+    "articles": ["/commercial-retail-shop-renovation-in-kuala-lumpur/", "/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/", "/office-renovation-petaling-jaya-corporate-fit-out-experts/"],
+    "serviceHref": "/office-renovation-in-kuala-lumpur/",
+    "serviceLabel": "Office and commercial renovation"
+  },
+  "/category/hvac-guides/": {
+    "action": "KEEP_NOINDEX_NATIVE",
+    "type": "Category",
+    "title": "Aircond Installation and Maintenance Guides",
+    "description": "Aircond guides covering installation planning, maintenance and quotation factors for Kuala Lumpur and Selangor properties.",
+    "introduction": "Use these guides to compare installation requirements, prepare a site brief and recognise when an aircond problem needs inspection rather than assumptions.",
+    "articles": ["/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/", "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/", "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/"],
+    "serviceHref": "/aircond-installation-kl/",
+    "serviceLabel": "Aircond installation service"
+  },
+  "/category/interior-design/": {
+    "action": "MERGE_AND_301_LATER",
+    "type": "Category",
+    "title": "Interior Design",
+    "destination": "/tag/interior-finishing/"
+  },
+  "/category/maintenance/": {
+    "action": "KEEP_NOINDEX_NATIVE",
+    "type": "Category",
+    "title": "Property Maintenance Guides",
+    "description": "Maintenance planning for aircond servicing, cleaning, leakage inspection and site-dependent repair work.",
+    "introduction": "These guides help property owners describe maintenance symptoms and prepare for inspection across aircond, cleaning and waterproofing work. The suitable scope still depends on the property condition.",
+    "articles": ["/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/", "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/", "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/", "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/", "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/"],
+    "serviceHref": "/services/",
+    "serviceLabel": "Browse property services"
+  },
+  "/category/renovation/": {
+    "action": "KEEP_NOINDEX_NATIVE",
+    "type": "Category",
+    "title": "Renovation Planning Guides",
+    "description": "Residential and retail renovation guides covering scope, materials, coordination, sequencing, quotation and handover.",
+    "introduction": "Start a renovation discussion with a clearer brief. This collection covers house and retail projects while keeping final cost, timing and approval questions tied to the actual premises.",
+    "articles": ["/commercial-retail-shop-renovation-in-kuala-lumpur/", "/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/", "/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/"],
+    "serviceHref": "/service/building-renovation/",
+    "serviceLabel": "Main renovation service"
+  },
+  "/category/servis-pembersihan/": {
+    "action": "KEEP_NOINDEX_NATIVE",
+    "type": "Category",
+    "title": "Panduan Servis Pembersihan Rumah",
+    "description": "Panduan merancang servis cuci rumah dan deep cleaning di Kuala Lumpur berdasarkan keadaan dan skop sebenar.",
+    "introduction": "Rujuk panduan ini untuk menyediakan senarai ruang, keadaan rumah dan jenis cucian sebelum meminta sebut harga. Ketersediaan dan skop akhir perlu disahkan semasa pertanyaan.",
+    "articles": ["/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/", "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/"],
+    "serviceHref": "/servis-cuci-rumah-kl/",
+    "serviceLabel": "Servis cuci rumah Kuala Lumpur"
+  },
+  "/category/technical-guides/": {
+    "action": "KEEP_NOINDEX_NATIVE",
+    "type": "Category",
+    "title": "Technical Property Guides",
+    "description": "Safety, inspection and technical planning guides for electrical, aircond, waterproofing and ceiling work.",
+    "introduction": "Review the technical questions that should be settled before work begins, from electrical warning signs and aircond routes to leak sources and ceiling coordination. These guides do not replace a site inspection.",
+    "articles": ["/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/", "/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/", "/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/", "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/", "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/", "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/"],
+    "serviceHref": "/services/",
+    "serviceLabel": "Find the relevant service"
+  },
+  "/tag/aircond-maintenance/": {
+    "action": "MERGE_AND_301_LATER",
+    "type": "Tag",
+    "title": "Aircond Maintenance",
+    "destination": "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/"
+  },
+  "/tag/cleaning/": {
+    "action": "MERGE_AND_301_LATER",
+    "type": "Tag",
+    "title": "Cleaning",
+    "destination": "/category/servis-pembersihan/"
+  },
+  "/tag/guide/": {
+    "action": "MERGE_AND_301_LATER",
+    "type": "Tag",
+    "title": "Guide",
+    "destination": "/blog/"
+  },
+  "/tag/interior-finishing/": {
+    "action": "KEEP_NOINDEX_NATIVE",
+    "type": "Tag",
+    "title": "Interior Finishing Guides",
+    "description": "Practical guides for plaster ceilings and coordinated finishing work in renovation projects.",
+    "introduction": "Interior finishes work best when ceilings, lighting, services, surfaces and access are coordinated early. These guides focus on that planning rather than unsupported design promises.",
+    "articles": ["/commercial-retail-shop-renovation-in-kuala-lumpur/", "/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/"],
+    "serviceHref": "/plaster-ceiling-contractor-kl/",
+    "serviceLabel": "Plaster ceiling service"
+  },
+  "/tag/office-fit-out/": {
+    "action": "KEEP_NOINDEX_NATIVE",
+    "type": "Tag",
+    "title": "Office Fit-Out Guides",
+    "description": "Office renovation planning for Kuala Lumpur and Petaling Jaya premises, including layout, services and building requirements.",
+    "introduction": "Compare two location-focused office fit-out guides covering layouts, service coordination, premises rules and the agreed handover condition.",
+    "articles": ["/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/", "/office-renovation-petaling-jaya-corporate-fit-out-experts/"],
+    "serviceHref": "/office-renovation-in-kuala-lumpur/",
+    "serviceLabel": "Office renovation service"
+  },
+  "/tag/pemasangan-aircond/": {
+    "action": "MERGE_AND_301_LATER",
+    "type": "Tag",
+    "title": "Pemasangan Aircond",
+    "destination": "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/"
+  },
+  "/tag/waterproofing/": {
+    "action": "KEEP_NOINDEX_NATIVE",
+    "type": "Tag",
+    "title": "Waterproofing and Leak Guides",
+    "description": "Leak inspection and PU injection guidance for site-dependent waterproofing decisions in Kuala Lumpur.",
+    "introduction": "Learn how visible dampness, cracks and water paths are assessed before a repair method is selected. Both guides emphasise inspection and avoid promising a universal permanent result.",
+    "articles": ["/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/", "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/"],
+    "serviceHref": "/waterproofing-contractor-kuala-lumpur/",
+    "serviceLabel": "Waterproofing inspection service"
+  }
+}

@@ -48,6 +48,8 @@ const excludedActions = new Set([
   'MERGE_AND_301_REDIRECT',
   'REMOVE_AND_410',
   'OWNER_DECISION_REQUIRED',
+  'MERGE_AND_301_LATER',
+  'REMOVE_AND_410_LATER',
 ]);
 const excluded = records
   .filter((record) => excludedActions.has(record['Proposed action']))

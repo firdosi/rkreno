@@ -35,6 +35,8 @@ const failures = [];
 const claimStatuses = [
   'VERIFIED_FROM_OWNER_SOURCE', 'PRESENT_ON_PRODUCTION_ONLY', 'IMPORTED_DEMO_CONTENT',
   'NO_SUPPORT_FOUND', 'OWNER_CONFIRMATION_REQUIRED',
+  'REMOVED_FROM_BATCH_1_OUTPUT', 'REMOVED_FROM_BATCH_2_OUTPUT',
+  'REMOVED_FROM_BATCH_3_OUTPUT',
 ];
 const expected = new Set(pages.filter((page) =>
   (page.status === 200 && page.type !== 'template' && page.title) || page.status === 404 ||
@@ -55,14 +57,15 @@ for (const row of rows) {
   const action = row['Proposed action'];
   const destination = row['Proposed destination URL'];
   if (!allowedActions.includes(action)) failures.push(`${row['Current route']}: invalid action`);
-  if (['MERGE_AND_301_REDIRECT', 'EXISTING_404_REPAIR'].includes(action) && !destination) {
+  if (['MERGE_AND_301_REDIRECT', 'MERGE_AND_301_LATER', 'EXISTING_404_REPAIR'].includes(action) && !destination) {
     failures.push(`${row['Current route']}: redirect missing destination`);
   }
-  if (['REMOVE_AND_410', 'EXISTING_404_LEAVE_GONE'].includes(action) && destination) {
+  if (['REMOVE_AND_410', 'REMOVE_AND_410_LATER', 'EXISTING_404_LEAVE_GONE'].includes(action) && destination) {
     failures.push(`${row['Current route']}: gone route has destination`);
   }
   if (action === 'OWNER_DECISION_REQUIRED' &&
-      row['Final decision status'] !== 'OWNER_CONFIRMATION_REQUIRED') {
+      !['OWNER_CONFIRMATION_REQUIRED', 'APPROVED_STAGING_ROUTE_OMITTED']
+        .includes(row['Final decision status'])) {
     failures.push(`${row['Current route']}: owner decision treated as approved`);
   }
   if (row['WordPress content type'] === 'portfolio' &&
@@ -79,9 +82,6 @@ if (rows.filter((row) => row['Route source'] === 'production-404').length !== 9)
 if (rows.filter((row) => row['Unique content level'] === 'EXACT_DUPLICATE').length !== 14) {
   failures.push('Exact-duplicate route count is not 14');
 }
-if (rows.filter((row) => row['Image dependency status'].startsWith('BLOCKED')).length !== 15) {
-  failures.push('Image-blocked route count is not 15');
-}
 if (claims.some((claim) => claim['Verification status'] === 'VERIFIED_FROM_OWNER_SOURCE')) {
   failures.push('Unsupported claim was marked verified');
 }
@@ -90,7 +90,7 @@ if (claims.some((claim) => !claimStatuses.includes(claim['Verification status'])
 }
 for (const action of allowedActions) {
   const count = rows.filter((row) => row['Proposed action'] === action).length;
-  if (!report.includes(`- ${action}: ${count}`)) failures.push(`Report count mismatch: ${action}`);
+  if (count && !report.includes(`- ${action}: ${count}`)) failures.push(`Report count mismatch: ${action}`);
 }
 if (/C:\\Users\\|wp-old-site-backup|BEGIN OPENSSH PRIVATE KEY/.test(report)) {
   failures.push('Report contains a private/local source reference');

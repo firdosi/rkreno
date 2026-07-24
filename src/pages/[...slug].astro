@@ -6,6 +6,7 @@ import Batch1Page from '@components/Batch1Page.astro';
 import ArticlePage from '@components/ArticlePage.astro';
 import BlogArchive from '@components/BlogArchive.astro';
 import ThankYouPage from '@components/ThankYouPage.astro';
+import TaxonomyArchive from '@components/TaxonomyArchive.astro';
 import FaqPage from '@components/FaqPage.astro';
 import PriorityPageHero from '@components/PriorityPageHero.astro';
 import pages from '@data/site-pages.json';
@@ -16,6 +17,8 @@ import { batch2Pages } from '@data/batch2-pages';
 import { batch2Articles } from '@data/batch2-articles';
 import { batch3Articles } from '@data/batch3';
 import { batch3Pages } from '@data/batch3-pages';
+import taxonomyArchives from '@data/taxonomy-archives.json';
+import { retainedArticleByRoute } from '@data/retained-article-catalog';
 
 interface PageRecord {
   path: string;
@@ -34,12 +37,16 @@ interface PageRecord {
 
 export function getStaticPaths() {
   const excluded = new Set(routePolicy.excluded);
+  const retiredTaxonomies = new Set(Object.entries(taxonomyArchives)
+    .filter(([, archive]) => archive.action !== 'KEEP_NOINDEX_NATIVE')
+    .map(([route]) => route));
   return (pages as PageRecord[])
     .filter((page) =>
       page.status === 200
       && page.type !== 'template'
       && page.title
       && !excluded.has(page.path)
+      && !retiredTaxonomies.has(page.path)
     )
     .map((page) => ({
       params: { slug: page.path === '/' ? undefined : page.path.replace(/^\/|\/$/g, '') },
@@ -50,7 +57,12 @@ export function getStaticPaths() {
 const { page } = Astro.props as { page: PageRecord };
 const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path] || batch2Pages[page.path] || batch3Pages[page.path];
 const batchArticle = batch2Articles[page.path] || batch3Articles[page.path];
-const nativePage = Boolean(batchPage || batchArticle || ['/faq/', '/blog/', '/thank-you/'].includes(page.path));
+const taxonomyArchive = taxonomyArchives[page.path as keyof typeof taxonomyArchives];
+const nativeTaxonomy = taxonomyArchive?.action === 'KEEP_NOINDEX_NATIVE' ? taxonomyArchive : undefined;
+const taxonomyArticles = nativeTaxonomy && 'articles' in nativeTaxonomy
+  ? nativeTaxonomy.articles.map((route) => retainedArticleByRoute[route]).filter(Boolean)
+  : [];
+const nativePage = Boolean(batchPage || batchArticle || nativeTaxonomy || ['/faq/', '/blog/', '/thank-you/'].includes(page.path));
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const repairedLinks = [
   ['/about/', '/about-us/'],
@@ -111,6 +123,20 @@ const pageSchema = batchArticle
       name: 'RK Reno Solution Blog', url: page.canonical,
       description: 'Practical renovation and property-service guides from RK Reno Solution.',
     }]
+  : nativeTaxonomy
+  ? [{
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: nativeTaxonomy.title,
+      description: nativeTaxonomy.description,
+      url: page.canonical,
+      isPartOf: { '@id': 'https://rkrenosolution.com/#website' },
+      hasPart: taxonomyArticles.map((article) => ({
+        '@type': 'BlogPosting',
+        headline: article.title,
+        url: `https://rkrenosolution.com${article.route}`,
+      })),
+    }]
   : batch3Pages[page.path]
   ? [{
       '@context': 'https://schema.org',
@@ -136,8 +162,9 @@ const pageSchema = batchArticle
   : page.schema;
 ---
 <BaseLayout
-  title={batchArticle ? `${batchArticle.title} - RK Reno Solution` : page.title}
-  description={batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
+  title={nativeTaxonomy ? `${nativeTaxonomy.title} - RK Reno Solution`
+    : batchArticle ? `${batchArticle.title} - RK Reno Solution` : page.title}
+  description={nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
     ? 'Practical renovation and property-service guides from RK Reno Solution.'
     : page.path === '/faq/'
       ? 'Answers about renovation, aircond, electrical, waterproofing, ceiling, quotation and service areas.'
@@ -147,7 +174,8 @@ const pageSchema = batchArticle
   schema={pageSchema}
   pageType={page.type}
   externalStyles={nativePage ? [] : page.externalStyles}
-  robots={page.path === '/thank-you/' ? 'noindex, nofollow' : undefined}
+  robots={nativeTaxonomy ? 'noindex, follow'
+    : page.path === '/thank-you/' ? 'noindex, nofollow' : undefined}
 >
   {batchArticle ? (
     <ArticlePage article={batchArticle} path={page.path} />
@@ -157,6 +185,8 @@ const pageSchema = batchArticle
     <BlogArchive />
   ) : page.path === '/thank-you/' ? (
     <ThankYouPage />
+  ) : nativeTaxonomy ? (
+    <TaxonomyArchive archive={nativeTaxonomy} articles={taxonomyArticles} path={page.path} />
   ) : batchPage ? (
     <Batch1Page page={batchPage} path={page.path} />
   ) : (

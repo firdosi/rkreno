@@ -7,6 +7,9 @@ export const allowedActions = [
   'OWNER_DECISION_REQUIRED',
   'EXISTING_404_REPAIR',
   'EXISTING_404_LEAVE_GONE',
+  'KEEP_NOINDEX_NATIVE',
+  'MERGE_AND_301_LATER',
+  'REMOVE_AND_410_LATER',
 ];
 
 export const knownMissingImages = [
@@ -183,8 +186,9 @@ function result(action, destination, reason) {
 
 export function recommendedIndex(action) {
   if (['KEEP_AND_REDESIGN', 'KEEP_CONTENT_PAGE'].includes(action)) return 'index,follow';
-  if (['KEEP_NOINDEX_TEMPORARILY', 'OWNER_DECISION_REQUIRED'].includes(action)) return 'noindex,follow';
-  if (['MERGE_AND_301_REDIRECT', 'EXISTING_404_REPAIR'].includes(action)) return '301 redirect';
+  if (['KEEP_NOINDEX_TEMPORARILY', 'KEEP_NOINDEX_NATIVE', 'OWNER_DECISION_REQUIRED'].includes(action)) return 'noindex,follow';
+  if (['MERGE_AND_301_REDIRECT', 'MERGE_AND_301_LATER', 'EXISTING_404_REPAIR'].includes(action)) return '301 redirect';
+  if (action === 'REMOVE_AND_410_LATER') return 'gone (410)';
   if (action === 'EXISTING_404_LEAVE_GONE') return 'remain 404';
   return 'gone (410)';
 }

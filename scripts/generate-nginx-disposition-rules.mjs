@@ -38,9 +38,10 @@ for (const record of records) {
   const route = record['Current route'];
   const action = record['Proposed action'];
   if (!route?.startsWith('/')) continue;
-  if (action === 'MERGE_AND_301_REDIRECT' && record['Proposed destination URL']) {
+  if (['MERGE_AND_301_REDIRECT', 'MERGE_AND_301_LATER'].includes(action) &&
+      record['Proposed destination URL']) {
     lines.push(`location = ${route} { return 301 ${record['Proposed destination URL']}; }`);
-  } else if (action === 'REMOVE_AND_410') {
+  } else if (['REMOVE_AND_410', 'REMOVE_AND_410_LATER'].includes(action)) {
     lines.push(`location = ${route} { return 410; }`);
   }
 }

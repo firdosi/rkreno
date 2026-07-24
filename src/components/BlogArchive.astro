@@ -1,6 +1,6 @@
 ---
 import Breadcrumbs from './Breadcrumbs.astro';
-import { retainedArticles } from '@data/batch2-articles';
+import { retainedArticleCatalog } from '@data/retained-article-catalog';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <div class="batch-page">
@@ -11,10 +11,10 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <Breadcrumbs path="/blog/" title="Blog" />
   <section class="section-space"><div class="wrap">
     <div class="archive-grid">
-      {retainedArticles.map(([href, title, category]) => <article class="service-card">
-        <p class="eyebrow">{category}</p><h2>{title}</h2>
-        <p>Planning information and questions to consider before confirming a property-service scope.</p>
-        <a href={`${base}${href}`}>Read guide <span aria-hidden="true">→</span></a>
+      {retainedArticleCatalog.map((article) => <article class="service-card">
+        <p class="eyebrow">{article.category}</p><h2>{article.title}</h2>
+        <p>{article.summary}</p>
+        <a href={`${base}${article.route}`}>Read guide <span aria-hidden="true">→</span></a>
       </article>)}
     </div>
   </div></section>

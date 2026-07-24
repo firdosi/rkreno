@@ -229,6 +229,17 @@ input, select, textarea, button { font: inherit; }
 .article-related a { color: var(--orange-dark); font-weight: 800; }
 .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 .archive-grid .service-card h2 { font-size: 1.25rem; }
+.taxonomy-intro { margin-inline: auto; text-align: center; }
+.taxonomy-grid { align-items: stretch; }
+.taxonomy-card { overflow: hidden; display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
+.taxonomy-card__image { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface); }
+.taxonomy-card__image img { width: 100%; height: 100%; object-fit: cover; transition: transform .25s ease; }
+.taxonomy-card:hover .taxonomy-card__image img { transform: scale(1.025); }
+.taxonomy-card__body { display: flex; flex: 1; flex-direction: column; padding: 1.5rem; }
+.taxonomy-card__body h2 { font-size: 1.32rem; }
+.taxonomy-card__body > p:not(.eyebrow, .article-meta) { color: var(--muted); }
+.taxonomy-card__body .article-meta { margin-top: auto; }
+.taxonomy-card__link { color: var(--orange-dark); }
 .faq-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem 3rem; }
 .faq-groups h2 { font-size: 1.55rem; }
 .utility-page { min-height: 62vh; display: grid; place-items: center; padding-block: clamp(4rem, 9vw, 8rem); background: var(--surface); }

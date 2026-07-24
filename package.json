@@ -21,6 +21,7 @@
     "check:accessibility": "node scripts/check-batch1-accessibility.mjs",
     "check:batch2": "node scripts/check-batch2-content.mjs",
     "check:batch3": "node scripts/check-batch3-content.mjs",
+    "check:batch4": "node scripts/check-batch4-taxonomy.mjs",
     "test:routes": "node scripts/test-deployed-routes.mjs"
   },
   "dependencies": {

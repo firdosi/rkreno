@@ -25,15 +25,22 @@ const batch3Pages = [
   'pu-injection-article', 'aircond-servicing-article', 'cleaning-article',
   'cleaning-service', 'thank-you',
 ];
+const batch4Pages = [
+  'commercial-archive', 'hvac-archive', 'maintenance-archive', 'renovation-archive',
+  'cleaning-archive', 'technical-archive', 'finishing-archive', 'office-archive',
+  'waterproofing-archive',
+];
 const viewports = ['desktop', 'tablet', 'mobile'];
 const label = process.argv[2] || 'before';
-const pages = label.startsWith('batch3') ? batch3Pages
+const pages = label.startsWith('batch4') ? batch4Pages
+  : label.startsWith('batch3') ? batch3Pages
   : label.startsWith('batch2') ? batch2Pages : batch1Pages;
 const requestedPages = new Set((process.argv[3] || '').split(',').filter(Boolean));
 const requestedViewports = new Set((process.argv[4] || '').split(',').filter(Boolean));
 const root = path.resolve('.audit-cache', 'visual-comparison', label);
 const output = path.join(root, 'comparisons');
-const batchName = label.startsWith('batch3') ? 'batch-3'
+const batchName = label.startsWith('batch4') ? 'batch-4'
+  : label.startsWith('batch3') ? 'batch-3'
   : label.startsWith('batch2') ? 'batch-2' : 'batch-1';
 const publicOutput = path.resolve('reports', 'public', 'visuals', batchName);
 await fs.mkdir(output, { recursive: true });
@@ -45,7 +52,8 @@ const selectedViewports = requestedViewports.size
 
 for (const page of selectedPages) {
   for (const viewport of selectedViewports) {
-    const sources = label.startsWith('batch3') ? ['staging'] : ['production', 'staging'];
+    const sources = label.startsWith('batch3') || label.startsWith('batch4')
+      ? ['staging'] : ['production', 'staging'];
     const inputs = await Promise.all(
       sources.map(async (source, sourceIndex) => {
         const file = path.join(root, source, viewport, `${page}.png`);
@@ -57,9 +65,10 @@ for (const page of selectedPages) {
       }),
     );
     const comparisonWidth = sources.length === 1 ? 600 : 1220;
+    const nativeLabel = `Native ${batchName.replace('batch-', 'Batch ')}`;
     const title = Buffer.from(
       `<svg width="${comparisonWidth}" height="960"><rect width="${comparisonWidth}" height="960" fill="#eee"/>
-      ${sources.map((source, index) => `<text x="${300 + (index * 620)}" y="38" text-anchor="middle" font-family="Arial" font-size="24">${source === 'staging' && sources.length === 1 ? 'Native Batch 3' : source}</text>`).join('')}</svg>`,
+      ${sources.map((source, index) => `<text x="${300 + (index * 620)}" y="38" text-anchor="middle" font-family="Arial" font-size="24">${source === 'staging' && sources.length === 1 ? nativeLabel : source}</text>`).join('')}</svg>`,
     );
     await sharp(title)
       .composite(inputs)

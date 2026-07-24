@@ -1,0 +1,70 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+import type { RetainedArticle } from '@data/retained-article-catalog';
+
+interface Archive {
+  type: string;
+  title: string;
+  description: string;
+  introduction: string;
+  serviceHref: string;
+  serviceLabel: string;
+}
+
+const { archive, articles, path } = Astro.props as {
+  archive: Archive;
+  articles: RetainedArticle[];
+  path: string;
+};
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<div class="taxonomy-page">
+  <section class="article-hero">
+    <div class="wrap article-hero__inner">
+      <p class="eyebrow">{archive.type} archive</p>
+      <h1>{archive.title}</h1>
+      <p class="batch-lead">{archive.introduction}</p>
+    </div>
+  </section>
+  <Breadcrumbs path={path} title={archive.title} />
+
+  <section class="section-space">
+    <div class="wrap">
+      <div class="section-heading taxonomy-intro">
+        <p class="eyebrow">Retained guides</p>
+        <h2>Explore this topic</h2>
+        <p>{archive.description}</p>
+      </div>
+      <div class="archive-grid taxonomy-grid">
+        {articles.map((article) => (
+          <article class="taxonomy-card">
+            <a class="taxonomy-card__image" href={`${base}${article.route}`}>
+              <img src={`${base}${article.image}`} alt={article.imageAlt} width="640" height="360" />
+            </a>
+            <div class="taxonomy-card__body">
+              <p class="eyebrow">{article.category}</p>
+              <h2><a href={`${base}${article.route}`}>{article.title}</a></h2>
+              <p>{article.summary}</p>
+              <p class="article-meta"><time datetime={article.published}>{article.published}</time></p>
+              <a class="text-link taxonomy-card__link" href={`${base}${article.route}`}>Read guide →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space section-tint">
+    <div class="wrap batch-cta">
+      <div>
+        <p class="eyebrow">Plan the next step</p>
+        <h2>Connect the guide to the actual property</h2>
+        <p>Use these articles to prepare questions, then confirm the scope from the site and requested work.</p>
+      </div>
+      <div class="button-row">
+        <a class="button" href={`${base}${archive.serviceHref}`}>{archive.serviceLabel}</a>
+        <a class="text-link" href={`${base}/blog/`}>Browse all guides →</a>
+      </div>
+    </div>
+  </section>
+</div>

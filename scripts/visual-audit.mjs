@@ -41,6 +41,17 @@ const batch3Pages = [
   ['cleaning-service', 'Home cleaning service', '/servis-cuci-rumah-kl/'],
   ['thank-you', 'Thank-you utility', '/thank-you/'],
 ];
+const batch4Pages = [
+  ['commercial-archive', 'Commercial renovation guides', '/category/commercial/'],
+  ['hvac-archive', 'Aircond guides', '/category/hvac-guides/'],
+  ['maintenance-archive', 'Property maintenance guides', '/category/maintenance/'],
+  ['renovation-archive', 'Renovation planning guides', '/category/renovation/'],
+  ['cleaning-archive', 'Servis pembersihan guides', '/category/servis-pembersihan/'],
+  ['technical-archive', 'Technical property guides', '/category/technical-guides/'],
+  ['finishing-archive', 'Interior finishing guides', '/tag/interior-finishing/'],
+  ['office-archive', 'Office fit-out guides', '/tag/office-fit-out/'],
+  ['waterproofing-archive', 'Waterproofing guides', '/tag/waterproofing/'],
+];
 
 const viewports = {
   desktop: { width: 1440, height: 1000 },
@@ -50,7 +61,8 @@ const viewports = {
 
 const args = process.argv.slice(2);
 const label = args[0] || 'before';
-const pages = label.startsWith('batch3') ? batch3Pages
+const pages = label.startsWith('batch4') ? batch4Pages
+  : label.startsWith('batch3') ? batch3Pages
   : label.startsWith('batch2') ? batch2Pages : batch1Pages;
 const stagingBase = args[1] || 'https://firdosi.github.io/rkreno/';
 const requestedPages = new Set((args[2] || '').split(',').filter(Boolean));
@@ -195,7 +207,7 @@ const results = [];
 
 try {
   for (const [viewportName, viewport] of Object.entries(selectedViewports)) {
-    const sources = label.startsWith('batch3')
+    const sources = label.startsWith('batch3') || label.startsWith('batch4')
       ? [['staging', stagingBase]]
       : [['production', productionBase], ['staging', stagingBase]];
     for (const [source, base] of sources) {

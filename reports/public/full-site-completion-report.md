@@ -1,5 +1,13 @@
 # RK Reno full-site completion audit
 
+## Phase 3 Batch 4 update — 24 July 2026
+
+All 14 temporary taxonomy routes were reviewed. Nine now use the native noindex archive template
+and five duplicate routes are omitted with future 301 rules documented. The recalculated retained
+inventory is 42 of 42 complete (100.0%). The sitemap contains 32
+URLs and excludes all taxonomy archives. See the [Batch 4 report](batch-4-completion-report.md).
+
+
 ## Phase 3 Batch 3 update — 24 July 2026
 
 Eleven additional approved routes now use native Astro templates: nine retained articles, the

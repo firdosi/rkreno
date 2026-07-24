@@ -1,5 +1,12 @@
 # RK Reno route disposition and authenticity report
 
+## Phase 3 Batch 4 implementation update — 24 July 2026
+
+Nine taxonomy routes are retained as native noindex archives. Five thin duplicate taxonomies are
+omitted from GitHub Pages with future server-side 301 destinations documented. No Batch 4 route was
+assigned 410 or owner-decision status. Search Console and backlink evidence remain UNKNOWN.
+
+
 ## Phase 3 implementation update — 24 July 2026
 
 The owner approved the Phase 2 recommendations. GitHub Pages now omits all 66
@@ -30,20 +37,22 @@ Related evidence: [Phase 1 completion report](full-site-completion-report.md), [
 - 3 published WooCommerce utilities found in the WordPress export but absent from the 140-path crawl: `/cart/`, `/checkout/`, and `/my-account/`.
 - **Reconciled Phase 2 universe: 145 unique routes/URLs** (130 generated + 9 production 404 + 1 crawled utility + 2 redirect aliases + 3 export-only).
 
-## Proposed-action totals
+## Final action totals
 
 - KEEP_AND_REDESIGN: 25
-- KEEP_CONTENT_PAGE: 7
+- EXISTING_404_LEAVE_GONE: 8
 - MERGE_AND_301_REDIRECT: 18
+- KEEP_CONTENT_PAGE: 7
 - REMOVE_AND_410: 66
-- KEEP_NOINDEX_TEMPORARILY: 15
+- KEEP_NOINDEX_NATIVE: 9
+- MERGE_AND_301_LATER: 5
 - OWNER_DECISION_REQUIRED: 5
 - EXISTING_404_REPAIR: 1
-- EXISTING_404_LEAVE_GONE: 8
+- KEEP_NOINDEX_TEMPORARILY: 1
 
-## Recommended launch count
+## Final retained route count
 
-The evidence-supported core retains 47 current routes: 25 redesigns, 7 retained content pages, and 15 temporary noindex routes. Adding the two minimum proposed legal pages (Privacy Policy and Terms of Use) produces a **recommended launch count of 49 content/utility routes**. The 5 OWNER_DECISION_REQUIRED routes are excluded until approved. Redirect aliases and gone responses are not counted as launch content pages.
+The evidence-supported content and utility inventory contains **42 retained routes**. Redirect and gone routes are not counted as content pages. All 42 retained routes have completed native Phase 3 treatment.
 
 ## Recommended launch structure
 
