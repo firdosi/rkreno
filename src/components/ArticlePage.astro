@@ -3,6 +3,7 @@ import Breadcrumbs from './Breadcrumbs.astro';
 import type { BatchArticle } from '@data/batch2-articles';
 const { article, path } = Astro.props as { article: BatchArticle; path: string };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const imageSrcSet = article.imageSrcSet?.map(({ src, width }) => `${base}${src} ${width}w`).join(', ');
 ---
 <article class="article-page">
   <header class="article-hero">
@@ -19,7 +20,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <Breadcrumbs path={path} title={article.title} />
   <div class="wrap article-layout section-space">
     <div class="article-body">
-      <figure><img src={`${base}${article.image}`} alt={article.imageAlt} width="1100" height="620" /></figure>
+      <figure>
+        <img
+          src={`${base}${article.image}`}
+          srcset={imageSrcSet}
+          sizes="(max-width: 760px) 100vw, 760px"
+          alt={article.imageAlt}
+          width={article.imageWidth ?? 1100}
+          height={article.imageHeight ?? 620}
+          loading="lazy"
+          decoding="async"
+        />
+        {article.imageCaption && <figcaption>{article.imageCaption}</figcaption>}
+      </figure>
       <p class="article-intro">{article.summary}</p>
       {article.sections.map((section) => <section>
         <h2>{section.title}</h2>

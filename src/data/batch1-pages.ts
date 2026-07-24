@@ -10,6 +10,10 @@ export interface BatchPage {
   summary: string;
   image: string;
   imageAlt: string;
+  imageSrcSet?: { src: string; width: number }[];
+  imageWidth?: number;
+  imageHeight?: number;
+  imageCaption?: string;
   introTitle: string;
   intro: string;
   sections: BatchSection[];
@@ -128,8 +132,15 @@ export const batch1Pages: Record<string, BatchPage> = {
     eyebrow: 'Servis Aircond Kuala Lumpur',
     title: 'Servis Aircond Murah KL',
     summary: 'Aircond kurang sejuk, berbau atau bocor air? Dapatkan pemeriksaan, pembersihan dan cadangan servis untuk rumah atau pejabat di Kuala Lumpur.',
-    image: '/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg',
-    imageAlt: 'Juruteknik memeriksa unit aircond untuk servis',
+    image: '/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-960.webp',
+    imageAlt: 'Imej pemilik bagi unit aircond pada dinding dan ruang akses servis',
+    imageSrcSet: [
+      { src: '/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-480.webp', width: 480 },
+      { src: '/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-960.webp', width: 960 },
+    ],
+    imageWidth: 960,
+    imageHeight: 720,
+    imageCaption: 'Unit aircond dan ruang akses servis; lokasi dan butiran projek tidak diterbitkan.',
     introTitle: 'Servis mengikut keadaan unit',
     intro: 'Masalah aircond boleh berpunca daripada penapis kotor, saliran tersumbat, komponen atau tahap gas. Pemeriksaan awal membantu menentukan kerja yang sesuai.',
     sections: [

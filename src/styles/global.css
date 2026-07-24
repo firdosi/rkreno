@@ -164,6 +164,9 @@ input, select, textarea, button { font: inherit; }
   position: relative; width: 100%; aspect-ratio: 1 / 1.02; object-fit: cover;
   border-radius: var(--radius); box-shadow: 0 24px 70px rgba(0,0,0,.35);
 }
+.batch-hero figcaption, .article-body figcaption {
+  margin-top: .75rem; color: #aaa; font-size: .78rem; line-height: 1.45;
+}
 .button-row { display: flex; align-items: center; flex-wrap: wrap; gap: .8rem 1.3rem; margin-top: 2rem; }
 .button--outline { background: transparent; border: 1px solid rgba(255,255,255,.7); }
 .button--outline:hover { background: var(--white); color: var(--ink); }

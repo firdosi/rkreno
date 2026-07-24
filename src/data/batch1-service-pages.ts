@@ -1,11 +1,5 @@
 import type { BatchPage } from './batch1-pages';
 
-const installImages = {
-  main: '/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg',
-  prep: '/assets/media/721626720-1623451799116891-7023267947651638351-n-dfb212d1.jpg',
-  vacuum: '/assets/media/723104253-1623451735783564-5450851965206368683-n-3d2cd57b.jpg',
-};
-
 const installationSections = [
   { title: 'What the installation can involve', items: [
     { title: 'Indoor and outdoor units', text: 'Positioning is reviewed for airflow, drainage, access and the available mounting area.' },
@@ -20,8 +14,15 @@ export const batch1ServicePages: Record<string, BatchPage> = {
     eyebrow: 'Aircond Services · Kuala Lumpur',
     title: 'Aircond Installation KL',
     summary: 'Installation for wall-mounted aircond units in Kuala Lumpur homes, condominiums, offices and shops, with the scope confirmed from the unit and site requirements.',
-    image: installImages.main,
-    imageAlt: 'RK Reno technician carrying out aircond installation in Kuala Lumpur',
+    image: '/assets/media/owner/rk-reno-wall-mounted-aircond-unit-960.webp',
+    imageAlt: 'Owner-supplied image of a wall-mounted aircond unit',
+    imageSrcSet: [
+      { src: '/assets/media/owner/rk-reno-wall-mounted-aircond-unit-480.webp', width: 480 },
+      { src: '/assets/media/owner/rk-reno-wall-mounted-aircond-unit-960.webp', width: 960 },
+    ],
+    imageWidth: 960,
+    imageHeight: 720,
+    imageCaption: 'Wall-mounted aircond unit; location and project details are not published.',
     introTitle: 'Plan the installation for the actual site',
     intro: 'The correct scope depends on unit capacity, piping distance, drainage, electrical supply, wall conditions and access. Send the details for an initial review before scheduling.',
     sections: installationSections,
@@ -36,8 +37,15 @@ export const batch1ServicePages: Record<string, BatchPage> = {
     eyebrow: 'Servis Pemasangan · Selangor',
     title: 'Upah Pasang Aircond Selangor',
     summary: 'Servis pemasangan aircond untuk rumah, pejabat dan kedai di Selangor, berdasarkan kapasiti unit, jarak paip, saliran, bekalan elektrik dan keadaan tapak.',
-    image: installImages.main,
-    imageAlt: 'Juruteknik RK Reno menjalankan pemasangan aircond di Selangor',
+    image: '/assets/media/owner/rk-reno-aircond-unit-trunking-960.webp',
+    imageAlt: 'Imej pemilik bagi unit aircond pada dinding dengan trunking',
+    imageSrcSet: [
+      { src: '/assets/media/owner/rk-reno-aircond-unit-trunking-480.webp', width: 480 },
+      { src: '/assets/media/owner/rk-reno-aircond-unit-trunking-960.webp', width: 960 },
+    ],
+    imageWidth: 960,
+    imageHeight: 720,
+    imageCaption: 'Unit aircond dengan trunking; lokasi dan butiran projek tidak diterbitkan.',
     introTitle: 'Skop pemasangan bergantung pada tapak',
     intro: 'Lokasi unit indoor dan outdoor, panjang paip, laluan saliran serta akses perlu disemak supaya pemasangan boleh dirancang dengan betul.',
     sections: [
@@ -55,8 +63,15 @@ export const batch1ServicePages: Record<string, BatchPage> = {
     eyebrow: 'Panduan Harga Aircond · 2026',
     title: 'Upah Pasang Aircond Selangor: Panduan Harga & Pemasangan',
     summary: 'Panduan untuk memahami komponen harga pemasangan aircond di Selangor sebelum meminta sebut harga bagi rumah, pejabat atau kedai.',
-    image: installImages.vacuum,
-    imageAlt: 'Proses vacuum pump semasa pemasangan aircond',
+    image: '/assets/media/owner/rk-reno-aircond-outdoor-condenser-720.webp',
+    imageAlt: 'Imej pemilik bagi unit kondenser aircond di luar',
+    imageSrcSet: [
+      { src: '/assets/media/owner/rk-reno-aircond-outdoor-condenser-480.webp', width: 480 },
+      { src: '/assets/media/owner/rk-reno-aircond-outdoor-condenser-720.webp', width: 720 },
+    ],
+    imageWidth: 720,
+    imageHeight: 960,
+    imageCaption: 'Unit kondenser aircond di luar; lokasi dan butiran projek tidak diterbitkan.',
     introTitle: 'Bandingkan skop, bukan angka sahaja',
     intro: 'Harga pemasangan berubah mengikut kapasiti unit, panjang paip, pendawaian, bracket, saliran, akses dan kerja tambahan. Minta pecahan skop supaya tawaran lebih mudah dibandingkan.',
     sections: [

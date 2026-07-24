@@ -5,8 +5,14 @@ export const aircondArticles: Record<string, BatchArticle> = {
     category: 'Aircond installation guide',
     title: 'Aircond Installation KL: Planning Guide for 2026',
     summary: 'Plan aircond capacity, unit type, piping, drainage, vacuuming and testing around the room and actual installation route.',
-    image: '/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg',
-    imageAlt: 'General aircond installation and ceiling coordination imagery',
+    image: '/assets/media/owner/rk-reno-wall-mounted-aircond-unit-960.webp',
+    imageAlt: 'Owner-supplied image of a wall-mounted aircond unit',
+    imageSrcSet: [
+      { src: '/assets/media/owner/rk-reno-wall-mounted-aircond-unit-480.webp', width: 480 },
+      { src: '/assets/media/owner/rk-reno-wall-mounted-aircond-unit-960.webp', width: 960 },
+    ],
+    imageWidth: 960, imageHeight: 720,
+    imageCaption: 'Wall-mounted aircond unit; location and project details are not published.',
     published: '2026-03-28', modified: '2026-03-28',
     sections: [
       {
@@ -49,8 +55,14 @@ export const aircondArticles: Record<string, BatchArticle> = {
     category: 'Aircond maintenance guide',
     title: 'Servis Aircond KL: Maintenance and Troubleshooting Guide',
     summary: 'Understand routine aircond cleaning, common warning signs and when uncertain cooling or leakage problems need inspection.',
-    image: '/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg',
-    imageAlt: 'General aircond servicing and ceiling access imagery',
+    image: '/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-960.webp',
+    imageAlt: 'Owner-supplied image of a wall-mounted aircond unit and service access area',
+    imageSrcSet: [
+      { src: '/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-480.webp', width: 480 },
+      { src: '/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-960.webp', width: 960 },
+    ],
+    imageWidth: 960, imageHeight: 720,
+    imageCaption: 'Wall-mounted aircond unit and service access area; location and project details are not published.',
     published: '2026-03-28', modified: '2026-03-28',
     sections: [
       { title: 'What routine servicing can address', paragraphs: ['Routine work may include checking and cleaning accessible filters, covers, coils and drainage components, followed by an operating check. The exact scope should match the unit condition and service requested.'], points: ['Reduced airflow from accumulated dirt', 'Odour or visible dirt around accessible parts', 'Drainage issues that require inspection', 'Maintenance before heavy-use periods'] },

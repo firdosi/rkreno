@@ -7,6 +7,8 @@ export interface ArticleSection {
 }
 export interface BatchArticle {
   category: string; title: string; summary: string; image: string; imageAlt: string;
+  imageSrcSet?: { src: string; width: number }[];
+  imageWidth?: number; imageHeight?: number; imageCaption?: string;
   published: string; modified: string; sections: ArticleSection[];
   serviceHref: string; serviceLabel: string;
   related?: { href: string; label: string }[];

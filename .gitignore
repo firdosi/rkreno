@@ -16,3 +16,6 @@ dist/
 # Local migration audit output may contain extracted/private source data.
 reports/private/
 .audit-cache/
+
+# Owner-supplied originals stay local; only reviewed derivatives may enter public assets.
+/Media/
