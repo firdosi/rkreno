@@ -279,7 +279,7 @@ input, select, textarea, button { font: inherit; }
   .nav-row { min-height: 68px; }
   .brand img { width: 112px; }
   .contact-panel form { grid-template-columns: 1fr; }
-  .contact-panel { padding: 1.5rem; }
+  .contact-panel { grid-template-columns: 1fr; padding: 1.5rem; }
   .legacy-content { width: min(100% - 1.25rem, 1180px); }
   .legacy-content table { display: block; overflow-x: auto; }
   .priority-page-hero { min-height: 0; padding: 3.75rem 0; }
