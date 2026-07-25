@@ -1,0 +1,21 @@
+# Post-cutover validation checklist
+
+- [ ] HTTPS non-www homepage returns 200; HTTP and www use one direct canonical redirect.
+- [ ] All 42 retained routes return 200 with correct trailing slash and canonical.
+- [ ] Nine taxonomy archives and `/thank-you/` are noindex and absent from the sitemap.
+- [ ] Sitemap has 32 indexable retained URLs; robots references it.
+- [ ] Custom 404 returns the intended status and page.
+- [ ] All 23 redirects are one hop; all 66 gone routes return 410.
+- [ ] No redirect affects `/api/` or ConvortAI.
+- [ ] Titles, descriptions, one H1, schema, Open Graph and images match the audit.
+- [ ] Desktop/mobile navigation, focus, forms and no-overflow checks pass.
+- [ ] No browser console error, mixed content, remote image or broken asset appears.
+- [ ] Search Console ownership remains valid and the new sitemap is submitted.
+- [ ] Approved Google tag loads only after the approved consent state.
+- [ ] `whatsapp_click` and `phone_click` fire once per intentional click.
+- [ ] Failed/direct form paths emit no `generate_lead`.
+- [ ] One successful controlled submission sends one email and one `generate_lead`.
+- [ ] SMTP sender, recipient and Reply-To are correct; no secrets appear in output or logs.
+- [ ] Nginx/form logs show no abnormal 4xx/5xx, redirect loop or abuse pattern.
+- [ ] WordPress rollback remains intact through the observation window.
+- [ ] Owner signs off or rollback is started.

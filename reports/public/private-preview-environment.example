@@ -1,0 +1,25 @@
+# Public build controls
+DEPLOY_TARGET=vps-preview
+PUBLIC_ANALYTICS_ENABLED=false
+PUBLIC_FORM_ENDPOINT=/api/enquiry
+PUBLIC_GOOGLE_TAG_ID=
+PUBLIC_GTM_ID=
+PUBLIC_META_PIXEL_ID=
+PUBLIC_GOOGLE_SITE_VERIFICATION=
+PUBLIC_TURNSTILE_SITE_KEY=preview-site-key-added-privately
+
+# Isolated preview form service
+FORM_API_HOST=127.0.0.1
+FORM_API_PORT=8788
+ALLOWED_ORIGINS=https://preview.example.invalid
+TURNSTILE_EXPECTED_HOSTNAMES=preview.example.invalid
+ENQUIRY_TO_EMAIL=test-recipient-added-privately
+ENQUIRY_FROM_EMAIL=verified-preview-sender-added-privately
+SMTP_HOST=added-privately
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=added-privately
+SMTP_PASS=added-privately
+TURNSTILE_SECRET_KEY=added-privately
+RATE_LIMIT_MAX_REQUESTS=5
+RATE_LIMIT_WINDOW_SECONDS=900

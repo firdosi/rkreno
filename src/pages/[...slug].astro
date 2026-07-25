@@ -182,7 +182,7 @@ const pageSchema = batchArticle
   pageType={page.type}
   externalStyles={nativePage ? [] : page.externalStyles}
   robots={nativeTaxonomy ? 'noindex, follow'
-    : page.path === '/thank-you/' ? 'noindex, nofollow' : undefined}
+    : page.path === '/thank-you/' ? 'noindex, follow' : undefined}
 >
   {batchArticle ? (
     <ArticlePage article={batchArticle} path={page.path} parityContent={parityContent} sourceH1={parityContent?.sourceH1} />

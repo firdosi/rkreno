@@ -32,6 +32,9 @@
     "check:batch3": "node scripts/check-batch3-content.mjs",
     "check:batch4": "node scripts/check-batch4-taxonomy.mjs",
     "check:phase4": "node scripts/check-phase4-acceptance.mjs",
+    "audit:phase6:seo": "node scripts/phase6/generate-final-seo-audit.mjs",
+    "report:phase6:routes": "node scripts/phase6/generate-route-rules.mjs",
+    "check:phase6:routes": "node scripts/phase6/validate-route-rules.mjs",
     "test:routes": "node scripts/test-deployed-routes.mjs"
   },
   "dependencies": {

@@ -31,9 +31,10 @@ const {
   robots
 } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const image = ogImage
-  ? (ogImage.startsWith('http') ? ogImage : new URL(`${base}${ogImage}`, Astro.site).href)
-  : undefined;
+const socialImage = ogImage || '/assets/media/RK-Reno-Solutions-Logo-942f64bb.png';
+const image = socialImage.startsWith('http')
+  ? socialImage
+  : new URL(`${base}${socialImage}`, Astro.site).href;
 ---
 <!doctype html>
 <html lang="en">
@@ -50,7 +51,7 @@ const image = ogImage
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     {image && <meta property="og:image" content={image} />}
-    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="theme-color" content="#f47b20" />
     <link rel="icon" type="image/png" href={`${base}/assets/media/logo-iocn-6f17c44e.png`} />
     <TrackingHead />
