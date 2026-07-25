@@ -32,7 +32,7 @@ input, select, textarea, button { font: inherit; }
 .wrap { width: min(1200px, calc(100% - 3rem)); margin-inline: auto; }
 .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; padding: .7rem 1rem; background: var(--white); }
 .skip-link:focus { top: 1rem; }
-.staging-banner { padding: .4rem 1rem; text-align: center; background: #fff1ad; color: #4b3c00; font-size: .78rem; font-weight: 700; }
+.staging-banner { padding: .4rem 1rem; text-align: center; background: #fff1ad; color: #4b3c00; font: 700 .78rem/1.7 Arial, sans-serif; }
 .topbar { background: #161616; color: #eee; font-size: .73rem; }
 .topbar-inner { min-height: 46px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .topbar p { margin: 0; }
