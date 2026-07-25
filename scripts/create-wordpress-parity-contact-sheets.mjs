@@ -100,14 +100,14 @@ const articles = finalReviewRoutes.filter(({ group }) => group === 'article').ma
 const archives = finalReviewRoutes.filter(({ group }) => group === 'archive').map(({ id }) => id);
 const representatives = ['home','services','aircond-installation-kl','renovation-kl','aircond-installation-article','blog','contact','hvac-archive'];
 
-await createSheet('Global header and footer comparison', ['home','services','aircond-installation-kl','blog'], 'desktop', 'global-header-footer.png', true);
-await createSheet('Homepage comparison', ['home'], 'desktop', 'homepage-comparison.png');
-await createSheet('Main pages comparison', ['services','about','faq'], 'desktop', 'main-pages-comparison.png');
-await createSheet('Service pages comparison', services, 'desktop', 'service-pages-comparison.png');
-await createSheet('Article pages comparison', articles, 'desktop', 'article-pages-comparison.png');
-await createSheet('Blog and archive comparison', ['blog', ...archives], 'desktop', 'blog-archive-comparison.png');
-await createSheet('Contact and utility comparison', ['contact','thank-you'], 'desktop', 'contact-utility-comparison.png');
-await createSheet('Desktop comparison', representatives, 'desktop', 'desktop-comparison.png');
-await createSheet('Tablet comparison', representatives, 'tablet', 'tablet-comparison.png');
-await createSheet('Mobile comparison', representatives, 'mobile', 'mobile-comparison.png');
+await createSheet('Global header and footer comparison', ['home','services','aircond-installation-kl','blog'], 'desktop', 'phase7-global-header-footer.png', true);
+await createSheet('Homepage comparison', ['home'], 'desktop', 'phase7-homepage-comparison.png');
+await createSheet('Main pages comparison', ['services','about','faq'], 'desktop', 'phase7-main-pages-comparison.png');
+await createSheet('Service pages comparison', services, 'desktop', 'phase7-service-pages-comparison.png');
+await createSheet('Article pages comparison', articles, 'desktop', 'phase7-article-pages-comparison.png');
+await createSheet('Blog and archive comparison', ['blog', ...archives], 'desktop', 'phase7-blog-archive-comparison.png');
+await createSheet('Contact and utility comparison', ['contact','thank-you'], 'desktop', 'phase7-contact-utility-comparison.png');
+await createSheet('Desktop comparison', representatives, 'desktop', 'phase7-desktop-comparison.png');
+await createSheet('Tablet comparison', representatives, 'tablet', 'phase7-tablet-comparison.png');
+await createSheet('Mobile comparison', representatives, 'mobile', 'phase7-mobile-comparison.png');
 console.log('Created 10 WordPress/Astro parity comparison sheets.');

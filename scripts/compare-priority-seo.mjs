@@ -5,7 +5,13 @@ const metricsPath = path.resolve(
   process.argv[2] || '.audit-cache/wordpress-parity/after/manifest.json',
 );
 const input = JSON.parse(await readFile(metricsPath, 'utf8'));
-const records = Array.isArray(input) ? input : input.captures;
+const currentRecords = Array.isArray(input) ? input : input.captures;
+const baselinePath = path.resolve('.audit-cache/wordpress-parity/before/manifest.json');
+const baseline = Array.isArray(input)
+  ? []
+  : JSON.parse(await readFile(baselinePath, 'utf8')).captures
+    .filter((record) => record.source === 'wordpress');
+const records = [...baseline, ...currentRecords];
 const desktop = records.filter((record) => record.viewport === 'desktop');
 const ids = [...new Set(desktop.map((record) => record.id))];
 const failures = [];
@@ -25,7 +31,8 @@ for (const id of ids) {
     ? staging.dom.headings.filter(({ level }) => level === 'H1')
     : staging.dom.h1;
   const stagingSchemas = modernManifest ? staging.dom.schemas : staging.dom.schema;
-  const expectedRobots = modernManifest && /^\/(?:category|tag)\//.test(staging.route)
+  const expectedRobots = modernManifest && (/^\/(?:category|tag)\//.test(staging.route)
+      || staging.route === '/thank-you/')
     ? /^noindex,\s*follow$/i
     : /noindex.*nofollow/i;
   const canonicalMatches = modernManifest

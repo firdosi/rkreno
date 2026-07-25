@@ -35,6 +35,8 @@
     "audit:phase6:seo": "node scripts/phase6/generate-final-seo-audit.mjs",
     "report:phase6:routes": "node scripts/phase6/generate-route-rules.mjs",
     "check:phase6:routes": "node scripts/phase6/validate-route-rules.mjs",
+    "report:phase7": "node scripts/phase7/generate-coverage.mjs && node scripts/phase7/generate-seo-and-parity.mjs",
+    "check:phase7": "node scripts/phase7/validate-phase7.mjs",
     "test:routes": "node scripts/test-deployed-routes.mjs"
   },
   "dependencies": {

@@ -4,7 +4,7 @@
 - Routes passing all automated checks: **42**
 - Errors: **0**
 - Warnings: **0**
-- After-captures reviewed: **252**
+- After-captures reviewed: **126**
 
 ## Validation coverage
 

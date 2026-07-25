@@ -69,7 +69,7 @@ for (const route of routes) {
     failures.push(`${route}: unsupported legacy claim found`);
   }
   if (route === '/servis-cuci-rumah-kl/' && !schema.includes('Service')) failures.push(`${route}: Service schema missing`);
-  if (route === '/thank-you/' && robots !== 'noindex, nofollow') failures.push(`${route}: noindex missing`);
+  if (route === '/thank-you/' && robots !== 'noindex, follow') failures.push(`${route}: noindex missing`);
   if (route === '/thank-you/' && html.includes("dispatchEvent(new CustomEvent('rkreno:lead'")) {
     failures.push(`${route}: lead dispatch code included`);
   }

@@ -232,6 +232,7 @@ export async function captureParityBatch(
   start = 0,
   count = 7,
   astroBase = sources.astro,
+  sourceMode = 'both',
 ) {
   if (!['before', 'after'].includes(phase)) throw new Error(`Unsupported capture phase: ${phase}`);
   const routes = finalReviewRoutes.slice(start, start + count);
@@ -239,7 +240,10 @@ export async function captureParityBatch(
   const browser = await chromium.launch({ headless: true, channel: 'chrome' });
   try {
     const workers = [];
-    for (const [sourceName, base] of Object.entries({ ...sources, astro: astroBase })) {
+    const selectedSources = sourceMode === 'astro'
+      ? { astro: astroBase }
+      : { ...sources, astro: astroBase };
+    for (const [sourceName, base] of Object.entries(selectedSources)) {
       for (const [viewportName, viewport] of Object.entries(viewports)) {
         workers.push(captureWorker(browser, phase, sourceName, base, viewportName, viewport, routes));
       }
@@ -260,18 +264,24 @@ export async function captureParityBatch(
   }
 }
 
-export async function finalizeParityCapture(phase = 'before') {
+export async function finalizeParityCapture(phase = 'before', sourceMode = 'both') {
   const chunkFolder = path.join(outputRoot, phase, 'chunks');
   const chunkFiles = (await fs.readdir(chunkFolder)).filter((file) => file.endsWith('.json')).sort();
-  const captures = [];
+  const captureMap = new Map();
   for (const file of chunkFiles) {
-    captures.push(...JSON.parse(await fs.readFile(path.join(chunkFolder, file), 'utf8')));
+    for (const capture of JSON.parse(await fs.readFile(path.join(chunkFolder, file), 'utf8'))) {
+      if (sourceMode === 'astro' && capture.source !== 'astro') continue;
+      captureMap.set(`${capture.route}|${capture.source}|${capture.viewport}`, capture);
+    }
   }
+  const captures = [...captureMap.values()];
   const manifest = {
     phase,
     capturedAt: new Date().toISOString(),
     retainedRouteCount: finalReviewRoutes.length,
-    expectedCaptureCount: finalReviewRoutes.length * Object.keys(sources).length * Object.keys(viewports).length,
+    expectedCaptureCount: finalReviewRoutes.length
+      * (sourceMode === 'astro' ? 1 : Object.keys(sources).length)
+      * Object.keys(viewports).length,
     captures,
   };
   const serialized = JSON.stringify(manifest, null, 2);
