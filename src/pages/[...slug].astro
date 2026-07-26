@@ -9,6 +9,7 @@ import CoreAboutPage from '@components/core/CoreAboutPage.astro';
 import CoreContactPage from '@components/core/CoreContactPage.astro';
 import CoreFaqPage from '@components/core/CoreFaqPage.astro';
 import CoreBlogPage from '@components/core/CoreBlogPage.astro';
+import ServiceExactPage from '@components/service/ServiceExactPage.astro';
 import ArticlePage from '@components/ArticlePage.astro';
 import ThankYouPage from '@components/ThankYouPage.astro';
 import TaxonomyArchive from '@components/TaxonomyArchive.astro';
@@ -23,6 +24,8 @@ import { batch3Articles } from '@data/batch3';
 import { batch3Pages } from '@data/batch3-pages';
 import taxonomyArchives from '@data/taxonomy-archives.json';
 import { retainedArticleByRoute } from '@data/retained-article-catalog';
+import { serviceExactConfig } from '@data/service-exact-config';
+import { serviceFaqsByRoute } from '@data/service-exact-faqs';
 import wordpressParityContent from '@data/wordpress-parity-content.json';
 
 interface PageRecord {
@@ -113,6 +116,7 @@ const content = repairedContent
   .replaceAll('href="/', `href="${base}/`)
   .replaceAll('src="/', `src="${base}/`);
 const coreRoutes = ['/', '/services/', '/about-us/', '/contact-us/', '/faq/', '/blog/'];
+const serviceExact = serviceExactConfig[page.path];
 const showForm = page.path === '/contact-us/' && !coreRoutes.includes(page.path);
 const pageSchema = batchArticle
   ? [{
@@ -150,6 +154,24 @@ const pageSchema = batchArticle
         url: `https://rkrenosolution.com${article.route}`,
       })),
     }]
+  : serviceExact
+  ? [{
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: page.title,
+      description: page.description,
+      url: page.canonical,
+      areaServed: ['Kuala Lumpur', 'Selangor'],
+      provider: { '@type': 'LocalBusiness', name: 'RK Reno Solution' },
+    }, ...(serviceFaqsByRoute[page.path]?.length ? [{
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: serviceFaqsByRoute[page.path].map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
+    }] : [])]
   : batch3Pages[page.path]
   ? [{
       '@context': 'https://schema.org',
@@ -189,7 +211,7 @@ const pageSchema = batchArticle
   robots={nativeTaxonomy ? 'noindex, follow'
     : page.path === '/thank-you/' ? 'noindex, follow' : undefined}
   exactHome={page.path === '/'}
-  wordpressCore={coreRoutes.includes(page.path)}
+  wordpressCore={coreRoutes.includes(page.path) || Boolean(serviceExact)}
 >
   {batchArticle ? (
     <ArticlePage article={batchArticle} path={page.path} parityContent={parityContent} sourceH1={parityContent?.sourceH1} />
@@ -205,6 +227,8 @@ const pageSchema = batchArticle
     <CoreFaqPage />
   ) : page.path === '/blog/' ? (
     <CoreBlogPage />
+  ) : serviceExact && parityContent ? (
+    <ServiceExactPage route={page.path} title={parityContent.sourceH1 || page.title} parityContent={parityContent} />
   ) : page.path === '/thank-you/' ? (
     <ThankYouPage />
   ) : nativeTaxonomy ? (

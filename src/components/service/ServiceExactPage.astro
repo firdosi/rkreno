@@ -1,0 +1,35 @@
+---
+import CoreFinalCta from '../core/CoreFinalCta.astro';
+import ServiceExactHero from './ServiceExactHero.astro';
+import ServiceExactSection from './ServiceExactSection.astro';
+import { serviceExactConfig } from '@data/service-exact-config';
+import { priceCardsByRoute, priceTablesByRoute, pricingSectionPattern } from '@data/service-exact-pricing';
+import { serviceFaqsByRoute } from '@data/service-exact-faqs';
+
+interface Props {
+  route: string;
+  title: string;
+  parityContent: { sections: any[] };
+}
+
+const { route, title, parityContent } = Astro.props;
+const config = serviceExactConfig[route];
+const priceCards = priceCardsByRoute[route];
+const priceTable = priceTablesByRoute[route];
+const explicitFaqs = serviceFaqsByRoute[route];
+---
+<div class:list={['service-exact-page', `service-exact-page--${config.variant}`]}>
+  <ServiceExactHero title={title} config={config} />
+  {parityContent.sections.map((section, index) => (
+    <ServiceExactSection
+      section={section}
+      index={index}
+      skipPatterns={config.skipPatterns}
+      priceCards={priceCards}
+      priceTable={index === 0 ? priceTable : undefined}
+      explicitFaqs={/faq|frequently asked|soalan lazim/i.test(section.title) ? explicitFaqs : undefined}
+      pricingSection={pricingSectionPattern.test(section.title)}
+    />
+  ))}
+  <CoreFinalCta />
+</div>

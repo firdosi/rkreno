@@ -1,0 +1,36 @@
+---
+import type { PriceCard, PriceTable } from '@data/service-exact-pricing';
+
+interface Props {
+  cards?: PriceCard[];
+  table?: PriceTable;
+  intro?: string;
+}
+
+const { cards, table, intro } = Astro.props;
+---
+{cards?.length && (
+  <div class="service-price-grid" id="service-pricing">
+    {cards.map((card) => (
+      <article>
+        <h3>{card.title}</h3>
+        <strong>{card.price}</strong>
+        {card.note && <p>{card.note}</p>}
+        {card.items?.length && <ul>{card.items.map((item) => <li>{item}</li>)}</ul>}
+      </article>
+    ))}
+  </div>
+)}
+{table && (
+  <div class="service-table-block" id="service-pricing">
+    <h3>{table.title}</h3>
+    <p>{table.intro || intro}</p>
+    <div class="service-responsive-table" tabindex="0" role="region" aria-label={`${table.title} table`}>
+      <table>
+        <thead><tr>{table.headers.map((header) => <th scope="col">{header}</th>)}</tr></thead>
+        <tbody>{table.rows.map((row) => <tr>{row.map((cell) => <td>{cell}</td>)}</tr>)}</tbody>
+      </table>
+    </div>
+    {table.footnote && <p class="service-price-note">{table.footnote}</p>}
+  </div>
+)}

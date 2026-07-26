@@ -1,0 +1,36 @@
+---
+interface Props {
+  block: {
+    type: 'heading' | 'paragraph' | 'list' | 'table' | 'image';
+    text?: string;
+    html?: string;
+    ordered?: boolean;
+    items?: string[];
+    rows?: string[][];
+    src?: string;
+    alt?: string;
+  };
+}
+
+const { block } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const safeHtml = (value = '') => value
+  .replaceAll('https://rkrenosolution.com/about/', `${base}/about-us/`)
+  .replaceAll('https://rkrenosolution.com/', `${base}/`)
+  .replaceAll('href="/', `href="${base}/`);
+---
+{block.type === 'paragraph' ? <p set:html={safeHtml(block.html || block.text)} />
+  : block.type === 'list' && block.ordered ? <ol>{block.items?.map((item) => <li>{item}</li>)}</ol>
+  : block.type === 'list' ? <ul>{block.items?.map((item) => <li>{item}</li>)}</ul>
+  : block.type === 'image' && block.src ? (
+    <figure>
+      <img src={`${base}${block.src}`} alt={block.alt || ''} loading="lazy" decoding="async" />
+      <figcaption>{block.alt}</figcaption>
+    </figure>
+  )
+  : block.type === 'table' ? (
+    <div class="service-responsive-table">
+      <table><tbody>{block.rows?.map((row) => <tr>{row.map((cell) => <td>{cell}</td>)}</tr>)}</tbody></table>
+    </div>
+  )
+  : null}

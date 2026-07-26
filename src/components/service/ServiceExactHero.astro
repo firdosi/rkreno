@@ -1,0 +1,39 @@
+---
+import CorePageTitle from '../core/CorePageTitle.astro';
+import type { ServiceExactConfig } from '@data/service-exact-config';
+
+interface Props {
+  title: string;
+  config: ServiceExactConfig;
+}
+
+const { title, config } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const primaryLabel = config.primaryLabel || 'WhatsApp for a Quote';
+const secondaryLabel = config.secondaryLabel || 'View Services';
+---
+<CorePageTitle title={title} />
+<section class:list={['service-exact-hero', `service-exact-hero--${config.variant}`]}>
+  <div class="exact-wrap service-exact-hero__grid">
+    <div class="service-exact-hero__copy">
+      {config.chips?.length && <div class="service-exact-chips">{config.chips.map((chip) => <span>{chip}</span>)}</div>}
+      <h2>{config.heroTitle}</h2>
+      <p>{config.lead}</p>
+      <div class="core-button-row">
+        <a class="core-button" href="https://wa.me/601111334496">{primaryLabel} <span>→</span></a>
+        <a class="core-button core-button-outline" href={/price|harga/i.test(secondaryLabel) ? '#service-pricing' : `${base}/services/`}>
+          {secondaryLabel} <span>→</span>
+        </a>
+      </div>
+    </div>
+    <figure>
+      <img src={`${base}${config.image}`} alt={config.imageAlt} width="960" height="720" decoding="async" fetchpriority="high" />
+      <figcaption>Service image used for scope illustration; no unverified project location is claimed.</figcaption>
+    </figure>
+  </div>
+  {config.facts?.length && (
+    <div class="exact-wrap service-exact-facts">
+      {config.facts.map((fact) => <div><strong>{fact.value}</strong><span>{fact.label}</span></div>)}
+    </div>
+  )}
+</section>

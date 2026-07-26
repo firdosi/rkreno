@@ -1,0 +1,67 @@
+---
+import ServicePricing from './ServicePricing.astro';
+import ServiceFaqList from './ServiceFaqList.astro';
+import ServiceContentBlock from './ServiceContentBlock.astro';
+
+interface ContentBlock {
+  type: 'heading' | 'paragraph' | 'list' | 'table' | 'image';
+  level?: number;
+  text?: string;
+  html?: string;
+  ordered?: boolean;
+  items?: string[];
+  rows?: string[][];
+  src?: string;
+  alt?: string;
+}
+
+const { section, index, skipPatterns = [], priceCards, priceTable, explicitFaqs, pricingSection } = Astro.props as any;
+const strip = (value = '') => value.replace(/<[^>]+>/g, ' ');
+const unsafe = (value = '') => skipPatterns.some((pattern) => pattern.test(strip(value)));
+const isFaq = /faq|frequently asked|soalan lazim/i.test(section.title);
+
+const introBlocks: ContentBlock[] = [];
+const groups: { heading: ContentBlock; blocks: ContentBlock[] }[] = [];
+for (const block of section.blocks) {
+  if (block.type === 'heading') groups.push({ heading: block, blocks: [] });
+  else if (groups.length) groups.at(-1)!.blocks.push(block);
+  else introBlocks.push(block);
+}
+const safeIntro = introBlocks.filter((block) => !unsafe(block.html || block.text));
+const safeGroups = groups.filter((group) =>
+  group.blocks.length > 0 &&
+  !unsafe([group.heading.text, ...group.blocks.map((block) => block.html || block.text || block.items?.join(' '))].join(' ')));
+const derivedFaqs = safeGroups.map((group) => ({
+  question: group.heading.text || '',
+  answer: group.blocks.filter((block) => block.type === 'paragraph').map((block) => strip(block.html || block.text)).join(' '),
+})).filter((faq) => faq.question && faq.answer);
+const faqs = explicitFaqs?.length ? explicitFaqs : derivedFaqs;
+const ctaSection = /quote|quotation|hubungi|get an? .*quote/i.test(section.title);
+
+---
+{isFaq && faqs.length ? (
+  <ServiceFaqList title={section.title} faqs={faqs} />
+) : (
+  <section class:list={['service-exact-section', { 'service-exact-section--tint': index % 2 === 1, 'service-exact-section--cta': ctaSection }]}>
+    <div class="exact-wrap">
+      <header class="service-exact-heading">
+        <p>{String(index + 1).padStart(2, '0')} · RK Reno Solution</p>
+        <h2>{section.title}</h2>
+      </header>
+      {safeIntro.length > 0 && <div class="service-exact-intro">{safeIntro.map((block) => <ServiceContentBlock block={block} />)}</div>}
+      {pricingSection && priceCards?.length ? <ServicePricing cards={priceCards} /> : null}
+      {priceTable ? <ServicePricing table={priceTable} /> : null}
+      {!pricingSection && safeGroups.length > 0 && (
+        <div class:list={['service-exact-groups', { 'service-exact-groups--single': safeGroups.length === 1 }]}>
+          {safeGroups.map((group) => (
+            <article>
+              <h3>{group.heading.text}</h3>
+              {group.blocks.map((block) => <ServiceContentBlock block={block} />)}
+            </article>
+          ))}
+        </div>
+      )}
+      {ctaSection && <a class="core-button" href="https://wa.me/601111334496">WhatsApp RK Reno <span>→</span></a>}
+    </div>
+  </section>
+)}
