@@ -1,0 +1,29 @@
+{
+  "enabledByDefault": false,
+  "preferenceKey": "rkreno_analytics_consent",
+  "preferenceMaxAgeDays": 180,
+  "approvedHostnames": ["rkrenosolution.com"],
+  "googleTagId": "GT-T944JBVZ",
+  "ga4MeasurementId": "G-NVEL66185G",
+  "defaultConsent": {
+    "analytics_storage": "denied",
+    "ad_storage": "denied",
+    "ad_user_data": "denied",
+    "ad_personalization": "denied"
+  },
+  "analyticsAcceptedConsent": {
+    "analytics_storage": "granted",
+    "ad_storage": "denied",
+    "ad_user_data": "denied",
+    "ad_personalization": "denied"
+  },
+  "allowedEvents": [
+    "page_view",
+    "click_phone",
+    "click_whatsapp",
+    "click_email",
+    "enquiry_submit_attempt",
+    "enquiry_validation_error",
+    "generate_lead"
+  ]
+}

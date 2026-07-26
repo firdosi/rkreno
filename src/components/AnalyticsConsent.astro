@@ -1,0 +1,41 @@
+---
+import analyticsPolicy from '../../config/analytics-consent-policy.json';
+import { isConsentEligible, publicConfig } from '../config/runtime';
+const measurementId = /^G-[A-Z0-9]+$/i.test(publicConfig.ga4MeasurementId)
+  ? publicConfig.ga4MeasurementId
+  : '';
+const enabled = isConsentEligible && publicConfig.analyticsEnabled && Boolean(measurementId);
+---
+{enabled && (
+  <>
+    <section
+      class="analytics-consent"
+      data-consent-banner
+      data-measurement-id={measurementId}
+      data-approved-hostnames={analyticsPolicy.approvedHostnames.join(',')}
+      data-test-mode={String(publicConfig.analyticsTestMode)}
+      tabindex="-1"
+      aria-labelledby="consent-title"
+    >
+      <h2 id="consent-title">Analytics preferences</h2>
+      <p>
+        Essential site features work without analytics. You can allow anonymous usage measurement or
+        continue with essential features only.
+      </p>
+      <div>
+        <button type="button" data-consent-essential>Essential only</button>
+        <button type="button" data-consent-allow>Allow analytics</button>
+      </div>
+    </section>
+    <button class="consent-settings" type="button" data-consent-settings>Cookie Settings</button>
+    <script>
+      import { bootConsentAnalytics } from '../scripts/consent-analytics-client';
+      const banner = document.querySelector<HTMLElement>('[data-consent-banner]');
+      bootConsentAnalytics({
+        measurementId: banner?.dataset.measurementId || '',
+        approvedHostnames: (banner?.dataset.approvedHostnames || '').split(',').filter(Boolean),
+        testMode: banner?.dataset.testMode === 'true',
+      });
+    </script>
+  </>
+)}

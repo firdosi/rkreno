@@ -1,0 +1,31 @@
+{
+  "defaultMode": "disabled",
+  "allowedModes": ["disabled", "local_test", "private_preview", "production"],
+  "bodyLimitBytes": 16384,
+  "minimumCompletionSeconds": 3,
+  "rateLimit": {
+    "acceptedAttempts": 5,
+    "windowMinutes": 15,
+    "invalidStrikeLimit": 8,
+    "temporaryBlockMinutes": 5,
+    "maximumEntries": 2000
+  },
+  "approvedOrigins": {
+    "production": ["https://rkrenosolution.com"],
+    "private_preview": ["REPLACE_WITH_PRIVATE_PREVIEW_ORIGIN"],
+    "local_test": ["http://127.0.0.1:4173"]
+  },
+  "approvedServices": [
+    "Aircond Servicing",
+    "Aircond Installation",
+    "House Renovation",
+    "Office Renovation",
+    "Building Renovation",
+    "Electrical Services",
+    "Waterproofing",
+    "Plaster Ceiling",
+    "House Cleaning",
+    "Other Property Work"
+  ],
+  "retentionNotice": "Enquiry information will be retained only for as long as reasonably necessary to respond, prepare quotations, manage requested services, maintain necessary business records, resolve disputes and meet applicable legal obligations. Information that is no longer required will be securely deleted."
+}

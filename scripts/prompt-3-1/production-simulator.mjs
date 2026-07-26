@@ -1,6 +1,6 @@
 import { createReadStream } from 'node:fs';
 import { readFile, stat } from 'node:fs/promises';
-import { createServer } from 'node:http';
+import { createServer, request as httpRequest } from 'node:http';
 import { extname, join, normalize, resolve } from 'node:path';
 import { createGzip } from 'node:zlib';
 import routeMap from '../../config/production-route-map.json' with { type: 'json' };
@@ -9,6 +9,9 @@ const root = resolve('dist');
 const host = process.env.PRODUCTION_SIMULATOR_HOST || '127.0.0.1';
 const port = Number(process.env.PRODUCTION_SIMULATOR_PORT || 4173);
 const preferredHost = 'rkrenosolution.com';
+const enquiryServiceOrigin = process.env.ENQUIRY_SERVICE_ORIGIN || '';
+const formCspEnabled = process.env.SIMULATOR_FORM_ENABLED === 'true';
+const analyticsCspEnabled = process.env.SIMULATOR_ANALYTICS_ENABLED === 'true';
 const entries = new Map(routeMap.entries.map((entry) => [entry.sourcePath, entry]));
 const knownPaths = new Set(routeMap.entries.map((entry) => entry.sourcePath));
 const lowerPaths = new Map([...knownPaths].map((value) => [value.toLowerCase(), value]));
@@ -21,25 +24,73 @@ const contentTypes = {
   '.webp': 'image/webp', '.woff': 'font/woff', '.woff2': 'font/woff2',
   '.xml': 'application/xml; charset=utf-8',
 };
-const csp = [
+function contentSecurityPolicy() {
+  const script = ["'self'", "'unsafe-inline'"];
+  const connect = ["'self'"];
+  const frame = [];
+  if (formCspEnabled) {
+    script.push('https://challenges.cloudflare.com');
+    connect.push('https://challenges.cloudflare.com');
+    frame.push('https://challenges.cloudflare.com');
+  }
+  if (analyticsCspEnabled) {
+    script.push('https://www.googletagmanager.com');
+    connect.push('https://www.google-analytics.com', 'https://region1.google-analytics.com');
+  }
+  return [
   "default-src 'self'", "base-uri 'self'", "object-src 'none'", "frame-ancestors 'none'",
-  "img-src 'self' data: https://www.google-analytics.com",
+  `img-src 'self' data:${analyticsCspEnabled ? ' https://www.google-analytics.com' : ''}`,
   "font-src 'self' data: https://fonts.gstatic.com",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://challenges.cloudflare.com",
-  "connect-src 'self' https://challenges.cloudflare.com https://www.google-analytics.com https://region1.google-analytics.com",
-  "frame-src https://challenges.cloudflare.com", "form-action 'self' https:",
-].join('; ');
+  `script-src ${script.join(' ')}`, `connect-src ${connect.join(' ')}`,
+  `frame-src ${frame.length ? frame.join(' ') : "'none'"}`, "form-action 'self'",
+  ].join('; ');
+}
 
 function securityHeaders(simulatedHttps) {
   return {
-    'Content-Security-Policy': csp,
+    'Content-Security-Policy': contentSecurityPolicy(),
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
     ...(simulatedHttps ? { 'Strict-Transport-Security': 'max-age=15552000' } : {}),
   };
+}
+
+function proxyEnquiry(request, response) {
+  let target;
+  try {
+    target = new URL(enquiryServiceOrigin);
+  } catch {
+    return false;
+  }
+  if (target.protocol !== 'http:' || target.hostname !== '127.0.0.1') return false;
+  const proxy = httpRequest({
+    hostname: target.hostname,
+    port: target.port,
+    path: '/api/enquiry',
+    method: request.method,
+    headers: {
+      accept: request.headers.accept || 'application/json',
+      'content-type': request.headers['content-type'] || '',
+      'content-length': request.headers['content-length'] || '',
+      origin: request.headers.origin || '',
+    },
+  }, (upstream) => {
+    response.writeHead(upstream.statusCode || 502, {
+      ...securityHeaders(true),
+      'Cache-Control': 'no-store',
+      'Content-Type': 'application/json; charset=utf-8',
+      ...(upstream.headers.allow ? { Allow: upstream.headers.allow } : {}),
+    });
+    upstream.pipe(response);
+  });
+  proxy.on('error', () => send(response, 502, '{"ok":false,"code":"SERVICE_UNAVAILABLE","message":"Please try again."}', {
+    ...securityHeaders(true), 'Cache-Control': 'no-store', 'Content-Type': 'application/json; charset=utf-8',
+  }));
+  request.pipe(proxy);
+  return true;
 }
 
 function normalizePath(pathname) {
@@ -99,6 +150,7 @@ const server = createServer(async (request, response) => {
       ...securityHeaders(simulatedHttps), 'Cache-Control': 'no-store', 'Content-Type': 'application/json; charset=utf-8',
     });
   }
+  if (url.pathname === '/api/enquiry' && proxyEnquiry(request, response)) return;
   const pathname = normalizePath(url.pathname);
   const entry = entries.get(pathname);
   if (entry?.action === 'GONE_410') {

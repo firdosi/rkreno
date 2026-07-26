@@ -7,6 +7,7 @@ import ContactActions from '@components/ContactActions.astro';
 import StagingBanner from '@components/StagingBanner.astro';
 import TrackingBody from '@components/TrackingBody.astro';
 import TrackingHead from '@components/TrackingHead.astro';
+import AnalyticsConsent from '@components/AnalyticsConsent.astro';
 import { isIndexable, publicConfig } from '../config/runtime';
 import '../styles/global.css';
 import '../styles/parity.css';
@@ -96,5 +97,10 @@ const image = socialImage.startsWith('http')
     <main id="main-content"><slot /></main>
     {useWordpressChrome ? <ExactHomeFooter /> : <Footer />}
     <ContactActions />
+    <AnalyticsConsent />
+    <script>
+      import { bootEnquiryForms } from '../scripts/enquiry-form-client';
+      bootEnquiryForms('[data-core-enquiry-form]');
+    </script>
   </body>
 </html>

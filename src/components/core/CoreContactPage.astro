@@ -1,10 +1,16 @@
 ---
+import { isFormEnabled, publicConfig } from '../../config/runtime';
 import CorePageTitle from './CorePageTitle.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const endpoint = isFormEnabled && publicConfig.formEndpoint === '/api/enquiry' ? publicConfig.formEndpoint : '';
+const siteKey = isFormEnabled && /^[A-Za-z0-9_-]+$/.test(publicConfig.turnstileSiteKey)
+  ? publicConfig.turnstileSiteKey
+  : '';
+const configured = Boolean(endpoint && siteKey);
+const disabled = !configured;
 ---
 <div class="core-page p21-contact">
   <CorePageTitle title="Contact Us" description="Contact RK Reno Solution about renovation, repair, installation and cleaning work." />
-
   <section class="core-section p21-contact-main">
     <div class="exact-wrap p21-contact-grid">
       <div class="p21-contact-details">
@@ -22,26 +28,38 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           <a href="mailto:rkrenosolution@gmail.com">Email</a>
         </nav>
       </div>
-
       <div class="p21-contact-form-wrap">
         <h2>Send Your Enquiry</h2>
         <p>Please submit all general enquiries in the contact form below and we look forward to hearing from you soon.</p>
-        <form class="core-contact-form" data-configured="false" aria-describedby="core-form-note">
-          <label>Full Name*<input type="text" name="name" disabled /></label>
-          <label>Email Address*<input type="email" name="email" disabled /></label>
-          <label>Phone Number*<input type="tel" name="phone" disabled /></label>
+        <form class="core-contact-form" data-core-enquiry-form data-endpoint={endpoint} data-configured={String(configured)} aria-describedby="core-form-note" novalidate>
+          <label>Full Name*<input type="text" name="name" minlength="2" maxlength="100" required disabled={disabled} /></label>
+          <label>Email Address*<input type="email" name="email" maxlength="254" disabled={disabled} /></label>
+          <label>Phone Number*<input type="tel" name="phone" minlength="7" maxlength="30" required disabled={disabled} /></label>
           <label>Your services*
-            <select name="service" disabled><option>What are your needs?</option><option>Renovation</option><option>Aircond</option><option>Waterproofing</option><option>Plaster Ceiling</option><option>Electrical</option><option>Cleaning</option></select>
+            <select name="service" required disabled={disabled}>
+              <option value="">What are your needs?</option>
+              <option value="House Renovation">Renovation</option>
+              <option value="Aircond Servicing">Aircond</option>
+              <option value="Waterproofing">Waterproofing</option>
+              <option value="Plaster Ceiling">Plaster Ceiling</option>
+              <option value="Electrical Services">Electrical</option>
+              <option value="House Cleaning">Cleaning</option>
+            </select>
           </label>
-          <label class="core-full-field">Message<textarea name="message" rows="7" disabled></textarea></label>
-          <label class="core-consent core-full-field"><input type="checkbox" disabled /><span>I agree that RK Reno Solution may use these details to respond to my enquiry.</span></label>
-          <button class="core-button core-button-orange core-full-field" type="button" disabled>Send Message →</button>
-          <p id="core-form-note" class="core-form-note core-full-field">Online submission is disabled on GitHub Pages. Please call or use WhatsApp.</p>
+          <label class="core-full-field">Message<textarea name="projectDetails" rows="7" minlength="10" maxlength="2000" required disabled={disabled}></textarea></label>
+          <div class="form-honeypot" aria-hidden="true"><input name="website" aria-label="Website" tabindex="-1" autocomplete="off" disabled={disabled} /></div>
+          <input name="startedAt" type="hidden" disabled={disabled} />
+          <input name="pageUrl" type="hidden" disabled={disabled} />
+          {configured && <div class="cf-turnstile core-full-field" data-sitekey={siteKey} data-action="enquiry" data-theme="dark" data-size="flexible"></div>}
+          <label class="core-consent core-full-field"><input name="consent" type="checkbox" required disabled={disabled} /><span>I agree that RK Reno Solution may use these details to respond to my enquiry.</span></label>
+          <button class="core-button core-button-orange core-full-field" type="submit" disabled={disabled}>Send Message →</button>
+          <p id="core-form-note" class="core-form-note core-full-field" data-form-status role="status" aria-live="polite">
+            {configured ? 'Protected by validation, rate limiting and Cloudflare Turnstile.' : 'Online submission is disabled on GitHub Pages. Please call or use WhatsApp.'}
+          </p>
         </form>
       </div>
     </div>
   </section>
-
   <section class="core-section p21-contact-followup">
     <div class="exact-wrap">
       <div>

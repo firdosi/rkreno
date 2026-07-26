@@ -1,13 +1,15 @@
 ---
-import { publicConfig } from '../config/runtime';
+import formPolicy from '../../config/form-policy.json';
+import { isFormEnabled, publicConfig } from '../config/runtime';
 
-const endpoint = /^(?:\/|https:\/\/)/.test(publicConfig.formEndpoint)
+const endpoint = isFormEnabled && publicConfig.formEndpoint === '/api/enquiry'
   ? publicConfig.formEndpoint
   : '';
-const siteKey = /^[A-Za-z0-9_-]+$/.test(publicConfig.turnstileSiteKey)
+const siteKey = isFormEnabled && /^[A-Za-z0-9_-]+$/.test(publicConfig.turnstileSiteKey)
   ? publicConfig.turnstileSiteKey
   : '';
 const configured = Boolean(endpoint && siteKey);
+const disabled = !configured;
 ---
 
 <section class="contact-panel" aria-labelledby="contact-heading">
@@ -22,124 +24,135 @@ const configured = Boolean(endpoint && siteKey);
     data-enquiry-form
     data-endpoint={endpoint}
     data-configured={String(configured)}
+    novalidate
   >
     <label>Full name
-      <input name="name" autocomplete="name" minlength="2" maxlength="100" required />
+      <input name="name" autocomplete="name" minlength="2" maxlength="100" required disabled={disabled} aria-describedby="error-name" />
+      <span class="field-error" id="error-name" data-field-error="name"></span>
     </label>
     <label>Phone number
-      <input
-        name="phone"
-        type="tel"
-        autocomplete="tel"
-        inputmode="tel"
-        minlength="7"
-        maxlength="30"
-        required
-      />
+      <input name="phone" type="tel" autocomplete="tel" inputmode="tel" minlength="7" maxlength="30" required disabled={disabled} aria-describedby="error-phone" />
+      <span class="field-error" id="error-phone" data-field-error="phone"></span>
     </label>
     <label>Email address
-      <input name="email" type="email" autocomplete="email" maxlength="254" />
+      <input name="email" type="email" autocomplete="email" maxlength="254" disabled={disabled} aria-describedby="error-email" />
+      <span class="field-error" id="error-email" data-field-error="email"></span>
     </label>
     <label>Service needed
-      <select name="service" required>
+      <select name="service" required disabled={disabled} aria-describedby="error-service">
         <option value="">Choose a service</option>
-        <option>Renovation</option>
-        <option>Waterproofing</option>
-        <option>Plaster ceiling</option>
-        <option>Aircond service</option>
-        <option>Electrical work</option>
-        <option>Cleaning</option>
-        <option>Other</option>
+        {formPolicy.approvedServices.map((service) => <option value={service}>{service}</option>)}
       </select>
+      <span class="field-error" id="error-service" data-field-error="service"></span>
     </label>
     <label class="full-field">Project details
-      <textarea name="message" rows="5" minlength="10" maxlength="2000" required></textarea>
+      <textarea name="projectDetails" rows="5" minlength="10" maxlength="2000" required disabled={disabled} aria-describedby="error-projectDetails"></textarea>
+      <span class="field-error" id="error-projectDetails" data-field-error="projectDetails"></span>
     </label>
     <div class="form-honeypot" aria-hidden="true">
       <label>Company website
-        <input name="company_website" tabindex="-1" autocomplete="off" />
+        <input name="website" tabindex="-1" autocomplete="off" disabled={disabled} />
       </label>
     </div>
-    <input name="form_started_at" type="hidden" value="" />
-    <input name="page_url" type="hidden" value="" />
-    {siteKey && (
-      <div
-        class="cf-turnstile full-field"
-        data-sitekey={siteKey}
-        data-action="contact"
-        data-theme="dark"
-        data-size="flexible"
-      ></div>
+    <input name="startedAt" type="hidden" value="" disabled={disabled} />
+    <input name="pageUrl" type="hidden" value="" disabled={disabled} />
+    {configured && (
+      <div class="cf-turnstile full-field" data-sitekey={siteKey} data-action="enquiry" data-theme="dark" data-size="flexible"></div>
     )}
     <label class="consent-field full-field">
-      <input name="privacy_consent" type="checkbox" value="yes" required />
+      <input name="consent" type="checkbox" required disabled={disabled} aria-describedby="error-consent" />
       <span>I agree that RK Reno Solution may use these details to respond to my enquiry.</span>
+      <span class="field-error" id="error-consent" data-field-error="consent"></span>
     </label>
-    <button class="button full-field" type="submit" disabled={!configured}>
-      {configured ? 'Send secure enquiry' : 'Online form not configured'}
+    <button class="button full-field" type="submit" disabled={disabled}>
+      {configured ? 'Send secure enquiry' : 'Online form disabled on preview'}
     </button>
     <p class="form-status full-field" data-form-status role="status" aria-live="polite">
       {configured
         ? 'Protected by validation, rate limiting and Cloudflare Turnstile.'
-        : 'Use WhatsApp or call us while the secure production endpoint is being configured.'}
+        : 'Online submission is disabled on this preview. Use WhatsApp or call RK Reno instead.'}
     </p>
   </form>
 </section>
 
 <script>
-  const forms = document.querySelectorAll<HTMLFormElement>('[data-enquiry-form]');
-
-  for (const form of forms) {
+  const messages: Record<string, string> = {
+    name: 'Enter a name between 2 and 100 characters.',
+    phone: 'Enter a valid phone number.',
+    email: 'Enter a valid email address.',
+    service: 'Choose a service.',
+    projectDetails: 'Enter at least 10 characters.',
+    consent: 'Consent is required to send the enquiry.',
+    startedAt: 'Please wait a moment and try again.',
+  };
+  for (const form of document.querySelectorAll<HTMLFormElement>('[data-enquiry-form]')) {
     const endpoint = form.dataset.endpoint || '';
     const configured = form.dataset.configured === 'true';
     const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
     const status = form.querySelector<HTMLElement>('[data-form-status]');
-    const startedAt = form.elements.namedItem('form_started_at') as HTMLInputElement | null;
-    const pageUrl = form.elements.namedItem('page_url') as HTMLInputElement | null;
-    if (startedAt) startedAt.value = String(Date.now());
-    if (pageUrl) pageUrl.value = location.href;
+    const startedAt = form.elements.namedItem('startedAt') as HTMLInputElement | null;
+    const pageUrl = form.elements.namedItem('pageUrl') as HTMLInputElement | null;
+    if (startedAt) startedAt.value = new Date().toISOString();
+    if (pageUrl) pageUrl.value = location.pathname;
+    let submitting = false;
+
+    const showFields = (fields: string[]) => {
+      for (const element of form.querySelectorAll<HTMLElement>('[data-field-error]')) element.textContent = '';
+      for (const field of fields) {
+        const element = form.querySelector<HTMLElement>(`[data-field-error="${CSS.escape(field)}"]`);
+        if (element) element.textContent = messages[field] || 'Check this field.';
+      }
+    };
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      if (!configured || !endpoint || !button || !status) return;
-      if (!form.reportValidity()) return;
-
+      if (!configured || !endpoint || !button || !status || submitting) return;
+      showFields([]);
+      document.dispatchEvent(new CustomEvent('rkreno:analytics', {
+        detail: { name: 'enquiry_submit_attempt', parameters: { page_path: location.pathname } },
+      }));
+      if (!form.reportValidity()) {
+        document.dispatchEvent(new CustomEvent('rkreno:analytics', {
+          detail: { name: 'enquiry_validation_error', parameters: { page_path: location.pathname, error_category: 'client_validation' } },
+        }));
+        return;
+      }
       const formData = new FormData(form);
-      if (!formData.get('cf-turnstile-response')) {
+      const turnstileToken = String(formData.get('cf-turnstile-response') || '');
+      if (!turnstileToken) {
         status.dataset.state = 'error';
         status.textContent = 'Please complete the security check and try again.';
         return;
       }
-
+      const payload = Object.fromEntries(formData.entries());
+      delete payload['cf-turnstile-response'];
+      payload.turnstileToken = turnstileToken;
+      payload.consent = formData.get('consent') === 'on';
+      submitting = true;
       button.disabled = true;
-      button.textContent = 'Sending…';
+      button.textContent = 'Sending\u2026';
       status.dataset.state = 'pending';
-      status.textContent = 'Sending your enquiry securely…';
-
+      status.textContent = 'Sending your enquiry securely\u2026';
       try {
         const response = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify(Object.fromEntries(formData.entries())),
+          body: JSON.stringify(payload),
         });
         const result = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(result.message || 'Unable to send your enquiry.');
-
-        const service = String(formData.get('service') || '');
-        form.reset();
-        if (startedAt) startedAt.value = String(Date.now());
-        if (pageUrl) pageUrl.value = location.href;
-        window.turnstile?.reset();
-        status.dataset.state = 'success';
-        status.textContent = result.message || 'Thank you. Your enquiry has been sent.';
-        document.dispatchEvent(new CustomEvent('rkreno:lead', { detail: { service } }));
-      } catch (error) {
+        if (!response.ok) {
+          showFields(Array.isArray(result.fields) ? result.fields : []);
+          throw new Error('request_failed');
+        }
+        document.dispatchEvent(new CustomEvent('rkreno:lead-accepted', {
+          detail: { requestId: result.requestId },
+        }));
+        location.assign(`${import.meta.env.BASE_URL}thank-you/`);
+      } catch {
         status.dataset.state = 'error';
-        status.textContent = error instanceof Error
-          ? error.message
-          : 'Unable to send your enquiry. Please use WhatsApp or call us.';
+        status.textContent = 'We could not send the enquiry. Please try again or use WhatsApp.';
         window.turnstile?.reset();
-      } finally {
+        submitting = false;
         button.disabled = false;
         button.textContent = 'Send secure enquiry';
       }

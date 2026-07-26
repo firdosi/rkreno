@@ -69,9 +69,12 @@ for (const [viewportName, viewport] of Object.entries(viewports)) {
       }),
     ]);
     const coverage = (entries) => ({
-      total: entries.reduce((sum, item) => sum + item.text.length, 0),
-      used: entries.reduce((sum, item) => sum + item.ranges.reduce((rangeSum, range) =>
-        rangeSum + range.end - range.start, 0), 0),
+      total: entries.reduce((sum, item) => sum + (item.text || item.source || '').length, 0),
+      used: entries.reduce((sum, item) => {
+        const ranges = item.ranges || item.functions?.flatMap((fn) => fn.ranges || []) || [];
+        return sum + ranges.reduce((rangeSum, range) =>
+          rangeSum + (range.end ?? range.endOffset ?? 0) - (range.start ?? range.startOffset ?? 0), 0);
+      }, 0),
     });
     const html = await response.body();
     records.push({
