@@ -3,11 +3,15 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import Breadcrumbs from '@components/Breadcrumbs.astro';
 import ContactForm from '@components/ContactForm.astro';
 import Batch1Page from '@components/Batch1Page.astro';
+import ExactHomePage from '@components/home/ExactHomePage.astro';
+import CoreServicesPage from '@components/core/CoreServicesPage.astro';
+import CoreAboutPage from '@components/core/CoreAboutPage.astro';
+import CoreContactPage from '@components/core/CoreContactPage.astro';
+import CoreFaqPage from '@components/core/CoreFaqPage.astro';
+import CoreBlogPage from '@components/core/CoreBlogPage.astro';
 import ArticlePage from '@components/ArticlePage.astro';
-import BlogArchive from '@components/BlogArchive.astro';
 import ThankYouPage from '@components/ThankYouPage.astro';
 import TaxonomyArchive from '@components/TaxonomyArchive.astro';
-import FaqPage from '@components/FaqPage.astro';
 import PriorityPageHero from '@components/PriorityPageHero.astro';
 import pages from '@data/site-pages.json';
 import routePolicy from '@data/route-policy.json';
@@ -108,7 +112,8 @@ for (const filename of missingImages) {
 const content = repairedContent
   .replaceAll('href="/', `href="${base}/`)
   .replaceAll('src="/', `src="${base}/`);
-const showForm = page.path === '/contact-us/';
+const coreRoutes = ['/', '/services/', '/about-us/', '/contact-us/', '/faq/', '/blog/'];
+const showForm = page.path === '/contact-us/' && !coreRoutes.includes(page.path);
 const pageSchema = batchArticle
   ? [{
       '@context': 'https://schema.org',
@@ -183,13 +188,23 @@ const pageSchema = batchArticle
   externalStyles={nativePage ? [] : page.externalStyles}
   robots={nativeTaxonomy ? 'noindex, follow'
     : page.path === '/thank-you/' ? 'noindex, follow' : undefined}
+  exactHome={page.path === '/'}
+  wordpressCore={coreRoutes.includes(page.path)}
 >
   {batchArticle ? (
     <ArticlePage article={batchArticle} path={page.path} parityContent={parityContent} sourceH1={parityContent?.sourceH1} />
+  ) : page.path === '/' ? (
+    <ExactHomePage />
+  ) : page.path === '/services/' ? (
+    <CoreServicesPage />
+  ) : page.path === '/about-us/' ? (
+    <CoreAboutPage />
+  ) : page.path === '/contact-us/' ? (
+    <CoreContactPage />
   ) : page.path === '/faq/' ? (
-    <FaqPage />
+    <CoreFaqPage />
   ) : page.path === '/blog/' ? (
-    <BlogArchive />
+    <CoreBlogPage />
   ) : page.path === '/thank-you/' ? (
     <ThankYouPage />
   ) : nativeTaxonomy ? (

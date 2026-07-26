@@ -1,0 +1,29 @@
+---
+import CorePageTitle from './CorePageTitle.astro';
+import CoreFinalCta from './CoreFinalCta.astro';
+import { coreFaqs } from '@data/core-pages';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<div class="core-page">
+  <CorePageTitle title="Frequently Asked Questions" description="Answers about RK Reno Solution services, site information and the enquiry process." />
+  <section class="core-faq core-section">
+    <div class="exact-wrap">
+      <div class="core-heading"><p class="core-kicker">HELPFUL INFORMATION</p><h2>Frequently Asked Questions</h2><p>Review the complete answers below before sending your property details.</p></div>
+      <div class="core-faq-list">
+        {coreFaqs.map((item, index) => (
+          <details open={index === 0}>
+            <summary>{item.question}<span aria-hidden="true">+</span></summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="core-faq-contact">
+    <div class="exact-wrap">
+      <div><p class="core-kicker">NEED MORE INFORMATION?</p><h2>Couldn’t Find Your Answer? Ask Us Questions!</h2><p>Contact RK Reno Solution with the property location and the service you need. Phone and WhatsApp are available at +60 11 1133 4496.</p><a class="core-button core-button-light" href={`${base}/contact-us/`}>Contact Us <span>→</span></a></div>
+      <img src={`${base}/assets/media/faq1-7160bab8.webp`} alt="" />
+    </div>
+  </section>
+  <CoreFinalCta />
+</div>

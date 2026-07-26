@@ -1,0 +1,59 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const currentPath = Astro.url.pathname.replace(base, '') || '/';
+const nav = [
+  ['Home', '/'],
+  ['Blog', '/blog/'],
+  ['About Us', '/about-us/'],
+  ['Contact Us', '/contact-us/'],
+];
+const services = [
+  ['All Services', '/services/'],
+  ['Building Renovation', '/service/building-renovation/'],
+  ['Aircond Installation KL', '/aircond-installation-kl/'],
+  ['Aircond Installation Selangor', '/upah-pasang-aircond-selangor/'],
+  ['Aircond Servicing', '/servis-aircond-murah-kl/'],
+  ['Electrical Services', '/electrical-services-selangor/'],
+  ['Waterproofing', '/waterproofing-contractor-kuala-lumpur/'],
+  ['Plaster Ceiling', '/plaster-ceiling-contractor-kl/'],
+  ['Cleaning', '/servis-cuci-rumah-kl/'],
+];
+---
+<header class="exact-header">
+  <div class="exact-topbar">
+    <div class="exact-header-wrap">
+      <p>Reliable Renovation, Repair & Installation Services in KL and Selangor</p>
+      <div class="exact-topbar-links">
+        <a href="tel:+601111334496">☎ +60 11 1133 4496</a>
+        <a href="mailto:rkrenosolution@gmail.com">✉ rkrenosolution@gmail.com</a>
+        <span>⌖ 4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</span>
+      </div>
+    </div>
+  </div>
+  <div class="exact-navbar">
+    <a class="exact-logo" href={`${base}/`} aria-label="RK Reno Solution home">
+      <img src={`${base}/assets/media/RK-Reno-Solutions-Logo-942f64bb.png`} alt="RK Reno Solution" />
+    </a>
+    <nav aria-label="Main navigation">
+      <a class:list={{ active: currentPath === '/' }} href={`${base}/`}>Home</a>
+      <details class:list={['exact-services-menu', { active: currentPath.startsWith('/service') || services.some(([, href]) => href === currentPath) }]}>
+        <summary>Services <span aria-hidden="true">⌄</span></summary>
+        <div>{services.map(([label, href]) => <a href={`${base}${href}`}>{label}</a>)}</div>
+      </details>
+      {nav.slice(1).map(([label, href]) => <a class:list={{ active: currentPath === href }} href={`${base}${href}`}>{label}</a>)}
+    </nav>
+    <div class="exact-nav-tools">
+      <span aria-hidden="true">⌕</span>
+      <a href={`${base}/contact-us/`}>GET A QUOTE <b>→</b></a>
+    </div>
+    <details class="exact-mobile-menu">
+      <summary aria-label="Open menu"><span></span><span></span><span></span></summary>
+      <div>
+        <a href={`${base}/`}>Home</a>
+        <a href={`${base}/services/`}>Services</a>
+        {services.slice(1).map(([label, href]) => <a class="exact-mobile-sub" href={`${base}${href}`}>{label}</a>)}
+        {nav.slice(1).map(([label, href]) => <a href={`${base}${href}`}>{label}</a>)}
+      </div>
+    </details>
+  </div>
+</header>

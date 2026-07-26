@@ -1,0 +1,95 @@
+---
+import { homeBenefits, homeServiceCards } from '@data/homepage-exact';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section class="exact-hero">
+  <div class="exact-wrap exact-hero-inner">
+    <div class="exact-hero-copy">
+      <p class="exact-eyebrow">RK Reno Solution</p>
+      <h1>Reliable Renovation Contractor in KL &amp; Selangor</h1>
+      <p>Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish.</p>
+      <div class="exact-actions">
+        <a class="exact-button exact-button-orange" href={`${base}/services/`}>Our Services <span>→</span></a>
+        <a class="exact-button exact-button-dark" href={`${base}/contact-us/`}>Get Free Consultation <span>→</span></a>
+      </div>
+      <div class="exact-trust"><strong>★★★★★</strong><span>TRUSTED BY 1,250+ HAPPY CUSTOMERS</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="exact-about exact-section">
+  <div class="exact-wrap exact-about-grid">
+    <div class="exact-about-images">
+      <img class="exact-about-main" src={`${base}/assets/media/RK-Reno-Solution-contractor-reviewing-renovation-projec-1fc54dc9.jpg`} alt="RK Reno Solution contractor reviewing a renovation project" />
+      <img class="exact-about-small" src={`${base}/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg`} alt="Completed interior installation" />
+      <div class="exact-experience"><strong>15+</strong><span>YEAR OF EXPERIENCE<br />IN CONSTRUCTION</span></div>
+    </div>
+    <div class="exact-about-copy">
+      <p class="exact-eyebrow">ABOUT RK RENO SOLUTION</p>
+      <h2>Practical Renovation Solutions for Better Spaces</h2>
+      <p>RK Reno Solution helps homeowners and business owners improve their spaces with renovation, repair, installation, and maintenance services. From site inspection to project completion, we focus on clear communication, practical solutions, and quality finishing.</p>
+      <div class="exact-about-features">
+        <article><span>⌂</span><div><h3>Smart Work Planning</h3><p>We review your space, understand your needs, and plan the work properly before starting, so the project stays clear and organized.</p></div></article>
+        <article><span>⚒</span><div><h3>Skilled Service Team</h3><p>Our team handles renovation, waterproofing, plaster ceiling, aircond installation, and cleaning work with care and attention to detail.</p></div></article>
+      </div>
+      <div class="exact-about-bottom">
+        <a class="exact-button exact-button-orange" href={`${base}/about-us/`}>Discover More <span>→</span></a>
+        <p>Have questions?<br /><a href="tel:+601111334496">Call Us: +60 11 1133 4496</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="exact-services exact-section">
+  <div class="exact-wrap">
+    <div class="exact-heading-row">
+      <div>
+        <p class="exact-eyebrow">OUR SERVICES</p>
+        <h2>Renovation, Repair &amp; Installation Services in KL and Selangor</h2>
+      </div>
+      <a class="exact-button exact-button-outline" href={`${base}/services/`}>All Services <span>→</span></a>
+    </div>
+    <div class="exact-service-cards">
+      {homeServiceCards.map((card) => (
+        <article>
+          <a class="exact-card-image" href={`${base}${card.href}`}>
+            <img src={`${base}${card.image}`} alt="" />
+          </a>
+          <div class="exact-card-body">
+            <p>{card.date} <span>•</span> by raoisrar</p>
+            <p class="exact-card-category">{card.category}</p>
+            <h3><a href={`${base}${card.href}`}>{card.title}</a></h3>
+            <a class="exact-read-more" href={`${base}${card.href}`}>Read more <span>→</span></a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="exact-why exact-section">
+  <div class="exact-wrap exact-why-grid">
+    <div class="exact-why-copy">
+      <p class="exact-eyebrow">WHY CHOOSE RK RENO SOLUTION</p>
+      <h2>Reliable Service for Homes, Offices &amp; Commercial Spaces</h2>
+      <p>We understand that renovation work needs trust, planning, and proper finishing. RK Reno Solution helps you complete property improvement work with clear guidance, site checking, and practical service support from start to finish.</p>
+      <div class="exact-stats">
+        <div><strong>40+</strong><span>Projects Completed</span></div>
+        <div><strong>95%</strong><span>Customer Satisfaction</span></div>
+        <div><strong>16</strong><span>Service Areas Covered</span></div>
+      </div>
+      <div class="exact-actions">
+        <a class="exact-button exact-button-orange" href={`${base}/about-us/`}>More Why Choose Us <span>→</span></a>
+        <a class="exact-text-link" href={`${base}/contact-us/`}>Start Your Project <span>→</span></a>
+      </div>
+    </div>
+    <div class="exact-why-image">
+      <img src={`${base}/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg`} alt="Modern building renovation and property improvement" />
+    </div>
+  </div>
+  <div class="exact-wrap exact-benefits">
+    {homeBenefits.map((benefit) => (
+      <article><span>{benefit.icon}</span><div><h3>{benefit.title}</h3><p>{benefit.text}</p></div></article>
+    ))}
+  </div>
+</section>

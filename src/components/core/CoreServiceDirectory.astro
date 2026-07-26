@@ -1,0 +1,18 @@
+---
+import { coreServices } from '@data/core-pages';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<div class="core-service-directory">
+  {coreServices.map((service) => (
+    <article>
+      <a class="core-service-image" href={`${base}${service.href}`}>
+        <img src={`${base}${service.image}`} alt="" loading="lazy" decoding="async" />
+      </a>
+      <div>
+        <h3><a href={`${base}${service.href}`}>{service.title}</a></h3>
+        <p>{service.text}</p>
+        <a class="core-read-link" href={`${base}${service.href}`}>View Service <span>→</span></a>
+      </div>
+    </article>
+  ))}
+</div>

@@ -1,0 +1,86 @@
+---
+import { homeSteps, homeTestimonials } from '@data/homepage-exact';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<section class="exact-process exact-section">
+  <div class="exact-wrap">
+    <div class="exact-section-title">
+      <p class="exact-eyebrow">OUR PROCESS</p>
+      <h2>How We Handle Your Project</h2>
+      <p>We keep the process simple, clear, and organized so you know what to expect before the work begins.</p>
+    </div>
+    <div class="exact-process-map">
+      <div class="exact-process-center"><strong>04</strong><span>STEPS</span></div>
+      {homeSteps.map((step, index) => (
+        <article class={`step-${index + 1}`}>
+          <strong>{step.number}</strong>
+          <div><h3>{step.title}</h3><p>{step.text}</p></div>
+        </article>
+      ))}
+    </div>
+    <div class="exact-process-cta">
+      <p>Ready to improve your space?</p>
+      <a href={`${base}/contact-us/`}>Free Consultation <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="exact-enquiry exact-section">
+  <div class="exact-wrap exact-enquiry-grid">
+    <div aria-hidden="true"></div>
+    <form class="exact-contact-form" aria-label="Enquiry form preview">
+      <p class="exact-eyebrow">CONTACT US</p>
+      <h2>Get In Touch With Us</h2>
+      <div class="exact-field-grid">
+        <input type="text" placeholder="Name*" disabled />
+        <input type="tel" placeholder="Phone number*" disabled />
+        <input type="email" placeholder="Email*" disabled />
+        <input type="text" placeholder="Company Name" disabled />
+        <select disabled><option>Project type*</option><option>Building Construction</option><option>Architecture Design</option><option>building renovation</option></select>
+        <input type="text" placeholder="Budget*" disabled />
+      </div>
+      <textarea placeholder="Write message...*" disabled></textarea>
+      <label><input type="checkbox" disabled /> <span>I have read the privacy statement and understand that my personal data will be processed for the purpose of providing the necessary information and assistance.*</span></label>
+      <button type="button" disabled>Submit <span>→</span></button>
+    </form>
+  </div>
+</section>
+
+<section class="exact-testimonials exact-section">
+  <div class="exact-wrap exact-testimonial-grid">
+    <div class="exact-testimonial-image">
+      <img src={`${base}/assets/media/Construction-workers-discussing-renovation-plans-092133b6.jpg`} alt="Construction workers discussing renovation plans" />
+    </div>
+    <div class="exact-testimonial-copy">
+      <p class="exact-eyebrow">CLIENT FEEDBACK</p>
+      <h2>What Customers Say About RK Reno Solution</h2>
+      <div class="exact-testimonial-cards">
+        {homeTestimonials.map((testimonial, index) => (
+          <article class:list={{ featured: index === 0 }}>
+            <div class="exact-stars">★★★★★ <span>”</span></div>
+            <blockquote>{testimonial.quote}</blockquote>
+            <div class="exact-reviewer">
+              <img src={`${base}/assets/media/avartar1-90x90-68065c41.webp`} alt="" />
+              <p><strong>{testimonial.name}</strong><span>{testimonial.role}</span></p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="exact-carousel-controls"><span>←</span><span>→</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="exact-final-cta">
+  <div class="exact-wrap exact-final-inner">
+    <img src={`${base}/assets/media/home7-img7-f8f5cbc2.webp`} alt="" />
+    <div>
+      <h2>Need Renovation or Repair Work?</h2>
+      <p>Whether you need home renovation, office renovation, waterproofing, plaster ceiling, aircond installation, or cleaning services, RK Reno Solution is ready to help. Contact us today and share your project details.</p>
+      <div class="exact-actions">
+        <a class="exact-button exact-button-white" href={`${base}/contact-us/`}>Get Free Quote <span>→</span></a>
+        <a class="exact-button exact-button-outline" href={`${base}/contact-us/`}>Contact Us <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,46 @@
+---
+import CorePageTitle from './CorePageTitle.astro';
+import CoreFinalCta from './CoreFinalCta.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<div class="core-page">
+  <CorePageTitle title="Contact Us" description="Contact RK Reno Solution about renovation, repair, installation and cleaning work." />
+  <section class="core-contact core-section">
+    <div class="exact-wrap core-contact-grid">
+      <div class="core-contact-copy">
+        <p class="core-kicker">GET IN TOUCH</p>
+        <h2>Have a question? Please contact us using the customer support channels below.</h2>
+        <div class="core-contact-card">
+          <span>⌖</span><div><h3>Address</h3><p>4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</p></div>
+        </div>
+        <div class="core-contact-card">
+          <span>☎</span><div><h3>Phone and WhatsApp</h3><a href="tel:+601111334496">+60 11 1133 4496</a><a href="https://wa.me/601111334496">Send a WhatsApp message</a></div>
+        </div>
+        <div class="core-contact-card">
+          <span>✉</span><div><h3>Email</h3><a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a></div>
+        </div>
+        <div class="core-contact-images">
+          <img src={`${base}/assets/media/ct-08-a16e9952.webp`} alt="" />
+          <img src={`${base}/assets/media/ct-07-83aecc11.webp`} alt="" />
+        </div>
+      </div>
+      <div class="core-contact-form-wrap">
+        <h2>Send Your Enquiry</h2>
+        <p>Please submit all general enquiries in the contact form below and we look forward to hearing from you soon.</p>
+        <form class="core-contact-form" data-configured="false" aria-describedby="core-form-note">
+          <label>Full Name*<input type="text" name="name" disabled /></label>
+          <label>Email Address*<input type="email" name="email" disabled /></label>
+          <label>Phone Number*<input type="tel" name="phone" disabled /></label>
+          <label>Your services*
+            <select name="service" disabled><option>What are your needs?</option><option>Renovation</option><option>Aircond</option><option>Waterproofing</option><option>Plaster Ceiling</option><option>Electrical</option><option>Cleaning</option></select>
+          </label>
+          <label class="core-full-field">Message<textarea name="message" rows="7" disabled></textarea></label>
+          <label class="core-consent core-full-field"><input type="checkbox" disabled /><span>I agree that RK Reno Solution may use these details to respond to my enquiry.</span></label>
+          <button class="core-button core-button-orange core-full-field" type="button" disabled>Send Message <span>→</span></button>
+          <p id="core-form-note" class="core-form-note core-full-field">Online submission is disabled on GitHub Pages. Please call or use WhatsApp.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+  <CoreFinalCta />
+</div>

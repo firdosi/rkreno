@@ -1,0 +1,31 @@
+---
+import CorePageTitle from './CorePageTitle.astro';
+import CoreFinalCta from './CoreFinalCta.astro';
+import { retainedArticleCatalog } from '@data/retained-article-catalog';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<div class="core-page">
+  <CorePageTitle title="Blog" description="Practical guides for renovation, aircond, electrical, waterproofing, ceiling and cleaning work." />
+  <section class="core-blog core-section">
+    <div class="exact-wrap">
+      <div class="core-heading"><p class="core-kicker">RK RENO SOLUTION GUIDES</p><h2>Latest Insights &amp; Service Guides</h2><p>Browse all 14 retained articles from RK Reno Solution.</p></div>
+      <div class="core-blog-grid">
+        {retainedArticleCatalog.map((article) => (
+          <article>
+            <a class="core-blog-image" href={`${base}${article.route}`}>
+              <img src={`${base}${article.image}`} srcset={article.imageSrcSet?.map(({src,width})=>`${base}${src} ${width}w`).join(', ')} sizes="(max-width:760px) 100vw, 32vw" alt={article.imageAlt} loading="lazy" />
+            </a>
+            <div>
+              <p class="core-blog-meta"><span>{article.category}</span> · <time datetime={article.published}>{article.published}</time></p>
+              <h2><a href={`${base}${article.route}`}>{article.title}</a></h2>
+              <p>{article.summary}</p>
+              <a class="core-read-link" href={`${base}${article.route}`}>Read Guide <span>→</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <nav class="core-pagination" aria-label="Blog pagination"><span aria-current="page">1</span><a href="#top" aria-label="Back to the first page">2</a><a href="#top">Next →</a></nav>
+    </div>
+  </section>
+  <CoreFinalCta />
+</div>

@@ -1,0 +1,39 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<footer class="exact-footer">
+  <div class="exact-footer-main exact-wrap">
+    <div class="exact-footer-brand">
+      <img src={`${base}/assets/media/RK-Reno-Solutions-Logo-942f64bb.png`} alt="RK Reno Solution" />
+      <p>Building a Better Future – Innovative, Sustainable, Reliable.</p>
+    </div>
+    <div>
+      <h2>Company</h2>
+      <a href={`${base}/about-us/`}>About Us</a>
+      <a href={`${base}/services/`}>Our Services</a>
+      <a href={`${base}/blog/`}>Blog</a>
+      <a href={`${base}/contact-us/`}>Contact Us</a>
+    </div>
+    <div>
+      <h2>Services</h2>
+      <a href={`${base}/house-renovation-in-kuala-lumpur/`}>Home Renovation</a>
+      <a href={`${base}/office-renovation-in-kuala-lumpur/`}>Office Renovation</a>
+      <a href={`${base}/waterproofing-contractor-kuala-lumpur/`}>Waterproofing</a>
+      <a href={`${base}/aircond-installation-kl/`}>Aircond Installation</a>
+    </div>
+    <div class="exact-footer-contact">
+      <h2>Company Address</h2>
+      <p><b>Mail to:</b><a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a></p>
+      <p><b>Phone:</b><a href="tel:+601111334496">+60 11 1133 4496</a></p>
+      <p><b>Address:</b><span>4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</span></p>
+    </div>
+  </div>
+  <div class="exact-footer-bottom exact-wrap">
+    <p>Copyright © 2025 RK Reno Solutions. All Rights Reserved.</p>
+    <div>
+      <span>Privacy Policy</span>
+      <span>Terms of Use</span>
+      <a href={`${base}/sitemap.xml`}>Site Map</a>
+    </div>
+  </div>
+</footer>
