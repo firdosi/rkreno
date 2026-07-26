@@ -1,0 +1,25 @@
+[Unit]
+Description=RK Reno enquiry service
+After=network.target
+
+[Service]
+Type=simple
+User=rkreno
+Group=rkreno
+WorkingDirectory=/var/www/rkreno/current
+EnvironmentFile=/var/www/rkreno/shared/env/enquiry.env
+ExecStart=/usr/bin/node server/enquiry/server.mjs
+Restart=on-failure
+RestartSec=5s
+TimeoutStartSec=30s
+TimeoutStopSec=20s
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/www/rkreno/shared/logs
+RestrictAddressFamilies=AF_INET AF_INET6
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

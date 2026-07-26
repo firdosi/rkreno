@@ -114,8 +114,11 @@ if (!production) {
 
 const tracked = spawnSync('git', ['ls-files'], { encoding: 'utf8' }).stdout.split(/\r?\n/);
 for (const file of tracked) {
+  const environmentExample = /(?:\.example\.env|env\.example)$/i.test(file);
   if (/^(Media|wp-old-site-backup|\.audit-cache)\//.test(file)
-    || /\.(sql|zip|tar|gz|env|pem|key|p12|pfx)$/i.test(file)) failures.push(`private file tracked: ${file}`);
+    || (!environmentExample && /\.(sql|zip|tar|gz|env|pem|key|p12|pfx)$/i.test(file))) {
+    failures.push(`private file tracked: ${file}`);
+  }
 }
 
 console.log(JSON.stringify({

@@ -1,0 +1,15 @@
+{
+  "hostname": "REPLACE_WITH_APPROVED_PRIVATE_PREVIEW_HOSTNAME",
+  "httpsRequired": true,
+  "accessControlRequired": true,
+  "xRobotsTag": "noindex, nofollow, noarchive",
+  "robotsPolicy": "disallow_all",
+  "canonicals": "production_urls",
+  "analyticsEnabled": false,
+  "advertisingTrackingEnabled": false,
+  "mailModesAllowed": ["dry_run", "test_capture"],
+  "turnstileConfiguration": "separate_preview_keys_required",
+  "publicDiscovery": false,
+  "directoryListing": false,
+  "githubPagesPrefixAllowed": false
+}

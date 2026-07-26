@@ -1,0 +1,20 @@
+{
+  "approvedGitCommit": "61d3a4afced81173216e49b89db2249aa8e89b6a",
+  "repository": "https://github.com/firdosi/rkreno",
+  "branch": "main",
+  "buildTimestamp": "2026-07-26T23:51:02+05:00",
+  "nodeVersion": "v24.16.0",
+  "npmLockfileSha256": "01247b3b9e75885f4e655970c4a4c2450c7c1f70eaf007ae440195639e9a3447",
+  "productionSitemapUrlCount": 32,
+  "retainedRouteCount": 42,
+  "redirectCount": 23,
+  "goneCount": 66,
+  "known404Count": 9,
+  "ownerDecisionUnpublishedCount": 5,
+  "contentLockSha256": "1c42d6f677affee9fc73f73170dba8f876be29dc43f7aa69465b903b1e2307ff",
+  "routeMapHash": "da5ff3b90d0928bc5c051f205df8a5acce10bece2e04e7c70512c9bade9ff7b8",
+  "buildCommand": "DEPLOY_TARGET=vps npm run build",
+  "expectedOutputDirectory": "dist",
+  "releaseIdentifier": "rkreno-61d3a4a",
+  "laterReleaseOverride": "Set RELEASE_SOURCE_SHA to the exact clean HEAD commit."
+}

@@ -1,5 +1,4 @@
 import { createServer } from 'node:http';
-import nodemailer from 'nodemailer';
 import formPolicy from '../../config/form-policy.json' with { type: 'json' };
 import { loadFormConfig } from './config.mjs';
 import { createOperationalLogger } from './logger.mjs';
@@ -25,16 +24,19 @@ if (config.mode === 'local_test') {
   mailer = new TestCaptureMailAdapter();
 } else {
   turnstile = new TurnstileValidator({ ...config.turnstile, fetch: globalThis.fetch });
-  mailer = config.mailMode === 'smtp'
-    ? new SmtpMailAdapter(nodemailer.createTransport({
+  if (config.mailMode === 'smtp') {
+    const nodemailer = (await import('nodemailer')).default;
+    mailer = new SmtpMailAdapter(nodemailer.createTransport({
       host: config.smtp.host,
       port: config.smtp.port,
       secure: config.smtp.secure,
       auth: { user: config.smtp.username, pass: config.smtp.password },
       disableFileAccess: true,
       disableUrlAccess: true,
-    }))
-    : new DryRunMailAdapter();
+    }));
+  } else {
+    mailer = new DryRunMailAdapter();
+  }
 }
 
 const handler = createEnquiryHandler({ config, turnstile, rateLimiter, mailer, logger });

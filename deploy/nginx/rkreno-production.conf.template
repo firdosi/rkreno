@@ -1,0 +1,52 @@
+# Inactive template. Render {{ROUTE_RULES}} from config/production-route-map.json.
+server {
+    listen 80;
+    server_name rkrenosolution.com www.rkrenosolution.com;
+    return 301 https://rkrenosolution.com$request_uri;
+}
+server {
+    listen 443 ssl http2;
+    server_name www.rkrenosolution.com;
+    ssl_certificate {{PRODUCTION_TLS_CERTIFICATE}};
+    ssl_certificate_key {{PRODUCTION_TLS_PRIVATE_KEY}};
+    return 301 https://rkrenosolution.com$request_uri;
+}
+server {
+    listen 443 ssl http2;
+    server_name rkrenosolution.com;
+    root /var/www/rkreno/current/dist;
+    index index.html;
+    autoindex off;
+    client_max_body_size 16k;
+    ssl_certificate {{PRODUCTION_TLS_CERTIFICATE}};
+    ssl_certificate_key {{PRODUCTION_TLS_PRIVATE_KEY}};
+
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "DENY" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+    add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()" always;
+    add_header Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data:; font-src 'self' data: https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-src 'none'; form-action 'self'" always;
+
+    {{ROUTE_RULES}}
+
+    location = /api/enquiry {
+        proxy_pass http://127.0.0.1:{{ENQUIRY_PORT}};
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_read_timeout 10s;
+    }
+    location ~ /\.(?!well-known/) { deny all; }
+    location ~* \.(?:env|ini|log|sql|sql\.gz|xml|zip|tar|tar\.gz|bak|old|php)$ { return 404; }
+    location ~* ^/(?:Media|wp-old-site-backup|reports/private|\.audit-cache|\.release-cache)/ { return 404; }
+    location ~* \.php(?:/|$) { return 404; }
+    location ~* ^/_astro/ { expires 1y; add_header Cache-Control "public, max-age=31536000, immutable"; try_files $uri =404; }
+    location / {
+        try_files $uri $uri/index.html =404;
+        add_header Cache-Control "public, max-age=0, must-revalidate";
+    }
+    error_page 404 /404.html;
+    location = /404.html { internal; }
+    gzip on;
+    gzip_types text/plain text/css application/javascript application/json application/xml image/svg+xml;
+}

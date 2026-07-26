@@ -1,0 +1,20 @@
+{
+  "periods": [
+    "first_15_minutes",
+    "first_hour",
+    "first_24_hours",
+    "first_3_days",
+    "first_7_days",
+    "first_14_days",
+    "first_30_days"
+  ],
+  "checks": [
+    "homepage", "priority_services", "priority_articles", "redirects", "gone_responses",
+    "not_found_responses", "robots", "sitemap", "canonicals", "noindex_mistakes",
+    "tls", "form_delivery", "turnstile", "consent", "analytics_page_views",
+    "generate_lead", "search_console_verification", "indexing", "crawl_errors",
+    "clicks", "impressions", "enquiries", "server_errors", "nginx_errors",
+    "enquiry_service_errors", "disk_usage", "memory_usage", "convortai_health"
+  ],
+  "remoteServiceCreated": false
+}

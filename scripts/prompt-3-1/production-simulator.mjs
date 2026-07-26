@@ -5,10 +5,14 @@ import { extname, join, normalize, resolve } from 'node:path';
 import { createGzip } from 'node:zlib';
 import routeMap from '../../config/production-route-map.json' with { type: 'json' };
 
-const root = resolve('dist');
+const root = resolve(process.env.RELEASE_ROOT || 'dist');
 const host = process.env.PRODUCTION_SIMULATOR_HOST || '127.0.0.1';
 const port = Number(process.env.PRODUCTION_SIMULATOR_PORT || 4173);
 const preferredHost = 'rkrenosolution.com';
+const simulatorMode = process.env.SIMULATOR_MODE || 'production';
+const privatePreview = simulatorMode === 'private_preview';
+const previewHost = process.env.PRIVATE_PREVIEW_HOSTNAME || 'preview.local.test';
+const previewAuth = process.env.PRIVATE_PREVIEW_AUTH || '';
 const enquiryServiceOrigin = process.env.ENQUIRY_SERVICE_ORIGIN || '';
 const formCspEnabled = process.env.SIMULATOR_FORM_ENABLED === 'true';
 const analyticsCspEnabled = process.env.SIMULATOR_ANALYTICS_ENABLED === 'true';
@@ -54,6 +58,7 @@ function securityHeaders(simulatedHttps) {
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
+    ...(privatePreview ? { 'X-Robots-Tag': 'noindex, nofollow, noarchive' } : {}),
     ...(simulatedHttps ? { 'Strict-Transport-Security': 'max-age=15552000' } : {}),
   };
 }
@@ -150,8 +155,35 @@ const server = createServer(async (request, response) => {
       ...securityHeaders(simulatedHttps), 'Cache-Control': 'no-store', 'Content-Type': 'application/json; charset=utf-8',
     });
   }
+  if (privatePreview) {
+    if (localHost !== previewHost) {
+      return send(response, 421, '{"error":"preview_host_required"}', {
+        ...securityHeaders(simulatedHttps), 'Cache-Control': 'no-store', 'Content-Type': 'application/json; charset=utf-8',
+      });
+    }
+    const expectedAuth = previewAuth ? `Basic ${Buffer.from(previewAuth).toString('base64')}` : '';
+    if (!expectedAuth || request.headers.authorization !== expectedAuth) {
+      return send(response, 401, '{"error":"authentication_required"}', {
+        ...securityHeaders(simulatedHttps), 'Cache-Control': 'no-store',
+        'Content-Type': 'application/json; charset=utf-8', 'WWW-Authenticate': 'Basic realm="RK Reno private preview"',
+      });
+    }
+  }
   if (url.pathname === '/api/enquiry' && proxyEnquiry(request, response)) return;
   const pathname = normalizePath(url.pathname);
+  if (privatePreview && pathname === '/robots.txt') {
+    return send(response, 200, 'User-agent: *\nDisallow: /\n', {
+      ...securityHeaders(simulatedHttps), 'Cache-Control': 'no-store', 'Content-Type': 'text/plain; charset=utf-8',
+    });
+  }
+  if (/(?:^|\/)\./.test(pathname)
+    || /^\/(?:Media|wp-old-site-backup|reports\/private|\.audit-cache|\.release-cache)(?:\/|$)/.test(pathname)
+    || /\.(?:env|ini|log|sql|zip|tar|gz|bak|old|php)$/i.test(pathname)) {
+    const body = await readFile(join(root, '404.html'));
+    return send(response, 404, body, {
+      ...securityHeaders(simulatedHttps), 'Cache-Control': 'no-store', 'Content-Type': 'text/html; charset=utf-8',
+    });
+  }
   const entry = entries.get(pathname);
   if (entry?.action === 'GONE_410') {
     return send(response, 410, 'Gone\n', {
@@ -159,12 +191,12 @@ const server = createServer(async (request, response) => {
     });
   }
   const canonicalPath = entry?.action === 'REDIRECT_301' ? entry.destination : pathname;
-  const needsOriginRedirect = !localAlias && (localHost !== preferredHost || !simulatedHttps);
+  const needsOriginRedirect = !privatePreview && !localAlias && (localHost !== preferredHost || !simulatedHttps);
   if (needsOriginRedirect || pathname !== url.pathname || entry?.action === 'REDIRECT_301') {
     return send(response, 301, '', {
       ...securityHeaders(simulatedHttps),
       'Cache-Control': 'public, max-age=300',
-      Location: `https://${preferredHost}${canonicalPath}${url.search}`,
+      Location: `https://${privatePreview ? previewHost : preferredHost}${canonicalPath}${url.search}`,
     });
   }
   if (entry && ['EXISTING_404', 'OWNER_DECISION_UNPUBLISHED'].includes(entry.action)) {
@@ -183,6 +215,9 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, host, () => {
-  console.log(JSON.stringify({ ready: true, origin: `http://${host}:${port}`, preferredHost }));
+  console.log(JSON.stringify({
+    ready: true, origin: `http://${host}:${port}`, preferredHost,
+    mode: simulatorMode, ...(privatePreview ? { previewHost } : {}),
+  }));
 });
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(() => process.exit(0)));
