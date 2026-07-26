@@ -1,0 +1,43 @@
+---
+const { route } = Astro.props as { route: string };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const linksByRoute: Record<string, { href: string; label: string }[]> = {
+  '/electrical-services-selangor/': [
+    { href: '/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/', label: 'Electrical Safety & Pricing Guide' },
+    { href: '/office-renovation-in-kuala-lumpur/', label: 'Office Renovation KL' },
+    { href: '/house-renovation-in-selangor/', label: 'House Renovation Selangor' },
+  ],
+  '/home-renovation-contractor-in-subang-jaya/': [
+    { href: '/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/', label: 'Selangor Renovation Guide' },
+    { href: '/house-renovation-in-selangor/', label: 'House Renovation Selangor' },
+    { href: '/services/', label: 'All Property Services' },
+  ],
+  '/waterproofing-contractor-kuala-lumpur/': [
+    { href: '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/', label: 'Waterproofing Guide' },
+    { href: '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/', label: 'PU Injection Guide' },
+    { href: '/house-renovation-in-kuala-lumpur/', label: 'House Renovation KL' },
+  ],
+  '/plaster-ceiling-contractor-kl/': [
+    { href: '/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/', label: 'Plaster Ceiling Guide' },
+    { href: '/office-renovation-in-kuala-lumpur/', label: 'Office Renovation KL' },
+    { href: '/house-renovation-in-kuala-lumpur/', label: 'House Renovation KL' },
+  ],
+  '/servis-cuci-rumah-kl/': [
+    { href: '/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/', label: 'Panduan Servis Cuci Rumah' },
+    { href: '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/', label: 'Pakej Deep Cleaning Rumah' },
+    { href: '/services/', label: 'Semua Servis' },
+  ],
+};
+const links = linksByRoute[route] || [];
+---
+{links.length > 0 && (
+  <section class="p22-service-hub">
+    <div class="exact-wrap">
+      <p class="p22-eyebrow">RK Reno Knowledge Hub</p>
+      <h2>{route === '/servis-cuci-rumah-kl/' ? 'Panduan Berkaitan' : 'Related Service Guides'}</h2>
+      <nav aria-label="Related service guides">
+        {links.map((item) => <a href={`${base}${item.href}`}>{item.label} <span>→</span></a>)}
+      </nav>
+    </div>
+  </section>
+)}

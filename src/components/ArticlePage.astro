@@ -1,5 +1,6 @@
 ---
 import CorePageTitle from './core/CorePageTitle.astro';
+import Prompt22ArticleSidebar from './article/Prompt22ArticleSidebar.astro';
 import type { BatchArticle } from '@data/batch2-articles';
 
 interface WordPressArticle {
@@ -33,18 +34,12 @@ const date = (value: string) => new Intl.DateTimeFormat('en-MY', {
     )}
   </div>
 
-  <div class="article-exact-content" set:html={content} />
-
-  <aside class="exact-wrap article-exact-related" aria-labelledby="article-next-step">
-    <div>
-      <p>Related service</p>
-      <h2 id="article-next-step">Connect this guide to the actual property</h2>
-      <span>Confirm measurements, access, materials and the requested scope before work begins.</span>
-    </div>
-    <nav aria-label="Article next steps">
-      <a class="core-button" href={`${base}${article.serviceHref}`}>{article.serviceLabel}</a>
-      {article.related?.map((item) => <a href={`${base}${item.href}`}>{item.label} →</a>)}
-      <a href={`${base}/blog/`}>Browse all retained guides →</a>
-    </nav>
-  </aside>
+  <div class="exact-wrap p22-article-layout">
+    <div class="article-exact-content" set:html={content} />
+    <Prompt22ArticleSidebar
+      serviceHref={article.serviceHref}
+      serviceLabel={article.serviceLabel}
+      related={article.related}
+    />
+  </div>
 </article>

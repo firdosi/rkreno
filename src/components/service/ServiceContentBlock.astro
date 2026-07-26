@@ -14,6 +14,11 @@ interface Props {
 
 const { block } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const imageDimensions: Record<string, [number, number]> = {
+  '/assets/media/servis-cuci-rumah-kl-2e2d046e.jpg': [1600, 900],
+  '/assets/media/detailed-kitchen-cleaning-kl-67669628.jpg': [1600, 900],
+};
+const dimensions = block.src ? imageDimensions[block.src] : undefined;
 const safeHtml = (value = '') => value
   .replaceAll('https://rkrenosolution.com/about/', `${base}/about-us/`)
   .replaceAll('https://rkrenosolution.com/', `${base}/`)
@@ -24,7 +29,14 @@ const safeHtml = (value = '') => value
   : block.type === 'list' ? <ul>{block.items?.map((item) => <li>{item}</li>)}</ul>
   : block.type === 'image' && block.src ? (
     <figure>
-      <img src={`${base}${block.src}`} alt={block.alt || ''} loading="lazy" decoding="async" />
+      <img
+        src={`${base}${block.src}`}
+        alt={block.alt || ''}
+        width={dimensions?.[0]}
+        height={dimensions?.[1]}
+        loading="lazy"
+        decoding="async"
+      />
       <figcaption>{block.alt}</figcaption>
     </figure>
   )

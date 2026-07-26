@@ -90,6 +90,12 @@ export const serviceExactConfig: Record<string, ServiceExactConfig> = {
     image: '/assets/media/Construction-workers-discussing-renovation-plans-092133b6.jpg',
     imageAlt: 'Property work being reviewed before electrical service',
     chips: ['Inspection', 'Wiring', 'Troubleshooting'],
+    facts: [
+      { value: 'Site review', label: 'Inspection before quotation' },
+      { value: 'Clear scope', label: 'Work agreed before starting' },
+      { value: 'Homes & offices', label: 'Property-based electrical work' },
+      { value: 'KL & Selangor', label: 'Confirm the exact service area' },
+    ],
     skipPatterns: [/certified workmanship/i, /safety first guarantee/i, /emergency service/i, /strictly adhere/i, /SIRIM/i],
   },
   '/house-renovation-in-kuala-lumpur/': {
@@ -127,6 +133,12 @@ export const serviceExactConfig: Record<string, ServiceExactConfig> = {
     image: '/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg',
     imageAlt: 'Neutral renovation planning image for a Subang Jaya home',
     chips: ['Local Planning', 'Itemised Scope', 'Site Review'],
+    facts: [
+      { value: 'Subang Jaya', label: 'Local renovation planning' },
+      { value: 'Clear scope', label: 'Room and work requirements' },
+      { value: 'Site review', label: 'Access and condition checks' },
+      { value: 'Itemised quote', label: 'Confirm inclusions and exclusions' },
+    ],
     skipPatterns: [/guarantee perfection/i, /fast response/i],
   },
   '/office-renovation-in-kuala-lumpur/': {
@@ -150,6 +162,12 @@ export const serviceExactConfig: Record<string, ServiceExactConfig> = {
     image: '/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg',
     imageAlt: 'Bathroom waterproofing service image in Kuala Lumpur',
     chips: ['Leak Inspection', 'Method Review', 'Site-Based Scope'],
+    facts: [
+      { value: 'Inspection', label: 'Identify the likely water path' },
+      { value: 'Method review', label: 'Match repair to site conditions' },
+      { value: 'Clear limits', label: 'Explain access and repair scope' },
+      { value: 'Kuala Lumpur', label: 'Confirm location through WhatsApp' },
+    ],
     skipPatterns: [/warranty/i, /guarantee/i, /permanent/i, /fix the leak perfectly/i, /official warranty certificate/i],
   },
   '/plaster-ceiling-contractor-kl/': {
@@ -159,6 +177,12 @@ export const serviceExactConfig: Record<string, ServiceExactConfig> = {
     image: '/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg',
     imageAlt: 'Plaster ceiling and aircond coordination image',
     chips: ['Aesthetic', 'Modern', 'Measured Scope'],
+    facts: [
+      { value: 'Measured scope', label: 'Confirm ceiling dimensions' },
+      { value: 'Design options', label: 'L-box, cornice and light trough' },
+      { value: 'Coordination', label: 'Plan lighting and aircond openings' },
+      { value: 'Kuala Lumpur', label: 'Check the exact work location' },
+    ],
     skipPatterns: [/flawless finishing guarantee/i, /perfectly smooth, crack-free/i],
   },
   '/servis-cuci-rumah-kl/': {
@@ -168,5 +192,11 @@ export const serviceExactConfig: Record<string, ServiceExactConfig> = {
     image: '/assets/media/detailed-kitchen-cleaning-kl-67669628.jpg',
     imageAlt: 'Detailed kitchen cleaning service in Kuala Lumpur',
     chips: ['Bersih', 'Skop Jelas', 'Kuala Lumpur'],
+    facts: [
+      { value: 'Skop jelas', label: 'Kerja dipersetujui lebih awal' },
+      { value: 'Deep cleaning', label: 'Mengikut keadaan rumah' },
+      { value: 'Post-renovation', label: 'Pembersihan selepas kerja ubah suai' },
+      { value: 'Kuala Lumpur', label: 'Semak lokasi melalui WhatsApp' },
+    ],
   },
 };

@@ -1,6 +1,7 @@
 ---
 import CoreFinalCta from '../core/CoreFinalCta.astro';
 import BuildingRenovationExact from './BuildingRenovationExact.astro';
+import Prompt22ServiceHub from './Prompt22ServiceHub.astro';
 import ServiceExactHero from './ServiceExactHero.astro';
 import ServiceExactSection from './ServiceExactSection.astro';
 import { serviceExactConfig } from '@data/service-exact-config';
@@ -18,11 +19,20 @@ const config = serviceExactConfig[route];
 const priceCards = priceCardsByRoute[route];
 const priceTable = priceTablesByRoute[route];
 const explicitFaqs = serviceFaqsByRoute[route];
+const prompt22Routes = [
+  '/electrical-services-selangor/',
+  '/home-renovation-contractor-in-subang-jaya/',
+  '/office-renovation-in-kuala-lumpur/',
+  '/waterproofing-contractor-kuala-lumpur/',
+  '/plaster-ceiling-contractor-kl/',
+  '/servis-cuci-rumah-kl/',
+];
+const prompt22 = prompt22Routes.includes(route);
 ---
 {config.variant === 'building' ? (
   <BuildingRenovationExact />
 ) : (
-<div class:list={['service-exact-page', `service-exact-page--${config.variant}`]}>
+<div class:list={['service-exact-page', `service-exact-page--${config.variant}`, { 'service-exact-page--prompt22': prompt22 }]}>
   <ServiceExactHero title={title} config={config} />
   {parityContent.sections.map((section, index) => (
     <ServiceExactSection
@@ -33,8 +43,10 @@ const explicitFaqs = serviceFaqsByRoute[route];
       priceTable={index === 0 ? priceTable : undefined}
       explicitFaqs={/faq|frequently asked|soalan lazim/i.test(section.title) ? explicitFaqs : undefined}
       pricingSection={pricingSectionPattern.test(section.title)}
+      prompt22Primary={prompt22 && index === 0 && route !== '/office-renovation-in-kuala-lumpur/'}
     />
   ))}
+  {prompt22 && route !== '/office-renovation-in-kuala-lumpur/' && <Prompt22ServiceHub route={route} />}
   <CoreFinalCta />
 </div>
 )}
