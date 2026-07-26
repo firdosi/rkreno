@@ -26,6 +26,7 @@ import taxonomyArchives from '@data/taxonomy-archives.json';
 import { retainedArticleByRoute } from '@data/retained-article-catalog';
 import { serviceExactConfig } from '@data/service-exact-config';
 import { serviceFaqsByRoute } from '@data/service-exact-faqs';
+import { coreFaqs } from '@data/core-pages';
 import wordpressParityContent from '@data/wordpress-parity-content.json';
 import articleWordpressContent from '@data/article-wordpress-content.json';
 import { isIndexable } from '../config/runtime';
@@ -141,7 +142,7 @@ const pageSchema = batchArticle
       description: batchArticle.summary,
       datePublished: exactArticle?.published || batchArticle.published,
       dateModified: exactArticle?.modified || batchArticle.modified,
-      author: { '@type': 'Person', name: 'Rao Israr' },
+      author: { '@type': 'Organization', name: 'RK Reno Solution' },
       publisher: { '@type': 'LocalBusiness', name: 'RK Reno Solution' },
       mainEntityOfPage: page.canonical,
     }, ...(exactArticle?.faqs?.length ? [{
@@ -157,10 +158,15 @@ const pageSchema = batchArticle
   ? [{
       '@context': 'https://schema.org', '@type': 'FAQPage',
       name: 'Frequently Asked Questions', url: page.canonical,
+      mainEntity: coreFaqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+      })),
     }]
   : page.path === '/blog/'
   ? [{
-      '@context': 'https://schema.org', '@type': 'Blog',
+      '@context': 'https://schema.org', '@type': 'CollectionPage',
       name: 'RK Reno Solution Blog', url: page.canonical,
       description: 'Practical renovation and property-service guides from RK Reno Solution.',
     }]

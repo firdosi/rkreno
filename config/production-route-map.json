@@ -1,0 +1,1053 @@
+{
+  "preferredOrigin": "https://rkrenosolution.com",
+  "sourceInventory": "reports/public/all-production-url-coverage.csv",
+  "sourceCommit": "a5f5ed9e85140d2bfcc07587e507bb0e460df83f",
+  "totals": {
+    "RETAIN_200": 42,
+    "EXISTING_404": 9,
+    "REDIRECT_301": 23,
+    "GONE_410": 66,
+    "OWNER_DECISION_UNPUBLISHED": 5
+  },
+  "mapHash": "da5ff3b90d0928bc5c051f205df8a5acce10bece2e04e7c70512c9bade9ff7b8",
+  "entries": [
+    {
+      "sourcePath": "/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/6-ways-to-get-the-most-out-of-your-project-search-software",
+      "action": "EXISTING_404",
+      "expectedStatus": 404,
+      "reason": "Unrelated legacy software article has no intent-matched RK Reno replacement.",
+      "evidenceCategory": "OBSERVED_EXISTING_404"
+    },
+    {
+      "sourcePath": "/about-us/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/about/",
+      "action": "REDIRECT_301",
+      "destination": "/about-us/",
+      "expectedStatus": 301,
+      "reason": "Legacy alias has a direct equivalent canonical About page.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/aircond-installation-kl/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Genuine priority content is retained; owner approval and shared-system review remain.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/blog-full-width/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/blog-grid/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/blog/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/blog/page/2/",
+      "action": "REDIRECT_301",
+      "destination": "/blog/",
+      "expectedStatus": 301,
+      "reason": "Pagination should consolidate into the redesigned blog/archive experience.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/blog/page/3/",
+      "action": "REDIRECT_301",
+      "destination": "/blog/",
+      "expectedStatus": 301,
+      "reason": "Pagination should consolidate into the redesigned blog/archive experience.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/blog/page/4/",
+      "action": "REDIRECT_301",
+      "destination": "/blog/",
+      "expectedStatus": 301,
+      "reason": "Pagination should consolidate into the redesigned blog/archive experience.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/career/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported or obsolete utility content has no verified business purpose.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/cart/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Published WooCommerce utility exists in the export but has no supported RK Reno sales function.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/category/commercial/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Three retained commercial articles form a useful visitor grouping without exactly duplicating another archive.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/category/hvac-guides/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Three complementary aircond guides provide clear browsing value and do not duplicate the main blog.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/category/interior-design/",
+      "action": "REDIRECT_301",
+      "destination": "/tag/interior-finishing/",
+      "expectedStatus": 301,
+      "reason": "The clearer interior-finishing archive covers the retained ceiling and finishing material without implying a broader design library.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/category/maintenance/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Five retained guides support a useful cross-service maintenance collection.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/category/renovation/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Three renovation-planning articles provide a coherent visitor path to related services.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/category/servis-pembersihan/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Two complementary cleaning articles create a useful focused archive.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/category/technical-guides/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Six retained articles genuinely address technical planning, safety or inspection across trades.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/checkout/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Published WooCommerce utility exists in the export but has no supported RK Reno sales function.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/company-history/",
+      "action": "OWNER_DECISION_UNPUBLISHED",
+      "expectedStatus": 404,
+      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
+      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+    },
+    {
+      "sourcePath": "/contact-us/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/electrical-services-selangor/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Genuine priority content is retained; owner approval and shared-system review remain.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/faq/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/feedback-error/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported or obsolete utility content has no verified business purpose.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-1-one-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-1/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-10-one-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-10/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-2-2/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-2-one-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-2/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Theme-demo alias/asset is not a public RK Reno content page.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-3-one-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-3/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-4-one-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-4/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-5-one-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-5/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-6-one-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-6/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-7-one-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-8-onepage/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-8/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-9-one-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-9/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/home-renovation-contractor-in-subang-jaya/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/house-renovation-in-kuala-lumpur/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Genuine priority content is retained; owner approval and shared-system review remain.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/house-renovation-in-selangor/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Genuine priority content is retained; owner approval and shared-system review remain.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/landing-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/my-account/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Published WooCommerce utility exists in the export but has no supported RK Reno sales function.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/office-renovation-in-kuala-lumpur/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/our-projects-2/",
+      "action": "OWNER_DECISION_UNPUBLISHED",
+      "expectedStatus": 404,
+      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
+      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+    },
+    {
+      "sourcePath": "/our-projects/",
+      "action": "OWNER_DECISION_UNPUBLISHED",
+      "expectedStatus": 404,
+      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
+      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+    },
+    {
+      "sourcePath": "/our-team/",
+      "action": "OWNER_DECISION_UNPUBLISHED",
+      "expectedStatus": 404,
+      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
+      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+    },
+    {
+      "sourcePath": "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/plaster-ceiling-contractor-kl/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/portfolio/axis-industrial-park/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/building-a-sustainable-tomorrow/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/building-excellence-through-innovation/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/commercial/",
+      "action": "EXISTING_404",
+      "expectedStatus": 404,
+      "reason": "Remove remaining internal references; the portfolio destination is unverified theme-demo content. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "OBSERVED_EXISTING_404"
+    },
+    {
+      "sourcePath": "/portfolio/crafting-landmark-construction-projects/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/cutting-edge-strategies-for-building-success/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/designing-the-future-of-urban-spaces/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/electrical/",
+      "action": "EXISTING_404",
+      "expectedStatus": 404,
+      "reason": "Remove remaining internal references; the portfolio destination is unverified theme-demo content. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "OBSERVED_EXISTING_404"
+    },
+    {
+      "sourcePath": "/portfolio/expert-solutions-for-modern-structures/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/home-renovation/",
+      "action": "EXISTING_404",
+      "expectedStatus": 404,
+      "reason": "Remove remaining internal references; the portfolio destination is unverified theme-demo content. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "OBSERVED_EXISTING_404"
+    },
+    {
+      "sourcePath": "/portfolio/innovating-the-next-generation-of-architecture/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/innovative-approaches-to-construction-excellence/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/innovative-construction-project-showcase/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/mastering-construction-with-precision/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/oakwood-residence/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/office-renovation/",
+      "action": "EXISTING_404",
+      "expectedStatus": 404,
+      "reason": "Remove remaining internal references; the portfolio destination is unverified theme-demo content. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "OBSERVED_EXISTING_404"
+    },
+    {
+      "sourcePath": "/portfolio/pioneering-solutions-for-architectural-excellence/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/precision-craftsmanship-in-construction/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/residential/",
+      "action": "EXISTING_404",
+      "expectedStatus": 404,
+      "reason": "Remove remaining internal references; the portfolio destination is unverified theme-demo content. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "OBSERVED_EXISTING_404"
+    },
+    {
+      "sourcePath": "/portfolio/revolutionary-techniques-in-modern-construction/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/shaping-tomorrows-built-environment/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/skyline-hub/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/stadium/",
+      "action": "EXISTING_404",
+      "expectedStatus": 404,
+      "reason": "Remove remaining internal references; the portfolio destination is unverified theme-demo content. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "OBSERVED_EXISTING_404"
+    },
+    {
+      "sourcePath": "/portfolio/the-ivey-school-of-business/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/transforming-designs-into-reality/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Repeated Ivey/Vastcon/Vincent demo copy does not establish RK Reno project ownership.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/portfolio/waterproofing/",
+      "action": "EXISTING_404",
+      "expectedStatus": 404,
+      "reason": "Remove remaining internal references; the portfolio destination is unverified theme-demo content. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "OBSERVED_EXISTING_404"
+    },
+    {
+      "sourcePath": "/pricing-plan/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product-category/repair-expand/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/blackdecker-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/bosch-js470e-7-0-amp-jigsaw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/cutting-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/dewalt-dwe575sb-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/festool-hk-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/makita-5007mg-magnesium-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/metabo-hpt-ripmax-pro-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/milwaukee-fuel-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/ryobi-p505-18v-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/skil-5280-01-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/vacuum-cleaner/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/product/worx-compact-circular-saw/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/sample-page/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported theme demonstration route; do not redesign or redirect it to the homepage.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/service-category/building-architecture/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service-category/building-renovation/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service-category/flooring-roofing/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service-category/general-constracting/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service-category/interior-design/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service-category/repair-expand/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page. Linked unique article count: 0; unique introduction not established.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service/architecture-design/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service/building-construction/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service/building-renovation/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/service/flooring-roofing/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service/general-contracting/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/service/repair-expand/",
+      "action": "REDIRECT_301",
+      "destination": "/services/",
+      "expectedStatus": 301,
+      "reason": "Imported theme taxonomy/service intent is adequately served by the main Services page.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/services/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/services/%20https:/rkrenosolution.com/about-us/",
+      "action": "EXISTING_404",
+      "expectedStatus": 404,
+      "reason": "Malformed WordPress About link is not genuine content; originating Astro links are corrected and the invalid path remains absent.",
+      "evidenceCategory": "OBSERVED_EXISTING_404"
+    },
+    {
+      "sourcePath": "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/servis-aircond-murah-kl/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Genuine priority content is retained; owner approval and shared-system review remain.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/servis-cuci-rumah-kl/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/shop/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/tag/aircond-maintenance/",
+      "action": "REDIRECT_301",
+      "destination": "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/",
+      "expectedStatus": 301,
+      "reason": "The servicing guide directly satisfies the tag intent; a separate one-card archive adds no navigation value.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/tag/ceiling-works/",
+      "action": "REDIRECT_301",
+      "destination": "/tag/interior-finishing/",
+      "expectedStatus": 301,
+      "reason": "Exact duplicate thin archive; consolidate directly on the retained interior-finishing archive to avoid a redirect chain. Linked unique article count: 1; unique introduction not established.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/tag/cleaning/",
+      "action": "REDIRECT_301",
+      "destination": "/category/servis-pembersihan/",
+      "expectedStatus": 301,
+      "reason": "The cleaning category preserves the same intent and adds the related deep-cleaning guide.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/tag/guide/",
+      "action": "REDIRECT_301",
+      "destination": "/blog/",
+      "expectedStatus": 301,
+      "reason": "The primary blog archive is the genuine browsing destination for guides; the broad tag has no distinct subject.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/tag/interior-finishing/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Two retained finishing-related guides support a focused archive with a more accurate title than interior design.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/tag/kuala-lumpur/",
+      "action": "REDIRECT_301",
+      "destination": "/category/servis-pembersihan/",
+      "expectedStatus": 301,
+      "reason": "Exact duplicate thin archive; consolidate on the stronger category route. Linked unique article count: 1; unique introduction not established.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/tag/office-fit-out/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Two office fit-out guides provide a meaningful location-focused grouping.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/tag/pemasangan-aircond/",
+      "action": "REDIRECT_301",
+      "destination": "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+      "expectedStatus": 301,
+      "reason": "The retained aircond installation guide directly satisfies the old tag intent.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/tag/waterproofing/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Two complementary waterproofing articles provide clear topic navigation and service context.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/tag/wiring/",
+      "action": "REDIRECT_301",
+      "destination": "/category/technical-guides/",
+      "expectedStatus": 301,
+      "reason": "Exact duplicate thin archive; consolidate on the stronger category route. Linked unique article count: 1; unique introduction not established.",
+      "evidenceCategory": "APPROVED_ROUTE_CONSOLIDATION"
+    },
+    {
+      "sourcePath": "/team-detail/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported or obsolete utility content has no verified business purpose.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/testimonials/",
+      "action": "OWNER_DECISION_UNPUBLISHED",
+      "expectedStatus": 404,
+      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
+      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+    },
+    {
+      "sourcePath": "/thank-you/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Useful form-flow utility; keep out of search results.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Genuine priority content is retained; owner approval and shared-system review remain.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/upah-pasang-aircond-selangor/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Genuine priority content is retained; owner approval and shared-system review remain.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/waterproofing-contractor-kuala-lumpur/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
+      "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/wishlist/",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Imported WooCommerce content; no evidence RK Reno sells these products online.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    },
+    {
+      "sourcePath": "/wp-content/uploads/2025/01/home.svg",
+      "action": "GONE_410",
+      "expectedStatus": 410,
+      "reason": "Theme-demo alias/asset is not a public RK Reno content page.",
+      "evidenceCategory": "DEMO_OR_UNSUPPORTED_CONTENT_REMOVAL"
+    }
+  ]
+}
