@@ -1,5 +1,5 @@
 ---
-import Breadcrumbs from './Breadcrumbs.astro';
+import CorePageTitle from './core/CorePageTitle.astro';
 import type { RetainedArticle } from '@data/retained-article-catalog';
 
 interface Archive {
@@ -11,35 +11,27 @@ interface Archive {
   serviceLabel: string;
 }
 
-const { archive, articles, path, sourceH1 } = Astro.props as {
+const { archive, articles, sourceH1 } = Astro.props as {
   archive: Archive;
   articles: RetainedArticle[];
-  path: string;
   sourceH1?: string;
 };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<div class="taxonomy-page">
-  <section class="article-hero">
-    <div class="wrap article-hero__inner">
-      <p class="eyebrow">{archive.type} archive</p>
-      <h1>{sourceH1 || archive.title}</h1>
-      <p class="batch-lead">{archive.introduction}</p>
-    </div>
-  </section>
-  <Breadcrumbs path={path} title={archive.title} />
+<div class="archive-exact-page">
+  <CorePageTitle title={sourceH1 || archive.title} description={archive.introduction} />
 
-  <section class="section-space">
-    <div class="wrap">
-      <div class="section-heading taxonomy-intro">
-        <p class="eyebrow">Retained guides</p>
+  <section class="archive-exact-section">
+    <div class="exact-wrap">
+      <header class="archive-exact-heading">
+        <p>{archive.type} archive · retained guides</p>
         <h2>Explore this topic</h2>
-        <p>{archive.description}</p>
-      </div>
-      <div class="archive-grid taxonomy-grid">
+        <span>{archive.description}</span>
+      </header>
+      <div class="archive-exact-grid">
         {articles.map((article) => (
-          <article class="taxonomy-card">
-            <a class="taxonomy-card__image" href={`${base}${article.route}`}>
+          <article>
+            <a class="archive-exact-image" href={`${base}${article.route}`}>
               <img
                 src={`${base}${article.image}`}
                 srcset={article.imageSrcSet?.map(({ src, width }) => `${base}${src} ${width}w`).join(', ')}
@@ -51,12 +43,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
                 decoding="async"
               />
             </a>
-            <div class="taxonomy-card__body">
-              <p class="eyebrow">{article.category}</p>
+            <div class="archive-exact-body">
+              <p>{article.category}</p>
               <h2><a href={`${base}${article.route}`}>{article.title}</a></h2>
-              <p>{article.summary}</p>
-              <p class="article-meta"><time datetime={article.published}>{article.published}</time></p>
-              <a class="text-link taxonomy-card__link" href={`${base}${article.route}`}>Read guide →</a>
+              <span>{article.summary}</span>
+              <time datetime={article.published}>{article.published}</time>
+              <a href={`${base}${article.route}`}>Read guide →</a>
             </div>
           </article>
         ))}
@@ -64,17 +56,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     </div>
   </section>
 
-  <section class="section-space section-tint">
-    <div class="wrap batch-cta">
+  <section class="archive-exact-cta">
+    <div class="exact-wrap">
       <div>
-        <p class="eyebrow">Plan the next step</p>
+        <p>Plan the next step</p>
         <h2>Connect the guide to the actual property</h2>
-        <p>Use these articles to prepare questions, then confirm the scope from the site and requested work.</p>
+        <span>Use these articles to prepare questions, then confirm the scope from the site and requested work.</span>
       </div>
-      <div class="button-row">
-        <a class="button" href={`${base}${archive.serviceHref}`}>{archive.serviceLabel}</a>
-        <a class="text-link" href={`${base}/blog/`}>Browse all guides →</a>
-      </div>
+      <nav aria-label="Archive next steps">
+        <a class="core-button" href={`${base}${archive.serviceHref}`}>{archive.serviceLabel}</a>
+        <a href={`${base}/blog/`}>Browse all guides →</a>
+      </nav>
     </div>
   </section>
 </div>

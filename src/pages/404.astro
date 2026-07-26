@@ -1,12 +1,35 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import CorePageTitle from '@components/core/CorePageTitle.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<BaseLayout title="Page Not Found | RK Reno Solution" canonical="https://rkrenosolution.com/404/">
-  <section class="not-found wrap">
-    <p class="eyebrow">404 error</p>
-    <h1>We couldn’t find that page</h1>
-    <p>The page may have moved or the address may be incorrect.</p>
-    <a class="button" href={`${base}/`}>Return to home</a>
+<BaseLayout
+  title="Page Not Found | RK Reno Solution"
+  description="The requested RK Reno Solution page could not be found."
+  canonical="https://rkrenosolution.com/404/"
+  robots="noindex, nofollow"
+  wordpressCore
+>
+  <CorePageTitle title="Page not found" description="The requested address may be incorrect or the page may have moved." />
+  <section class="utility-exact-page">
+    <div class="exact-wrap utility-exact-card">
+      <p>404 error</p>
+      <h2>Let’s get you to the right place</h2>
+      <p>
+        This page does not redirect automatically. Use one of the links below, or contact RK Reno directly
+        if you need help identifying the relevant service.
+      </p>
+      <nav aria-label="Page not found options">
+        <a class="core-button" href={`${base}/`}>Homepage →</a>
+        <a href={`${base}/services/`}>Services</a>
+        <a href={`${base}/contact-us/`}>Contact</a>
+        <a href="tel:+601111334496">+60 11 1133 4496</a>
+        <a href="https://wa.me/601111334496">WhatsApp</a>
+      </nav>
+      <small>
+        This static file is ready for a real HTTP 404 response when configured as the error document on the
+        production web server. GitHub Pages may serve its fallback according to platform behaviour.
+      </small>
+    </div>
   </section>
 </BaseLayout>

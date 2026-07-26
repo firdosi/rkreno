@@ -1,72 +1,50 @@
 ---
-import Breadcrumbs from './Breadcrumbs.astro';
-import ParitySections from './ParitySections.astro';
+import CorePageTitle from './core/CorePageTitle.astro';
 import type { BatchArticle } from '@data/batch2-articles';
-const { article, path, parityContent, sourceH1 } = Astro.props as {
+
+interface WordPressArticle {
+  sourceTitle: string;
+  published: string;
+  modified: string;
+  html: string;
+}
+
+const { article, wordpressContent } = Astro.props as {
   article: BatchArticle;
-  path: string;
-  parityContent?: { sections: any[] };
-  sourceH1?: string;
+  wordpressContent: WordPressArticle;
 };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const imageSrcSet = article.imageSrcSet?.map(({ src, width }) => `${base}${src} ${width}w`).join(', ');
+const content = wordpressContent.html
+  .replaceAll('href="/', `href="${base}/`)
+  .replaceAll('src="/', `src="${base}/`);
+const date = (value: string) => new Intl.DateTimeFormat('en-MY', {
+  day: '2-digit',
+  month: 'long',
+  year: 'numeric',
+}).format(new Date(value));
 ---
-<article class="article-page">
-  <header class="article-hero">
-    <div class="wrap article-hero__inner">
-      <p class="eyebrow">{article.category}</p>
-      <h1>{sourceH1 || article.title}</h1>
-      <p class="batch-lead">{article.summary}</p>
-      <p class="article-meta">
-        Published <time datetime={article.published}>{article.published}</time>
-        {article.modified !== article.published && <> · Updated <time datetime={article.modified}>{article.modified}</time></>}
-      </p>
-    </div>
-  </header>
-  <Breadcrumbs path={path} title={article.title} />
-  <div class="wrap article-layout section-space">
-    <div class="article-body">
-      <figure>
-        <img
-          src={`${base}${article.image}`}
-          srcset={imageSrcSet}
-          sizes="(max-width: 760px) 100vw, 760px"
-          alt={article.imageAlt}
-          width={article.imageWidth ?? 1100}
-          height={article.imageHeight ?? 620}
-          loading="lazy"
-          decoding="async"
-        />
-        {article.imageCaption && <figcaption>{article.imageCaption}</figcaption>}
-      </figure>
-      <p class="article-intro">{article.summary}</p>
-      {parityContent?.sections?.length
-        ? <ParitySections sections={parityContent.sections} variant="article" />
-        : article.sections.map((section) => <section>
-        <h2>{section.title}</h2>
-        {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-        {section.subheading && <h3>{section.subheading}</h3>}
-        {section.points && <ul>{section.points.map((point) => <li>{point}</li>)}</ul>}
-        {section.table && (
-          <div class="responsive-table" tabindex="0" role="region" aria-label={`${section.title} table`}>
-            <table>
-              <thead><tr>{section.table.headers.map((header) => <th scope="col">{header}</th>)}</tr></thead>
-              <tbody>{section.table.rows.map((row) => <tr>{row.map((cell) => <td>{cell}</td>)}</tr>)}</tbody>
-            </table>
-          </div>
-        )}
-      </section>)}
-      <aside class="article-callout">
-        <p class="eyebrow">Related service</p>
-        <h2>Arrange a site-based discussion</h2>
-        <p>Use the guide to prepare questions, then confirm the actual scope from the property.</p>
-        <a class="button" href={`${base}${article.serviceHref}`}>{article.serviceLabel}</a>
-      </aside>
-      <nav class="article-related" aria-label="Related reading">
-        <h2>Related reading</h2>
-        {article.related?.map((item) => <a href={`${base}${item.href}`}>{item.label} →</a>)}
-        <a href={`${base}/blog/`}>Browse all property-service guides →</a>
-      </nav>
-    </div>
+<CorePageTitle title={wordpressContent.sourceTitle} />
+<article class="article-exact-page">
+  <div class="exact-wrap article-exact-meta">
+    <span>{article.category}</span>
+    <span>Published <time datetime={wordpressContent.published}>{date(wordpressContent.published)}</time></span>
+    {wordpressContent.modified !== wordpressContent.published && (
+      <span>Updated <time datetime={wordpressContent.modified}>{date(wordpressContent.modified)}</time></span>
+    )}
   </div>
+
+  <div class="article-exact-content" set:html={content} />
+
+  <aside class="exact-wrap article-exact-related" aria-labelledby="article-next-step">
+    <div>
+      <p>Related service</p>
+      <h2 id="article-next-step">Connect this guide to the actual property</h2>
+      <span>Confirm measurements, access, materials and the requested scope before work begins.</span>
+    </div>
+    <nav aria-label="Article next steps">
+      <a class="core-button" href={`${base}${article.serviceHref}`}>{article.serviceLabel}</a>
+      {article.related?.map((item) => <a href={`${base}${item.href}`}>{item.label} →</a>)}
+      <a href={`${base}/blog/`}>Browse all retained guides →</a>
+    </nav>
+  </aside>
 </article>

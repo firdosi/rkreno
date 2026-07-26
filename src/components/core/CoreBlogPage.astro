@@ -3,12 +3,26 @@ import CorePageTitle from './CorePageTitle.astro';
 import CoreFinalCta from './CoreFinalCta.astro';
 import { retainedArticleCatalog } from '@data/retained-article-catalog';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const archives = [
+  ['/category/commercial/', 'Commercial'],
+  ['/category/hvac-guides/', 'HVAC Guides'],
+  ['/category/maintenance/', 'Maintenance'],
+  ['/category/renovation/', 'Renovation'],
+  ['/category/servis-pembersihan/', 'Servis Pembersihan'],
+  ['/category/technical-guides/', 'Technical Guides'],
+  ['/tag/interior-finishing/', 'Interior Finishing'],
+  ['/tag/office-fit-out/', 'Office Fit-Out'],
+  ['/tag/waterproofing/', 'Waterproofing'],
+];
 ---
 <div class="core-page">
   <CorePageTitle title="Blog" description="Practical guides for renovation, aircond, electrical, waterproofing, ceiling and cleaning work." />
   <section class="core-blog core-section">
     <div class="exact-wrap">
       <div class="core-heading"><p class="core-kicker">RK RENO SOLUTION GUIDES</p><h2>Latest Insights &amp; Service Guides</h2><p>Browse all 14 retained articles from RK Reno Solution.</p></div>
+      <nav class="core-blog-topics" aria-label="Browse guides by topic">
+        {archives.map(([href, label]) => <a href={`${base}${href}`}>{label}</a>)}
+      </nav>
       <div class="core-blog-grid">
         {retainedArticleCatalog.map((article) => (
           <article>
