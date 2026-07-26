@@ -1,5 +1,6 @@
 ---
 import CoreFinalCta from '../core/CoreFinalCta.astro';
+import BuildingRenovationExact from './BuildingRenovationExact.astro';
 import ServiceExactHero from './ServiceExactHero.astro';
 import ServiceExactSection from './ServiceExactSection.astro';
 import { serviceExactConfig } from '@data/service-exact-config';
@@ -18,6 +19,9 @@ const priceCards = priceCardsByRoute[route];
 const priceTable = priceTablesByRoute[route];
 const explicitFaqs = serviceFaqsByRoute[route];
 ---
+{config.variant === 'building' ? (
+  <BuildingRenovationExact />
+) : (
 <div class:list={['service-exact-page', `service-exact-page--${config.variant}`]}>
   <ServiceExactHero title={title} config={config} />
   {parityContent.sections.map((section, index) => (
@@ -33,3 +37,4 @@ const explicitFaqs = serviceFaqsByRoute[route];
   ))}
   <CoreFinalCta />
 </div>
+)}

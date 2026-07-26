@@ -2,22 +2,41 @@
 import CorePageTitle from './CorePageTitle.astro';
 import CoreFinalCta from './CoreFinalCta.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const leadershipImages = [
-  ['/assets/media/Home-renovation-service-in-KL-422b205c.jpg', 'Home renovation service in Kuala Lumpur'],
-  ['/assets/media/Office-renovation-service-in-Selangor-7928d19d.jpg', 'Office renovation service in Selangor'],
-  ['/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg', 'Bathroom waterproofing service in Kuala Lumpur'],
-  ['/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg', 'Plaster ceiling and aircond installation'],
+const values = [
+  ['Who We Are', 'RK Reno Solution is a Kuala Lumpur based renovation and service team helping homeowners and business owners improve their spaces with practical, reliable, and clean workmanship.'],
+  ['Our Mission', 'Our mission is to make renovation, repair, and installation work simple for customers by offering clear guidance, proper site checking, and dependable service from start to finish.'],
+  ['Core Values', 'We believe in honest communication, careful workmanship, practical solutions, and respect for every customer’s time, budget, and property.'],
+];
+const benefits = [
+  ['Practical Site Advice', 'Advice starts with the property, requested work and visible site conditions.'],
+  ['Careful Workmanship', 'The agreed scope is approached with practical materials and attention to finishing.'],
+  ['Clear Work Process', 'Customers receive straightforward guidance about the work and next steps.'],
+  ['Honest Communication', 'Questions, site constraints and quotation factors are discussed clearly.'],
+];
+const services = [
+  ['/house-renovation-in-kuala-lumpur/', 'Home Renovation', '/assets/media/Home-renovation-service-in-KL-422b205c.jpg'],
+  ['/office-renovation-in-kuala-lumpur/', 'Office Renovation', '/assets/media/Office-renovation-service-in-Selangor-7928d19d.jpg'],
+  ['/waterproofing-contractor-kuala-lumpur/', 'Waterproofing Services', '/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg'],
+  ['/plaster-ceiling-contractor-kl/', 'Plaster Ceiling and Aircond Installation', '/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg'],
 ];
 ---
-<div class="core-page">
+<div class="core-page p21-about">
   <CorePageTitle title="About Us" description="Practical renovation and property-service support for customers in Kuala Lumpur and Selangor." />
 
-  <section class="core-about-lead core-section">
+  <section class="core-section p21-about-opening">
     <div class="exact-wrap">
-      <div class="core-about-visual">
-        <img src={`${base}/assets/media/about2-2726a495.webp`} alt="RK Reno Solution renovation work" />
-        <div><strong>15+</strong><span>Years of Experience</span></div>
+      <figure>
+        <img src={`${base}/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg`} alt="Renovation work and construction planning" width="1600" height="900" />
+        <figcaption><strong>KL</strong><span>&amp; Selangor Service</span></figcaption>
+      </figure>
+      <div class="p21-about-values">
+        {values.map(([title, text]) => <article><h2>{title}</h2><p>{text}</p></article>)}
       </div>
+    </div>
+  </section>
+
+  <section class="core-section p21-about-intro">
+    <div class="exact-wrap">
       <div>
         <p class="core-kicker">WHO ARE WE</p>
         <h2>Reliable Renovation Contractor in KL and Selangor</h2>
@@ -27,50 +46,67 @@ const leadershipImages = [
           <li>Waterproofing, Ceiling and Installation Work</li>
           <li>Clear Communication and Reliable Workmanship</li>
         </ul>
-        <a class="core-button core-button-orange" href={`${base}/services/`}>Read More <span>→</span></a>
+        <a class="core-button core-button-orange" href={`${base}/services/`}>Read More →</a>
+      </div>
+      <div class="p21-about-stats">
+        <div><strong>Rao</strong><span>Operator</span></div>
+        <div><strong>KL</strong><span>Service Area</span></div>
+        <div><strong>Selangor</strong><span>Service Area</span></div>
+        <div><strong>Setapak</strong><span>Confirmed Address</span></div>
       </div>
     </div>
   </section>
 
-  <section class="core-about-choice core-section">
+  <section class="p21-about-benefits">
     <div class="exact-wrap">
-      <p class="core-kicker">WHY CHOOSE RK RENO SOLUTION</p>
-      <h2>Every Renovation Decision Matters</h2>
-      <p>Renovation work affects your comfort, budget, and property value. That is why our team takes time to understand your needs, check the site properly, and suggest practical solutions before starting the work.</p>
-      <p>Planning renovation, repair, or installation work? Contact RK Reno Solution today for a free quotation. Contact us now today!</p>
-      <a class="core-button core-button-light" href={`${base}/contact-us/`}>Get Free Quote <span>→</span></a>
+      {benefits.map(([title, text]) => <article><span>◇</span><h2>{title}</h2><p>{text}</p></article>)}
     </div>
   </section>
 
-  <section class="core-approach core-section">
+  <section class="core-section p21-about-approach">
     <div class="exact-wrap">
       <div>
         <p class="core-kicker">OUR APPROACH</p>
         <h2>Simple, Clear and Practical Renovation Support</h2>
         <p>Every project starts with understanding the customer’s space, budget, and service needs. Whether it is a small repair, a full renovation, waterproofing work, plaster ceiling, aircond installation, or cleaning service, we aim to provide clear advice and reliable execution.</p>
-        <a class="core-button core-button-orange" href={`${base}/contact-us/`}>Contact Our Team <span>→</span></a>
+        <a class="core-button core-button-orange" href={`${base}/contact-us/`}>Contact Our Team →</a>
       </div>
-      <div class="core-approach-images">
-        <img src={`${base}/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg`} alt="Contractor inspecting renovation project" />
-        <img src={`${base}/assets/media/Renovation-planning-and-project-drawings-1-ea76b170.jpg`} alt="Renovation planning and project drawings" />
+      <div class="p21-about-images">
+        <img src={`${base}/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg`} alt="Contractor inspecting renovation work" width="1000" height="700" loading="lazy" />
+        <img src={`${base}/assets/media/Renovation-planning-and-project-drawings-1-ea76b170.jpg`} alt="Renovation planning and project drawings" width="800" height="500" loading="lazy" />
       </div>
     </div>
   </section>
 
-  <section class="core-leadership core-section">
+  <section class="core-section p21-about-services">
     <div class="exact-wrap">
-      <div class="core-heading"><p class="core-kicker">RK RENO SOLUTION</p><h2>Meet Our Leadership</h2><p>RK Reno Solution brings together practical renovation and property service experience to help customers complete work with less stress and better clarity.</p></div>
+      <div class="core-heading">
+        <p class="core-kicker">RK RENO SOLUTION</p>
+        <h2>Meet Our Leadership</h2>
+        <p>RK Reno Solution brings together practical renovation and property service experience to help customers complete work with less stress and better clarity.</p>
+      </div>
       <div class="core-operator"><p>Operator</p><h3>Rao Israr</h3><span>RK Reno Solution</span></div>
-      <div class="core-leadership-images">
-        {leadershipImages.map(([image, alt]) => <img src={`${base}${image}`} alt={alt} loading="lazy" />)}
+      <div class="p21-about-service-grid">
+        {services.map(([href, title, image]) => (
+          <article>
+            <img src={`${base}${image}`} alt={title} width="700" height="500" loading="lazy" />
+            <h3><a href={`${base}${href}`}>{title}</a></h3>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
-  <section class="core-areas core-section">
+  <section class="core-section p21-about-areas">
     <div class="exact-wrap">
-      <img src={`${base}/assets/media/Service-areas-in-KL-and-Selangor-0f0a8548.jpg`} alt="Service areas in Kuala Lumpur and Selangor" />
-      <div><p class="core-kicker">WHERE WE WORK</p><h2>Serving Kuala Lumpur, Selangor and Nearby Areas</h2><p>RK Reno Solution provides renovation, repair, waterproofing, plaster ceiling, aircond installation, and cleaning services across Kuala Lumpur, Selangor, and nearby locations. Contact us to check service availability for your area.</p><a class="core-button core-button-orange" href={`${base}/contact-us/`}>Check Availability <span>→</span></a></div>
+      <img src={`${base}/assets/media/Service-areas-in-KL-and-Selangor-0f0a8548.jpg`} alt="Service areas in Kuala Lumpur and Selangor" width="1000" height="700" loading="lazy" />
+      <div>
+        <p class="core-kicker">WHERE WE WORK</p>
+        <h2>Serving Kuala Lumpur, Selangor and Nearby Areas</h2>
+        <p>RK Reno Solution provides renovation, repair, waterproofing, plaster ceiling, aircond installation, and cleaning services across Kuala Lumpur, Selangor, and nearby locations. Contact us to check service availability for your area.</p>
+        <div class="p21-area-list"><span>Kuala Lumpur</span><span>Selangor</span><span>Setapak</span><span>Nearby Areas</span></div>
+        <a class="core-button core-button-orange" href={`${base}/contact-us/`}>Check Availability →</a>
+      </div>
     </div>
   </section>
   <CoreFinalCta />

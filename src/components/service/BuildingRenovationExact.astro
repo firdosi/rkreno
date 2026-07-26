@@ -1,0 +1,68 @@
+---
+import CorePageTitle from '../core/CorePageTitle.astro';
+import CoreFinalCta from '../core/CoreFinalCta.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const services = [
+  'Structural and layout review',
+  'Interior renovation coordination',
+  'Partitioning and plastering',
+  'Floor, wall and ceiling finishes',
+  'Electrical and plumbing coordination',
+  'Repair, expansion and maintenance',
+];
+const steps = [
+  ['Consultation', 'Review the property, requested work, access and priorities before confirming the scope.'],
+  ['Design & Work', 'Coordinate the agreed layout, materials, trades and sequence of renovation work.'],
+  ['Complete & Maintenance', 'Inspect the agreed work, record outstanding items and discuss relevant maintenance.'],
+];
+---
+<div class="service-exact-page p21-building">
+  <CorePageTitle title="Building Renovation" />
+  <span class="service-exact-hero" hidden></span>
+
+  <section class="core-section p21-building-main">
+    <div class="exact-wrap p21-building-layout">
+      <div>
+        <img src={`${base}/assets/media/Construction-workers-discussing-renovation-plans-092133b6.jpg`} alt="Construction workers reviewing renovation plans" width="1200" height="800" />
+        <p class="core-kicker">RENOVATION SERVICES</p>
+        <h2>Building Renovation</h2>
+        <p>Construction and renovation work involves planning, design, material selection and coordinated execution for residential, commercial and selected building-improvement scopes.</p>
+        <p>RK Reno Solution reviews the property, requested work, access and existing conditions before an agreed scope is prepared. The displayed content is limited to renovation work that can safely and accurately represent RK Reno Solution.</p>
+        <h3>Our Services Include</h3>
+        <ul>{services.map((service) => <li>{service}</li>)}</ul>
+      </div>
+      <aside>
+        <h2>Service List</h2>
+        <a href={`${base}/service/building-renovation/`}>Building Renovation</a>
+        <a href={`${base}/house-renovation-in-kuala-lumpur/`}>House Renovation KL</a>
+        <a href={`${base}/house-renovation-in-selangor/`}>House Renovation Selangor</a>
+        <a href={`${base}/office-renovation-in-kuala-lumpur/`}>Office Renovation</a>
+        <a href={`${base}/waterproofing-contractor-kuala-lumpur/`}>Waterproofing</a>
+        <div><strong>Need help?</strong><a href="tel:+601111334496">+60 11 1133 4496</a><a href="https://wa.me/601111334496">WhatsApp RK Reno</a></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="core-section p21-building-process">
+    <div class="exact-wrap">
+      <img src={`${base}/assets/media/RK-Reno-Solution-contractor-reviewing-renovation-projec-1fc54dc9.jpg`} alt="Contractor reviewing renovation work" width="1200" height="800" loading="lazy" />
+      <div>
+        <p class="core-kicker">HOW WE WORK</p>
+        <h2>Working Process</h2>
+        <p>Each project begins with the actual property and requested work. Measurements, materials, access, building requirements and the final agreed quotation affect the programme and execution plan.</p>
+        <div class="p21-building-steps">{steps.map(([title, text]) => <article><h3>{title}</h3><p>{text}</p></article>)}</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="core-section p21-building-faq">
+    <div class="exact-wrap">
+      <p class="core-kicker">FREQUENTLY ASKED QUESTIONS</p>
+      <h2>Building Renovation Questions</h2>
+      <details><summary>What types of building renovation can be reviewed?</summary><p>Enquiries may cover homes, offices, shops and selected building-improvement work. The accepted scope depends on the site, access, trades and requested finishes.</p></details>
+      <details><summary>How is the renovation scope confirmed?</summary><p>Share the property information and requested work first. Measurements, site conditions, materials and building requirements may need review before the quotation is confirmed.</p></details>
+      <details><summary>Can several renovation trades be coordinated?</summary><p>Related renovation, finishing, electrical, plumbing, ceiling and waterproofing work can be discussed under one clearly itemised scope where suitable.</p></details>
+    </div>
+  </section>
+  <CoreFinalCta />
+</div>

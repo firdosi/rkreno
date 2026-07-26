@@ -1,6 +1,5 @@
 ---
 import CorePageTitle from './CorePageTitle.astro';
-import CoreFinalCta from './CoreFinalCta.astro';
 import { retainedArticleCatalog } from '@data/retained-article-catalog';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const archives = [
@@ -15,31 +14,56 @@ const archives = [
   ['/tag/waterproofing/', 'Waterproofing'],
 ];
 ---
-<div class="core-page">
+<div class="core-page p21-blog">
   <CorePageTitle title="Blog" description="Practical guides for renovation, aircond, electrical, waterproofing, ceiling and cleaning work." />
-  <section class="core-blog core-section">
-    <div class="exact-wrap">
-      <div class="core-heading"><p class="core-kicker">RK RENO SOLUTION GUIDES</p><h2>Latest Insights &amp; Service Guides</h2><p>Browse all 14 retained articles from RK Reno Solution.</p></div>
-      <nav class="core-blog-topics" aria-label="Browse guides by topic">
-        {archives.map(([href, label]) => <a href={`${base}${href}`}>{label}</a>)}
-      </nav>
-      <div class="core-blog-grid">
+
+  <section class="core-section p21-blog-section">
+    <div class="exact-wrap p21-blog-layout">
+      <div class="p21-blog-list core-blog-grid">
         {retainedArticleCatalog.map((article) => (
           <article>
-            <a class="core-blog-image" href={`${base}${article.route}`}>
-              <img src={`${base}${article.image}`} srcset={article.imageSrcSet?.map(({src,width})=>`${base}${src} ${width}w`).join(', ')} sizes="(max-width:760px) 100vw, 32vw" alt={article.imageAlt} loading="lazy" />
+            <a class="p21-blog-image" href={`${base}${article.route}`}>
+              <img
+                src={`${base}${article.image}`}
+                srcset={article.imageSrcSet?.map(({src,width})=>`${base}${src} ${width}w`).join(', ')}
+                sizes="(max-width:760px) 100vw, 320px"
+                alt={article.imageAlt}
+                width={article.imageWidth}
+                height={article.imageHeight}
+                loading="lazy"
+              />
             </a>
             <div>
               <p class="core-blog-meta"><span>{article.category}</span> · <time datetime={article.published}>{article.published}</time></p>
               <h2><a href={`${base}${article.route}`}>{article.title}</a></h2>
               <p>{article.summary}</p>
-              <a class="core-read-link" href={`${base}${article.route}`}>Read Guide <span>→</span></a>
+              <a class="core-read-link" href={`${base}${article.route}`}>Read More →</a>
             </div>
           </article>
         ))}
+        <nav class="core-pagination" aria-label="Blog pagination"><span aria-current="page">1</span><a href="#top">2</a><a href="#top">Next Page →</a></nav>
       </div>
-      <nav class="core-pagination" aria-label="Blog pagination"><span aria-current="page">1</span><a href="#top" aria-label="Back to the first page">2</a><a href="#top">Next →</a></nav>
+
+      <aside class="p21-blog-sidebar">
+        <form role="search" aria-label="Blog search">
+          <label for="blog-search">Search posts</label>
+          <div><input id="blog-search" type="search" disabled /><button type="button" disabled>Search</button></div>
+        </form>
+        <nav class="core-blog-topics" aria-label="Blog categories">
+          <h2>Categories</h2>
+          {archives.map(([href, label]) => <a href={`${base}${href}`}>{label}</a>)}
+        </nav>
+        <div>
+          <h2>Service Links</h2>
+          <a href={`${base}/services/`}>All Services</a>
+          <a href={`${base}/contact-us/`}>Contact RK Reno</a>
+          <a href="https://wa.me/601111334496">WhatsApp</a>
+        </div>
+      </aside>
     </div>
   </section>
-  <CoreFinalCta />
+
+  <section class="p21-blog-cta">
+    <div class="exact-wrap"><p>Need help connecting a guide to your property?</p><a class="core-button core-button-orange" href={`${base}/contact-us/`}>Get a Quote →</a></div>
+  </section>
 </div>

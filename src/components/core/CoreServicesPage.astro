@@ -1,20 +1,33 @@
 ---
 import CorePageTitle from './CorePageTitle.astro';
 import CoreFinalCta from './CoreFinalCta.astro';
-import CoreServiceDirectory from './CoreServiceDirectory.astro';
-import { homeServiceCards } from '@data/homepage-exact';
+import { coreServices } from '@data/core-pages';
+import { retainedArticleCatalog } from '@data/retained-article-catalog';
+
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const features = [
   ['⌖', 'Site Checking', 'We review your space and service requirement before starting, so the work can be planned properly.'],
   ['⚒', 'Workmanship', 'We focus on clean finishing, practical materials, and service work that fits your property needs.'],
   ['↗', 'Clear Communication', 'We keep customers updated with simple guidance, clear next steps, and easy communication throughout the work.'],
 ];
+const featuredServices = coreServices.slice(0, 6);
+const articleRoutes = [
+  '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/',
+  '/commercial-retail-shop-renovation-in-kuala-lumpur/',
+  '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/',
+  '/office-renovation-petaling-jaya-corporate-fit-out-experts/',
+  '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/',
+  '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/',
+];
+const featuredArticles = articleRoutes
+  .map((route) => retainedArticleCatalog.find((article) => article.route === route))
+  .filter(Boolean);
 ---
-<div class="core-page">
+<div class="core-page p21-services">
   <CorePageTitle title="Services" description="Renovation, repair and installation services for properties in Kuala Lumpur and Selangor." />
 
-  <section class="core-section core-intro">
-    <div class="exact-wrap core-intro-grid">
+  <section class="core-section p21-services-intro">
+    <div class="exact-wrap">
       <p class="core-kicker">RK RENO SOLUTION</p>
       <h2>Property Services Done With Care and Clear Planning</h2>
       <p>Whether you need renovation, repair, ceiling work, leakage solutions, aircond installation, or cleaning service, our team starts by understanding your space, checking the work needed, and guiding you with the right service approach.</p>
@@ -29,33 +42,51 @@ const features = [
     </div>
   </section>
 
-  <section class="core-section core-services-list">
+  <figure class="p21-services-photo">
+    <img src={`${base}/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg`} alt="Renovation contractor working in a commercial building" width="1600" height="900" />
+  </figure>
+
+  <section class="core-section p21-service-directory">
     <div class="exact-wrap">
-      <div class="core-heading">
+      <div class="core-heading p21-centered-heading">
         <p class="core-kicker">OUR SERVICES</p>
         <h2>Renovation, Repair &amp; Installation Services in KL and Selangor</h2>
         <p>RK Reno Solution helps homeowners, office owners, landlords, and businesses improve their spaces with reliable property services.</p>
       </div>
-      <CoreServiceDirectory />
-      <p class="core-service-directory-note">
-        Planning work outside central Kuala Lumpur? See our
-        <a href={`${base}/home-renovation-contractor-in-subang-jaya/`}>Subang Jaya renovation service</a>,
-        or review the <a href={`${base}/faq/`}>frequently asked questions</a> before requesting a quote.
-      </p>
+      <div class="p21-service-links">
+        {featuredServices.map((service) => (
+          <article>
+            <h3><a href={`${base}${service.href}`}>{service.title}</a></h3>
+            <p>{service.text}</p>
+            <a href={`${base}${service.href}`}>Read More →</a>
+          </article>
+        ))}
+      </div>
+      <nav class="p21-service-actions" aria-label="Additional service links">
+        <a class="core-button core-button-orange" href={`${base}/services/`}>All Services →</a>
+        <a href={`${base}/faq/`}>Frequently asked questions</a>
+        <a href={`${base}/home-renovation-contractor-in-subang-jaya/`}>Subang Jaya renovation</a>
+      </nav>
     </div>
   </section>
 
-  <section class="core-section core-dark-articles">
+  <section class="core-section p21-services-articles">
     <div class="exact-wrap">
       <div class="core-heading">
         <p class="core-kicker">LATEST SERVICE GUIDES</p>
         <h2>Practical Information for Your Property Work</h2>
       </div>
-      <div class="core-article-grid">
-        {homeServiceCards.map((card) => (
+      <div class="p21-service-article-grid">
+        {featuredArticles.map((article) => article && (
           <article>
-            <a href={`${base}${card.href}`}><img src={`${base}${card.image}`} alt="" loading="lazy" /></a>
-            <div><p>{card.date} · {card.category}</p><h3><a href={`${base}${card.href}`}>{card.title}</a></h3><a href={`${base}${card.href}`}>Read More →</a></div>
+            <a href={`${base}${article.route}`}>
+              <img src={`${base}${article.image}`} alt={article.imageAlt} width={article.imageWidth} height={article.imageHeight} loading="lazy" />
+            </a>
+            <div>
+              <p>{article.published} · {article.category}</p>
+              <h3><a href={`${base}${article.route}`}>{article.title}</a></h3>
+              <a href={`${base}${article.route}`}>Read More →</a>
+            </div>
           </article>
         ))}
       </div>
