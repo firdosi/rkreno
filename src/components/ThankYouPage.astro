@@ -9,7 +9,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <section class="utility-exact-page" aria-labelledby="confirmation-title">
   <div class="exact-wrap utility-exact-card">
     <p>Enquiry confirmation</p>
-    <h2 id="confirmation-title" tabindex="-1">A direct visit does not confirm an enquiry was submitted</h2>
+    <h2 id="confirmation-title">A direct visit does not confirm an enquiry was submitted</h2>
     <p>
       On the production website, this page is intended to appear only after a successful form response.
       Opening this URL directly—or viewing it on staging—does not mean RK Reno received your details.
@@ -19,15 +19,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <a href="tel:+601111334496" data-track="phone">+60 11 1133 4496</a> or send the project
       details through <a href="https://wa.me/601111334496" data-track="whatsapp">WhatsApp</a>.
     </p>
-    <nav aria-label="Thank-you page options">
+    <nav class="p23-utility-actions" aria-label="Thank-you page options">
       <a class="core-button" href="https://wa.me/601111334496">Open WhatsApp →</a>
       <a href="tel:+601111334496">Call RK Reno</a>
+      <a href={`${base}/contact-us/`}>Contact</a>
       <a href={`${base}/services/`}>Browse services</a>
       <a href={`${base}/`}>Back to homepage</a>
     </nav>
   </div>
 </section>
-
-<script>
-  document.querySelector<HTMLElement>('#confirmation-title')?.focus();
-</script>

@@ -1,0 +1,44 @@
+---
+interface Props {
+  serviceHref: string;
+  serviceLabel: string;
+}
+
+const { serviceHref, serviceLabel } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const archives = [
+  ['Commercial', '/category/commercial/'],
+  ['HVAC Guides', '/category/hvac-guides/'],
+  ['Maintenance', '/category/maintenance/'],
+  ['Renovation', '/category/renovation/'],
+  ['Servis Pembersihan', '/category/servis-pembersihan/'],
+  ['Technical Guides', '/category/technical-guides/'],
+  ['Interior Finishing', '/tag/interior-finishing/'],
+  ['Office Fit-Out', '/tag/office-fit-out/'],
+  ['Waterproofing', '/tag/waterproofing/'],
+] as const;
+---
+<aside class="p23-archive-sidebar" aria-label="Archive navigation">
+  <form role="search" aria-label="Search preview">
+    <label for="archive-search">Search guides</label>
+    <div>
+      <input id="archive-search" type="search" placeholder="Search..." disabled />
+      <button type="button" disabled>Search</button>
+    </div>
+    <small>Search is disabled on this staging copy.</small>
+  </form>
+
+  <section>
+    <h2>Categories &amp; topics</h2>
+    <nav aria-label="Guide categories and topics">
+      {archives.map(([label, href]) => <a href={`${base}${href}`}>{label}</a>)}
+    </nav>
+  </section>
+
+  <section class="p23-archive-help">
+    <p>Need practical help?</p>
+    <h2>Discuss the property and work scope</h2>
+    <a class="core-button" href={`${base}${serviceHref}`}>{serviceLabel}</a>
+    <a href={`${base}/contact-us/`}>Contact RK Reno</a>
+  </section>
+</aside>

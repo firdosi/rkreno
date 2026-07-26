@@ -1,4 +1,5 @@
 ---
+import { getMediaDimensions } from '@data/media-dimensions';
 interface ContentBlock {
   type: 'heading' | 'paragraph' | 'list' | 'table' | 'image';
   level?: number;
@@ -75,7 +76,14 @@ const faqPairs = (blocks: ContentBlock[]) => {
                   )
                   : block.type === 'image' ? (
                     <figure class="parity-image">
-                      <img src={`${base}${block.src}`} alt={block.alt} loading="lazy" decoding="async" />
+                      <img
+                        src={`${base}${block.src}`}
+                        alt={block.alt}
+                        width={getMediaDimensions(block.src || '')?.width}
+                        height={getMediaDimensions(block.src || '')?.height}
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </figure>
                   )
                   : null

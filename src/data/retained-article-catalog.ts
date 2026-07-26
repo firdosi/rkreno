@@ -1,5 +1,6 @@
 import { batch2Articles, retainedArticles } from './batch2-articles';
 import { batch3Articles } from './batch3';
+import { getMediaDimensions } from './media-dimensions';
 
 export interface RetainedArticle {
   route: string;
@@ -35,15 +36,17 @@ export const retainedArticleCatalog: RetainedArticle[] = retainedArticles.map(
   ([route, fallbackTitle, fallbackCategory]) => {
     if (route === priceGuide.route) return priceGuide;
     const article = articleData[route];
+    const image = article?.image || '/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg';
+    const dimensions = getMediaDimensions(image);
     return {
       route,
       title: article?.title || fallbackTitle,
       summary: article?.summary || 'Practical property-service planning guidance.',
-      image: article?.image || '/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg',
+      image,
       imageAlt: article?.imageAlt || 'General property-service planning imagery',
       imageSrcSet: article?.imageSrcSet,
-      imageWidth: article?.imageWidth,
-      imageHeight: article?.imageHeight,
+      imageWidth: article?.imageWidth || dimensions?.width,
+      imageHeight: article?.imageHeight || dimensions?.height,
       published: article?.published || '2026-03-28',
       category: article?.category || fallbackCategory,
     };

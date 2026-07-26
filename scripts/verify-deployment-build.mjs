@@ -28,7 +28,7 @@ for (const file of htmlFiles) {
   const robots = $('meta[name="robots"]').attr('content') || '';
   const canonical = $('link[rel="canonical"]').attr('href') || '';
   const relative = path.relative(root, file).replaceAll('\\', '/');
-  const utilityNoindex = relative === 'thank-you/index.html' ||
+  const utilityNoindex = relative === 'thank-you/index.html' || relative === '404.html' ||
     retainedTaxonomyCanonicals.has(canonical);
   const shouldIndex = indexable && !utilityNoindex;
   if (shouldIndex !== /^index,\s*follow$/i.test(robots)) {

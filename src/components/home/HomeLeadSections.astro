@@ -20,8 +20,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <section class="exact-about exact-section">
   <div class="exact-wrap exact-about-grid">
     <div class="exact-about-images">
-      <img class="exact-about-main" src={`${base}/assets/media/RK-Reno-Solution-contractor-reviewing-renovation-projec-1fc54dc9.jpg`} alt="RK Reno Solution contractor reviewing a renovation project" />
-      <img class="exact-about-small" src={`${base}/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg`} alt="Completed interior installation" />
+      <img class="exact-about-main" src={`${base}/assets/media/RK-Reno-Solution-contractor-reviewing-renovation-projec-1fc54dc9.jpg`} alt="RK Reno Solution contractor reviewing a renovation project" width="896" height="1200" />
+      <img class="exact-about-small" src={`${base}/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg`} alt="Completed interior installation" width="896" height="1200" />
       <div class="exact-experience"><strong>15+</strong><span>YEAR OF EXPERIENCE<br />IN CONSTRUCTION</span></div>
     </div>
     <div class="exact-about-copy">
@@ -53,7 +53,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       {homeServiceCards.map((card) => (
         <article>
           <a class="exact-card-image" href={`${base}${card.href}`}>
-            <img src={`${base}${card.image}`} alt="" />
+            <img src={`${base}${card.image}`} alt="" width={card.imageWidth} height={card.imageHeight} />
           </a>
           <div class="exact-card-body">
             <p>{card.date} <span>•</span> by raoisrar</p>
@@ -84,7 +84,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       </div>
     </div>
     <div class="exact-why-image">
-      <img src={`${base}/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg`} alt="Modern building renovation and property improvement" />
+      <img src={`${base}/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg`} alt="Modern building renovation and property improvement" width="1200" height="896" />
     </div>
   </div>
   <div class="exact-wrap exact-benefits">

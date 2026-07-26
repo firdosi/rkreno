@@ -11,7 +11,7 @@ const retired = Object.entries(taxonomyArchives)
 const sitemap = await readFile(path.join('dist', 'sitemap.xml'), 'utf8');
 const sitemapUrls = new Set([...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]));
 const blog = load(await readFile(path.join('dist', 'blog', 'index.html'), 'utf8'));
-const blogLinks = new Set(blog('.archive-grid a[href]').map((_, anchor) => blog(anchor).attr('href')).get()
+const blogLinks = new Set(blog('.p21-blog-list article h2 a[href]').map((_, anchor) => blog(anchor).attr('href')).get()
   .map((href) => href?.replace(/^\/rkreno/, '')).filter(Boolean));
 const signatures = new Map();
 
@@ -20,7 +20,7 @@ for (const [route, archive] of retained) {
   const html = await readFile(file, 'utf8');
   const $ = load(html);
   const canonical = `https://rkrenosolution.com${route}`;
-  const cards = $('.taxonomy-card');
+  const cards = $('.p23-archive-entry');
   const cardLinks = cards.map((_, card) =>
     $(card).find('h2 a').attr('href')?.replace(/^\/rkreno/, '')).get();
   const uniqueLinks = new Set(cardLinks);
@@ -28,7 +28,7 @@ for (const [route, archive] of retained) {
     try { return JSON.parse($(node).text())['@type']; } catch { return 'invalid'; }
   }).get();
 
-  if (!$('.taxonomy-page').length || $('.legacy-content').length) failures.push(`${route}: native template missing`);
+  if (!$('.archive-exact-page').length || $('.legacy-content').length) failures.push(`${route}: native template missing`);
   if ($('h1').length !== 1) failures.push(`${route}: expected one H1`);
   if ($('meta[name="robots"]').attr('content') !== 'noindex, follow') failures.push(`${route}: robots mismatch`);
   if ($('link[rel="canonical"]').attr('href') !== canonical) failures.push(`${route}: canonical mismatch`);
