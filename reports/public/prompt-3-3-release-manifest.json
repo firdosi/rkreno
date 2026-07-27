@@ -1,0 +1,3081 @@
+{
+  "releaseId": "rkreno-4dcc9a5",
+  "releaseSha": "4dcc9a55bce8ca90df36292c589a827c613a9b5a",
+  "approvedWebsiteCommit": "61d3a4afced81173216e49b89db2249aa8e89b6a",
+  "buildResult": "PASS",
+  "archiveSha256": "fb3b8203bab2b81169041a7667be85009dc8a513d4fa81a4428f6ff60543dba1",
+  "deterministicArchive": true,
+  "extractedPackageTest": "PASS",
+  "routeTotals": {
+    "RETAIN_200": 42,
+    "EXISTING_404": 9,
+    "REDIRECT_301": 23,
+    "GONE_410": 66,
+    "OWNER_DECISION_UNPUBLISHED": 5
+  },
+  "sitemapCount": 32,
+  "redirectCount": 23,
+  "goneCount": 66,
+  "known404Count": 9,
+  "securityTest": "PASS",
+  "contentLock": "PASS",
+  "packagedFileCount": 382,
+  "files": [
+    {
+      "relativePath": "SHA256SUMS",
+      "size": 43013,
+      "sha256": "6c0098917df525b9ac65dc5449a35f80b71f6952ffaf7ef1b7de472bf569d02a",
+      "purpose": "release metadata or dependency definition",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "config/analytics-consent-policy.json",
+      "size": 733,
+      "sha256": "123342a0645ee3d8257fa3be160f2126d5184c78005bf9d7a4dc963201fd5061",
+      "purpose": "non-secret runtime policy",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "config/approved-release.json",
+      "size": 869,
+      "sha256": "35a1bddf42d2e56cf8c5efdf1387ece7eb9dbdceda87c4f6ed43d6fb6c8ed927",
+      "purpose": "non-secret runtime policy",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "config/approved-route-content-lock.json",
+      "size": 51200,
+      "sha256": "1c42d6f677affee9fc73f73170dba8f876be29dc43f7aa69465b903b1e2307ff",
+      "purpose": "non-secret runtime policy",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "config/form-policy.json",
+      "size": 1115,
+      "sha256": "02470d409136dd1b2e2c7cf9fcdcf51ad38386ce70fea141bc04e8406deb7ee4",
+      "purpose": "non-secret runtime policy",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "config/post-cutover-monitoring.json",
+      "size": 701,
+      "sha256": "5fd36df77161aebce81f6902bca38fe100b0e830abef8ca6fbebf82b7604f297",
+      "purpose": "non-secret runtime policy",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "config/private-preview-policy.json",
+      "size": 517,
+      "sha256": "fcf29a4c69d8b82e645552cf31eb8fc480b580d3fd6120ad322a75a2bdcb022b",
+      "purpose": "non-secret runtime policy",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "config/private-preview.example.env",
+      "size": 915,
+      "sha256": "65f287b0b52bdf41ac0f0c2c5e90ef9e1ffe6531a4a7b2e06a0721e3b6c86f28",
+      "purpose": "non-secret runtime policy",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "config/production-route-map.json",
+      "size": 44182,
+      "sha256": "f5d6880352ab4e4665ca145177cc653288b36de52a4f99e440f76c40fa23b1de",
+      "purpose": "non-secret runtime policy",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "deploy/nginx/rkreno-private-preview.conf.template",
+      "size": 2329,
+      "sha256": "4702de349219efde4d8842992204caf3b185a9753831924a81345a8f196147e0",
+      "purpose": "inactive deployment template",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "deploy/nginx/rkreno-production.conf.template",
+      "size": 2428,
+      "sha256": "f362cc301159dbd8f36e431a50f2d4f4c02770498e06a1dfcaaaea8a4a078c90",
+      "purpose": "inactive deployment template",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "deploy/systemd/rkreno-enquiry.env.example",
+      "size": 620,
+      "sha256": "b29eee24716d55bf28ccc4192365fbc4297642187bad6927a16d96ac31230f79",
+      "purpose": "inactive deployment template",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "deploy/systemd/rkreno-enquiry.service.template",
+      "size": 538,
+      "sha256": "65a1c1a8f45f695a8de5633f00fc23d1776b8534d51a48608664f2072369997d",
+      "purpose": "inactive deployment template",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "dist/404.html",
+      "size": 8239,
+      "sha256": "1a1e036925ca565086a9c0462d84668e09b8f2feec41197a5b853943bfad5d50",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/_astro/CorePageTitle.DyHVPp8a.css",
+      "size": 83546,
+      "sha256": "82bace8886f3b91502aeb84eb0723667beaef1930e0d91e118774c542b1d9c06",
+      "purpose": "versioned static asset",
+      "cache": "immutable_1_year",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/about-us/index.html",
+      "size": 14616,
+      "sha256": "47527a96175c596766f58f08bf68345f300688797ce74049d7df7c4079effcef",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/index.html",
+      "size": 27572,
+      "sha256": "60dc29656cf2c92a78dbfa56c5fca030265ad51bca4724af261cc97768595e50",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/aircond-installation-kl/index.html",
+      "size": 21030,
+      "sha256": "7a7b08fed9232cc2352995e731d301ab4d4ff9ae73ec8fe301de74ed6738cd74",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/404-image-96fd74bf.webp",
+      "size": 34778,
+      "sha256": "748ad3f951fa3c41d2327bbcca60c042aa96a349ee3383612321b1f635d08154",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg",
+      "size": 71750,
+      "sha256": "ca1973e84d17b9d978b2ddce90481bb4c4701454cdbf24e831f11e20a73f040f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/721626720-1623451799116891-7023267947651638351-n-dfb212d1.jpg",
+      "size": 82547,
+      "sha256": "c92c7bd2d4ecd0349b8827ac7aa7103d93fbcfb2bb40aae88e0a71a029e55ee8",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/723104253-1623451735783564-5450851965206368683-n-3d2cd57b.jpg",
+      "size": 56292,
+      "sha256": "898543edcb8d299597ea0f2104141fb456ce77f6caecc03dee4487c679443ee1",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg",
+      "size": 152970,
+      "sha256": "634f927ed31730d3d1d7019f8c6fc94f44e93771d092272beafa2335fd9cd9ad",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Blog-Detail-589948a8.webp",
+      "size": 62416,
+      "sha256": "565e623751da5acdcc8c6218ee4b68124388a08b1706d08030fd0c9ea335cd15",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Blog-Full-Width-3992ce9c.webp",
+      "size": 51990,
+      "sha256": "bc090a3004bc3d567395d5a75e0a8faee22480e0c76b6e498a5bc434f507a4ef",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Blog-Grid-9f61d04b.webp",
+      "size": 67994,
+      "sha256": "ac11ab6235feac18bd4ea876a69bcc3bb869ad136f5c52d450c9bd850367b91a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Blog-Standard-cb6c5c3f.webp",
+      "size": 48346,
+      "sha256": "7dbd82a180dc5249163b3842faee10c6b196b8d2ad1d5e34ed504c08794ddba1",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Construction-workers-discussing-renovation-plans-092133b6.jpg",
+      "size": 181076,
+      "sha256": "61fd8fb74d3816198089058c497556f8c6e349c839e6590cfef0ab35bb27bb32",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Engineers-e8744c76.svg",
+      "size": 5080,
+      "sha256": "ebf7cd699f8adde624d249f8a5c9875c824da4323b26f40abc156961154292ea",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/FAQ-a2e89af4.webp",
+      "size": 32428,
+      "sha256": "9e54e4ec09a9b672a478d52fa8aaa963710bd48952ff600137a6020d45616bc1",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Home-9-0243fb95.webp",
+      "size": 96450,
+      "sha256": "7b3c5a1f6f93fb89a60e6075e9a100f03392232c131f3f8374e53746ac059577",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Home-renovation-service-in-KL-422b205c.jpg",
+      "size": 139950,
+      "sha256": "bbee887e6c60d6feec831ed1783588f27bfe4050f1024513d152b8ace052831c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Interior-Design-1a209ba4.svg",
+      "size": 6092,
+      "sha256": "6e3ecc3a98ac725ce09125041693264b56659e4ec1cf6dc95145d02ffdeede60",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg",
+      "size": 245720,
+      "sha256": "e8bc35deb7820435966f37a276517fb68246146670c89ac6ea8d84c045998b79",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Office-renovation-service-in-Selangor-7928d19d.jpg",
+      "size": 214354,
+      "sha256": "010e42f7009d6ef3ab8fa36cb5171957efa40240a1de7fc5962fead770a5fd02",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg",
+      "size": 174657,
+      "sha256": "30a4d5b57beeb1f0ab89749990c76263482d8801b5c980613308e351482c8f82",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Project-Details-c895c8e2.webp",
+      "size": 49178,
+      "sha256": "ae25c04e0ad9e13c182b231950b9857f08bd21365de201a2dace68de42567bb4",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/RK-Reno-Solution-contractor-reviewing-renovation-projec-1fc54dc9.jpg",
+      "size": 212062,
+      "sha256": "3fed766a75bb0c470dc1d1fe3051c7dc54742cbb23ef232449ef3ec1058f50c0",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/RK-Reno-Solutions-Logo-942f64bb.png",
+      "size": 21177,
+      "sha256": "3667daf7ad5895945c5ac72124a4c1d8af7de9afc73ec7ca38e6e4a9e838da63",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Renovation-31522f13.svg",
+      "size": 4653,
+      "sha256": "fb65b9f835bbaeaafe392714dc61635bcf7f21a2f08b707979901331740c7299",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg",
+      "size": 289449,
+      "sha256": "1b2c78b2321d5a0f88017dfbda1708cebca1acece564db6d6b9caf4ca1be43fc",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Renovation-planning-and-project-drawings-1-ea76b170.jpg",
+      "size": 160488,
+      "sha256": "565b9009672317f66cab85c63a70243ef6bcec08c1c7ee1866695b867fa3e721",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg",
+      "size": 155055,
+      "sha256": "8c97329073fa12fec77077478881b8bee305e040f71e1ef32c61ca4d35a42999",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Service-Detail-2a40464d.webp",
+      "size": 46318,
+      "sha256": "f30787458badc9cdf6b891683e9d8fb1321b84028708640572b1be48b37e10f8",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Service-areas-in-KL-and-Selangor-0f0a8548.jpg",
+      "size": 59662,
+      "sha256": "f159a413be0db49a1930846c611a52a96376c1c5151d3b14089acac38c6540fc",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Team-Detail-f6909dda.webp",
+      "size": 37884,
+      "sha256": "720beb36d5f3a9c7dcf97628c4e3d08d9e1a62f41753ae2b25f2a988d6a44a31",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/Testimonials-92f9ce53.webp",
+      "size": 38390,
+      "sha256": "3ed9f4e46840160634f8d08d01621712fc0adf199eb0d2b6949c7692909b6e17",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/about2-2726a495.webp",
+      "size": 17470,
+      "sha256": "0d2d9a88c12310a54ea387becf9a6b8e3636f6e4576af002870e8db862ddc352",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/accodior-img1-3a46b13e.webp",
+      "size": 24224,
+      "sha256": "8ba424f7a08a9a3edf1637ebd4aab8c2e1093ade47fed0df27aaaeaf4fe0477d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/avartar1-90x90-68065c41.webp",
+      "size": 982,
+      "sha256": "0054a6c490087454d76da88fce8e36ad34f7e44ce72a521e6ba936213ebfd885",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build1-1000x559-28efafc5.webp",
+      "size": 109938,
+      "sha256": "aee4f6ad98ad975444d4fb75a2643d97b2534403f660c9822616309ada41d87f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build1-709x709-06aa3646.webp",
+      "size": 68714,
+      "sha256": "5f14c14f04bed07f19de213b4d16f141b67ff170ed1ccd11203097e0f92cc88d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build1-767x746-0200e514.webp",
+      "size": 76938,
+      "sha256": "3b65637f2a0613c444c156576c1e83628882449fd27031d8dfddd51ae64bbe40",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build1-853x524-b3068968.webp",
+      "size": 71972,
+      "sha256": "23830e729e020e3a0dfb7cc4609fb442ffdc5848e843195a5e2d41ed14c790ad",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build1-938x524-65dfbf3a.webp",
+      "size": 79038,
+      "sha256": "cf38d7ba440276746a602b69867af1aec67d19761e79837ec1418585c1e7fe1a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build2-1000x559-0ed1b0e4.webp",
+      "size": 100222,
+      "sha256": "403f2a2a58238b91f19e0d2f9538eb3301d89cdf148a51c11a676a3b17bc80aa",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build2-709x709-642901b6.webp",
+      "size": 73804,
+      "sha256": "27c38c8ff33d0adcbefaa5eb4aea72e177aebb1df352702ba6b9beaf4fa5b51d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build2-767x746-7de81bc1.webp",
+      "size": 80038,
+      "sha256": "0912995ec287fd62f6fd4da7843d095b31f57db806ed8962943d04eef1c36973",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build2-853x524-0bf05efc.webp",
+      "size": 65580,
+      "sha256": "ce6abd8fb4a26c90a126f8b58ff66b35d1216afd6c4677ab063fb39bd3d28f69",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build2-938x524-b3611da0.webp",
+      "size": 74002,
+      "sha256": "bda5b56af4d479d55e0c4554910d189bd7e5580a4bd6845b9fddd81767cf207c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build3-1000x526-51be83c5.webp",
+      "size": 53090,
+      "sha256": "75deb0078252f31e602cc62f62735d96be403e035c37fe0f2322bd361a7e8044",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build3-1000x559-24e13b31.webp",
+      "size": 56032,
+      "sha256": "09d6564b3f9d601a0e505743d2899c65c758751473deacd9d38a3b989f6676bb",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build3-767x746-0ba46db2.webp",
+      "size": 39186,
+      "sha256": "b76dce430a991767c6e5a4fe06b7c89175c16ab59c68a85094c15f02d335d81d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build3-853x524-700556db.webp",
+      "size": 36992,
+      "sha256": "d4c2a33a89f16496b9766cc7aa8a6c1437b125fa566b0fa92c00d81cb7f83e4e",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/build3-938x524-7f17feea.webp",
+      "size": 40248,
+      "sha256": "e52820e66780c8e5b84cf219f80e8950850199a68a57cf1963074ec6553e4a06",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/coming-c3df0ce0.webp",
+      "size": 31644,
+      "sha256": "cedee363892be888172014b02f7d412157d9ff1dedcf5d54ed3af849c3038ecd",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/construction-022f1418.svg",
+      "size": 5169,
+      "sha256": "ef16338092b61d5d560eb3249a5fd70b57f1b000a235d7a915c416794776a354",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/ct-07-83aecc11.webp",
+      "size": 29354,
+      "sha256": "b18fd9bc417e64fda4b6fae55f4f5b238fd3b85dbff556269f0d8de613260e74",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/ct-08-a16e9952.webp",
+      "size": 29564,
+      "sha256": "4a9debd01c321466684499f5afbe69d5e33667c9c25ea20739ccba09531ee46b",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/ctform-c69d2da4.png",
+      "size": 1440,
+      "sha256": "211650c31391e3f0e29182167c3cd7369fed96ef151049766ca0cfacfc3670b6",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/detailed-kitchen-cleaning-kl-67669628.jpg",
+      "size": 185483,
+      "sha256": "26383833a26b03997afd7a637346db191d98029b8938d4b7c5a07101e1060808",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/faq1-7160bab8.webp",
+      "size": 30166,
+      "sha256": "7ffc606953131e28b1bf878162f936a7eb5416a7c298965747cdbebaf3a1b23a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/flooring-roofing-9dcca723.svg",
+      "size": 3390,
+      "sha256": "4298724eee0cbef66283fdd354b89663cef50b5faa66cbf352c20a8bba38a708",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/footer1-9fb15a1c.webp",
+      "size": 60678,
+      "sha256": "c6fcab2e895f425dec5ca21e4368bf30ba4521e7bee1859f03948726609b87b5",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/history1-250x359-b967ef1c.jpg",
+      "size": 14563,
+      "sha256": "c092e8246ddd700c2f027cd5db396bdcae9a16aae3b6fbb64e100fdcdd5cba30",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/history2-496x262-96c3efd6.jpg",
+      "size": 40738,
+      "sha256": "1f13727d7618753ab7fd44ab4181c4e2ec5914cf2dc221a1091e061ca4302cf4",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/history3-496x262-4366369f.jpg",
+      "size": 23112,
+      "sha256": "3af3cfb060b44dd61da49b318f6e3495f8b2586c2f0a48c560da561b62ba31d3",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/history4-496x262-8f6734ff.jpg",
+      "size": 35612,
+      "sha256": "e4e054f6bc1cb5cbf77d70b5fe23b4caf6d172d08d0dd4fe3015b83b555155ff",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/history5-496x262-47b33ad3.jpg",
+      "size": 26912,
+      "sha256": "3081d5cd70726ce05ba48f23e61ac33150ad42e76e2836ef3450cd04fa22046e",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/history6-496x262-54fc2710.jpg",
+      "size": 13053,
+      "sha256": "c531a667048bf6adf63ae73a8ce27bacb6e0eb24a03d23e947767b662ff00a88",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/history7-496x262-c1c477e0.jpg",
+      "size": 33723,
+      "sha256": "0abf2a8d809fc0ba0bf592bb9c7828eb1523184e7787f3288c8261cc11c1005f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/history8-496x262-2d809f9d.jpg",
+      "size": 17385,
+      "sha256": "0ef7302b0b4daf8e27cf6bf972c7d2d9c1e8f04fe8255406e696cd9f4d9fb9e7",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home-10-ld-fb18d8d6.webp",
+      "size": 83276,
+      "sha256": "bb69745e27e75a6b31df36423730116ab9e1d70411462c5d35a99466762e454f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home-parner1-6d05de8b.webp",
+      "size": 13416,
+      "sha256": "8ba163c387a3bb121a781531745daeb8e89d3f7d4a5ea4a9c62c58a3297d76cf",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home-parner2-7e071c99.webp",
+      "size": 23494,
+      "sha256": "18a1039b5811d4596bb5803f9084f72c6d53a76c43ea6e24f3c2a7f6705ced48",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home-parner3-d0356876.webp",
+      "size": 13246,
+      "sha256": "92cab3c869f58546551c98f2d6aca85f68b0ba4fe0613f84ab9942a83c5af345",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home-parner4-6e78fd3b.webp",
+      "size": 8734,
+      "sha256": "a3658734d809a30c664b0d64536854866f493fad83e9501fd602f9ef1eef7c8e",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home-parner5-fa893969.webp",
+      "size": 15784,
+      "sha256": "959e8ee479ee6b38f2a53072c4331a67ea5aafd658fac89cdbdb26913dc46545",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home1-img04-6e5fadeb.webp",
+      "size": 95686,
+      "sha256": "00fa89d982124557500396ea5d7336658b91e882aea7ad631381065a73cd6dcd",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home1-img06-cb9dc1a5.webp",
+      "size": 13244,
+      "sha256": "d5be2d8e55fd647099fc78e146e91ed0e8ffbc925e0097422bdc1012e81c6a54",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home1-step1-614x535-e708c872.webp",
+      "size": 31464,
+      "sha256": "d78ffe3b984ae377bc568ea17ef971361f522a6079f7d93406541cfef6eb6106",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home1-step1-b7a38650.webp",
+      "size": 39392,
+      "sha256": "9523fbd5cbd4ae44dd6457d624bc75d6699c455404ef8816460cff5868bf65ea",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home1-testi-logo-04fe324b.png",
+      "size": 492,
+      "sha256": "74f62b73b931f87a8e80ed8492ae6db5be6b9e958d92a45752686d5f082a6dbc",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home1-testi2-ae89a7e6.webp",
+      "size": 6720,
+      "sha256": "0cf2c56d48890e656bcfd84fb937ae8a8bc1c6e86314d9320851fb34020260d9",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-img1-2a7be032.webp",
+      "size": 200368,
+      "sha256": "da16266c529fb174ee47b219f8ce049374c9f8a2e3e44f40c2e78591afc6141e",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-img3-9ee53e04.webp",
+      "size": 56788,
+      "sha256": "f61cde61db53ea3f210410f6dd6d5f89b9f8e2cf988b5f5e554de22ca56928a5",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-img4-f49e4f8f.webp",
+      "size": 77984,
+      "sha256": "94360d6caeeed5f81272ef257f120b44b78b4c476dc4ca0073838403020cd281",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-parner1-51f2ffaf.webp",
+      "size": 3604,
+      "sha256": "51cb286fcd6503ae5070974ea4ab5ef61993b5f00b282f6d9e2f9d1eb44e60e0",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-parner2-e1aa4877.webp",
+      "size": 3342,
+      "sha256": "2659c02dd9b7cbfbefdac291ea68f050345b09fcfa72f1b6446646c141d7f37c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-parner3-80c22830.webp",
+      "size": 4528,
+      "sha256": "02d47197fa7e1b03f4dfc1ed9f33150dd425caf3692234bb7e3663a450129a49",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-parner4-fea49079.webp",
+      "size": 2958,
+      "sha256": "3284b46fcf10b9ee7c8e809498b849b7f55a32f5a20055dafa0c9d20d84c4895",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-parner5-cf14e983.webp",
+      "size": 3544,
+      "sha256": "15f4bfa6d0af55527e7f09eaaf6182fd8184ea2f907a305fbff4bf32d74ce0cb",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-parner6-060fbcd9.webp",
+      "size": 3214,
+      "sha256": "4f9f6f20375ee3ae89be959a6c9810dc5fe324c64c88ee62b87bdd762f839d01",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-shape1-86fca007.webp",
+      "size": 47310,
+      "sha256": "6403f80e232907fded0b58dd3c700982347042e22c09bde509f8d0376c8c5f1c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-slide2-57edae8c.webp",
+      "size": 246874,
+      "sha256": "2ce276cd65316385d5a8847c33e90a750806e51ccd99e2e9abd30ba5a712a64c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home2-slide3-107c29c5.webp",
+      "size": 279776,
+      "sha256": "04e40438a157d90bca972f8cc127a27706af0aa457bc61f18ce8a7103438c206",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home3-img3-577ace04.webp",
+      "size": 153578,
+      "sha256": "4d749aff8f686e7a5f0bedb2d955999a3568c408fc6d6c2d8729c5df1b25586c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home3-img4-cbcb4df1.webp",
+      "size": 30046,
+      "sha256": "ebb184e00829c4b81dd36719597a63e730e936057ddcf0923a13e24b7c0b6603",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home3-shape1-2576d7cc.webp",
+      "size": 30976,
+      "sha256": "eafcb953a858c5d618573e14e8e6960fe17ebf4e2b57a7022b7af861ad2676e2",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home4-im65-0aeb5385.webp",
+      "size": 19836,
+      "sha256": "7e442339d5fe6e2f2e7ae9cfacadbd2f41a5fdc8fb668994f28d28e1ed4f6c6f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home4-img1-f6ca6259.webp",
+      "size": 50210,
+      "sha256": "45f19aee424aba8410437d591063d9d83656818c58a2a15bf16d393ecf6cde7b",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home4-img2-71616ad2.webp",
+      "size": 48830,
+      "sha256": "297cde14cf8e33f5e2dd815556c5ad2719c00b6adf6c6403a7d08262a10663fb",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home4-img4-219d1597.webp",
+      "size": 92584,
+      "sha256": "99b3474fc8b33165fba6aaba779137a4a45390b1b4b140e6ed6613e5b46fe0d4",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home4-img5-01fc217e.webp",
+      "size": 71870,
+      "sha256": "c6d5840b540f379cd7f2bf87ab87de41a32a46c56e5fe236d1ade0ae6c36ffb1",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home5-img-vision1-43cefa42.webp",
+      "size": 62374,
+      "sha256": "6af901f9dbb66244c80680df21f9cc6e86a75ed38cd39b2d288de482bc89a29f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home5-img1-5086b860.webp",
+      "size": 437658,
+      "sha256": "56f24cd49ae1154db8bfc19622a1bed1447e8b9b1b0ffc49127f4aac06d9b0dc",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home5-img1-865f2ac1.webp",
+      "size": 23010,
+      "sha256": "a842d6578a7e499b639e86994d46b12bd30416303814088980b58c31cc74346c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home5-img2-0ccddaa9.webp",
+      "size": 358828,
+      "sha256": "42fa6e07f11c7385718a3ef7c129d44553a7d47c9f2e885f4342a4f171c18097",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home5-img3-14b2757b.webp",
+      "size": 400146,
+      "sha256": "3b0df2abc9d0f6d1766a20784cd703454823f319cd1f7c2adb6a707212d845c9",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home5-img7-aea4a57b.webp",
+      "size": 20240,
+      "sha256": "6f3989fa6bcfb1c1ec38e305cc7683fe0628ad39e9f39a457e7f82346752f2ff",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home6-bg-04-2008c412.png",
+      "size": 13485,
+      "sha256": "f3e082ef660eddc1a4892f1c46cd3f0de835a730d9f4aede280dbf2e6d8afc9e",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home6-img-0001-cb2cda20.webp",
+      "size": 81120,
+      "sha256": "1e25c7f06f6097c3273cf9112144ee5dbfe5724a6a9b5fc7afd371323d1da0be",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home6-img-001-4242960a.webp",
+      "size": 43102,
+      "sha256": "7f16e8cbf8cad13858a719cadc93fdaa9cbba0329b67b36d842b89884697e0ea",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home7-img1-wordpress.webp",
+      "size": 133890,
+      "sha256": "14e69d4ddab6c364ee42beb3fc666fd2476f480f51996f85dc56b022fe94c0aa",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home7-img2-c065a5db.webp",
+      "size": 64402,
+      "sha256": "277b9ef63e739ca049ce533a8b0460dffbf0d9ba68b4bdd8b794cb1b381c3a7c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home7-img4-ea22da60.webp",
+      "size": 33562,
+      "sha256": "24744f7738079e9e526b0a01e33971db04ad583ec3197d62e1b26cddc90af7b0",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home7-img6-61ed561b.webp",
+      "size": 56494,
+      "sha256": "e6db589f1e4f2aed22c2fd647f6465c7e8c9c276803aa2d58e5aaa7f4c80510a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home7-img7-f8f5cbc2.webp",
+      "size": 35472,
+      "sha256": "798de7b795c50b71558ea3de0213383bd0cdeaadb7fed4b44d2e5c74742dd8af",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home7-img8-wordpress.webp",
+      "size": 127720,
+      "sha256": "8f6ba42e580bddc5d8831e7eb6e88603dfada2f38c730007807abebfbc555dd6",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home7-parner1-96e1360a.webp",
+      "size": 886,
+      "sha256": "379753f6009200458d14abad03d92013629691ff559eba80f2cf3e0b49291b08",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home7-parner2-5159f29c.webp",
+      "size": 862,
+      "sha256": "113e2014f2539379035f797f357d2ca83d3f9e07dc964e6f536315d7f757f093",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home7-parner3-d2fae037.webp",
+      "size": 844,
+      "sha256": "c90f5f26f329414fd522a0f07bf581cc5d8b75e4061a8bec02740fc1ef4965bf",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-895b377a.webp",
+      "size": 78640,
+      "sha256": "da0fceee9e966a8080bbcfd4f60e54daa62107c755d7e90bbdf932bc2fbed118",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client1-1-870fbc37.webp",
+      "size": 2930,
+      "sha256": "9f29eaa1941d8c9bf6811fe5fb646568c79a330221a010ab944bd3c8ca5c72bf",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client1-4c6fdb18.webp",
+      "size": 1466,
+      "sha256": "652154e9d25ff85302f4de3301772271320fb055b9d34f314e8d6b996482b8da",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client2-1-9f2aefa4.webp",
+      "size": 2344,
+      "sha256": "bd4e611d65b0f58aec0caa0ebf21f3b05cf051502b08de10a5b6d26c171bab2b",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client2-9741ef08.webp",
+      "size": 1234,
+      "sha256": "4d7ae8a767e738ca1bb6f8ab6f395bd34576fe4e1e75c7370e02b032e12cee07",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client3-1-d52aae1b.webp",
+      "size": 2420,
+      "sha256": "3742fe668e9c6ddac0fb402ffffc71a600903ff4e5747bcaafad96ebab91ebe3",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client3-dd7c2c38.webp",
+      "size": 1332,
+      "sha256": "397eedda1ae866847c0da76301c152fad14c8e29345360dabfbe64b26fe2b119",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client4-1-ed76e3f3.webp",
+      "size": 2660,
+      "sha256": "b9b3f68c6b6f1288825730ad422cac6748143b473368eb04a63b421086d0b8c6",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client4-c66e422d.webp",
+      "size": 1428,
+      "sha256": "3a9c121639387cfbf927eeb4726de5bd8a4b416f196483cf7c71abe28ac41e32",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client5-1-67d7475f.webp",
+      "size": 2394,
+      "sha256": "aeb0c6a50337a26519c78a5b0476a698f38b9ba73d89c936ce2faba13ca2b618",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home8-client5-d39fadc6.webp",
+      "size": 1286,
+      "sha256": "76dd24f75f0708ea221dbaeb4d9af1c47882d6d6116b3d7ae3e61fc2c95ea7cc",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/home9-02-6f10da57.webp",
+      "size": 53100,
+      "sha256": "f14d49273a7a016d07726a1683c301b454ebd16577b36edb97f14b53909c122d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/lad01-f88db169.webp",
+      "size": 88992,
+      "sha256": "3bbaa3f83b9a156324b0feff7bf57b50d512ab107693686c3a93d6478fedaf3a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/lad2-ed3ffe91.webp",
+      "size": 102158,
+      "sha256": "bad88092ca9c15f1081c521fbf8adafeb16f3c572b0c94426d3ecedb479051d9",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/lad3-57dbcf58.webp",
+      "size": 103138,
+      "sha256": "2ad6e3148398ef8d5ff8b32bc4d9303762c8c3e31a2049f234a790b646a23596",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/lad4-ec36a07b.webp",
+      "size": 102416,
+      "sha256": "43e847cb7f175e6224a21421e632008ac0ac0180c1bc940ad6940afb934b90fa",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/lad5-847ba299.webp",
+      "size": 123142,
+      "sha256": "bc6f511d8eb7d08d328a565e32bf99b16dc45ef132b06131655c09c781200952",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/lad6-4a7086d7.webp",
+      "size": 88028,
+      "sha256": "ed4d2feb9c4e572b4bae763f1994f56f22de746a8c02e35e780c23c45d6dfec9",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-123-48b2da51.webp",
+      "size": 19056,
+      "sha256": "32ce15b998c028c3046ec95de056ed7f5ca235caf1f961571084ee080a7e5058",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img10-de1a0976.webp",
+      "size": 1336,
+      "sha256": "b55b149ba5d57fcb725b9b5247eb90804cc07625ad894a3ea99872367df41b44",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img13-fb30856c.webp",
+      "size": 5250,
+      "sha256": "adf8ebe78c79f933462a3824ac2ddebcfe09e6d9183aa08daf2cb63875e6dbdc",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img14-b12b278c.webp",
+      "size": 4974,
+      "sha256": "c6fc8234cb1d06a94d8eee8838989fe831ef20b32705b6d7e8d7a5391109a3af",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img15-dde8e9f6.webp",
+      "size": 2872,
+      "sha256": "4d2384c9a558892d89b31fb4571af969a70d362df1704e36a2ec5465dcef3e3e",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img16-4a27e5f0.webp",
+      "size": 21418,
+      "sha256": "df205e93060a44aedf26eeac4bdac02646c531bb10428f3bb7b8a664eebafce3",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img17-a67239b2.webp",
+      "size": 22918,
+      "sha256": "f64e2a248866ece58a755b8f4be59b9c44b849f494f7c4c09850241780cb6873",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img18-cd9c6d00.webp",
+      "size": 12434,
+      "sha256": "14f0efe7688eb2659fe9270e69f39d5c8f27dd25946c11c4318665641c47d52b",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img19-d1e299fe.webp",
+      "size": 2926,
+      "sha256": "6a0be8aa6050530da0bd9ef8a12243601b675b3cfebe27be9f80e56e5dafb034",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img4-8fc00f7c.webp",
+      "size": 28152,
+      "sha256": "b91e43b1768bf12ea2e8bf924e81d88dcc372bf3083d0a1750808bd036a27970",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img5-4b1596a4.webp",
+      "size": 26654,
+      "sha256": "cbeacaa2431d08a0bdeceb9f9bf3a43ef890a05e6ad2cebc8fd6f701c6db289a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img6-ed0d09c4.webp",
+      "size": 1636,
+      "sha256": "a28d96a12f7b465c5827f940468e1711581c3cdd09858b16249c039bd786052b",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img8-afa35d3a.webp",
+      "size": 836,
+      "sha256": "0f5e357c48413cda25406c4f3e2abd07279ede5296fa2ae98a455b95476203f4",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-img9-2d158a3f.webp",
+      "size": 1414,
+      "sha256": "c21e87db5650d4bb012aa973c5e32d62ad392673e3829dde1ab93f5918f1d5d4",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-inner1-5c769501.webp",
+      "size": 54582,
+      "sha256": "9bdefa7cbc81ce638be17dc8bcce893e41869f4113fb0e2af79d6530de1ad777",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-inner2-b4647bf2.webp",
+      "size": 51838,
+      "sha256": "acced8df017940b176fd1264c11774a0df7635a9e948efa53a206e9b12f056e0",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-inner3-762b8c1b.webp",
+      "size": 59998,
+      "sha256": "305da0072a3d0debe897c6444fcb82ff529cfaf0891b8f7631f99eb45a70c6e9",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-inner4-25b3d119.webp",
+      "size": 35782,
+      "sha256": "589d13f969e1811259f9788db0d12bc82952b10c31e348967beac28787883b80",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing-inner5-cd4e70fa.webp",
+      "size": 46276,
+      "sha256": "011a75d87d625a4e5f24e7064f4acab5ed5e3484cc4c987dc00a9b7a44e8c207",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing2-6650188e.webp",
+      "size": 55914,
+      "sha256": "be8113de8e43e35366d0cd24c294e35d53d8f7451a07c3af2f6cc8b32386021d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/landing3-ed6ff3a9.webp",
+      "size": 22252,
+      "sha256": "d754304e96544836111bb8823efb6c39ff7287e8c0af9c4a130534f9c9bc1bb5",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/logo-home1-a0e74c8c.png",
+      "size": 1148,
+      "sha256": "128e45975396c365dc924eb1a6eaaae15c15edffca232f538b0570a5a21e48c4",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/logo-iocn-6f17c44e.png",
+      "size": 1534,
+      "sha256": "9cb005f098ac7a58c6202e77c138cd19da164cffab472ff00d1baa3ae506caaa",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/luxurious-modern-building-wordpress.jpg",
+      "size": 149955,
+      "sha256": "e8ea6f832650d3b8d2cc1e09a52cd08e3f39d513875aab7358085a0c5e8d0efc",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/modern-51379dd7.svg",
+      "size": 5967,
+      "sha256": "a945f6efb95f3352852c76b78d9fbc95cad27324d7fb4d33493de1f71248d903",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/modern-construction-services-wordpress.jpg",
+      "size": 178450,
+      "sha256": "505496809ed2b72a82352aa331c382f3011ad8608e822cf6d595bba4063a5876",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/noise-f4d2cae7.png",
+      "size": 5990,
+      "sha256": "70bf006aa86811e1f2bbe2743046bcedca07f5ef69e6c617dc97a45184560d17",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-480.webp",
+      "size": 5074,
+      "sha256": "b9d561dfd1c62a4f15df9b28b5cd0ac12b859eb51f7f98942a24eba970ec49a0",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-960.webp",
+      "size": 13096,
+      "sha256": "ee6d53857588344c729c3e973887b051a245b20482294ec24bd01d868b0dd370",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/owner/rk-reno-aircond-outdoor-condenser-480.webp",
+      "size": 70292,
+      "sha256": "21b662433e48c3eaa4b1e2c287400e23a0010ee461eaa882c13901b10939ba59",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/owner/rk-reno-aircond-outdoor-condenser-720.webp",
+      "size": 128260,
+      "sha256": "75209ef21b37e028ef1a28597c32a4bdd27ecbcc6bf1f80eca8fff86fdc421f3",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/owner/rk-reno-aircond-unit-trunking-480.webp",
+      "size": 4086,
+      "sha256": "2dcafb4a730d66c61d73c46196e29884b5a7b02ef273fd379d6b5f35135d0bea",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/owner/rk-reno-aircond-unit-trunking-960.webp",
+      "size": 10012,
+      "sha256": "c6c8009f78b800bb6aa787acd4d10c6a142fa566a0697021ebb9f0897adf45eb",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/owner/rk-reno-wall-mounted-aircond-unit-480.webp",
+      "size": 4150,
+      "sha256": "deb175bf1848e09fe17fb68396df6dbb834a6018da48ff0537732343c88ad087",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/owner/rk-reno-wall-mounted-aircond-unit-960.webp",
+      "size": 10572,
+      "sha256": "1fd49b37f82c38eef874a2408ab3418d391d01d47ba58f15d0c73995d14ff8b6",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/pagtitle1.webp",
+      "size": 108738,
+      "sha256": "840d1e75fca7764bd9aab890429d78c3311d8c1e96ccdd69789a04c68e9e3102",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/parner1-a914b58c.png",
+      "size": 807,
+      "sha256": "49de511686d1628a6a024a5549d79732b808ab35fdf95c9d4ac81fc14d80bd80",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/parner2-cae87746.png",
+      "size": 1117,
+      "sha256": "743cdeed3bca50ec6f12710c0947e28e6d1d16b47fb66b690638473062b819fc",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/parner3-d23cfb1a.png",
+      "size": 1277,
+      "sha256": "172e74caec0f4b34200ab174da7088c39d77caad632ac175c233a90e79dd0f95",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/parner4-d301f7e9.png",
+      "size": 731,
+      "sha256": "bf41a72f92841449ba109c6bf852b75aa271608d685bc32660bfaf2f8062199b",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/parner5-8fe0e357.png",
+      "size": 1601,
+      "sha256": "8409620efd4eff67a529408439103f87349e47605f8eced834cbcbb9f1ed0158",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/parner6-ccb92374.png",
+      "size": 961,
+      "sha256": "f7754bf8562d38d1b9561cb3f9fd889f0ab3a63a045d8c4e92d64b7af5cde28f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0001-1168x559-9ad8312a.webp",
+      "size": 40678,
+      "sha256": "5ebadf84f3c142b2c90b1272576399e1e3241e2336f63e71ca4f43b31ca22f7d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0001-709x709-80c6ea9c.webp",
+      "size": 22874,
+      "sha256": "069cdc56935f89364891403e73f4654a0333a4483af84031cf975458a1dc76cb",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0001-777x606-cfc3e188.webp",
+      "size": 26280,
+      "sha256": "8490ecbfaf63ce28e8e11943de411861e3a2b0d4bfe1bebb5c154df52c9fc0fd",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0001-938x524-6954f3d8.webp",
+      "size": 29316,
+      "sha256": "626153d017feb79bcdb67b6c854c8c92c1bcc61ee41c992a344b69843cfc0977",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0002-1144x581-3da4858c.webp",
+      "size": 88028,
+      "sha256": "f908ba1befb581d9a26fe6a672d8b81a4217ec7285e4e98b0ce823bb15500b64",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0002-767x746-54c3260e.webp",
+      "size": 67768,
+      "sha256": "c1a1ee6c5ec9147978f9cae63aa0256f1802e38c0bc3a74a185235be1edc2610",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0002-767x767-aff06a1a.webp",
+      "size": 69112,
+      "sha256": "59729ff647ffc97d8d7fd9eeca58c9b4dbc2245a3eb4216d34dc789257590cac",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0002-853x524-714dd227.webp",
+      "size": 62988,
+      "sha256": "9db7e9ded988b03b001ddbd57565a7c44c8bd8015c19cd52915e7b83720423d9",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0003-1144x581-919cbc49.webp",
+      "size": 80222,
+      "sha256": "6b4cbdce876983018aa83fc3444495d7b45d4967ed2d21d1d618882ab742a568",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0003-767x767-90f002e0.webp",
+      "size": 58110,
+      "sha256": "7412ddc13196e2c6059b6c8c20cbfb05a48b7a6504db81228ddbfdedb9be6a78",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0003-853x524-fc0288ca.webp",
+      "size": 55682,
+      "sha256": "0fd714d028a684371f60d73c157a3a3a6ebb95019c755168d0f681a7b54ddc3a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0004-1144x581-ec42cc74.webp",
+      "size": 15234,
+      "sha256": "ae8f997cd58c4935af30d965ea7f9f05bda6dd2ebe727bd06c96667365c15613",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0004-767x746-af1b1fe7.webp",
+      "size": 13910,
+      "sha256": "e335525a930d5deb2b57b332827fee963287d79e82e569942ddf938d033bf3e6",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0004-767x767-bce62a6c.webp",
+      "size": 13898,
+      "sha256": "ef1d6ae7b59f21c11ae15caa0f481c31ae9d9c80ac68a2c5a6490417ec0de77d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0004-777x606-99f67a64.webp",
+      "size": 13130,
+      "sha256": "603f93c08afe46628427cb74f79fd6189f84930ecd00ded59b9e526d59fd391a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0004-853x524-32b0d213.webp",
+      "size": 12606,
+      "sha256": "eed98f9d84c869dc2fe065b6b73aeb818a062237a4e83b88eba349c2c6d9aed7",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0005-1144x581-b9f5c23f.webp",
+      "size": 73006,
+      "sha256": "edf4c084cf11393946de0dc26b0e096cdb0521abec987748bd9721e07853be8d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0005-767x746-e6abbcf9.webp",
+      "size": 62726,
+      "sha256": "e0108c83a5df38937ea4640f9d6a4e884945eefcf3b7401a5912f11d62a0d42b",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0005-767x767-b62c46c3.webp",
+      "size": 62594,
+      "sha256": "4a8ada6d5345d2559edf9bbfa4db75f86cfcb669a11d130e5373c631d87e616c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0005-853x524-127cf9fd.webp",
+      "size": 54972,
+      "sha256": "f32e39c89e513372930a2d84c353ae1ed054b439b93d8877ca3bf4c8ace614e5",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0006-1144x581-aa4b3fe7.webp",
+      "size": 108408,
+      "sha256": "724912c12fcb16d476b07c8900bea2dc070213376318b7c77410df5c8916e245",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0006-767x746-386eb83c.webp",
+      "size": 85166,
+      "sha256": "80926013a61ade268a0086a0cd12ab16c97203969406c298e4347ac7cf675a09",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0006-767x767-1e07cbd4.webp",
+      "size": 86526,
+      "sha256": "7f703b7832237dfd5baba9ca7cce8ac69970a10658651211a2058e182735f6bf",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0006-853x524-43339da0.webp",
+      "size": 79876,
+      "sha256": "bae7d2d502689619051dd4d0315926c1c6d6dc60e0585cc4c37ab2a6eccb92eb",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0007-1144x581-4a7fc99a.webp",
+      "size": 78652,
+      "sha256": "fd9d1f6a7e94b331376531cdebf7419df27c6c29d4e29fe6d5633e467b8fd06a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0007-767x746-beb659f4.webp",
+      "size": 84896,
+      "sha256": "f33b2f234d56f9d50605cbfdff25921efbdb129a77d32e303a76bde639eb5319",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0007-767x767-1e906bdc.webp",
+      "size": 86602,
+      "sha256": "f2a2c81c31752c7b49e8f277c23859a3df0d3d0d926187c9865ffb430f6e0c03",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/portfolio-0007-853x524-a3c89cdd.webp",
+      "size": 60228,
+      "sha256": "cbef3a1e58323d670b2bb1e6d4ac4cbcae7aece32d1cda0237b5a50e19d0e8aa",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/post4-767x443-92a3e3e9.webp",
+      "size": 80434,
+      "sha256": "2859ae0b69a3ecfd476c99800cf211dba06030565be4a25dd684747b31dac537",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project-banner-1-e17c095d.webp",
+      "size": 3344,
+      "sha256": "c123ff63adc2fc04e386e1fe302fd3ee76b5f8b7578842e2a3e0671e348a53e8",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project1-1168x559-837620e7.webp",
+      "size": 34684,
+      "sha256": "af6d20b1c9e6cea8cbd7a2ee8dad2b9f1c8630e902bc227fa1928bca7fd4d2c2",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project1-709x709-b3b4159a.webp",
+      "size": 21444,
+      "sha256": "fb727d282e3eac0b76a857753683b845823a79f2ae6138babde4f82b0ddc9090",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project1-767x746-15cda61b.webp",
+      "size": 23402,
+      "sha256": "e9480258e141a6d9591c3d2d91c0bf4697e94daf8e80c539574aa179ad30f5ff",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project1-826x657-e6540bfa.webp",
+      "size": 25480,
+      "sha256": "277621e4ab172f3132feeed0d0994eb0c4f427ae2dabdbbfb63bcb0ab8e62f49",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project1-938x524-9ba50ce4.webp",
+      "size": 24240,
+      "sha256": "a9147d7884ab9af527bcb189084a491dd3ddf542426cde863f9251585f48b0e5",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project2-1168x559-d1f38c7f.webp",
+      "size": 60460,
+      "sha256": "194a52a94661353764d3569174ae5db8ad90b1b41e583dfcbd55c570a78e4ec5",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project2-5d353c79.webp",
+      "size": 89648,
+      "sha256": "64c2e64ea8d1b55a9ab0672df94298b6baea3dce3fa2e44354075f517bbea928",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project2-767x746-0433fdda.webp",
+      "size": 44174,
+      "sha256": "e55219538e4e269345b32cdb8f814518a102a3b4c276881db0a205e159143d48",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project2-826x657-475dd62d.webp",
+      "size": 46272,
+      "sha256": "5181941d379e10b2761b06ae1dea4525f8b5adb368fa900745362e38237c311a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project2-938x524-c6b7a8b9.webp",
+      "size": 40418,
+      "sha256": "8aa31e4b61d4c547a00af0faedb5aa4c2b8cbca3c503c39193b9b5e4e05e4452",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project3-3-1196x559-3ab075cf.webp",
+      "size": 35424,
+      "sha256": "13e34b7f50c0ed4a74f6143f8af1175a45d9492667647c6b5abbcce9bb9f7ab6",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project3-3-767x746-2ef8137d.webp",
+      "size": 28286,
+      "sha256": "eaf64f960cd2fe1d29e7c2382c1423ef225b8ba6dc019d03efa87ddb938bbf39",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project3-3-777x606-8956849d.webp",
+      "size": 26970,
+      "sha256": "777c1d170743d8c62a4ac9a0d2c95cb57d873d52cf2a31b131363abc86064e76",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project3-3-938x524-fa186965.webp",
+      "size": 29338,
+      "sha256": "df2aeab831c1d81d891313f3ea3eff56b8ecd23a9a55cc7c205b54f14b2224b7",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project4-1168x559-ac9d0a3a.webp",
+      "size": 49286,
+      "sha256": "bed94a0b6b9ee1ae968c2278be8ab6b4cdc731238fc2970057f97d6c089c6585",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project4-767x746-4dc120a0.webp",
+      "size": 36718,
+      "sha256": "61dac59442ee9f6df32ff550285c70a2ea4cdbb395468420f876568413763ff7",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project4-777x606-d7d3b569.webp",
+      "size": 31360,
+      "sha256": "1303de0345b9cef916ec0d20b2503ed670f60654b7874021273f3a0125c40609",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project4-826x657-af8d4cb2.webp",
+      "size": 35658,
+      "sha256": "0c139021036de9b7953e80b5e62c0202ff6f56696ffc68fe1d90508677256434",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project4-938x524-3dfb3c4d.webp",
+      "size": 30742,
+      "sha256": "8389ba5ec6982db9f2b92c3c4f599c6ca01a85dfa8cda8bc6c7573dea9671ff5",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project5-04c9e7c4.webp",
+      "size": 172778,
+      "sha256": "afeaf9a4650fa65a927241cc4909c955bef8be797825545b66cec0d8433b4f77",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project5-767x746-5fe5e191.webp",
+      "size": 86914,
+      "sha256": "cd7fbd9cd0c3dcf92a9d582f6fac6c9156b9e81aaac1e2945cb1e537fbd24a51",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project5-777x606-b54d3855.webp",
+      "size": 74864,
+      "sha256": "98307129b27b5d1e37968e8fb693e1cb6fe29cd5e1f9a7f7b40c1ed293d5633c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project5-826x657-f3585fe8.webp",
+      "size": 86454,
+      "sha256": "0eeeb7df3126b2ff127316ba177a9aa8344238a3f620c4fa99c6bc8c63172d8d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project6-767x746-19750b0d.webp",
+      "size": 63788,
+      "sha256": "179b714967c3d31c9dc1a7c537c8d4d5cf249ab0de6aff6312a8ee06e5897a59",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project6-777x606-40223ab6.webp",
+      "size": 54500,
+      "sha256": "c470e8230332db843ced045b6eefd88076897ba26c34e35d99740526d2d2eac4",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project6-826x657-803be195.webp",
+      "size": 62046,
+      "sha256": "dff0086d4943278e267cb1bc71e0c5276875f2f86223000d8416d59a819b0f71",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project7-767x746-1be1772e.webp",
+      "size": 92764,
+      "sha256": "fd4f8b095f95cc6c4049ab06ff08df66cbb7c5d25b65cb7995a1b9db9f07d905",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project7-767x767-3cd7ace0.webp",
+      "size": 93526,
+      "sha256": "01c23e870a8baedce27d3438a69c557482822088eb19cf2eaa814de2abd768a2",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project7-777x606-7b1e2c98.webp",
+      "size": 75970,
+      "sha256": "17055b95d1933ffc52b131ceb26ce1fee7e1b30bd6dac207efe8b9dea397c661",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project7-cd2033f5.webp",
+      "size": 185820,
+      "sha256": "2a5bba18db5d5b3329ffc9ca6e8d4f6f2ef7cd45d5956b6f6ed4f8a86b56db5b",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project8-767x746-07b28396.webp",
+      "size": 84686,
+      "sha256": "627e75836cbf6278e7d5231651f441ea93642328e9d94663eb08a15d2d7301fe",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project8-767x767-ab414a14.webp",
+      "size": 84818,
+      "sha256": "74bb029a3df4cc450f2f6c2bc62e4d2f5a1efc48fd486a4360798db4e62e37c0",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project8-777x606-1610ebc7.webp",
+      "size": 70994,
+      "sha256": "1b3ef6b0c0ae605085ec480940dc4ed6ea405c2a97f6ae6fa5867144c6c6c7c2",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project8-87bf59dd.webp",
+      "size": 161528,
+      "sha256": "f73ceb0a97b5f80b6bd8ea5bab2e70fa0b49d64c00f06fb74b523c26f45645cf",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project9-1144x581-d49be51f.webp",
+      "size": 60718,
+      "sha256": "ea58ca7c2010fd7d37d24dc24f1740be54fa7c3316d7393d703bee7c1888c125",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project9-767x746-ec574f35.webp",
+      "size": 49956,
+      "sha256": "33bd301193731349a558405238c71d85b058825fff7a40df600c9712dcb7a10f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project9-767x767-f4c5eed0.webp",
+      "size": 53388,
+      "sha256": "ad98e4ee529cd844e2ab895de66ce2848184cb888e3267d2bb7f1d4602153bb6",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/project9-777x606-e2297fb7.webp",
+      "size": 45056,
+      "sha256": "5d6ea17763e4be82e9391fbe4e2e8d84b45be4c9f43b75101df0a34b9e45bfa2",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service1-569x262-45485e85.webp",
+      "size": 14744,
+      "sha256": "8b33fe9a44062e5459b47ad35e5cb2147c4f888dc26c49fcabd846fd29f8bb37",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service1-726de812.webp",
+      "size": 109062,
+      "sha256": "48d02988f80f3fcd6c1671e38b2d11c579eb858bc4ebb7fdb39f533013a05893",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service1-767x777-3d38c177.webp",
+      "size": 48334,
+      "sha256": "4b6376e868ce399761ccbe7a8b7eb0d18d1440284e62571e4fc3a8ed76361705",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service1-875x1001-6a2b0a4a.webp",
+      "size": 66690,
+      "sha256": "7ccaca74766bfbf615e68d6d5594b84d5270060351768fb44eba93716425de23",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service2-569x262-823cf0ab.webp",
+      "size": 28720,
+      "sha256": "2ad11693050790f6a148bb39486ee87ac48126ca2074b8577ebe362ffeed8491",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service2-614x535-b16d88b7.webp",
+      "size": 46672,
+      "sha256": "13c37797a017c83c16ac1d5e10b2714a6493b0fe25eb9beb8ad4e65d3b4b72ff",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service2-640c9d7f.webp",
+      "size": 120940,
+      "sha256": "3857e689481e1f33611c5ee0462f5041a403f1c649e8e48ee6b3ca441b654026",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service2-767x777-7a3cf1f6.webp",
+      "size": 71978,
+      "sha256": "8f7d01c4ba252c20ed9a9f3a3a10c858a97c2d0921b409fd314b9305a6105edd",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service2-826x657-3c60f1d5.webp",
+      "size": 66078,
+      "sha256": "935ce5b24eed8d134543aaf00c010e1f21c3b4271ad6c636226542f47f9af379",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service2-875x1001-7aa284f9.webp",
+      "size": 84894,
+      "sha256": "beaff0999a29e4dea2f75d14c24b50295ba38e3c5ca352fa8fcd5d5f74394a79",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service3-0621572d.webp",
+      "size": 186352,
+      "sha256": "aaa5b5df454a2b05a7949134aa3b1bff81e510735e0790c5125fb7a94bac6825",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service3-569x262-ef174c9e.webp",
+      "size": 27322,
+      "sha256": "82129a7434129b693ec4e59678a2b875fdfcab939393fc5d6f7cb244d5d9db95",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service3-614x535-221ff0a2.webp",
+      "size": 54696,
+      "sha256": "7c3161ddfc464d021b7f75d158a7ef188b2233f6850d62a621f53088ae6a2c30",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service3-767x777-8e29ed64.webp",
+      "size": 91264,
+      "sha256": "2528ef0e486772fc94356c63c4b96d47c46cd5e3cea95281eb5a30b9c14812a8",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service3-826x657-0becd5fb.webp",
+      "size": 82354,
+      "sha256": "0148d993c55b7c36cf48e89696f81ebb37873a72104013061eef6971e11db0b8",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service3-875x1001-002dcd9d.webp",
+      "size": 119842,
+      "sha256": "b01d78eb9078e5621749c566a821ca14972bebd4136183d3799756524dede398",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service4-569x262-5984ad8b.webp",
+      "size": 16204,
+      "sha256": "ce973b2d669eb7be24ed32b8473a733f79e226dd1758c960c784b433a025dd9b",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service4-767x777-29bd9938.webp",
+      "size": 47156,
+      "sha256": "3e5dd66b42d067a0ca01eaf7a452ad873e4c9d2bbacd6529a7bcc4d0143208f9",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service4-819dae91.webp",
+      "size": 82984,
+      "sha256": "c0f21f159202bfeed8f651b9293ef9d6acab6f3e4b8a8aaede5cd683d954f5a9",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service5-569x262-870ffe8c.webp",
+      "size": 27190,
+      "sha256": "6cc27dd0a5dff56acd23571c4959ca0c8fae776bf55cc380e508298258ce4cbf",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service5-614x535-ed8cea93.webp",
+      "size": 49232,
+      "sha256": "e3b9c9607c04c2d443ecc0b5d3467051c30bd28e07b69f4d86a42a5ee43b4ee7",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service5-767x777-082aaa44.webp",
+      "size": 89278,
+      "sha256": "888690f9798308eb4af8e05bfc720557f13871175e0dba6c0f9aac7016a14958",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service5-826x657-de40a7c0.webp",
+      "size": 79872,
+      "sha256": "7649aee61baa931c511f6ae2f938b426fbabdfc0bc17c4cdbad2eb134265ba24",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service5-875x1001-64b3d0cd.webp",
+      "size": 122198,
+      "sha256": "25df95ba704144b97687cd36979f482d90a1944fe80c3a03d5126b82f379e702",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service5-f4515793.webp",
+      "size": 175350,
+      "sha256": "c113b3d38821162ee5e8650ba419e94516f81603c56e607d0a9a3eb365b45c58",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service6-569x262-1fc7a18e.webp",
+      "size": 20606,
+      "sha256": "743df42564202e90e3de86c36c67428b3681b41717af00c68da22e74cc3d86ff",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service6-767x777-390ab77c.webp",
+      "size": 59250,
+      "sha256": "b08c938b0efbbef758e57b4ec52ea1c35d830e69df91cf06d5b13ed282d79b80",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service6-875x1001-4c09dd68.webp",
+      "size": 75924,
+      "sha256": "26e107940e5fd9f4051388f4fa4d6280b4713be2cd2539bb49c8c4fb0b4ceb09",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/service6-93126d7f.webp",
+      "size": 107812,
+      "sha256": "ea50b7c2a33fb69dafc74bc0f1ad2d309c85c3b61e49c42b01c906792661fe3c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/servis-cuci-rumah-kl-2e2d046e.jpg",
+      "size": 207843,
+      "sha256": "c1fa16b222fc1aae415154904d2378f75984015cdcf3e5000fadd93970edca10",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/shape-home6-62c55202.png",
+      "size": 1263,
+      "sha256": "160450b0768e963c7da0c9dc54993fe6c27df652c7f1d4c1ac41c179bd687b98",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/shape3-7c88a0d6.webp",
+      "size": 9758,
+      "sha256": "04e4c833e7ff9ce2542551fbdf53a838ca763153c7808784cb8d72bc4fa5fb8e",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/shape4-ccb7b162.webp",
+      "size": 21414,
+      "sha256": "e6062f05750bdabd346113138b255510e2ad5e9ef6df8316ab4e42e341798355",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/shape5-da19df18.webp",
+      "size": 8248,
+      "sha256": "3cd03535c7c34325abd915d9e970e7032cfb6d93801c11dce148a41ba81c3ba7",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/shape6-1e0aaacc.webp",
+      "size": 8416,
+      "sha256": "d2d85cc29e8eee89002febd854ee4e4b1b48dff3b20d0ca536d4c21845779ddc",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/shape7-5a347795.webp",
+      "size": 20702,
+      "sha256": "5f81497f3d8d2061820c06fdab7f612274acc3098e46d2c37d2d4c0bde77dd96",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/shape8-a5139cab.webp",
+      "size": 9598,
+      "sha256": "4b478fe1a6f9e2bd8cccf741d6f0f5c3374763e31b40235a399d394273615cf6",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/showcase-h7-1-7771bd63.webp",
+      "size": 76946,
+      "sha256": "5f352f69b31aa3ad2ad59d2ecb607ca00f578df6f3655c449eb9aa8f08b7a783",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/slider-position-8d92d5fe.webp",
+      "size": 1426,
+      "sha256": "ed695786aa2bd885ee9912cbce13356d2b925492711540682c07c54c97afc1a9",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/slider1-home6-74cc0297.webp",
+      "size": 131002,
+      "sha256": "8fe7d641ad7d55cb4b8dff26fe89d42ebfb2a0c62c1cf18662da5b5eeaa0ac34",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/slider2-home6-ce496ef5.webp",
+      "size": 200876,
+      "sha256": "8f765225a8530c183dd1857b91589a4829c563511b6ea1bd5248a821c743db5c",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/slider3-home6-13da7d34.webp",
+      "size": 86752,
+      "sha256": "7963a861cfb28e37c78df91ecbe7c5f753973d9cc89bedd5d96a10be20f55aa2",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/team1-cbb3cb37.webp",
+      "size": 91868,
+      "sha256": "0cfe54379127387b7f7a2b3ecc52bbd3d9524a863fbd4df6fd251cef153a6c83",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/team2-65bcefd3.webp",
+      "size": 83322,
+      "sha256": "33858dc3700a832460359f09ecd57c274321b3687f80c78cba501004ba86e04f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/team3-23f83b0c.webp",
+      "size": 84826,
+      "sha256": "0eb9fe4fe88fed455b069800d177820ae44a52f5e87721db7a6ac49d378fb43d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/team4-34f18fe9.webp",
+      "size": 71234,
+      "sha256": "6dfd3dda0105ad0c412da6e55d66f209b365e6c3f2a08972a88cf552f61193d5",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/team5-2b696100.webp",
+      "size": 72514,
+      "sha256": "c81106cf39dd9286cb1893085c938acf81db279859eb35edf4cc2f059b510876",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/team6-a9efd0c8.webp",
+      "size": 60770,
+      "sha256": "999aec5063f587441da60946d72668e17280e9260f54e04340babe4258191325",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/team7-37da56e1.webp",
+      "size": 63860,
+      "sha256": "86e2c5f69ddcb218c548150765c19e0534c962b4c7706e4783f7a338295a2a76",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/team8-dc2c8604.webp",
+      "size": 65800,
+      "sha256": "671668bee0782596db1535b2740cd8e243b8eb54b63a47b37c2c80f5da7a747d",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/testi1-355d6f8a.webp",
+      "size": 63828,
+      "sha256": "dbd7683dd6324dd8d7e61c99033b9bb5b9d005b44e97804f43eb7dc54e34ddcf",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/testi1-90x90-08db1665.webp",
+      "size": 2654,
+      "sha256": "0a6de38b88fabd08ee2a8069830236ae6e4b9b09b573ed17140c5cb2ee25973f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/testi2-5a7736f8.webp",
+      "size": 36930,
+      "sha256": "6add8846eb062a996772c42911d1451a372a059339481932b2276972cab9fc7f",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/testi2-90x90-2a47b015.webp",
+      "size": 1788,
+      "sha256": "550908daf66aeaba50cf50d5bc2ac211842c2c4f8ba349f5d5b3f6d2318fe374",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/testi3-25879cc5.webp",
+      "size": 25578,
+      "sha256": "9c06a20736945de3cb6b8703291736b1f19c89ea2315cb981b5ca3757f355628",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/testi5-90x90-2806e4ce.webp",
+      "size": 1508,
+      "sha256": "c9528693736d9fed59d021b98ccf903763b083cf14a99c8b7587e02516d04090",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/testi6-90x90-1dd91b67.webp",
+      "size": 1740,
+      "sha256": "bff0666a8da2194fff8644da40b3ebe86f0455b13f5dbbf0dadb87f10339634a",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/assets/media/testi7-90x90-c47bb668.webp",
+      "size": 1690,
+      "sha256": "315ff2b7f40fdbf815d8be6995841620b0344f1d0024d6649ce9ac5b8a7f6cc3",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/blog/index.html",
+      "size": 21747,
+      "sha256": "7f4c58bc5b7dc6371b640eb88bfce8194ca5b02ee9d600d14d2964e8f18f7fb9",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/category/commercial/index.html",
+      "size": 12208,
+      "sha256": "1c772ae2577054caf94f7c5352b6123f49f150afc3d4a06b8424f9ce122fa2c6",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/category/hvac-guides/index.html",
+      "size": 12218,
+      "sha256": "99e17933600af2d1bdf20c94ddbcc1dedda43b6661db8b2a475885840711054b",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/category/maintenance/index.html",
+      "size": 13632,
+      "sha256": "3a6b211e17e76d62bd9ca9a6601bdc81f853583f5d80fc28b41f74c61795fba2",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/category/renovation/index.html",
+      "size": 12271,
+      "sha256": "5f0e32781cf198c4c1bd9b6b29800a6579ac481c89e148e7e4b8db3ccdedd1e1",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/category/servis-pembersihan/index.html",
+      "size": 11480,
+      "sha256": "9270e4ad7729adcd2452466f526ee4b0ccbbe68d1af6be12da05020a9fbfc6fe",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/category/technical-guides/index.html",
+      "size": 14485,
+      "sha256": "244fb7ccf4008e01161253632bbf9f9b60bf07fb107e61433cd7df40baa08667",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/commercial-retail-shop-renovation-in-kuala-lumpur/index.html",
+      "size": 26450,
+      "sha256": "577c7f46d2b78971b6966dbbb24671f6fe6cf1de2681d660ac5e6f27829ca332",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/contact-us/index.html",
+      "size": 11551,
+      "sha256": "9f68e3494aaad1eaa003d8249bbf4e026846fd4d151137835b1113038587ed40",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/index.html",
+      "size": 26086,
+      "sha256": "97a96be7085cd0179c6aeab7038679cc5d0a4f0d67cae25f5a5a12c8369ea8c6",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/electrical-services-selangor/index.html",
+      "size": 16909,
+      "sha256": "20a155389821a1df55210ea053f4181def52f06b265d7bc4d47c4b1de44de218",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/faq/index.html",
+      "size": 14025,
+      "sha256": "c2f182c2f4907aa5095040fe201bdb86f04621fe86300182b051dc3b8bd3c51c",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/home-renovation-contractor-in-subang-jaya/index.html",
+      "size": 15864,
+      "sha256": "6cf7b3b032981d1d444a0b813d8128abd6ac4e59d6277796eb4abf24e8b92c97",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/index.html",
+      "size": 53276,
+      "sha256": "362e488fc3804d73ffd1b2aa4c66e30652809d42d11ab9346c1c06da4b64646d",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/house-renovation-in-kuala-lumpur/index.html",
+      "size": 21118,
+      "sha256": "ace71ef3a7c43958f5cba8c8fff75efa7313d003d33f2971df81a5c8bea12638",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/index.html",
+      "size": 26252,
+      "sha256": "fd65c51e0961897ea91f91eaf5f7ef5e11759cc478d7c1ae1f56628e2193fe03",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/house-renovation-in-selangor/index.html",
+      "size": 20428,
+      "sha256": "4a5d2a20853fc78b1d97b573e3cb03c890af779fe7fbb965b5877cd5b26044f0",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/index.html",
+      "size": 21591,
+      "sha256": "d5916b0fa933e1bf9adaf103405844a9b7c10f0213b25e046ceaa891169c0420",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/index.html",
+      "size": 25291,
+      "sha256": "e34387682307772b4c896923e4a8e90c3a853006b9d4a5bde41683f31f454f53",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/office-renovation-in-kuala-lumpur/index.html",
+      "size": 23206,
+      "sha256": "991f74f34230f7b86628a03c2ae4ad773d8c51a30cb7fb21e4009c1485a3430f",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/office-renovation-petaling-jaya-corporate-fit-out-experts/index.html",
+      "size": 26237,
+      "sha256": "ce46948b38eb5e6bcba939f9ac1f55b3beae6f17728bb6eabed300f86d1b550f",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/index.html",
+      "size": 38314,
+      "sha256": "7a28d32e414a3e12fe8eeec76720a2ac6aac6a38e75b890b26cc0130fc9010b6",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/index.html",
+      "size": 26295,
+      "sha256": "be94450b1deec78ea77149f21ee8b185ebac384a570880498b5c616598befc49",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/plaster-ceiling-contractor-kl/index.html",
+      "size": 18990,
+      "sha256": "011d8544d6408fdc29e7ede9539a376bb750ee69d45a1d57f6c961a0f348a14d",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/index.html",
+      "size": 25737,
+      "sha256": "b680a1af694018ace83a073d869bda64b0b841ceebdb017ecbbec1b27c2da74c",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/robots.txt",
+      "size": 72,
+      "sha256": "1bbb1c5c5eac7313bf5957537618875879760b7e0b15abeda07454363763fd74",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/service/building-renovation/index.html",
+      "size": 12204,
+      "sha256": "404e4ccb6fce69f8917dfdbbe30bce03d6ffe2e2ae1b038e2445f7e6c650a774",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/services/index.html",
+      "size": 15880,
+      "sha256": "ce43f3c9b610018d562a6ae5e68f87a8b5e7664cf38f84a4b9c27a86ccd0e79a",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/index.html",
+      "size": 24948,
+      "sha256": "0de19e27610b00004a523b582e30be8f435cf08c87d167bb7b966142fe4604b8",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/servis-aircond-murah-kl/index.html",
+      "size": 18683,
+      "sha256": "ff7e6fddb0994d7354488c7a56b261c7b31f8f460b85ba5e8dda11d88e1950e3",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/index.html",
+      "size": 25453,
+      "sha256": "f8d7ae7ec85cb2434f34cbdd13b73fa9ec2153f970b9e0f7478fc67827df11d0",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/servis-cuci-rumah-kl/index.html",
+      "size": 18019,
+      "sha256": "701216a9882290fefdb0fac222382c20d76140a353be1e35c667f86bd3a942fd",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/sitemap.xml",
+      "size": 3098,
+      "sha256": "d9d9a190e3af94c2a71ef6b279745eb8d2d7f1408e890788877e938c9492afbe",
+      "purpose": "static website response",
+      "cache": "weekly",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/tag/interior-finishing/index.html",
+      "size": 11425,
+      "sha256": "b3e73d635011df29016ac9f7b6786d308eb91a5f695b832de33388ac86322c0e",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/tag/office-fit-out/index.html",
+      "size": 11541,
+      "sha256": "5513a69fd2720abad4ebb1ce05a213475ea74631a8f414d3f137054e2b75e31f",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/tag/waterproofing/index.html",
+      "size": 11591,
+      "sha256": "d22d1cb5ab2a095a94414f42ae474a8e8b11a2cb5770a6a760c3cd1d738e5e1d",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/thank-you/index.html",
+      "size": 8885,
+      "sha256": "bff245db12d2cece5eaae7980d8604c86dd490b53fe8216aa8b0606c4ca3f62d",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/index.html",
+      "size": 46758,
+      "sha256": "17b2c9c68e87669456f80b141bd4e3c28d176ee5cfb9d099559d82d3c061425c",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/upah-pasang-aircond-selangor/index.html",
+      "size": 20485,
+      "sha256": "87150ec0e0eb22c8f476aebb2ed8b759838306795b4d828df511d6169fc5cbb1",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/index.html",
+      "size": 25442,
+      "sha256": "092f383b08136b85a3b9a7133789e21b5baecbb280cbbd36ca535ea5ca476636",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "dist/waterproofing-contractor-kuala-lumpur/index.html",
+      "size": 15391,
+      "sha256": "0190a5e1e3e398d3680ee600ec4984fb94afdee13fd8aeb1bbc28ec14c441a7f",
+      "purpose": "static website response",
+      "cache": "revalidate",
+      "exposure": "public"
+    },
+    {
+      "relativePath": "docs/post-cutover-monitoring-checklist.md",
+      "size": 2309,
+      "sha256": "36948a05a4bcdb9d382e541e2f106be7279e0a9e0cb19c0dd41818719b85706c",
+      "purpose": "operator runbook",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "docs/production-deployment.md",
+      "size": 6507,
+      "sha256": "f9e938c58fa949af0116de0bcd21d7106e0587013752207b89c4d6d05fb02a07",
+      "purpose": "operator runbook",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "docs/rkreno-cutover-runbook.md",
+      "size": 9706,
+      "sha256": "0e78afb1e37c5d83d73c1d8ef781a113b8ffaf0193197dd78552663bfa171d65",
+      "purpose": "operator runbook",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "package-lock.json",
+      "size": 157563,
+      "sha256": "01247b3b9e75885f4e655970c4a4c2450c7c1f70eaf007ae440195639e9a3447",
+      "purpose": "release metadata or dependency definition",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "package.json",
+      "size": 3611,
+      "sha256": "c1c9a6439888384a16a1cf613d0fa33fa6be7059a4ba77d20306958b03563690",
+      "purpose": "release metadata or dependency definition",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "release.json",
+      "size": 603,
+      "sha256": "4ab02414b4944d971c5625da5fb99efa33feb1b306bc5f9c7b6e96ab7e38b9bf",
+      "purpose": "release metadata or dependency definition",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "scripts/deploy/activate-rkreno.sh",
+      "size": 677,
+      "sha256": "40a51aa4c8c2e558c58e355bded6bd5019473e082f78470bb19c538a5b2c591e",
+      "purpose": "release runtime or operation script",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "scripts/deploy/clean-old-rkreno-releases.sh",
+      "size": 886,
+      "sha256": "7f254a9a48297f008f8f6e423b62985cc1e4714724e39a0bc01a1ee50f3a89f2",
+      "purpose": "release runtime or operation script",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "scripts/deploy/deploy-rkreno.sh",
+      "size": 1577,
+      "sha256": "3a097de572a8974a4e5fe055276c15767e246306e248bf08adf13ace19f3371c",
+      "purpose": "release runtime or operation script",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "scripts/deploy/lib-rkreno.sh",
+      "size": 1719,
+      "sha256": "3db4109117cbda590533e667cc38af7b5e7af9d25f1962084e1bccc30f5402cf",
+      "purpose": "release runtime or operation script",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "scripts/deploy/list-rkreno-releases.sh",
+      "size": 343,
+      "sha256": "30544ee22d32e939a60d0aebdeef0f74ed3b16e5bc97ee056f272b568e8ff8df",
+      "purpose": "release runtime or operation script",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "scripts/deploy/rollback-rkreno.sh",
+      "size": 916,
+      "sha256": "bf9d802b74f4abf5c0b1e247dd281b0ad24b9fe779086ad1be709fa5767fb480",
+      "purpose": "release runtime or operation script",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "scripts/deploy/verify-rkreno-release.sh",
+      "size": 673,
+      "sha256": "1a7fa04e279b931a8d4fadaaf8f07846891030c5a636cda63533796417ad58a6",
+      "purpose": "release runtime or operation script",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "scripts/prompt-3-1/production-simulator.mjs",
+      "size": 10839,
+      "sha256": "2fba3adef1ec297e7e27cba6507295650718ff833fd18c82914dd0092c4f1842",
+      "purpose": "release runtime or operation script",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "server/enquiry/config.mjs",
+      "size": 2133,
+      "sha256": "13d45dd8dd385c2d3e2ef60c99504ffbf9fabbea7789b284037deb395b89cdce",
+      "purpose": "loopback enquiry service",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "server/enquiry/constants.mjs",
+      "size": 802,
+      "sha256": "d2128e4230cd204331bbec670a6b962679898bf90939da3517b4afedbefcd208",
+      "purpose": "loopback enquiry service",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "server/enquiry/logger.mjs",
+      "size": 457,
+      "sha256": "5d63ee044fc3bbe481668010de743f4fe0657368182345177abd1ff9e8ab134e",
+      "purpose": "loopback enquiry service",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "server/enquiry/mail.mjs",
+      "size": 2287,
+      "sha256": "41ad834fb8131d5b59815625af5509ed1b0e94f33059e553b1dc546ba740d927",
+      "purpose": "loopback enquiry service",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "server/enquiry/rate-limit.mjs",
+      "size": 1541,
+      "sha256": "ac46c6f689ef0ea503cc4180b33196a82c93943448f3bd87198d60a57ab81170",
+      "purpose": "loopback enquiry service",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "server/enquiry/server.mjs",
+      "size": 2171,
+      "sha256": "6517ae6d3631d5651fdb61b46c8ad9cd33f489c0e335f2a713f7c34e6399eca6",
+      "purpose": "loopback enquiry service",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "server/enquiry/service.mjs",
+      "size": 4775,
+      "sha256": "d8ce76c8e89b8613d470a3b4f88253ee2061f2814bed0d5ee79b1110114f3a0d",
+      "purpose": "loopback enquiry service",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "server/enquiry/turnstile.mjs",
+      "size": 2213,
+      "sha256": "22219872543527b251f7a95f6c6dc12de6ad7acd69d411a430d964f54e92f3b2",
+      "purpose": "loopback enquiry service",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    },
+    {
+      "relativePath": "server/enquiry/validation.mjs",
+      "size": 3418,
+      "sha256": "896464b23e999fbefe96c78983a37ad9c587f18466726fe8302396a788b5a8cc",
+      "purpose": "loopback enquiry service",
+      "cache": "not_applicable",
+      "exposure": "server_only"
+    }
+  ]
+}
