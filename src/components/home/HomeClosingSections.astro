@@ -28,20 +28,21 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 <section class="exact-enquiry exact-section">
   <div class="exact-wrap exact-enquiry-grid">
     <div aria-hidden="true"></div>
-    <form class="exact-contact-form" aria-label="Enquiry form preview">
+    <form class="exact-contact-form" aria-label="Enquiry form preview" data-preview-form data-configured="false" novalidate>
       <p class="exact-eyebrow">CONTACT US</p>
       <h2>Get In Touch With Us</h2>
       <div class="exact-field-grid">
-        <input type="text" placeholder="Name*" disabled />
-        <input type="tel" placeholder="Phone number*" disabled />
-        <input type="email" placeholder="Email*" disabled />
-        <input type="text" placeholder="Company Name" disabled />
-        <select disabled><option>Project type*</option><option>Building Construction</option><option>Architecture Design</option><option>building renovation</option></select>
-        <input type="text" placeholder="Budget*" disabled />
+        <input type="text" name="name" placeholder="Name*" required />
+        <input type="tel" name="phone" placeholder="Phone number*" required />
+        <input type="email" name="email" placeholder="Email*" />
+        <input type="text" name="company" placeholder="Company Name" />
+        <select name="service" required><option value="">Project type*</option><option>Building Construction</option><option>Architecture Design</option><option>building renovation</option></select>
+        <input type="text" name="budget" placeholder="Budget*" />
       </div>
-      <textarea placeholder="Write message...*" disabled></textarea>
-      <label><input type="checkbox" disabled /> <span>I have read the privacy statement and understand that my personal data will be processed for the purpose of providing the necessary information and assistance.*</span></label>
-      <button type="button" disabled>Submit <span>→</span></button>
+      <textarea name="projectDetails" placeholder="Write message...*" required></textarea>
+      <label><input type="checkbox" name="consent" required /> <span>I have read the privacy statement and understand that my personal data will be processed for the purpose of providing the necessary information and assistance.*</span></label>
+      <button type="submit">Submit <span>→</span></button>
+      <p class="form-status" data-form-status role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -54,7 +55,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="exact-testimonial-copy">
       <p class="exact-eyebrow">CLIENT FEEDBACK</p>
       <h2>What Customers Say About RK Reno Solution</h2>
-      <div class="exact-testimonial-cards">
+      <div class="exact-testimonial-cards" data-testimonial-track aria-live="polite">
         {homeTestimonials.map((testimonial, index) => (
           <article class:list={{ featured: index === 0 }}>
             <div class="exact-stars">★★★★★ <span>”</span></div>
@@ -66,10 +67,33 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
           </article>
         ))}
       </div>
-      <div class="exact-carousel-controls"><span>←</span><span>→</span></div>
+      <div class="exact-carousel-controls">
+        <button type="button" data-testimonial-previous aria-label="Previous testimonial">←</button>
+        <button type="button" data-testimonial-next aria-label="Next testimonial">→</button>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const track = document.querySelector<HTMLElement>('[data-testimonial-track]');
+  const previous = document.querySelector<HTMLButtonElement>('[data-testimonial-previous]');
+  const next = document.querySelector<HTMLButtonElement>('[data-testimonial-next]');
+  if (track && previous && next) {
+    const cards = [...track.querySelectorAll<HTMLElement>('article')];
+    let active = 0;
+    const show = (index: number) => {
+      active = (index + cards.length) % cards.length;
+      cards.forEach((card, cardIndex) => card.classList.toggle('featured', cardIndex === active));
+      track.scrollTo({ left: cards[active].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    };
+    previous.addEventListener('click', () => show(active - 1));
+    next.addEventListener('click', () => show(active + 1));
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.setInterval(() => show(active + 1), 6000);
+    }
+  }
+</script>
 
 <section class="exact-final-cta">
   <div class="exact-wrap exact-final-inner">

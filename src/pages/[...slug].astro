@@ -14,6 +14,8 @@ import ArticlePage from '@components/ArticlePage.astro';
 import ThankYouPage from '@components/ThankYouPage.astro';
 import TaxonomyArchive from '@components/TaxonomyArchive.astro';
 import PriorityPageHero from '@components/PriorityPageHero.astro';
+import WordPressSourcePage from '@components/ditto/WordPressSourcePage.astro';
+import DemolitionPage from '@components/ditto/DemolitionPage.astro';
 import pages from '@data/site-pages.json';
 import routePolicy from '@data/route-policy.json';
 import { batch1Pages } from '@data/batch1-pages';
@@ -46,12 +48,38 @@ interface PageRecord {
   externalStyles?: string[];
 }
 
+const heldRoutes = new Set(['/company-history/', '/our-projects-2/', '/our-projects/', '/our-team/', '/testimonials/']);
+const demolitionPage: PageRecord = {
+  path: '/demolition-contractor-kl-selangor/',
+  status: 200,
+  type: 'service',
+  title: 'Demolition Contractor KL & Selangor - RK Reno Solution',
+  description: 'Interior demolition, bathroom demolition, strip-out, site preparation and debris-removal enquiries in Kuala Lumpur and Selangor.',
+  canonical: 'https://rkrenosolution.com/demolition-contractor-kl-selangor/',
+  h1: 'Demolition Contractor KL & Selangor',
+  content: '',
+  schema: [],
+};
+
 export function getStaticPaths() {
+  const staticHeldRoutes = new Set(['/company-history/', '/our-projects-2/', '/our-projects/', '/our-team/', '/testimonials/']);
+  const staticDemolitionPage: PageRecord = {
+    path: '/demolition-contractor-kl-selangor/',
+    status: 200,
+    type: 'service',
+    title: 'Demolition Contractor KL & Selangor - RK Reno Solution',
+    description: 'Interior demolition, bathroom demolition, strip-out, site preparation and debris-removal enquiries in Kuala Lumpur and Selangor.',
+    canonical: 'https://rkrenosolution.com/demolition-contractor-kl-selangor/',
+    h1: 'Demolition Contractor KL & Selangor',
+    content: '',
+    schema: [],
+  };
   const excluded = new Set(routePolicy.excluded);
+  for (const route of staticHeldRoutes) excluded.delete(route);
   const retiredTaxonomies = new Set(Object.entries(taxonomyArchives)
     .filter(([, archive]) => archive.action !== 'KEEP_NOINDEX_NATIVE')
     .map(([route]) => route));
-  return (pages as PageRecord[])
+  return [...(pages as PageRecord[]), staticDemolitionPage]
     .filter((page) =>
       page.status === 200
       && page.type !== 'template'
@@ -66,6 +94,8 @@ export function getStaticPaths() {
 }
 
 const { page } = Astro.props as { page: PageRecord };
+const isHeldRoute = heldRoutes.has(page.path);
+const isDemolition = page.path === demolitionPage.path;
 const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path] || batch2Pages[page.path] || batch3Pages[page.path];
 const exactArticle = articleWordpressContent[page.path as keyof typeof articleWordpressContent];
 const sourceArticle = batch2Articles[page.path] || batch3Articles[page.path];
@@ -86,7 +116,7 @@ const nativeTaxonomy = taxonomyArchive?.action === 'KEEP_NOINDEX_NATIVE' ? taxon
 const taxonomyArticles = nativeTaxonomy && 'articles' in nativeTaxonomy
   ? nativeTaxonomy.articles.map((route) => retainedArticleByRoute[route]).filter(Boolean)
   : [];
-const nativePage = Boolean(batchPage || batchArticle || nativeTaxonomy || ['/faq/', '/blog/', '/thank-you/'].includes(page.path));
+const nativePage = Boolean(batchPage || batchArticle || nativeTaxonomy || isHeldRoute || isDemolition || ['/faq/', '/blog/', '/thank-you/'].includes(page.path));
 const parityContent = wordpressParityContent[page.path as keyof typeof wordpressParityContent];
 const sourceTitleIsSafe = !/\bRM\s*\d|guarantee|warranty|24\s*\/\s*7|\d+\+?\s+(?:customers|projects|years)/i.test(page.title);
 const layoutTitle = sourceTitleIsSafe
@@ -128,13 +158,46 @@ const missingImages = [
 for (const filename of missingImages) {
   repairedContent = repairedContent.replaceAll(`/wp-content/uploads/2026/04/${filename}`, '');
 }
+if (page.path === '/our-projects/' || page.path === '/our-projects-2/') {
+  repairedContent = repairedContent.replace(/href="\/portfolio\/[^"]+"/g, 'href="/our-projects/"');
+}
+if (page.path === '/our-team/') {
+  repairedContent = repairedContent.replaceAll('href="/team-detail/"', 'href="/our-team/"');
+}
 const content = repairedContent
   .replaceAll('href="/', `href="${base}/`)
   .replaceAll('src="/', `src="${base}/`);
 const coreRoutes = ['/', '/services/', '/about-us/', '/contact-us/', '/faq/', '/blog/'];
 const serviceExact = serviceExactConfig[page.path];
 const showForm = page.path === '/contact-us/' && !coreRoutes.includes(page.path);
-const pageSchema = batchArticle
+const showDemolitionLink = [
+  '/service/building-renovation/',
+  '/house-renovation-in-kuala-lumpur/',
+  '/house-renovation-in-selangor/',
+  '/home-renovation-contractor-in-subang-jaya/',
+  '/office-renovation-in-kuala-lumpur/',
+].includes(page.path);
+const pageSchema = isDemolition
+  ? [{
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: 'Demolition Contractor KL & Selangor',
+      description: demolitionPage.description,
+      url: demolitionPage.canonical,
+      serviceType: ['Interior demolition', 'Bathroom demolition', 'Office strip-out', 'Retail shop strip-out', 'Site preparation'],
+      areaServed: ['Kuala Lumpur', 'Selangor'],
+      provider: { '@type': 'LocalBusiness', name: 'RK Reno Solution' },
+    }, {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
+        ['Can you quote demolition work from photos?', 'Photos help with an initial enquiry, but a site inspection may be required before quotation.'],
+        ['Do you remove structural walls?', 'Structural or load-bearing changes require separate professional assessment and any necessary approvals.'],
+        ['Can demolition be combined with renovation work?', 'The removal and preparation scope can be discussed as part of a wider renovation enquiry.'],
+        ['Which areas do you serve?', 'Enquiries are accepted for Kuala Lumpur and Selangor, subject to location and scope.'],
+      ].map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })),
+    }]
+  : batchArticle
   ? [{
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -238,12 +301,16 @@ const pageSchema = batchArticle
   schema={pageSchema}
   pageType={page.type}
   externalStyles={nativePage ? [] : page.externalStyles}
-  robots={nativeTaxonomy ? (isIndexable ? 'noindex, follow' : 'noindex, nofollow')
+  robots={nativeTaxonomy || isHeldRoute ? (isIndexable ? 'noindex, follow' : 'noindex, nofollow')
     : page.path === '/thank-you/' ? 'noindex, nofollow' : undefined}
   exactHome={page.path === '/'}
-  wordpressCore={coreRoutes.includes(page.path) || Boolean(serviceExact) || Boolean(batchArticle) || Boolean(nativeTaxonomy) || page.path === '/thank-you/'}
+  wordpressCore={coreRoutes.includes(page.path) || Boolean(serviceExact) || Boolean(batchArticle) || Boolean(nativeTaxonomy) || isHeldRoute || isDemolition || page.path === '/thank-you/'}
 >
-  {batchArticle ? (
+  {isDemolition ? (
+    <DemolitionPage />
+  ) : isHeldRoute ? (
+    <WordPressSourcePage route={page.path} title={page.title} content={content} />
+  ) : batchArticle ? (
     <ArticlePage article={batchArticle} wordpressContent={exactArticle} />
   ) : page.path === '/' ? (
     <ExactHomePage />
@@ -297,6 +364,13 @@ const pageSchema = batchArticle
     set:html={content}
   />
     </>
+  )}
+  {showDemolitionLink && (
+    <aside class="demolition-related">
+      <div class="exact-wrap">
+        <p><strong>Planning strip-out or removal before renovation?</strong> Review our <a href={`${base}/demolition-contractor-kl-selangor/`}>demolition enquiry service for KL and Selangor</a>.</p>
+      </div>
+    </aside>
   )}
   {showForm && (
     <section class="section-space form-section">

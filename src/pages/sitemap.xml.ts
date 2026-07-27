@@ -23,14 +23,24 @@ const escapeXml = (value: string) =>
   })[character] || character);
 
 export const GET: APIRoute = () => {
-  const excluded = new Set([...routePolicy.excluded, '/thank-you/', ...Object.keys(taxonomyArchives)]);
-  const urls = (pages as PageRecord[])
+  const heldRoutes = ['/company-history/', '/our-projects-2/', '/our-projects/', '/our-team/', '/testimonials/'];
+  const excluded = new Set([...routePolicy.excluded, ...heldRoutes, '/thank-you/', ...Object.keys(taxonomyArchives)]);
+  const urls = [
+    ...(pages as PageRecord[])
     .filter((page) =>
       page.status === 200
       && page.type !== 'template'
       && page.title
       && !excluded.has(page.path)
-    )
+    ),
+    {
+      canonical: 'https://rkrenosolution.com/demolition-contractor-kl-selangor/',
+      path: '/demolition-contractor-kl-selangor/',
+      status: 200,
+      title: 'Demolition Contractor KL & Selangor',
+      type: 'service',
+    },
+  ]
     .map((page) => `  <url><loc>${escapeXml(page.canonical)}</loc></url>`)
     .join('\n');
   const body = [

@@ -1,15 +1,14 @@
 {
   "preferredOrigin": "https://rkrenosolution.com",
   "sourceInventory": "reports/public/all-production-url-coverage.csv",
-  "sourceCommit": "a5f5ed9e85140d2bfcc07587e507bb0e460df83f",
+  "sourceCommit": "MASTER_RECOVERY_PENDING_COMMIT",
   "totals": {
-    "RETAIN_200": 42,
+    "RETAIN_200": 48,
     "EXISTING_404": 9,
     "REDIRECT_301": 23,
-    "GONE_410": 66,
-    "OWNER_DECISION_UNPUBLISHED": 5
+    "GONE_410": 66
   },
-  "mapHash": "da5ff3b90d0928bc5c051f205df8a5acce10bece2e04e7c70512c9bade9ff7b8",
+  "mapHash": "a0f4413eb37cd3f1fb5659c11d11e787c25196727d5eddbf71edf8ac8b2d03fc",
   "entries": [
     {
       "sourcePath": "/",
@@ -179,10 +178,10 @@
     },
     {
       "sourcePath": "/company-history/",
-      "action": "OWNER_DECISION_UNPUBLISHED",
-      "expectedStatus": 404,
-      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
-      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Current visible WordPress page restored for owner review; production robots remain noindex, follow.",
+      "evidenceCategory": "WORDPRESS_SOURCE_OWNER_REVIEW"
     },
     {
       "sourcePath": "/contact-us/",
@@ -190,6 +189,13 @@
       "expectedStatus": 200,
       "reason": "Route has clear RK Reno business or search intent and should retain its approved content.",
       "evidenceCategory": "APPROVED_STAGE_2"
+    },
+    {
+      "sourcePath": "/demolition-contractor-kl-selangor/",
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Owner-requested demolition enquiry service page.",
+      "evidenceCategory": "OWNER_REQUESTED_NEW_PAGE"
     },
     {
       "sourcePath": "/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/",
@@ -431,24 +437,24 @@
     },
     {
       "sourcePath": "/our-projects-2/",
-      "action": "OWNER_DECISION_UNPUBLISHED",
-      "expectedStatus": 404,
-      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
-      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Current visible WordPress page restored for owner review; production robots remain noindex, follow.",
+      "evidenceCategory": "WORDPRESS_SOURCE_OWNER_REVIEW"
     },
     {
       "sourcePath": "/our-projects/",
-      "action": "OWNER_DECISION_UNPUBLISHED",
-      "expectedStatus": 404,
-      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
-      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Current visible WordPress page restored for owner review; production robots remain noindex, follow.",
+      "evidenceCategory": "WORDPRESS_SOURCE_OWNER_REVIEW"
     },
     {
       "sourcePath": "/our-team/",
-      "action": "OWNER_DECISION_UNPUBLISHED",
-      "expectedStatus": 404,
-      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
-      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Current visible WordPress page restored for owner review; production robots remain noindex, follow.",
+      "evidenceCategory": "WORDPRESS_SOURCE_OWNER_REVIEW"
     },
     {
       "sourcePath": "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
@@ -995,10 +1001,10 @@
     },
     {
       "sourcePath": "/testimonials/",
-      "action": "OWNER_DECISION_UNPUBLISHED",
-      "expectedStatus": 404,
-      "reason": "Identity, history, testimonials, or project claims require owner-supplied authentic content.",
-      "evidenceCategory": "OWNER_EVIDENCE_REQUIRED"
+      "action": "RETAIN_200",
+      "expectedStatus": 200,
+      "reason": "Current visible WordPress page restored for owner review; production robots remain noindex, follow.",
+      "evidenceCategory": "WORDPRESS_SOURCE_OWNER_REVIEW"
     },
     {
       "sourcePath": "/thank-you/",

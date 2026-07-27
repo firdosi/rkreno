@@ -1,0 +1,297 @@
+{
+  "target": "production",
+  "generatedAt": "2026-07-27T13:22:40.869Z",
+  "routeCount": 48,
+  "sitemapCount": 33,
+  "errors": [],
+  "routes": [
+    {
+      "route": "/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/",
+      "errors": []
+    },
+    {
+      "route": "/services/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/services/",
+      "errors": []
+    },
+    {
+      "route": "/about-us/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/about-us/",
+      "errors": []
+    },
+    {
+      "route": "/contact-us/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/contact-us/",
+      "errors": []
+    },
+    {
+      "route": "/servis-aircond-murah-kl/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/servis-aircond-murah-kl/",
+      "errors": []
+    },
+    {
+      "route": "/aircond-installation-kl/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/aircond-installation-kl/",
+      "errors": []
+    },
+    {
+      "route": "/upah-pasang-aircond-selangor/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/upah-pasang-aircond-selangor/",
+      "errors": []
+    },
+    {
+      "route": "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+      "errors": []
+    },
+    {
+      "route": "/service/building-renovation/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/service/building-renovation/",
+      "errors": []
+    },
+    {
+      "route": "/electrical-services-selangor/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/electrical-services-selangor/",
+      "errors": []
+    },
+    {
+      "route": "/house-renovation-in-kuala-lumpur/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/house-renovation-in-kuala-lumpur/",
+      "errors": []
+    },
+    {
+      "route": "/house-renovation-in-selangor/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/house-renovation-in-selangor/",
+      "errors": []
+    },
+    {
+      "route": "/home-renovation-contractor-in-subang-jaya/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/home-renovation-contractor-in-subang-jaya/",
+      "errors": []
+    },
+    {
+      "route": "/office-renovation-in-kuala-lumpur/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/office-renovation-in-kuala-lumpur/",
+      "errors": []
+    },
+    {
+      "route": "/waterproofing-contractor-kuala-lumpur/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/waterproofing-contractor-kuala-lumpur/",
+      "errors": []
+    },
+    {
+      "route": "/plaster-ceiling-contractor-kl/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/plaster-ceiling-contractor-kl/",
+      "errors": []
+    },
+    {
+      "route": "/faq/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/faq/",
+      "errors": []
+    },
+    {
+      "route": "/blog/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/blog/",
+      "errors": []
+    },
+    {
+      "route": "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/",
+      "errors": []
+    },
+    {
+      "route": "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+      "errors": []
+    },
+    {
+      "route": "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+      "errors": []
+    },
+    {
+      "route": "/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/",
+      "errors": []
+    },
+    {
+      "route": "/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/",
+      "errors": []
+    },
+    {
+      "route": "/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/",
+      "errors": []
+    },
+    {
+      "route": "/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/",
+      "errors": []
+    },
+    {
+      "route": "/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/",
+      "errors": []
+    },
+    {
+      "route": "/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/",
+      "errors": []
+    },
+    {
+      "route": "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+      "errors": []
+    },
+    {
+      "route": "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+      "errors": []
+    },
+    {
+      "route": "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/",
+      "errors": []
+    },
+    {
+      "route": "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+      "errors": []
+    },
+    {
+      "route": "/servis-cuci-rumah-kl/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/servis-cuci-rumah-kl/",
+      "errors": []
+    },
+    {
+      "route": "/thank-you/",
+      "robots": "noindex, nofollow",
+      "canonical": "https://rkrenosolution.com/thank-you/",
+      "errors": []
+    },
+    {
+      "route": "/category/commercial/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/category/commercial/",
+      "errors": []
+    },
+    {
+      "route": "/category/hvac-guides/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/category/hvac-guides/",
+      "errors": []
+    },
+    {
+      "route": "/category/maintenance/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/category/maintenance/",
+      "errors": []
+    },
+    {
+      "route": "/category/renovation/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/category/renovation/",
+      "errors": []
+    },
+    {
+      "route": "/category/servis-pembersihan/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/category/servis-pembersihan/",
+      "errors": []
+    },
+    {
+      "route": "/category/technical-guides/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/category/technical-guides/",
+      "errors": []
+    },
+    {
+      "route": "/tag/interior-finishing/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/tag/interior-finishing/",
+      "errors": []
+    },
+    {
+      "route": "/tag/office-fit-out/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/tag/office-fit-out/",
+      "errors": []
+    },
+    {
+      "route": "/tag/waterproofing/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/tag/waterproofing/",
+      "errors": []
+    },
+    {
+      "route": "/company-history/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/company-history/",
+      "errors": []
+    },
+    {
+      "route": "/our-projects-2/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/our-projects-2/",
+      "errors": []
+    },
+    {
+      "route": "/our-projects/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/our-projects/",
+      "errors": []
+    },
+    {
+      "route": "/our-team/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/our-team/",
+      "errors": []
+    },
+    {
+      "route": "/testimonials/",
+      "robots": "noindex, follow",
+      "canonical": "https://rkrenosolution.com/testimonials/",
+      "errors": []
+    },
+    {
+      "route": "/demolition-contractor-kl-selangor/",
+      "robots": "index, follow",
+      "canonical": "https://rkrenosolution.com/demolition-contractor-kl-selangor/",
+      "errors": []
+    }
+  ]
+}

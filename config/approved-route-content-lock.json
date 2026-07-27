@@ -1,7 +1,7 @@
 {
-  "sourceCommit": "a5f5ed9e85140d2bfcc07587e507bb0e460df83f",
+  "sourceCommit": "MASTER_RECOVERY_PENDING_COMMIT",
   "algorithm": "sha256",
-  "routeCount": 42,
+  "routeCount": 48,
   "routes": {
     "/": {
       "h1": "Reliable Renovation Contractor in KL & Selangor",
@@ -30,7 +30,7 @@
         "H2:What Customers Say About RK Reno Solution",
         "H2:Need Renovation or Repair Work?"
       ],
-      "mainTextHash": "fc94d260a693ec5576505e40ae9e0667673bf5f37c06110573d5076add95f02d",
+      "mainTextHash": "e15cc902ee3e1a479c350f00624bd7c7878b8e0e3d91ec1f98da62edf8572298",
       "tableCount": 0,
       "faqCount": 0,
       "internalLinkCount": 28,
@@ -105,7 +105,7 @@
         "H2:Send Your Enquiry",
         "H2:Share the Property and Work Details"
       ],
-      "mainTextHash": "690f5317564d933b7bdf67089b5f14122bd21399f6a943743e18ae98659e5dff",
+      "mainTextHash": "f4b32f9f1d30629ba6d8ca41269b24dbadd05c166abd286fa5cb78d6e768011a",
       "tableCount": 0,
       "faqCount": 0,
       "internalLinkCount": 9,
@@ -274,10 +274,10 @@
         "H2:Building Renovation Questions",
         "H2:Ready to Work Together?"
       ],
-      "mainTextHash": "a9e8b83d4542e18ac370af05cfc1b15b3fd6d5201effdf54fb613a76783a3508",
+      "mainTextHash": "1ad792657dbd82f8f752bdee3a987978837943929ac8557ff239f11d351aec4f",
       "tableCount": 0,
       "faqCount": 3,
-      "internalLinkCount": 10,
+      "internalLinkCount": 11,
       "imageCount": 3,
       "metadataHash": "aceb70cb0a52f9d3b8748f5be7dd7b4379f7b5b1f439a8bda0a63647be97da77"
     },
@@ -348,10 +348,10 @@
         "H2:Get a House Renovation Quote in Kuala Lumpur",
         "H2:Ready to Work Together?"
       ],
-      "mainTextHash": "39f8e1d81f1590783aac920bde16c5475aaf67c29982a4710bb9c1bd7dbc7573",
+      "mainTextHash": "ff1b310cc02fd5d90588990641b9326c26728570a6ade84ce57aab6e0ec1c21a",
       "tableCount": 0,
       "faqCount": 5,
-      "internalLinkCount": 7,
+      "internalLinkCount": 8,
       "imageCount": 2,
       "metadataHash": "922fac99b5b404b6a1b1f09e332863396473f751ea3a30bfb80e0a6677f05485"
     },
@@ -392,10 +392,10 @@
         "H2:Get a House Renovation Quote in Selangor",
         "H2:Ready to Work Together?"
       ],
-      "mainTextHash": "69e7ba6fa8c079ab9081bec9786d83a4dfe9b45ebe4987c9489a6a847df7e12d",
+      "mainTextHash": "826f680e576305db240b7d6f841f149246fce14524e7800b2f624ced779f38eb",
       "tableCount": 0,
       "faqCount": 4,
-      "internalLinkCount": 6,
+      "internalLinkCount": 7,
       "imageCount": 2,
       "metadataHash": "007536d8e4a9b0f3c41b1cb470e419708abc82b21d1e85511f8ae380b918f6f0"
     },
@@ -415,10 +415,10 @@
         "H2:Related Service Guides",
         "H2:Ready to Work Together?"
       ],
-      "mainTextHash": "cc40987810303a84c6a4ecc04be1905bceb44555b98f043ae170d0a5e0f68b92",
+      "mainTextHash": "df90908dbc9e7fa7ec4d4891ddb91f4566486372bd2040c925b9f05f872ecae5",
       "tableCount": 1,
       "faqCount": 3,
-      "internalLinkCount": 10,
+      "internalLinkCount": 11,
       "imageCount": 2,
       "metadataHash": "4fe978a852888201a01a9dfd9a3e64efdb0614ee9f1a378809f95cf09bfc0f8c"
     },
@@ -465,10 +465,10 @@
         "H2:Get an Office Renovation Quote in Kuala Lumpur",
         "H2:Ready to Work Together?"
       ],
-      "mainTextHash": "2f4318440757bf2909e41cabe189da4b4c4622691c8b9692f9447b2de32a69ad",
+      "mainTextHash": "e8d442bb2e0cc18f23d47aa466932ad51049ba97eb9e9b7d8f626ccbaf732eaa",
       "tableCount": 0,
       "faqCount": 6,
-      "internalLinkCount": 7,
+      "internalLinkCount": 8,
       "imageCount": 2,
       "metadataHash": "97ae8a5f0ad4e2ec6e07ee155123cafd3afd92386bb0f5b3e56e4a8196e33447"
     },
@@ -1179,6 +1179,141 @@
       "internalLinkCount": 18,
       "imageCount": 0,
       "metadataHash": "8200f7d7c8d0941ebdd209a66618714abd08de380d0cc209aee91ef7ae38d542"
+    },
+    "/company-history/": {
+      "h1": "Company History",
+      "headingSequence": [
+        "H1:Company History",
+        "H3:The Beginning of a Dream",
+        "H3:Expanding Horizons",
+        "H3:Innovation and Excellence",
+        "H3:Resilience Amidst Challenges",
+        "H3:Building Communities",
+        "H3:Industry Recognition",
+        "H3:Adapting to a New Era",
+        "H3:A Future Built on Vision"
+      ],
+      "mainTextHash": "e95467bb1ec4528fdcc1a5d0f9a8ab40a3c08e110f87f3b7ea1da8d2474acd49",
+      "tableCount": 0,
+      "faqCount": 0,
+      "internalLinkCount": 1,
+      "imageCount": 8,
+      "metadataHash": "a4d668c98f84e923a26512fae3e85d643e864cbb19d4ccbdfd187f610673954c"
+    },
+    "/our-projects-2/": {
+      "h1": "Our Projects 2",
+      "headingSequence": [
+        "H1:Our Projects 2",
+        "H2:EXPLORE OUR BEST RECENTLY COMPLETED PROJECTS",
+        "H3:Skyline Hub",
+        "H3:Oakwood Residence",
+        "H3:Axis Industrial Park",
+        "H3:The Ivey School of Business",
+        "H3:Innovative Construction Project Showcase",
+        "H2:TRusted by 1000+ customers worldwide"
+      ],
+      "mainTextHash": "6041c9fa5e2380006c23dca97d12a594e177e90e4a943eda4d6c69f2a6220ab9",
+      "tableCount": 0,
+      "faqCount": 0,
+      "internalLinkCount": 28,
+      "imageCount": 11,
+      "metadataHash": "55c366a8e94533d74ca909cf177d2442d63fc6d1bcf1d2c6f95753d785a3363f"
+    },
+    "/our-projects/": {
+      "h1": "Our Projects 1",
+      "headingSequence": [
+        "H1:Our Projects 1",
+        "H2:EXPLORE OUR BEST RECENTLY COMPLETED PROJECTS",
+        "H3:Innovating the Next Generation of Architecture",
+        "H3:Building a Sustainable Tomorrow",
+        "H3:Designing the Future of Urban Spaces",
+        "H3:Pioneering Solutions for Architectural Excellence",
+        "H3:Cutting-Edge Strategies for Building Success",
+        "H3:Revolutionary Techniques in Modern Construction",
+        "H3:Mastering Construction with Precision",
+        "H3:Innovative Approaches to Construction Excellence",
+        "H3:Shaping Tomorrow’s Built Environment",
+        "H2:TRusted by 1000+ customers worldwide"
+      ],
+      "mainTextHash": "da0542f8d6980af336df22cc827b1918c353c35280a24c27b3cb17f3d8b48767",
+      "tableCount": 0,
+      "faqCount": 0,
+      "internalLinkCount": 45,
+      "imageCount": 15,
+      "metadataHash": "3b01ef9dcbdf2a5208ace8ea02017fe368f47aefd2f9e0077ac6c93c79352281"
+    },
+    "/our-team/": {
+      "h1": "Our Team",
+      "headingSequence": [
+        "H1:Our Team",
+        "H2:Meet the Visionaries Behind Our Success",
+        "H4:Vincent P.",
+        "H4:Michelangelo V.",
+        "H4:Sarah T.",
+        "H4:Henry S.",
+        "H4:JOHn s.",
+        "H4:peter c.",
+        "H4:mark p.",
+        "H4:joseph S.",
+        "H2:TRusted by 1000+ customers worldwide"
+      ],
+      "mainTextHash": "c62eb3c6177e415f31f65fb5e8c26381eda27b98ff1fc135d2eabb8e845aa1f4",
+      "tableCount": 0,
+      "faqCount": 0,
+      "internalLinkCount": 57,
+      "imageCount": 14,
+      "metadataHash": "41f6d85e93491e29a8c980ca50c38ee08d1cc134d0a4e3b14968109d80e7a6a2"
+    },
+    "/testimonials/": {
+      "h1": "Testimonials",
+      "headingSequence": [
+        "H1:Testimonials",
+        "H2:our clients say about our services",
+        "H3:Vincent Pham",
+        "H3:Henry S.",
+        "H3:JOHn s.",
+        "H3:peter c.",
+        "H3:Vincent Pham",
+        "H3:mark p.",
+        "H3:joseph S.",
+        "H3:Michelangelo V.",
+        "H2:If You Are Satisfied With The Service, Rate Us!"
+      ],
+      "mainTextHash": "b6b7228fdb1ff9241d430ede0f08fcba80625efd5b330abeb5d2a5ed8fb8f30f",
+      "tableCount": 0,
+      "faqCount": 0,
+      "internalLinkCount": 6,
+      "imageCount": 14,
+      "metadataHash": "1f8b5f46db03251cff86dec170cf5e32fbf963646ac37464623c5f342d9ae952"
+    },
+    "/demolition-contractor-kl-selangor/": {
+      "h1": "Demolition Contractor KL & Selangor",
+      "headingSequence": [
+        "H1:Demolition Contractor KL & Selangor",
+        "H2:Interior Demolition and Strip-Out Work",
+        "H2:Demolition and Site-Preparation Enquiries",
+        "H3:Interior demolition",
+        "H3:Bathroom demolition",
+        "H3:Partial wall removal",
+        "H3:Fixture and fitting removal",
+        "H3:Office strip-out",
+        "H3:Retail shop strip-out",
+        "H3:Site preparation",
+        "H3:Debris organisation and removal",
+        "H2:From Enquiry to Renovation Preparation",
+        "H3:Share the site details",
+        "H3:Site and scope review",
+        "H3:Plan the work",
+        "H3:Strip-out and preparation",
+        "H2:Kuala Lumpur and Selangor",
+        "H2:Demolition Enquiry Questions"
+      ],
+      "mainTextHash": "ed7de1dc7648a6fe05e9a0da80cbc5cd320c4524b8fe62b9ad3d54fe3cea930f",
+      "tableCount": 0,
+      "faqCount": 5,
+      "internalLinkCount": 3,
+      "imageCount": 2,
+      "metadataHash": "8e642bd4c15016a4690ebe3202f05bafaf5d7b3e369e8b868e17dab4913d6edd"
     }
   }
 }

@@ -22,7 +22,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     <div class="exact-about-images">
       <img class="exact-about-main" src={`${base}/assets/media/RK-Reno-Solution-contractor-reviewing-renovation-projec-1fc54dc9.jpg`} alt="RK Reno Solution contractor reviewing a renovation project" width="896" height="1200" />
       <img class="exact-about-small" src={`${base}/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg`} alt="Completed interior installation" width="896" height="1200" />
-      <div class="exact-experience"><strong>15+</strong><span>YEAR OF EXPERIENCE<br />IN CONSTRUCTION</span></div>
+      <div class="exact-experience"><strong data-counter="15" data-suffix="+">15+</strong><span>YEAR OF EXPERIENCE<br />IN CONSTRUCTION</span></div>
     </div>
     <div class="exact-about-copy">
       <p class="exact-eyebrow">ABOUT RK RENO SOLUTION</p>
@@ -74,9 +74,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
       <h2>Reliable Service for Homes, Offices &amp; Commercial Spaces</h2>
       <p>We understand that renovation work needs trust, planning, and proper finishing. RK Reno Solution helps you complete property improvement work with clear guidance, site checking, and practical service support from start to finish.</p>
       <div class="exact-stats">
-        <div><strong>40+</strong><span>Projects Completed</span></div>
-        <div><strong>95%</strong><span>Customer Satisfaction</span></div>
-        <div><strong>16</strong><span>Service Areas Covered</span></div>
+        <div><strong data-counter="40" data-suffix="+">40+</strong><span>Projects Completed</span></div>
+        <div><strong data-counter="95" data-suffix="%">95%</strong><span>Customer Satisfaction</span></div>
+        <div><strong data-counter="16">16</strong><span>Service Areas Covered</span></div>
       </div>
       <div class="exact-actions">
         <a class="exact-button exact-button-orange" href={`${base}/about-us/`}>More Why Choose Us <span>→</span></a>
@@ -93,3 +93,28 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
     ))}
   </div>
 </section>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>('[data-counter]');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const animateCounter = (counter: HTMLElement) => {
+    const target = Number(counter.dataset.counter || 0);
+    const suffix = counter.dataset.suffix || '';
+    if (reducedMotion) return;
+    const started = performance.now();
+    const tick = (now: number) => {
+      const progress = Math.min((now - started) / 1250, 1);
+      counter.textContent = `${Math.round(target * (1 - (1 - progress) ** 3))}${suffix}`;
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const counterObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      animateCounter(entry.target as HTMLElement);
+      counterObserver.unobserve(entry.target);
+    }
+  }, { threshold: 0.6 });
+  counters.forEach((counter) => counterObserver.observe(counter));
+</script>

@@ -11,7 +11,12 @@ export function bootEnquiryForms(selector = '[data-enquiry-form]') {
     let submitting = false;
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      if (!configured || !endpoint || !button || !status || submitting || !form.reportValidity()) return;
+      if (!button || !status || submitting || !form.reportValidity()) return;
+      if (!configured || !endpoint) {
+        status.dataset.state = 'preview';
+        status.textContent = 'Preview only — your message was not sent. Please call or use WhatsApp to enquire.';
+        return;
+      }
       document.dispatchEvent(new CustomEvent('rkreno:analytics', {
         detail: { name: 'enquiry_submit_attempt', parameters: { page_path: location.pathname } },
       }));

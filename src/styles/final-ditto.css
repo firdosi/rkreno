@@ -1,0 +1,91 @@
+.ditto-source-page,.demolition-page{background:#fff;color:#202020}
+.ditto-source-intro{padding:95px 0 45px;text-align:center}
+.ditto-source-intro .exact-wrap{max-width:860px}
+.ditto-source-intro h2,.demolition-page h2{font-size:clamp(34px,4vw,54px);line-height:1.08;margin:12px 0 20px}
+.ditto-source-intro p:last-child{color:#666;line-height:1.8}
+.ditto-source-content{padding:35px 0 105px}
+.ditto-source-document{padding:75px 0 95px;background:#fff}
+.wordpress-source-content{font:400 16px/1.75 Roboto,Arial,sans-serif;color:#52606b}
+.wordpress-source-content h2,.wordpress-source-content h3,.wordpress-source-content h4{font-family:"Maven Pro",Arial,sans-serif;color:#142b3b;line-height:1.15;text-transform:uppercase}
+.wordpress-source-content h2{font-size:clamp(34px,4.5vw,64px);margin:15px 0 25px}
+.wordpress-source-content h3{font-size:24px;margin:16px 0 10px}
+.wordpress-source-content p{max-width:850px;margin:0 0 20px}
+.wordpress-source-content img{display:block;max-width:100%;height:auto;object-fit:cover}
+.wordpress-source-content a{color:inherit;text-decoration:none}
+.wordpress-source-content>div{margin-bottom:55px}
+.wordpress-source-content svg{max-width:52px;height:auto}
+.wordpress-source-content [dir="ltr"]{overflow:hidden}
+.wordpress-source-content [dir="ltr"]>div{display:flex;gap:24px;transition:transform .45s ease}
+.wordpress-source-content [dir="ltr"]>div>div{min-width:min(420px,88vw);background:#f5f6f7;padding:28px}
+.ditto-source-controls{display:flex;justify-content:flex-end;gap:10px;margin:15px 0 35px}
+.ditto-source-controls button{width:46px;height:42px;border:1px solid #d9dde1;background:#fff;color:#142b3b;cursor:pointer}
+.ditto-source-controls button:hover,.ditto-source-controls button:focus-visible{background:#f47b20;color:#fff}
+.ditto-source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.ditto-source-card{border:1px solid #e2e2e2;background:#fff;overflow:hidden;transition:transform .35s ease,box-shadow .35s ease}
+.ditto-source-card:hover{transform:translateY(-8px);box-shadow:0 20px 48px rgba(8,30,61,.13)}
+.ditto-source-card figure{height:270px;margin:0;overflow:hidden;background:#edf1f5}
+.ditto-source-card img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+.ditto-source-card:hover img{transform:scale(1.045)}
+.ditto-source-card>div{padding:25px}
+.ditto-source-card h3{font-size:21px;line-height:1.3;margin:7px 0 13px}
+.ditto-source-card p{color:#666;line-height:1.7;margin:0}
+.ditto-year{display:inline-flex;background:#f47b20;color:#fff;font-weight:800;padding:7px 10px}
+.ditto-timeline{grid-template-columns:1fr 1fr}
+.ditto-timeline .ditto-source-card{display:grid;grid-template-columns:200px 1fr}
+.ditto-timeline .ditto-source-card figure{height:100%;min-height:260px}
+.ditto-source-cta{background:#0a2345;color:#fff;padding:62px 0}
+.ditto-source-cta>.exact-wrap{display:flex;justify-content:space-between;align-items:center;gap:30px}
+.ditto-source-cta h2{color:#fff;margin:5px 0 0;font-size:38px}
+.ditto-reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease var(--ditto-delay,0ms),transform .55s ease var(--ditto-delay,0ms)}
+.ditto-reveal.is-visible{opacity:1;transform:none}
+.demolition-hero{padding:80px 0;background:#f5f6f8}
+.demolition-hero>.exact-wrap,.demolition-area>.exact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}
+.demolition-hero img,.demolition-area img{width:100%;height:500px;object-fit:cover}
+.demolition-hero p{color:#5e6671;line-height:1.8;font-size:17px}
+.demolition-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:38px}
+.demolition-grid article{padding:28px;border:1px solid #e1e4e8;transition:transform .3s ease,background .3s ease}
+.demolition-grid article:hover{transform:translateY(-6px);background:#fff5ec}
+.demolition-grid span{color:#f47b20;font-weight:800}
+.demolition-grid h3{font-size:20px;margin:18px 0 10px}
+.demolition-grid p,.demolition-process p,.demolition-area p,.demolition-faq p{color:#666;line-height:1.7}
+.demolition-process{background:#071b37;color:#fff}
+.demolition-process h2{color:#fff}
+.demolition-process>.exact-wrap>div{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#334760;margin-top:35px}
+.demolition-process article{background:#071b37;padding:34px}
+.demolition-process strong{font-size:46px;color:#f47b20}
+.demolition-process h3{color:#fff}
+.demolition-process p{color:#c2cad6}
+.demolition-faq>.exact-wrap{max-width:960px}
+.demolition-faq details{border-bottom:1px solid #ddd}
+.demolition-faq summary{display:flex;justify-content:space-between;padding:22px 0;font-weight:800;cursor:pointer}
+.demolition-faq summary span{color:#f47b20}
+.demolition-faq details p{padding:0 30px 20px 0}
+.demolition-related{padding:24px 0;background:#f4f6f8;border-top:1px solid #e4e7ea}
+.demolition-related p{margin:0;color:#485865}
+.demolition-related a{color:#d85e06;font-weight:800}
+.exact-testimonial-cards{overflow-x:hidden;scroll-snap-type:x mandatory;scroll-behavior:smooth}
+.exact-testimonial-cards article{scroll-snap-align:start;transition:transform .3s ease,box-shadow .3s ease}
+.exact-testimonial-cards article.featured{transform:translateY(-4px);box-shadow:0 14px 35px rgba(16,35,52,.13)}
+.exact-carousel-controls button{width:45px;height:40px;border:1px solid #ddd;background:#fff;color:#172c3c;display:grid;place-items:center;cursor:pointer;transition:background .2s ease,color .2s ease}
+.exact-carousel-controls button:hover,.exact-carousel-controls button:focus-visible{background:#f47b20;color:#fff}
+@media(max-width:900px){
+  .ditto-source-grid,.demolition-grid{grid-template-columns:1fr 1fr}
+  .ditto-timeline .ditto-source-card{grid-template-columns:1fr}
+  .demolition-hero>.exact-wrap,.demolition-area>.exact-wrap{grid-template-columns:1fr}
+  .demolition-process>.exact-wrap>div{grid-template-columns:1fr 1fr}
+  .demolition-hero img,.demolition-area img{height:390px}
+}
+@media(max-width:600px){
+  .ditto-source-intro{padding:65px 0 25px}
+  .ditto-source-grid,.ditto-timeline,.demolition-grid,.demolition-process>.exact-wrap>div{grid-template-columns:1fr}
+  .ditto-source-card figure{height:240px}
+  .ditto-source-cta>.exact-wrap{align-items:flex-start;flex-direction:column}
+  .ditto-source-cta h2{font-size:30px}
+  .demolition-hero{padding:55px 0}
+  .demolition-hero>.exact-wrap,.demolition-area>.exact-wrap{gap:30px}
+  .demolition-hero img,.demolition-area img{height:280px}
+  .demolition-page h2{font-size:34px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ditto-reveal,.ditto-source-card,.ditto-source-card img,.demolition-grid article{transition:none!important;transform:none!important;opacity:1!important}
+}

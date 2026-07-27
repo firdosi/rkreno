@@ -23,7 +23,7 @@ concurrency:
 
 jobs:
   deploy:
-    if: ${{ vars.RKRENO_VPS_DEPLOY_ENABLED == 'true' }}
+    if: ${{ github.event_name == 'workflow_dispatch' && vars.RKRENO_VPS_DEPLOY_ENABLED == 'true' }}
     runs-on: ubuntu-latest
     environment: rkreno-vps
     env:

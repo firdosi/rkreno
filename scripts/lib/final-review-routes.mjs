@@ -41,6 +41,12 @@ export const finalReviewRoutes = [
   ['finishing-archive', '/tag/interior-finishing/', 'archive', 'Taxonomy archive', 'Native taxonomy archive template'],
   ['office-archive', '/tag/office-fit-out/', 'archive', 'Taxonomy archive', 'Native taxonomy archive template'],
   ['waterproofing-archive', '/tag/waterproofing/', 'archive', 'Taxonomy archive', 'Native taxonomy archive template'],
+  ['company-history', '/company-history/', 'held', 'Restored WordPress page', 'Source-derived WordPress page'],
+  ['projects-secondary', '/our-projects-2/', 'held', 'Restored WordPress page', 'Source-derived WordPress page'],
+  ['projects', '/our-projects/', 'held', 'Restored WordPress page', 'Source-derived WordPress page'],
+  ['team', '/our-team/', 'held', 'Restored WordPress page', 'Source-derived WordPress page'],
+  ['testimonials', '/testimonials/', 'held', 'Restored WordPress page', 'Source-derived WordPress page'],
+  ['demolition', '/demolition-contractor-kl-selangor/', 'service', 'New service page', 'Native DemolitionPage Astro component'],
 ].map(([id, route, group, pageType, template]) => ({ id, route, group, pageType, template }));
 
 export const taxonomyRoutes = new Set(

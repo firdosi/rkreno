@@ -1,6 +1,6 @@
 ---
 import formPolicy from '../../config/form-policy.json';
-import { isFormEnabled, publicConfig } from '../config/runtime';
+import { isFormEnabled, isGitHubStaging, publicConfig } from '../config/runtime';
 
 const endpoint = isFormEnabled && publicConfig.formEndpoint === '/api/enquiry'
   ? publicConfig.formEndpoint
@@ -9,7 +9,7 @@ const siteKey = isFormEnabled && /^[A-Za-z0-9_-]+$/.test(publicConfig.turnstileS
   ? publicConfig.turnstileSiteKey
   : '';
 const configured = Boolean(endpoint && siteKey);
-const disabled = !configured;
+const disabled = !configured && !isGitHubStaging;
 ---
 
 <section class="contact-panel" aria-labelledby="contact-heading">
@@ -65,12 +65,12 @@ const disabled = !configured;
       <span class="field-error" id="error-consent" data-field-error="consent"></span>
     </label>
     <button class="button full-field" type="submit" disabled={disabled}>
-      {configured ? 'Send secure enquiry' : 'Online form disabled on preview'}
+      {configured ? 'Send secure enquiry' : 'Preview form'}
     </button>
     <p class="form-status full-field" data-form-status role="status" aria-live="polite">
       {configured
         ? 'Protected by validation, rate limiting and Cloudflare Turnstile.'
-        : 'Online submission is disabled on this preview. Use WhatsApp or call RK Reno instead.'}
+        : 'Preview only: no message will be sent. Use WhatsApp or call RK Reno to enquire.'}
     </p>
   </form>
 </section>
@@ -106,7 +106,12 @@ const disabled = !configured;
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
-      if (!configured || !endpoint || !button || !status || submitting) return;
+      if (!button || !status || submitting) return;
+      if (!configured || !endpoint) {
+        status.dataset.state = 'preview';
+        status.textContent = 'Preview only — your message was not sent. Please call or use WhatsApp to enquire.';
+        return;
+      }
       showFields([]);
       document.dispatchEvent(new CustomEvent('rkreno:analytics', {
         detail: { name: 'enquiry_submit_attempt', parameters: { page_path: location.pathname } },

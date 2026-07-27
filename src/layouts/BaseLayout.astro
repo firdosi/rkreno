@@ -22,6 +22,7 @@ import '../styles/article-exact-responsive.css';
 import '../styles/prompt-2-1.css';
 import '../styles/prompt-2-2.css';
 import '../styles/prompt-2-3.css';
+import '../styles/final-ditto.css';
 
 interface Props {
   title: string;
@@ -100,7 +101,7 @@ const image = socialImage.startsWith('http')
     <AnalyticsConsent />
     <script>
       import { bootEnquiryForms } from '../scripts/enquiry-form-client';
-      bootEnquiryForms('[data-core-enquiry-form]');
+      bootEnquiryForms('[data-core-enquiry-form], [data-preview-form]');
     </script>
   </body>
 </html>

@@ -65,6 +65,12 @@ export const coreServices = [
     href: '/servis-cuci-rumah-kl/',
     image: '/assets/media/detailed-kitchen-cleaning-kl-67669628.jpg',
   },
+  {
+    title: 'Demolition Contractor',
+    text: 'Interior demolition, strip-out, debris organisation and site preparation before renovation work.',
+    href: '/demolition-contractor-kl-selangor/',
+    image: '/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg',
+  },
 ] as const;
 
 export const coreFaqs = [
