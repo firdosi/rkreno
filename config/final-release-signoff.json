@@ -1,0 +1,17 @@
+{
+  "approvedWebsiteReleaseSha": "4dcc9a55bce8ca90df36292c589a827c613a9b5a",
+  "evidenceCommitSha": "01a61d8a520d700cb551bdb2f80ea3c669bc4421",
+  "releaseId": "rkreno-4dcc9a5",
+  "archiveSha256": "fb3b8203bab2b81169041a7667be85009dc8a513d4fa81a4428f6ff60543dba1",
+  "routeCount": 42,
+  "sitemapCount": 32,
+  "redirectCount": 23,
+  "goneCount": 66,
+  "known404Count": 9,
+  "ownerHeldCount": 5,
+  "contentLockHash": "1c42d6f677affee9fc73f73170dba8f876be29dc43f7aa69465b903b1e2307ff",
+  "routeMapHash": "da5ff3b90d0928bc5c051f205df8a5acce10bece2e04e7c70512c9bade9ff7b8",
+  "releaseManifestHash": "48f9dfc10fba358c103ec38c3d2a9dc1c4db460afe9520ea539eb840a45ea574",
+  "status": "AWAITING_OWNER_APPROVAL",
+  "generatedAt": "2026-07-27T11:30:00.042Z"
+}

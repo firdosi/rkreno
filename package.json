@@ -19,6 +19,7 @@
     "test:private-preview": "node scripts/prompt-3-3/test-private-preview.mjs",
     "rehearse:deployment": "node scripts/prompt-3-3/rehearse-deployment.mjs",
     "test:prompt-3-3": "node scripts/prompt-3-3/run-prompt-3-3.mjs",
+    "test:prompt-4-1": "node scripts/prompt-4-1/run-prompt-4-1.mjs",
     "audit": "node scripts/audit-live-site.mjs && node scripts/compare-backups.mjs",
     "refresh:priority": "node scripts/refresh-priority-layouts.mjs",
     "refresh:theme": "node scripts/refresh-theme-layouts.mjs",
