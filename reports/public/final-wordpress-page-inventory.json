@@ -1,8 +1,73 @@
 {
-  "generatedAt": "2026-07-27T13:29:41.396Z",
+  "generatedAt": "2026-07-27T13:31:58.626Z",
   "source": "https://rkrenosolution.com",
   "sourceCapturedAt": "2026-07-27T12:51:56.191Z",
   "mirroredWordPressPageCount": 47,
+  "knownMissingSourceAssets": [
+    {
+      "filename": "deep-cleaning-rumah-kuala-lumpur.webp",
+      "affectedRoutes": [
+        "/servis-cuci-rumah-kl/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/"
+      ],
+      "treatment": "Original source file was not recoverable; no unrelated replacement was published."
+    },
+    {
+      "filename": "cuci-bilik-air-rumah-kl.webp",
+      "affectedRoutes": [
+        "/servis-cuci-rumah-kl/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/"
+      ],
+      "treatment": "Original source file was not recoverable; no unrelated replacement was published."
+    },
+    {
+      "filename": "pakej-cuci-rumah-hari-raya.webp",
+      "affectedRoutes": [
+        "/servis-cuci-rumah-kl/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/"
+      ],
+      "treatment": "Original source file was not recoverable; no unrelated replacement was published."
+    },
+    {
+      "filename": "cucian-selepas-renovasi-rumah.webp",
+      "affectedRoutes": [
+        "/servis-cuci-rumah-kl/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/"
+      ],
+      "treatment": "Original source file was not recoverable; no unrelated replacement was published."
+    },
+    {
+      "filename": "cuci-dapur-rumah-berminyak.webp",
+      "affectedRoutes": [
+        "/servis-cuci-rumah-kl/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/"
+      ],
+      "treatment": "Original source file was not recoverable; no unrelated replacement was published."
+    },
+    {
+      "filename": "cuci-habuk-plaster-ceiling.webp",
+      "affectedRoutes": [
+        "/servis-cuci-rumah-kl/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/"
+      ],
+      "treatment": "Original source file was not recoverable; no unrelated replacement was published."
+    },
+    {
+      "filename": "servis-aircond-dan-cuci-rumah.webp",
+      "affectedRoutes": [
+        "/servis-cuci-rumah-kl/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/"
+      ],
+      "treatment": "Original source file was not recoverable; no unrelated replacement was published."
+    }
+  ],
   "routes": [
     {
       "backgroundImages": [

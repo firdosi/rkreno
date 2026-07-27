@@ -10,6 +10,15 @@ const liveCapture = JSON.parse(await readFile(liveFile, 'utf8'));
 const liveByRoute = new Map(liveCapture.routes.map((item) => [item.route, item]));
 const held = new Set(['/company-history/', '/our-projects-2/', '/our-projects/', '/our-team/', '/testimonials/']);
 const mirrored = finalReviewRoutes.filter(({ route }) => route !== '/demolition-contractor-kl-selangor/');
+const knownMissingSourceAssets = [
+  'deep-cleaning-rumah-kuala-lumpur.webp',
+  'cuci-bilik-air-rumah-kl.webp',
+  'pakej-cuci-rumah-hari-raya.webp',
+  'cucian-selepas-renovasi-rumah.webp',
+  'cuci-dapur-rumah-berminyak.webp',
+  'cuci-habuk-plaster-ceiling.webp',
+  'servis-aircond-dan-cuci-rumah.webp',
+];
 
 const clean = (value = '') => value.replace(/\s+/g, ' ').trim();
 const htmlFile = (route) => route === '/' ? path.join(root, 'dist', 'index.html')
@@ -84,6 +93,11 @@ await writeFile(path.join(reports, 'final-wordpress-page-inventory.json'), `${JS
   source: liveCapture.origin,
   sourceCapturedAt: liveCapture.capturedAt,
   mirroredWordPressPageCount: inventoryRoutes.length,
+  knownMissingSourceAssets: knownMissingSourceAssets.map((filename) => ({
+    filename,
+    affectedRoutes: ['/servis-cuci-rumah-kl/', '/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/', '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/'],
+    treatment: 'Original source file was not recoverable; no unrelated replacement was published.',
+  })),
   routes: inventoryRoutes,
 }, null, 2)}\n`);
 
@@ -109,12 +123,18 @@ for (const routeInfo of finalReviewRoutes) {
   if ((live.links?.length || 0) !== astro.links) differences.push(`links ${live.links?.length || 0}→${astro.links}`);
   const wpInteractive = countInteractive(live);
   if (wpInteractive !== astro.interactive) differences.push(`interactive ${wpInteractive}→${astro.interactive}`);
+  const sourceAssetMissing = /servis-cuci-rumah|pakej-deep-cleaning/.test(routeInfo.route);
   parityRows.push({
     route: routeInfo.route, wpSections: live.sections, astroSections: astro.sections,
     wpText, astroText: astro.textBlocks, wpImages: live.images?.length || 0,
     astroImages: astro.images, wpLinks: live.links?.length || 0, astroLinks: astro.links,
     wpInteractive, astroInteractive: astro.interactive,
-    missing: differences.join('; '), extra: '', status: differences.length ? 'OWNER_REVIEW_REQUIRED' : 'EXACT',
+    missing: [
+      ...differences,
+      ...(sourceAssetMissing ? [`known missing source assets: ${knownMissingSourceAssets.join(', ')}`] : []),
+    ].join('; '),
+    extra: '',
+    status: sourceAssetMissing ? 'SOURCE_ASSET_MISSING' : differences.length ? 'OWNER_REVIEW_REQUIRED' : 'EXACT',
   });
 }
 const parityHeaders = [
