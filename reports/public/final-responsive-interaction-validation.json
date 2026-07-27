@@ -1,0 +1,74 @@
+{
+  "testedAt": "2026-07-27T18:08:41.017Z",
+  "base": "https://firdosi.github.io/rkreno/",
+  "checks": 13,
+  "passed": 13,
+  "failed": 0,
+  "results": [
+    {
+      "name": "counter reaches its published value",
+      "passed": true,
+      "detail": "4+ -> 15+"
+    },
+    {
+      "name": "homepage testimonial control advances",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FAQ accordion opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "project filter changes the visible set",
+      "passed": true,
+      "detail": "7 cards hidden"
+    },
+    {
+      "name": "testimonials-page carousel advances",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile navigation opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile navigation exposes service links",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile homepage has no horizontal overflow",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "staging form fields are typeable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "staging form remains explicitly unconfigured",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "staging form has no action endpoint",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "form test sent no enquiry request",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reduced motion disables testimonial autoplay",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}
