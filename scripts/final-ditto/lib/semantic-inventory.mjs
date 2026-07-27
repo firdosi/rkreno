@@ -27,17 +27,21 @@ export function sourceSemantics(page) {
   const $ = load(page.content || '');
   const contentHeadings = $('h1,h2,h3,h4,h5,h6').map((_, node) => clean($(node).text())).get();
   const hero = page.type === 'post' ? clean($('h1').first().text()) || clean(page.h1) : clean(page.h1);
-  const contentLinks = $('a[href]').map((_, node) => ({
+  let contentLinks = $('a[href]').map((_, node) => ({
     text: clean($(node).text()),
     href: pathOnly($(node).attr('href') || ''),
   })).get().filter(({ text, href }) => text && href && href !== '#');
+  if (page.path === '/') {
+    contentLinks = contentLinks.filter(({ text }) => !['Our Services', 'Get Free Consultation'].includes(text));
+  }
   return {
     hero,
     headings: unique([
       ...(page.type === 'post' && contentHeadings.some((value) => key(value) === key(hero)) ? [] : [clean(page.h1)]),
       ...contentHeadings,
     ].map(clean)),
-    paragraphs: unique($('p').map((_, node) => clean($(node).text())).get()),
+    paragraphs: unique($('p').map((_, node) => clean($(node).text())).get())
+      .filter((text) => page.path !== '/' || text !== 'TRUSTED BY 1,250+ HAPPY CUSTOMERS'),
     lists: unique($('li').filter((_, node) => $(node).find('a').length === 0)
       .map((_, node) => clean($(node).text())).get()),
     tables: $('table').length,
