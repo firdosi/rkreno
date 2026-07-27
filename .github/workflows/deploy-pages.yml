@@ -30,6 +30,15 @@ jobs:
       - run: npm run build
         env:
           DEPLOY_TARGET: github
+      - name: Add public recovery review artifacts
+        shell: bash
+        run: |
+          mkdir -p dist/reports/final-ditto-review dist/reports/visuals/final-ditto-review
+          cp reports/public/final-content-parity.csv dist/reports/
+          cp reports/public/final-wordpress-page-inventory.json dist/reports/
+          cp reports/public/final-wordpress-claim-review.md dist/reports/
+          cp reports/public/final-ditto-review/index.html dist/reports/final-ditto-review/
+          cp reports/public/visuals/final-ditto-review/*.png dist/reports/visuals/final-ditto-review/
       - uses: actions/configure-pages@v5
         with:
           enablement: true
