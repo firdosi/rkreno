@@ -5,25 +5,35 @@ import type { ServiceExactConfig } from '@data/service-exact-config';
 interface Props {
   title: string;
   config: ServiceExactConfig;
+  sourceHeroTitle?: string;
+  sourceHeroLead?: string;
+  sourceHeroActions?: { href: string; label: string }[];
 }
 
-const { title, config } = Astro.props;
+const { title, config, sourceHeroTitle, sourceHeroLead, sourceHeroActions = [] } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const primaryLabel = config.primaryLabel || 'WhatsApp for a Quote';
 const secondaryLabel = config.secondaryLabel || 'View Services';
+const sourceHref = (href: string) => href.startsWith('/') ? `${base}${href}` : href;
 ---
 <CorePageTitle title={title} />
 <section class:list={['service-exact-hero', `service-exact-hero--${config.variant}`]}>
   <div class="exact-wrap service-exact-hero__grid">
     <div class="service-exact-hero__copy">
       {config.chips?.length && <div class="service-exact-chips">{config.chips.map((chip) => <span>{chip}</span>)}</div>}
-      <h2>{config.heroTitle}</h2>
-      <p>{config.lead}</p>
+      <h2>{sourceHeroTitle || config.heroTitle}</h2>
+      <p>{sourceHeroLead || config.lead}</p>
       <div class="core-button-row">
-        <a class="core-button" href="https://wa.me/601111334496">{primaryLabel} <span>→</span></a>
-        <a class="core-button core-button-outline" href={/price|harga/i.test(secondaryLabel) ? '#service-pricing' : `${base}/services/`}>
-          {secondaryLabel} <span>→</span>
-        </a>
+        {sourceHeroActions.length ? sourceHeroActions.map((action, index) => (
+          <a class:list={['core-button', { 'core-button-outline': index > 0 }]} href={sourceHref(action.href)}>{action.label}</a>
+        )) : (
+          <>
+            <a class="core-button" href="https://wa.me/601111334496">{primaryLabel} <span>→</span></a>
+            <a class="core-button core-button-outline" href={/price|harga/i.test(secondaryLabel) ? '#service-pricing' : `${base}/services/`}>
+              {secondaryLabel} <span>→</span>
+            </a>
+          </>
+        )}
       </div>
     </div>
     <figure>

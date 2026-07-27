@@ -1,0 +1,58 @@
+---
+import { load } from 'cheerio';
+import CorePageTitle from '../core/CorePageTitle.astro';
+import PartnerBand from './PartnerBand.astro';
+
+const { content } = Astro.props as { content: string };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const $ = load(content);
+const clean = (value = '') => value.replace(/\s+/g, ' ').trim();
+const filters = ['All', 'Commercial', 'Electrical', 'Home Renovation', 'Office Renovation', 'Residential', 'Stadium', 'Waterproofing'];
+const projects = $('h3').map((_, heading) => {
+  const node = $(heading);
+  let card = node.parent();
+  while (card.length && card.find('img').length !== 1) card = card.parent();
+  const links = card.find('a').map((__, anchor) => ({ text: clean($(anchor).text()), href: $(anchor).attr('href') || '' })).get();
+  const categories = links.filter(({ text }) => filters.includes(text)).map(({ text }) => text);
+  const text = clean(card.text());
+  const title = clean(node.text());
+  const description = text.replace(categories.join(' - '), '').replace(title, '').trim();
+  const href = links.find(({ text }) => text === title)?.href || '/our-projects/';
+  return { title, description, categories, image: card.find('img').first().attr('src') || '', href: href.replace(base, '') };
+}).get();
+const media = (src: string) => src.startsWith('/') ? `${base}${src}` : src;
+---
+<div class="held-page projects-page projects-layout-one">
+  <CorePageTitle title="Our Projects 1" description="Our Projects 1" />
+  <section class="project-showcase">
+    <div class="exact-wrap">
+      <h2>EXPLORE OUR BEST RECENTLY COMPLETED PROJECTS</h2>
+      <div class="project-filters" aria-label="Project filters">
+        {filters.map((filter, index) => <button type="button" class:list={{ active: index === 0 }} data-project-filter={filter}>{filter}</button>)}
+      </div>
+      <div class="project-grid" data-project-grid>
+        {projects.map((project) => (
+          <article data-project-categories={project.categories.join('|')} data-held-reveal>
+            <a class="project-image" href={`https://rkrenosolution.com${project.href}`}><img src={media(project.image)} alt="" width="767" height="767" loading="lazy" /></a>
+            <div class="project-overlay">
+              <p>{project.categories.map((category, index) => <><a href={`https://rkrenosolution.com/portfolio/${category.toLowerCase().replaceAll(' ', '-')}/`}>{category}</a>{index < project.categories.length - 1 && ' - '}</>)}</p>
+              <h3><a href={`https://rkrenosolution.com${project.href}`}>{project.title}</a></h3>
+              <p>{project.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <PartnerBand />
+</div>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-project-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-project-categories]');
+  buttons.forEach((button) => button.addEventListener('click', () => {
+    buttons.forEach((item) => item.classList.toggle('active', item === button));
+    const filter = button.dataset.projectFilter || 'All';
+    cards.forEach((card) => card.hidden = filter !== 'All' && !(card.dataset.projectCategories || '').split('|').includes(filter));
+  }));
+</script>

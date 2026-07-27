@@ -2,12 +2,15 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { load } from 'cheerio';
 import { finalReviewRoutes } from '../lib/final-review-routes.mjs';
+import { astroSemantics, compareSemantics, sourceSemantics } from './lib/semantic-inventory.mjs';
 
 const root = process.cwd();
 const reports = path.join(root, 'reports', 'public');
 const liveFile = path.join(root, '.audit-cache', 'final-ditto-review', 'live-source.json');
 const liveCapture = JSON.parse(await readFile(liveFile, 'utf8'));
 const liveByRoute = new Map(liveCapture.routes.map((item) => [item.route, item]));
+const sourcePages = JSON.parse(await readFile(path.join(root, 'src', 'data', 'site-pages.json'), 'utf8'));
+const sourceByRoute = new Map(sourcePages.map((item) => [item.path, item]));
 const held = new Set(['/company-history/', '/our-projects-2/', '/our-projects/', '/our-team/', '/testimonials/']);
 const mirrored = finalReviewRoutes.filter(({ route }) => route !== '/demolition-contractor-kl-selangor/');
 const knownMissingSourceAssets = [
@@ -29,48 +32,13 @@ const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => 
 })[char]);
 const countInteractive = (item) => Object.values(item?.interactive || {}).reduce((sum, value) => sum + Number(value || 0), 0);
 
-function inspectAstro(html) {
-  const $ = load(html);
-  const main = $('main').first();
-  const visibleText = main.find('h1,h2,h3,p,li,td,th,blockquote,figcaption')
-    .map((_, node) => clean($(node).text())).get().filter(Boolean);
-  const internalLinks = main.find('a[href]').filter((_, node) => {
-    const href = $(node).attr('href') || '';
-    return href.startsWith('/') || href.includes('rkrenosolution.com');
-  });
-  return {
-    title: clean($('title').first().text()),
-    seoTitle: clean($('title').first().text()),
-    metaDescription: $('meta[name="description"]').attr('content') || '',
-    canonical: $('link[rel="canonical"]').attr('href') || '',
-    robots: $('meta[name="robots"]').attr('content') || '',
-    headings: {
-      h1: main.find('h1').map((_, node) => clean($(node).text())).get(),
-      h2: main.find('h2').map((_, node) => clean($(node).text())).get(),
-      h3: main.find('h3').map((_, node) => clean($(node).text())).get(),
-    },
-    sections: main.find('section').length,
-    textBlocks: visibleText.length,
-    images: main.find('img[src]').length,
-    links: internalLinks.length,
-    interactive: main.find('form,input,select,textarea,details,button,[data-testimonial-track],[data-counter]').length,
-    formFields: main.find('input,select,textarea').length,
-    tables: main.find('table').length,
-    lists: main.find('li').length,
-    schemaTypes: $('script[type="application/ld+json"]').map((_, node) => {
-      try {
-        const value = JSON.parse($(node).text());
-        return value['@type'] || '';
-      } catch { return ''; }
-    }).get().flat().filter(Boolean),
-  };
-}
-
 const inventoryRoutes = mirrored.map((routeInfo) => {
   const live = liveByRoute.get(routeInfo.route);
+  const page = sourceByRoute.get(routeInfo.route);
   if (!live) throw new Error(`Missing live WordPress inventory: ${routeInfo.route}`);
   return {
     ...live,
+    semanticInventory: sourceSemantics(page),
     routeGroup: routeInfo.group,
     pageType: routeInfo.pageType,
     sourcePriority: 'Current rendered WordPress page',
@@ -103,38 +71,34 @@ await writeFile(path.join(reports, 'final-wordpress-page-inventory.json'), `${JS
 
 const parityRows = [];
 for (const routeInfo of finalReviewRoutes) {
-  const astro = inspectAstro(await readFile(htmlFile(routeInfo.route), 'utf8'));
+  const astro = astroSemantics(await readFile(htmlFile(routeInfo.route), 'utf8'));
   const live = liveByRoute.get(routeInfo.route);
   if (!live) {
     parityRows.push({
-      route: routeInfo.route, wpSections: 0, astroSections: astro.sections, wpText: 0,
-      astroText: astro.textBlocks, wpImages: 0, astroImages: astro.images, wpLinks: 0,
-      astroLinks: astro.links, wpInteractive: 0, astroInteractive: astro.interactive,
+      route: routeInfo.route, wpSections: 0, astroSections: 1, wpText: 0,
+      astroText: astro.headings.length + astro.paragraphs.length, wpImages: 0, astroImages: astro.images.length, wpLinks: 0,
+      astroLinks: astro.links.length, wpInteractive: 0, astroInteractive: Object.values(astro.capabilities).filter(Boolean).length,
       missing: '', extra: 'New owner-requested service page', status: 'NEW_PAGE',
     });
     continue;
   }
-  const wpText = (live.paragraphs?.length || 0) + (live.listItems?.length || 0)
-    + Object.values(live.headings || {}).flat().length;
-  const differences = [];
-  if (live.sections !== astro.sections) differences.push(`sections ${live.sections}→${astro.sections}`);
-  if (wpText !== astro.textBlocks) differences.push(`text blocks ${wpText}→${astro.textBlocks}`);
-  if ((live.images?.length || 0) !== astro.images) differences.push(`images ${live.images?.length || 0}→${astro.images}`);
-  if ((live.links?.length || 0) !== astro.links) differences.push(`links ${live.links?.length || 0}→${astro.links}`);
-  const wpInteractive = countInteractive(live);
-  if (wpInteractive !== astro.interactive) differences.push(`interactive ${wpInteractive}→${astro.interactive}`);
+  const source = sourceSemantics(sourceByRoute.get(routeInfo.route));
   const sourceAssetMissing = /servis-cuci-rumah|pakej-deep-cleaning/.test(routeInfo.route);
+  const comparison = compareSemantics(routeInfo.route, source, astro, sourceAssetMissing ? knownMissingSourceAssets : []);
+  const differences = comparison.differences;
+  const wpText = source.headings.length + source.paragraphs.length + source.lists.length;
   parityRows.push({
-    route: routeInfo.route, wpSections: live.sections, astroSections: astro.sections,
-    wpText, astroText: astro.textBlocks, wpImages: live.images?.length || 0,
-    astroImages: astro.images, wpLinks: live.links?.length || 0, astroLinks: astro.links,
-    wpInteractive, astroInteractive: astro.interactive,
+    route: routeInfo.route, wpSections: source.headings.length, astroSections: astro.headings.length,
+    wpText, astroText: astro.headings.length + astro.paragraphs.length + astro.lists.length,
+    wpImages: source.images.length, astroImages: astro.images.length,
+    wpLinks: source.links.length, astroLinks: astro.links.length,
+    wpInteractive: source.forms + source.accordions, astroInteractive: astro.forms + astro.accordions,
     missing: [
       ...differences,
       ...(sourceAssetMissing ? [`known missing source assets: ${knownMissingSourceAssets.join(', ')}`] : []),
     ].join('; '),
     extra: '',
-    status: sourceAssetMissing ? 'SOURCE_ASSET_MISSING' : differences.length ? 'OWNER_REVIEW_REQUIRED' : 'EXACT',
+    status: sourceAssetMissing && !differences.length ? 'SOURCE_ASSET_MISSING' : differences.length ? 'PARITY_DIFFERENCE' : 'EXACT',
   });
 }
 const parityHeaders = [
@@ -160,7 +124,13 @@ for (const item of inventoryRoutes) {
     ...(item.buttons || []).map(({ text }) => text),
   ].map((value) => typeof value === 'string' ? value : value.text || '').map(clean).filter(Boolean);
   for (const wording of new Set(strings.filter((value) => claimPattern.test(value)))) {
-    claims.push({ route: item.route, wording, mirrored: 'Yes', evidence: 'No evidence supplied in repository', owner: 'Yes' });
+    claims.push({
+      route: item.route,
+      wording,
+      mirrored: 'Yes',
+      evidence: 'No independent evidence supplied in repository',
+      verification: 'SOURCE_ONLY',
+    });
   }
 }
 await writeFile(path.join(reports, 'final-wordpress-claim-review.md'), [
@@ -168,9 +138,9 @@ await writeFile(path.join(reports, 'final-wordpress-claim-review.md'), [
   '',
   `Generated from the rendered WordPress capture dated ${liveCapture.capturedAt}. Mirroring a claim is not verification.`,
   '',
-  '| Page | Exact visible wording | WordPress source | Mirrored | Evidence exists | Owner confirmation required |',
+  '| Page | Exact visible wording | WordPress source | Mirrored | Evidence | Claim verification |',
   '|---|---|---|---|---|---|',
-  ...claims.map((claim) => `| ${claim.route} | ${claim.wording.replaceAll('|', '\\|')} | Current rendered WordPress page | ${claim.mirrored} | ${claim.evidence} | ${claim.owner} |`),
+  ...claims.map((claim) => `| ${claim.route} | ${claim.wording.replaceAll('|', '\\|')} | Current rendered WordPress page | ${claim.mirrored} | ${claim.evidence} | ${claim.verification} |`),
   '',
 ].join('\n'));
 

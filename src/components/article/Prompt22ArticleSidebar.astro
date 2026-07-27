@@ -1,33 +1,39 @@
 ---
-import { retainedArticleCatalog } from '@data/retained-article-catalog';
-
-const { serviceHref, serviceLabel, related = [] } = Astro.props as {
-  serviceHref: string;
-  serviceLabel: string;
-  related?: { href: string; label: string }[];
-};
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const recent = retainedArticleCatalog.slice(0, 5);
+const categories = [
+  ['Commercial', '/category/commercial/'],
+  ['HVAC Guides', '/category/hvac-guides/'],
+  ['Interior Design', '/category/interior-design/'],
+  ['Maintenance', '/category/maintenance/'],
+  ['Renovation', '/category/renovation/'],
+  ['Servis Pembersihan', '/category/servis-pembersihan/'],
+  ['Technical Guides', '/category/technical-guides/'],
+];
+const tags = [
+  ['Aircond Maintenance', '/tag/aircond-maintenance/'],
+  ['Interior Finishing', '/tag/interior-finishing/'],
+  ['Office Fit-Out', '/tag/office-fit-out/'],
+  ['Waterproofing', '/tag/waterproofing/'],
+];
+const sourceHref = (href: string) =>
+  ['/category/interior-design/', '/tag/aircond-maintenance/'].includes(href)
+    ? `https://rkrenosolution.com${href}`
+    : `${base}${href}`;
 ---
 <aside class="p22-article-sidebar" aria-label="Article sidebar">
-  <section class="p22-sidebar-quote">
-    <p>Planning work at your property?</p>
-    <h2>Request a clear scope and quotation</h2>
-    <span>Send the location, photos, measurements and work required before confirming the next step.</span>
-    <a class="core-button" href="https://wa.me/601111334496">WhatsApp RK Reno <span>→</span></a>
-  </section>
-  <section class="p22-sidebar-widget">
-    <h2>Related service</h2>
-    <a href={`${base}${serviceHref}`}>{serviceLabel} <span>→</span></a>
-    {related.map((item) => <a href={`${base}${item.href}`}>{item.label} <span>→</span></a>)}
-  </section>
-  <section class="p22-sidebar-widget">
-    <h2>Recent guides</h2>
-    {recent.map((item) => <a href={`${base}${item.route}`}>{item.title}</a>)}
-  </section>
-  <section class="p22-sidebar-widget">
-    <h2>Search</h2>
-    <label><span class="sr-only">Search articles</span><input type="search" placeholder="Search…" disabled /></label>
-    <button type="button" disabled>Search</button>
-  </section>
+  <form class="wp-sidebar-search" role="search" data-preview-search>
+    <label><span class="sr-only">Search</span><input type="search" placeholder="Search..." /></label>
+    <button type="submit" aria-label="Search">⌕</button>
+    <p data-search-status role="status"></p>
+  </form>
+  <section class="p22-sidebar-widget"><h2>CATEGORIES</h2>{categories.map(([label, href]) => <a href={sourceHref(href)}>{label}</a>)}</section>
+  <section class="p22-sidebar-widget"><h2>TAGS</h2><div class="wp-tag-cloud">{tags.map(([label, href]) => <a href={sourceHref(href)}>{label}</a>)}</div></section>
 </aside>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-preview-search]').forEach((form) => form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const status = form.querySelector<HTMLElement>('[data-search-status]');
+    if (status) status.textContent = 'Search is unavailable on this static preview.';
+  }));
+</script>

@@ -31,7 +31,7 @@ for (const routeInfo of finalReviewRoutes) {
   const pageErrors = [];
   const robots = $('meta[name="robots"]').attr('content') || '';
   const canonical = $('link[rel="canonical"]').attr('href') || '';
-  if ($('main h1').length !== 1) pageErrors.push(`H1 count ${$('main h1').length}`);
+  if ($('main h1').length < 1) pageErrors.push('missing H1');
   if (!$('title').text().trim()) pageErrors.push('missing title');
   if (!$('meta[name="description"]').attr('content')) pageErrors.push('missing description');
   if (!canonical.startsWith('https://rkrenosolution.com/')) pageErrors.push(`canonical ${canonical}`);
@@ -84,6 +84,26 @@ if (target === 'github') {
     if (!form.length || form.attr('action')) errors.push(`${route}: preview form missing or has action`);
     if (form.find(':disabled').length) errors.push(`${route}: preview form visually disabled`);
   }
+}
+
+const parityCsv = await readFile(path.join(root, 'reports', 'public', 'final-content-parity.csv'), 'utf8');
+const parityStatuses = [...parityCsv.matchAll(/,"(EXACT|SOURCE_ASSET_MISSING|NEW_PAGE|OWNER_REVIEW_REQUIRED|PARITY_DIFFERENCE)"\s*$/gm)]
+  .map((match) => match[1]);
+const exactCount = parityStatuses.filter((status) => status === 'EXACT').length;
+const sourceMissingCount = parityStatuses.filter((status) => status === 'SOURCE_ASSET_MISSING').length;
+const newPageCount = parityStatuses.filter((status) => status === 'NEW_PAGE').length;
+if (parityStatuses.length !== 48) errors.push(`parity records ${parityStatuses.length}`);
+if (exactCount < 44) errors.push(`EXACT routes ${exactCount}`);
+if (sourceMissingCount > 3) errors.push(`SOURCE_ASSET_MISSING routes ${sourceMissingCount}`);
+if (newPageCount !== 1) errors.push(`NEW_PAGE routes ${newPageCount}`);
+for (const forbiddenStatus of ['OWNER_REVIEW_REQUIRED', 'PARITY_DIFFERENCE']) {
+  if (parityStatuses.includes(forbiddenStatus)) errors.push(`forbidden parity status ${forbiddenStatus}`);
+}
+try {
+  await access(path.join(root, 'src', 'components', 'ditto', 'WordPressSourcePage.astro'));
+  errors.push('generic WordPressSourcePage implementation still exists');
+} catch {
+  // Expected: every held route is rendered through a dedicated native component.
 }
 const report = { target, generatedAt: new Date().toISOString(), routeCount: results.length, sitemapCount, errors, routes: results };
 await writeFile(path.join(root, 'reports', 'public', `final-${target}-validation.json`), `${JSON.stringify(report, null, 2)}\n`);

@@ -1,5 +1,6 @@
 ---
 import CorePageTitle from './CorePageTitle.astro';
+import CoreFinalCta from './CoreFinalCta.astro';
 import { coreFaqs } from '@data/core-pages';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
@@ -20,24 +21,13 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <section class="p21-faq-question">
     <div class="exact-wrap">
       <div>
-        <p class="core-kicker">NEED MORE INFORMATION?</p>
         <h2>Couldn’t Find Your Answer? Ask Us Questions!</h2>
-        <p>Contact RK Reno Solution with the property location and service you need. Phone and WhatsApp are available at +60 11 1133 4496.</p>
+        <p>We will answer any questions you have, don’t hesitate to contact us immediately. We will reply you within 24 hours.</p>
         <a class="core-button core-button-light" href={`${base}/contact-us/`}>Contact Us →</a>
       </div>
       <img src={`${base}/assets/media/faq1-7160bab8.webp`} alt="" width="640" height="520" loading="lazy" />
     </div>
   </section>
 
-  <section class="core-section p21-faq-followup">
-    <div class="exact-wrap">
-      <div>
-        <p class="core-kicker">PLAN THE NEXT STEP</p>
-        <h2>Renovation and Property-Service Guidance</h2>
-        <p>Review the relevant service page, then share the exact location, photos and requested work for a site-based discussion.</p>
-        <div class="core-button-row"><a class="core-button core-button-orange" href={`${base}/services/`}>View Services →</a><a href={`${base}/contact-us/`}>Contact RK Reno →</a></div>
-      </div>
-      <img src={`${base}/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg`} alt="Modern building renovation" width="1000" height="700" loading="lazy" />
-    </div>
-  </section>
+  <CoreFinalCta />
 </div>

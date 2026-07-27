@@ -75,39 +75,27 @@ export const coreServices = [
 
 export const coreFaqs = [
   {
-    question: 'How should I start a renovation enquiry?',
-    answer: 'Share the property type, exact location, useful photos, approximate measurements where available, and a complete list of the work or problems you want RK Reno Solution to review.',
+    question: 'How long does a typical construction project take?',
+    answer: 'Project timelines vary based on size and complexity. A residential project may take 3–6 months, while larger commercial builds could require 12 months or more.',
   },
   {
-    question: 'Can renovation cost and timing be confirmed immediately?',
-    answer: 'Cost and timing depend on measurements, existing conditions, access, materials, building requirements and the final agreed scope. A site inspection may be needed before these details can be confirmed.',
+    question: 'Do you provide custom designs?',
+    answer: 'Yes, we work closely with clients to create personalized designs that meet their needs and align with their vision.',
   },
   {
-    question: 'What details help with aircond installation or servicing?',
-    answer: 'Include the unit horsepower, the issue or installation requirement, property type, indoor and outdoor locations, and clear photos of the proposed work areas.',
+    question: 'Are your projects eco-friendly?',
+    answer: 'We prioritize sustainability by using eco-friendly materials and incorporating energy-efficient solutions into our designs.',
   },
   {
-    question: 'What should I do with a burning smell or exposed wiring?',
-    answer: 'Switch off the affected circuit when it is safe to do so, avoid touching damaged parts, and arrange an assessment by an appropriately qualified person.',
+    question: 'What’s included in your pricing plans?',
+    answer: 'Our pricing plans include materials, labor, project management, and post-construction support. Additional customizations may incur extra costs.',
   },
   {
-    question: 'Can a waterproofing leak source be identified from the stain alone?',
-    answer: 'Not always. Water can travel before it becomes visible, so the surrounding roof, wall, wet area, drainage, seals and joints may need inspection.',
+    question: 'Do you handle permits and regulations?',
+    answer: 'Yes, we manage all necessary permits and ensure compliance with local building codes and regulations.',
   },
   {
-    question: 'What affects plaster ceiling planning?',
-    answer: 'Room measurements, ceiling levels, lighting positions, aircond access, existing damage, access panels and the required finishes all affect the scope.',
-  },
-  {
-    question: 'Why might a site inspection be required?',
-    answer: 'A site inspection replaces assumptions with measurements and visible site conditions before the work scope, materials and quotation are confirmed.',
-  },
-  {
-    question: 'Which areas does RK Reno Solution serve?',
-    answer: 'Enquiries are accepted for Kuala Lumpur, Selangor and nearby locations. Provide the exact area so service availability can be discussed.',
-  },
-  {
-    question: 'How can I contact RK Reno Solution?',
-    answer: 'Call or WhatsApp +60 11 1133 4496, email rkrenosolution@gmail.com, or use the contact page. The GitHub Pages form remains disabled.',
+    question: 'What warranty do you offer on your projects?',
+    answer: 'We provide a warranty of up to [Insert Number] years, depending on the project type, along with lifetime support for major issues.',
   },
 ] as const;

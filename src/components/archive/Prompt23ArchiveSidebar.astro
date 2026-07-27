@@ -1,44 +1,47 @@
 ---
-interface Props {
-  serviceHref: string;
-  serviceLabel: string;
-}
-
-const { serviceHref, serviceLabel } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const archives = [
+const categories = [
   ['Commercial', '/category/commercial/'],
   ['HVAC Guides', '/category/hvac-guides/'],
+  ['Interior Design', '/category/interior-design/'],
   ['Maintenance', '/category/maintenance/'],
   ['Renovation', '/category/renovation/'],
   ['Servis Pembersihan', '/category/servis-pembersihan/'],
   ['Technical Guides', '/category/technical-guides/'],
+];
+const tags = [
+  ['Aircond Maintenance', '/tag/aircond-maintenance/'],
+  ['Ceiling Works', '/tag/ceiling-works/'],
+  ['Cleaning', '/tag/cleaning/'],
+  ['Guide', '/tag/guide/'],
   ['Interior Finishing', '/tag/interior-finishing/'],
+  ['Kuala Lumpur', '/tag/kuala-lumpur/'],
   ['Office Fit-Out', '/tag/office-fit-out/'],
+  ['Pemasangan Aircond', '/tag/pemasangan-aircond/'],
   ['Waterproofing', '/tag/waterproofing/'],
-] as const;
+  ['Wiring', '/tag/wiring/'],
+];
+const retained = new Set([
+  '/category/commercial/', '/category/hvac-guides/', '/category/maintenance/',
+  '/category/renovation/', '/category/servis-pembersihan/', '/category/technical-guides/',
+  '/tag/interior-finishing/', '/tag/office-fit-out/', '/tag/waterproofing/',
+]);
+const sourceHref = (href: string) => retained.has(href) ? `${base}${href}` : `https://rkrenosolution.com${href}`;
 ---
 <aside class="p23-archive-sidebar" aria-label="Archive navigation">
-  <form role="search" aria-label="Search preview">
-    <label for="archive-search">Search guides</label>
-    <div>
-      <input id="archive-search" type="search" placeholder="Search..." disabled />
-      <button type="button" disabled>Search</button>
-    </div>
-    <small>Search is disabled on this staging copy.</small>
+  <form role="search" data-preview-search>
+    <label for="archive-search">Search</label>
+    <div><input id="archive-search" type="search" placeholder="Search..." /><button type="submit">⌕</button></div>
+    <small data-search-status role="status"></small>
   </form>
-
-  <section>
-    <h2>Categories &amp; topics</h2>
-    <nav aria-label="Guide categories and topics">
-      {archives.map(([label, href]) => <a href={`${base}${href}`}>{label}</a>)}
-    </nav>
-  </section>
-
-  <section class="p23-archive-help">
-    <p>Need practical help?</p>
-    <h2>Discuss the property and work scope</h2>
-    <a class="core-button" href={`${base}${serviceHref}`}>{serviceLabel}</a>
-    <a href={`${base}/contact-us/`}>Contact RK Reno</a>
-  </section>
+  <section><h2>CATEGORIES</h2><nav>{categories.map(([label, href]) => <a href={sourceHref(href)}>{label}</a>)}</nav></section>
+  <section><h2>TAGS</h2><nav class="wp-tag-cloud">{tags.map(([label, href]) => <a href={sourceHref(href)}>{label}</a>)}</nav></section>
 </aside>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('[data-preview-search]').forEach((form) => form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const status = form.querySelector<HTMLElement>('[data-search-status]');
+    if (status) status.textContent = 'Search is unavailable on this static preview.';
+  }));
+</script>

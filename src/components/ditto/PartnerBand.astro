@@ -1,0 +1,36 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const partners = [
+  'parner1-a914b58c.png',
+  'parner2-cae87746.png',
+  'parner3-d23cfb1a.png',
+  'parner4-d301f7e9.png',
+  'parner5-8fe0e357.png',
+  'parner6-ccb92374.png',
+];
+---
+<section class="held-partners" aria-labelledby="held-partner-title">
+  <div class="exact-wrap held-partner-copy">
+    <h2 id="held-partner-title">TRusted by 1000+ customers worldwide</h2>
+    <p>Over 1,000 clients trust us for quality construction and reliable service. Let us bring your vision to life with expertise you can depend on.</p>
+  </div>
+  <div class="held-partner-viewport" data-partner-carousel>
+    <div class="held-partner-track">
+      {partners.map((file) => <img src={`${base}/assets/media/${file}`} alt="" width="170" height="90" loading="lazy" />)}
+    </div>
+  </div>
+</section>
+
+<script>
+  const viewport = document.querySelector<HTMLElement>('[data-partner-carousel]');
+  const track = viewport?.firstElementChild as HTMLElement | null;
+  if (viewport && track && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let direction = 1;
+    window.setInterval(() => {
+      const max = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      const next = Math.min(max, Math.max(0, viewport.scrollLeft + direction * 190));
+      viewport.scrollTo({ left: next, behavior: 'smooth' });
+      if (next === 0 || next === max) direction *= -1;
+    }, 2600);
+  }
+</script>

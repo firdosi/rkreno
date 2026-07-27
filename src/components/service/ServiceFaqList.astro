@@ -3,7 +3,7 @@ import type { ServiceFaq } from '@data/service-exact-faqs';
 
 interface Props {
   title: string;
-  faqs: ServiceFaq[];
+  faqs: (ServiceFaq & { answerHtml?: string })[];
 }
 
 const { title, faqs } = Astro.props;
@@ -18,7 +18,7 @@ const { title, faqs } = Astro.props;
       {faqs.map((faq) => (
         <details>
           <summary>{faq.question}<span aria-hidden="true">+</span></summary>
-          <p>{faq.answer}</p>
+          <p set:html={faq.answerHtml || faq.answer} />
         </details>
       ))}
     </div>

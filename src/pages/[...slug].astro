@@ -14,8 +14,12 @@ import ArticlePage from '@components/ArticlePage.astro';
 import ThankYouPage from '@components/ThankYouPage.astro';
 import TaxonomyArchive from '@components/TaxonomyArchive.astro';
 import PriorityPageHero from '@components/PriorityPageHero.astro';
-import WordPressSourcePage from '@components/ditto/WordPressSourcePage.astro';
 import DemolitionPage from '@components/ditto/DemolitionPage.astro';
+import CompanyHistoryPage from '@components/ditto/CompanyHistoryPage.astro';
+import ProjectsArchivePage from '@components/ditto/ProjectsArchivePage.astro';
+import ProjectsAlternatePage from '@components/ditto/ProjectsAlternatePage.astro';
+import TeamPage from '@components/ditto/TeamPage.astro';
+import TestimonialsPage from '@components/ditto/TestimonialsPage.astro';
 import pages from '@data/site-pages.json';
 import routePolicy from '@data/route-policy.json';
 import { batch1Pages } from '@data/batch1-pages';
@@ -46,6 +50,7 @@ interface PageRecord {
   og?: { image?: string };
   customLayout?: boolean;
   externalStyles?: string[];
+  images?: { source: string; local: string; alt?: string }[];
 }
 
 const heldRoutes = new Set(['/company-history/', '/our-projects-2/', '/our-projects/', '/our-team/', '/testimonials/']);
@@ -126,26 +131,54 @@ const layoutTitle = sourceTitleIsSafe
       : batchPage ? `${batchPage.title} - RK Reno Solution` : page.title;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const repairedLinks = [
-  ['/about/', '/about-us/'],
+  ['/about/', 'https://rkrenosolution.com/about/'],
   ['/services/%20https://rkrenosolution.com/about-us/', '/about-us/'],
   ['/6-ways-to-get-the-most-out-of-your-project-search-software', '/blog/'],
-  ['/portfolio/commercial/', '/our-projects/'],
-  ['/portfolio/electrical/', '/our-projects/'],
-  ['/portfolio/home-renovation/', '/our-projects/'],
-  ['/portfolio/office-renovation/', '/our-projects/'],
-  ['/portfolio/residential/', '/our-projects/'],
-  ['/portfolio/stadium/', '/our-projects/'],
-  ['/portfolio/waterproofing/', '/our-projects/'],
   ['/home-2/', '/home-2-2/'],
-  ['/blog/page/2/', '/blog/'],
-  ['/blog/page/4/', '/blog/'],
-  ['/tag/ceiling-works/', '/category/interior-design/'],
-  ['/tag/kuala-lumpur/', '/category/servis-pembersihan/'],
-  ['/tag/wiring/', '/category/technical-guides/'],
+  ['/blog/page/2/', 'https://rkrenosolution.com/blog/page/2/'],
+  ['/blog/page/4/', 'https://rkrenosolution.com/blog/page/4/'],
+  ['/tag/ceiling-works/', 'https://rkrenosolution.com/tag/ceiling-works/'],
+  ['/tag/kuala-lumpur/', 'https://rkrenosolution.com/tag/kuala-lumpur/'],
+  ['/tag/wiring/', 'https://rkrenosolution.com/tag/wiring/'],
+  ['/category/interior-design/', 'https://rkrenosolution.com/category/interior-design/'],
+  ['/tag/aircond-maintenance/', 'https://rkrenosolution.com/tag/aircond-maintenance/'],
+  ['/tag/cleaning/', 'https://rkrenosolution.com/tag/cleaning/'],
+  ['/tag/guide/', 'https://rkrenosolution.com/tag/guide/'],
+  ['/tag/pemasangan-aircond/', 'https://rkrenosolution.com/tag/pemasangan-aircond/'],
   ['/wp-admin/', '/']
 ];
 let repairedContent = page.content;
 for (const [source, target] of repairedLinks) repairedContent = repairedContent.replaceAll(source, target);
+const articleImageFallbacks: Record<string, string[]> = {
+  '/commercial-retail-shop-renovation-in-kuala-lumpur/': ['/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg'],
+  '/office-renovation-petaling-jaya-corporate-fit-out-experts/': ['/assets/media/Office-renovation-service-in-Selangor-7928d19d.jpg'],
+  '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/': ['/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg'],
+  '/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/': ['/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg'],
+  '/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/': [
+    '/assets/media/Home-renovation-service-in-KL-422b205c.jpg',
+    '/assets/media/Renovation-planning-and-project-drawings-1-ea76b170.jpg',
+  ],
+  '/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/': [
+    '/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg',
+    '/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg',
+  ],
+  '/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/': ['/assets/media/Office-renovation-service-in-Selangor-7928d19d.jpg'],
+  '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/': ['/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg'],
+  '/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/': ['/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-960.webp'],
+  '/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/': ['/assets/media/detailed-kitchen-cleaning-kl-67669628.jpg'],
+};
+let fallbackIndex = 0;
+for (const image of page.images || []) {
+  if (!/^https?:/i.test(image.local || '')) continue;
+  const fallbacks = articleImageFallbacks[page.path] || [];
+  const replacement = /gravatar/i.test(image.source)
+    ? '/assets/media/logo-iocn-6f17c44e.png'
+    : fallbacks[fallbackIndex++ % Math.max(1, fallbacks.length)];
+  if (!replacement) continue;
+  repairedContent = repairedContent
+    .replaceAll(image.source, replacement)
+    .replaceAll(image.source.replaceAll('&', '&amp;'), replacement);
+}
 const missingImages = [
   'deep-cleaning-rumah-kuala-lumpur.webp',
   'cuci-bilik-air-rumah-kl.webp',
@@ -156,10 +189,10 @@ const missingImages = [
   'servis-aircond-dan-cuci-rumah.webp'
 ];
 for (const filename of missingImages) {
-  repairedContent = repairedContent.replaceAll(`/wp-content/uploads/2026/04/${filename}`, '');
-}
-if (page.path === '/our-projects/' || page.path === '/our-projects-2/') {
-  repairedContent = repairedContent.replace(/href="\/portfolio\/[^"]+"/g, 'href="/our-projects/"');
+  repairedContent = repairedContent.replaceAll(
+    `/wp-content/uploads/2026/04/${filename}`,
+    '/assets/media/detailed-kitchen-cleaning-kl-67669628.jpg'
+  );
 }
 if (page.path === '/our-team/') {
   repairedContent = repairedContent.replaceAll('href="/team-detail/"', 'href="/our-team/"');
@@ -167,6 +200,22 @@ if (page.path === '/our-team/') {
 const content = repairedContent
   .replaceAll('href="/', `href="${base}/`)
   .replaceAll('src="/', `src="${base}/`);
+const sourceText = (value = '') => value
+  .replace(/<[^>]+>/g, ' ')
+  .replaceAll('&amp;', '&')
+  .replaceAll('&#8211;', '–')
+  .replaceAll('&#8217;', '’')
+  .replace(/\s+/g, ' ')
+  .replace(/\s+([.,!?;:])/g, '$1')
+  .trim();
+const sourceHeroMatch = page.content.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+const sourceHeroTitle = sourceHeroMatch ? sourceText(sourceHeroMatch[1]) : '';
+const sourceAfterHero = sourceHeroMatch ? page.content.slice((sourceHeroMatch.index || 0) + sourceHeroMatch[0].length) : '';
+const sourceLeadMatch = sourceAfterHero.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+const sourceHeroLead = sourceLeadMatch ? sourceText(sourceLeadMatch[1]) : '';
+const sourceHeroActions = [...sourceAfterHero.matchAll(/<a[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)]
+  .slice(0, 2)
+  .map((match) => ({ href: match[1], label: sourceText(match[2]) }));
 const coreRoutes = ['/', '/services/', '/about-us/', '/contact-us/', '/faq/', '/blog/'];
 const serviceExact = serviceExactConfig[page.path];
 const showForm = page.path === '/contact-us/' && !coreRoutes.includes(page.path);
@@ -308,10 +357,18 @@ const pageSchema = isDemolition
 >
   {isDemolition ? (
     <DemolitionPage />
-  ) : isHeldRoute ? (
-    <WordPressSourcePage route={page.path} title={page.title} content={content} />
+  ) : page.path === '/company-history/' ? (
+    <CompanyHistoryPage content={repairedContent} />
+  ) : page.path === '/our-projects/' ? (
+    <ProjectsArchivePage content={repairedContent} />
+  ) : page.path === '/our-projects-2/' ? (
+    <ProjectsAlternatePage content={repairedContent} />
+  ) : page.path === '/our-team/' ? (
+    <TeamPage content={repairedContent} />
+  ) : page.path === '/testimonials/' ? (
+    <TestimonialsPage content={repairedContent} />
   ) : batchArticle ? (
-    <ArticlePage article={batchArticle} wordpressContent={exactArticle} />
+    <ArticlePage article={batchArticle} wordpressContent={exactArticle} sourceContent={content} />
   ) : page.path === '/' ? (
     <ExactHomePage />
   ) : page.path === '/services/' ? (
@@ -325,7 +382,14 @@ const pageSchema = isDemolition
   ) : page.path === '/blog/' ? (
     <CoreBlogPage />
   ) : serviceExact && parityContent ? (
-    <ServiceExactPage route={page.path} title={parityContent.sourceH1 || page.title} parityContent={parityContent} />
+    <ServiceExactPage
+      route={page.path}
+      title={parityContent.sourceH1 || page.title}
+      sourceHeroTitle={sourceHeroTitle}
+      sourceHeroLead={sourceHeroLead}
+      sourceHeroActions={sourceHeroActions}
+      parityContent={parityContent}
+    />
   ) : page.path === '/thank-you/' ? (
     <ThankYouPage />
   ) : nativeTaxonomy ? (

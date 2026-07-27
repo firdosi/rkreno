@@ -1,6 +1,7 @@
 ---
 import { isFormEnabled, isGitHubStaging, publicConfig } from '../../config/runtime';
 import CorePageTitle from './CorePageTitle.astro';
+import CoreFinalCta from './CoreFinalCta.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const endpoint = isFormEnabled && publicConfig.formEndpoint === '/api/enquiry' ? publicConfig.formEndpoint : '';
 const siteKey = isFormEnabled && /^[A-Za-z0-9_-]+$/.test(publicConfig.turnstileSiteKey)
@@ -14,22 +15,16 @@ const disabled = !configured && !isGitHubStaging;
   <section class="core-section p21-contact-main">
     <div class="exact-wrap p21-contact-grid">
       <div class="p21-contact-details">
-        <p class="core-kicker">GET IN TOUCH</p>
-        <h2>Have a question? Please contact us using the customer support channels below.</h2>
-        <dl>
-          <div><dt>Address</dt><dd>4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</dd></div>
-          <div><dt>Phone number</dt><dd><a href="tel:+601111334496">+60 11 1133 4496</a></dd></div>
-          <div><dt>WhatsApp</dt><dd><a href="https://wa.me/601111334496">Send a WhatsApp message</a></dd></div>
-          <div><dt>Email</dt><dd><a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a></dd></div>
-        </dl>
-        <nav aria-label="Direct contact options">
-          <a href="tel:+601111334496">Call</a>
-          <a href="https://wa.me/601111334496">WhatsApp</a>
-          <a href="mailto:rkrenosolution@gmail.com">Email</a>
-        </nav>
+        <h2>get in touch</h2>
+        <p>Have a question? Please contact us using the customer support channels below.</p>
+        <p>
+          Address: <a href="https://share.google/ZxiE3enIVqmg6LSSm">4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</a><br />
+          Phone number: <a href="tel:+601111334496">+60 11 1133 4496</a><br />
+          Email: <a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a>
+        </p>
+        <img src={`${base}/assets/media/ct-08-a16e9952.webp`} alt="" width="526" height="556" />
       </div>
       <div class="p21-contact-form-wrap">
-        <h2>Send Your Enquiry</h2>
         <p>Please submit all general enquiries in the contact form below and we look forward to hearing from you soon.</p>
         <form class="core-contact-form" data-core-enquiry-form data-endpoint={endpoint} data-configured={String(configured)} aria-describedby="core-form-note" novalidate>
           <label>Full Name*<input type="text" name="name" minlength="2" maxlength="100" required disabled={disabled} /></label>
@@ -52,26 +47,14 @@ const disabled = !configured && !isGitHubStaging;
           <input name="pageUrl" type="hidden" disabled={disabled} />
           {configured && <div class="cf-turnstile core-full-field" data-sitekey={siteKey} data-action="enquiry" data-theme="dark" data-size="flexible"></div>}
           <label class="core-consent core-full-field"><input name="consent" type="checkbox" required disabled={disabled} /><span>I agree that RK Reno Solution may use these details to respond to my enquiry.</span></label>
-          <button class="core-button core-button-orange core-full-field" type="submit" disabled={disabled}>Send Message →</button>
+          <button class="core-button core-button-orange core-full-field" type="submit" disabled={disabled}>Send Message</button>
           <p id="core-form-note" class="core-form-note core-full-field" data-form-status role="status" aria-live="polite">
             {configured ? 'Protected by validation, rate limiting and Cloudflare Turnstile.' : 'Preview only: complete the form to test its appearance. No message will be sent.'}
           </p>
         </form>
+        <img src={`${base}/assets/media/ct-07-83aecc11.webp`} alt="" width="510" height="565" loading="lazy" />
       </div>
     </div>
   </section>
-  <section class="core-section p21-contact-followup">
-    <div class="exact-wrap">
-      <div>
-        <p class="core-kicker">DIRECT CONTACT</p>
-        <h2>Share the Property and Work Details</h2>
-        <p>Include the property location, relevant photos, approximate measurements where available, and the renovation, repair or installation work you want reviewed.</p>
-        <div class="core-button-row">
-          <a class="core-button core-button-orange" href="https://wa.me/601111334496">Open WhatsApp →</a>
-          <a class="core-button core-button-outline" href={`${base}/services/`}>View Services →</a>
-        </div>
-      </div>
-      <img src={`${base}/assets/media/ct-08-a16e9952.webp`} alt="Building and construction visual" width="526" height="556" loading="lazy" />
-    </div>
-  </section>
+  <CoreFinalCta />
 </div>

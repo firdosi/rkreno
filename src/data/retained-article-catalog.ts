@@ -1,6 +1,7 @@
 import { batch2Articles, retainedArticles } from './batch2-articles';
 import { batch3Articles } from './batch3';
 import { getMediaDimensions } from './media-dimensions';
+import articleWordpressContent from './article-wordpress-content.json';
 
 export interface RetainedArticle {
   route: string;
@@ -18,7 +19,7 @@ export interface RetainedArticle {
 const articleData = { ...batch2Articles, ...batch3Articles };
 const priceGuide: RetainedArticle = {
   route: '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/',
-  title: 'Upah Pasang Aircond Selangor: Panduan Harga & Pemasangan',
+  title: 'Upah Pasang Aircond Selangor: Panduan Harga & Pemasangan (2026)',
   summary: 'Panduan memahami faktor harga, skop standard, bahan, akses dan pengesahan tapak untuk pemasangan aircond di Selangor.',
   image: '/assets/media/owner/rk-reno-aircond-outdoor-condenser-720.webp',
   imageAlt: 'Owner-supplied image of an outdoor aircond condenser unit',
@@ -36,11 +37,12 @@ export const retainedArticleCatalog: RetainedArticle[] = retainedArticles.map(
   ([route, fallbackTitle, fallbackCategory]) => {
     if (route === priceGuide.route) return priceGuide;
     const article = articleData[route];
+    const source = articleWordpressContent[route as keyof typeof articleWordpressContent];
     const image = article?.image || '/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg';
     const dimensions = getMediaDimensions(image);
     return {
       route,
-      title: article?.title || fallbackTitle,
+      title: source?.sourceTitle || article?.title || fallbackTitle,
       summary: article?.summary || 'Practical property-service planning guidance.',
       image,
       imageAlt: article?.imageAlt || 'General property-service planning imagery',

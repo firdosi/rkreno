@@ -11,31 +11,64 @@ const retainedRoutes = new Set(finalReviewRoutes.map(({ route }) => route));
 const excludedNativeRoutes = new Set(['/faq/', '/blog/', '/thank-you/', ...taxonomyRoutes]);
 
 const normalize = (value = '') => value.replace(/\s+/g, ' ').trim();
-const unsafeHeading = /testimonial|customer feedback|clients say|success stor|pricing|price list|cost guide|warrant|guarantee|rating|certified|licensed|career|newsletter/i;
-const unsafeText = /(?:\b24\s*\/\s*7\b|\b\d{2,}\+?\s+(?:years|projects|customers|clients|services)\b|100\s*%\s*(?:compliant|pricing|transparent|durable|safety|satisfaction|puas)|\b\d+(?:\.\d+)?\s*\/\s*5\b|\bguaranteed?\b|\bwarranty\b|\bcertified\b|\blicensed\b|\byears? of experience\b)/i;
-const exactPrice = /\bRM\s*[\d,]+|\bRM\s*\d+\s*[-–]\s*RM|\bper\s+(?:sq\.?\s*ft|square foot|point)\b/i;
 const noise = /^(?:tags?|share|previous post|newer post|no comments?|leave a reply|related posts?|search)\s*:?\s*$/i;
-const ownerAircondImages = [
-  { src: '/assets/media/owner/rk-reno-wall-mounted-aircond-unit-960.webp', alt: 'Owner-supplied image of a wall-mounted aircond unit' },
-  { src: '/assets/media/owner/rk-reno-aircond-unit-trunking-960.webp', alt: 'Owner-supplied image of an aircond unit with trunking' },
-  { src: '/assets/media/owner/rk-reno-aircond-outdoor-condenser-720.webp', alt: 'Owner-supplied image of an outdoor aircond condenser unit' },
-];
+const sourceDerivedFallbacks = {
+  '/servis-aircond-murah-kl/': [
+    '/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-960.webp',
+    '/assets/media/owner/rk-reno-aircond-unit-trunking-960.webp',
+  ],
+  '/aircond-installation-kl/': [
+    '/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg',
+    '/assets/media/owner/rk-reno-aircond-outdoor-condenser-720.webp',
+  ],
+  '/upah-pasang-aircond-selangor/': [
+    '/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg',
+    '/assets/media/owner/rk-reno-aircond-outdoor-condenser-720.webp',
+  ],
+  '/electrical-services-selangor/': [
+    '/assets/media/Construction-workers-discussing-renovation-plans-092133b6.jpg',
+    '/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg',
+  ],
+  '/house-renovation-in-kuala-lumpur/': [
+    '/assets/media/Home-renovation-service-in-KL-422b205c.jpg',
+    '/assets/media/Renovation-planning-and-project-drawings-1-ea76b170.jpg',
+  ],
+  '/house-renovation-in-selangor/': [
+    '/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg',
+    '/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg',
+  ],
+  '/home-renovation-contractor-in-subang-jaya/': [
+    '/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg',
+  ],
+  '/office-renovation-in-kuala-lumpur/': [
+    '/assets/media/Office-renovation-service-in-Selangor-7928d19d.jpg',
+    '/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg',
+  ],
+  '/waterproofing-contractor-kuala-lumpur/': [
+    '/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg',
+  ],
+  '/plaster-ceiling-contractor-kl/': [
+    '/assets/media/Plaster-ceiling-and-aircond-installation-dd789b38.jpg',
+    '/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg',
+    '/assets/media/Home-renovation-service-in-KL-422b205c.jpg',
+  ],
+};
 
 function normalizeHref(href = '') {
   if (!href || href.startsWith('#')) return href;
   if (/^(?:tel:|mailto:|https:\/\/wa\.me\/)/i.test(href)) return href;
   try {
     const url = new URL(href, 'https://rkrenosolution.com/');
-    if (url.origin !== 'https://rkrenosolution.com') return '';
+    if (url.origin !== 'https://rkrenosolution.com') return href;
     const route = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`;
-    return retainedRoutes.has(route) ? route : '';
+    return retainedRoutes.has(route) ? `${route}${url.hash}` : url.href;
   } catch {
     return '';
   }
 }
 
 function sanitizeInline($, element) {
-  const wrapper = load(`<div>${$.html(element)}</div>`);
+  const wrapper = load(`<main>${$.html(element)}</main>`);
   wrapper('script,style,svg,img,iframe,button,input').remove();
   wrapper('a').each((_, link) => {
     const href = normalizeHref(wrapper(link).attr('href'));
@@ -48,48 +81,52 @@ function sanitizeInline($, element) {
   wrapper('strong,b').each((_, node) => wrapper(node).replaceWith(`<strong>${normalize(wrapper(node).text())}</strong>`));
   wrapper('em,i').each((_, node) => wrapper(node).replaceWith(`<em>${normalize(wrapper(node).text())}</em>`));
   wrapper('br').replaceWith('<br>');
-  wrapper('div,span,small').each((_, node) => wrapper(node).replaceWith(wrapper(node).html() || wrapper(node).text()));
-  return normalize(wrapper('div').first().html() || wrapper.text());
+  wrapper('main div,main span,main small').each((_, node) => wrapper(node).replaceWith(wrapper(node).html() || wrapper(node).text()));
+  const root = wrapper('main').children().first();
+  return normalize(root.html() || root.text());
 }
 
-function localImageFor(page, source, sourceAlt = '') {
+function localImageFor(page, source, sourceAlt = '', fallbackIndex = 0) {
   if (!source) return null;
   if (source.startsWith('/assets/')) {
-    if (/avatar|avartar|logo|icon|bg-/i.test(source)) return null;
     return { src: source.split('?')[0], alt: normalize(sourceAlt) || 'General RK Reno service imagery' };
   }
   const cleanSource = new URL(source.split('?')[0], 'https://rkrenosolution.com/').href;
   const match = page.images?.find((image) => image.source?.split('?')[0] === cleanSource);
-  if (!match?.local?.startsWith('/assets/')) return null;
-  if (/avatar|avartar|logo|icon|bg-/i.test(match.local)) return null;
+  if (!match?.local?.startsWith('/assets/')) {
+    const fallback = sourceDerivedFallbacks[page.path]?.[fallbackIndex];
+    return fallback ? { src: fallback, alt: normalize(sourceAlt) || 'Source-derived service imagery' } : null;
+  }
   return { src: match.local, alt: normalize(match.alt) || 'General RK Reno service imagery' };
 }
 
 function extractPage(page) {
   const $ = load(page.content || '');
-  $('style,script,noscript,svg,iframe,form,nav,header,footer,.comments-area,.woocommerce,.elementor-widget-shortcode')
-    .remove();
-  $('[class*="testimonial"],[class*="counter"],[class*="rating"],[class*="newsletter"],[class*="career"]')
+  $('style,script,noscript,svg,iframe,nav,header,footer,.comments-area,.woocommerce,.elementor-widget-shortcode')
     .remove();
   const sections = [];
   const seen = new Set();
   let current = null;
   let skipSection = false;
-  let imagesUsed = 0;
+  let fallbackImageIndex = 0;
   const addBlock = (block, key) => {
     if (!current || seen.has(key)) return;
     seen.add(key);
     current.blocks.push(block);
   };
 
-  $('h1,h2,h3,h4,p,ul,ol,table,img,details').each((_, element) => {
+  $('h1,h2,h3,h4,h5,h6,p,ul,ol,table,img,details,a,.rk-accordion-header').each((_, element) => {
     const tag = element.tagName.toLowerCase();
     const node = $(element);
-    if (node.parents('h1,h2,h3,h4,p,ul,ol,table,details').length) return;
+    if (node.parents('h1,h2,h3,h4,h5,h6,p,ul,ol,table,details').length) return;
     const text = normalize(node.text());
+    if (node.hasClass('rk-accordion-header')) {
+      if (current && text) addBlock({ type: 'heading', level: 3, text }, `heading:${text.toLowerCase()}`);
+      return;
+    }
     if (tag === 'h1') return;
     if (tag === 'h2') {
-      skipSection = !text || unsafeHeading.test(text);
+      skipSection = !text;
       current = skipSection ? null : { title: text, blocks: [] };
       if (current && !seen.has(`section:${text.toLowerCase()}`)) {
         seen.add(`section:${text.toLowerCase()}`);
@@ -98,13 +135,24 @@ function extractPage(page) {
       return;
     }
     if (!current || skipSection) return;
-    if (tag === 'h3' || tag === 'h4') {
-      if (!text || unsafeHeading.test(text) || noise.test(text)) return;
-      addBlock({ type: 'heading', level: tag === 'h3' ? 3 : 4, text }, `heading:${text.toLowerCase()}`);
+    if (/^h[3-6]$/.test(tag)) {
+      if (!text || noise.test(text)) return;
+      addBlock({ type: 'heading', level: Number(tag[1]), text }, `heading:${text.toLowerCase()}`);
+      return;
+    }
+    if (tag === 'a') {
+      const href = normalizeHref(node.attr('href'));
+      if (text && href) addBlock({ type: 'link', href, text }, `link:${text.toLowerCase()}:${href}`);
       return;
     }
     if (tag === 'p') {
-      if (text.length < 24 || noise.test(text) || unsafeText.test(text) || exactPrice.test(text)) return;
+      if (!text || noise.test(text)) return;
+      if (/faq|frequently asked|soalan lazim/i.test(current.title)) {
+        const question = normalize(node.parent().prev().text());
+        if (question && question !== text) {
+          addBlock({ type: 'heading', level: 3, text: question }, `heading:${question.toLowerCase()}`);
+        }
+      }
       addBlock({ type: 'paragraph', html: sanitizeInline($, element) }, `p:${text.toLowerCase()}`);
       return;
     }
@@ -112,33 +160,32 @@ function extractPage(page) {
       const question = normalize(node.children('summary').first().text());
       const answerNode = node.find('p').first();
       const answer = normalize(answerNode.text());
-      if (!question || !answer || unsafeText.test(answer) || exactPrice.test(`${question} ${answer}`)) return;
+      if (!question || !answer) return;
       addBlock({ type: 'heading', level: 3, text: question }, `heading:${question.toLowerCase()}`);
       addBlock({ type: 'paragraph', html: sanitizeInline($, answerNode[0]) }, `p:${answer.toLowerCase()}`);
       return;
     }
     if (tag === 'ul' || tag === 'ol') {
-      const items = node.children('li').map((__, item) => normalize($(item).text())).get()
-        .filter((item) => item.length > 2 && !unsafeText.test(item) && !exactPrice.test(item));
-      if (items.length) addBlock({ type: 'list', ordered: tag === 'ol', items }, `list:${items.join('|').toLowerCase()}`);
+      const items = node.children('li').map((__, item) => ({
+        text: normalize($(item).text()),
+        html: sanitizeInline($, item),
+      })).get().filter((item) => item.text.length > 2);
+      if (items.length) addBlock({ type: 'list', ordered: tag === 'ol', items }, `list:${items.map((item) => item.text).join('|').toLowerCase()}`);
       return;
     }
     if (tag === 'table') {
       const rows = [];
       node.find('tr').each((__, row) => {
         const cells = $(row).find('th,td').map((___, cell) => normalize($(cell).text())).get();
-        if (cells.length && !cells.some((cell) => exactPrice.test(cell))) rows.push(cells);
+        if (cells.length) rows.push(cells);
       });
       if (rows.length > 1) addBlock({ type: 'table', rows }, `table:${JSON.stringify(rows).toLowerCase()}`);
       return;
     }
-    if (tag === 'img' && imagesUsed < 4) {
-      const ownerImage = /aircond|pasang-aircond/.test(page.path)
-        ? ownerAircondImages[imagesUsed % ownerAircondImages.length]
-        : null;
-      const image = ownerImage || localImageFor(page, node.attr('src') || node.attr('data-src'), node.attr('alt'));
+    if (tag === 'img') {
+      const image = localImageFor(page, node.attr('src') || node.attr('data-src'), node.attr('alt'), fallbackImageIndex);
       if (!image) return;
-      imagesUsed += 1;
+      if (!page.images?.some((item) => item.local === image.src)) fallbackImageIndex += 1;
       addBlock({ type: 'image', ...image }, `image:${image.src}`);
     }
   });
@@ -146,12 +193,10 @@ function extractPage(page) {
   return {
     sourceCanonical: page.canonical,
     sourceH1: page.h1,
-    sections: sections.filter(({ blocks }) => blocks.length),
+    sections,
     intentionalSafeDifferences: [
-      'Unsupported counters, testimonials, ratings, guarantees, warranties and exact pricing are excluded.',
-      'Raw Elementor wrappers, plugin markup, comments, ecommerce and newsletter content are excluded.',
-      'Approved owner-supplied aircond imagery remains in place where already selected.',
-      'Only locally available, relevant WordPress images are eligible for supporting content.',
+      'Visible WordPress claims are mirrored verbatim and reviewed separately from implementation parity.',
+      'Raw plugin scripts and non-visible tracking markup are excluded.',
     ],
   };
 }

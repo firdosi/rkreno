@@ -1,30 +1,15 @@
 ---
 import CorePageTitle from './core/CorePageTitle.astro';
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <CorePageTitle
   title="Thank You"
-  description="Enquiry confirmation guidance and direct contact alternatives."
 />
 <section class="utility-exact-page" aria-labelledby="confirmation-title">
   <div class="exact-wrap utility-exact-card">
-    <p>Enquiry confirmation</p>
-    <h2 id="confirmation-title">A direct visit does not confirm an enquiry was submitted</h2>
-    <p>
-      On the production website, this page is intended to appear only after a successful form response.
-      Opening this URL directly—or viewing it on staging—does not mean RK Reno received your details.
-    </p>
-    <p>
-      GitHub Pages forms remain disabled. To contact RK Reno now, call
-      <a href="tel:+601111334496" data-track="phone">+60 11 1133 4496</a> or send the project
-      details through <a href="https://wa.me/601111334496" data-track="whatsapp">WhatsApp</a>.
-    </p>
-    <nav class="p23-utility-actions" aria-label="Thank-you page options">
-      <a class="core-button" href="https://wa.me/601111334496">Open WhatsApp →</a>
-      <a href="tel:+601111334496">Call RK Reno</a>
-      <a href={`${base}/contact-us/`}>Contact</a>
-      <a href={`${base}/services/`}>Browse services</a>
-      <a href={`${base}/`}>Back to homepage</a>
-    </nav>
+    <h2 id="confirmation-title">Thank You!</h2>
+    <p>Your feedback has been submitted successfully. We appreciate your time and effort to help us improve!</p>
   </div>
 </section>
+<aside class="staging-safety-note" aria-label="Staging form notice">
+  Private staging note: opening this URL directly does not confirm that an enquiry was submitted. Form network submission remains disabled.
+</aside>

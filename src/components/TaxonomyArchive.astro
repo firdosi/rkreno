@@ -8,8 +8,6 @@ interface Archive {
   title: string;
   description: string;
   introduction: string;
-  serviceHref: string;
-  serviceLabel: string;
 }
 
 const { archive, articles, sourceH1 } = Astro.props as {
@@ -18,48 +16,38 @@ const { archive, articles, sourceH1 } = Astro.props as {
   sourceH1?: string;
 };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const categoryRoute = (category: string) => {
+  const value = category.toLowerCase();
+  if (value.includes('aircond') || value.includes('hvac')) return '/category/hvac-guides/';
+  if (value.includes('clean') || value.includes('pembersihan')) return '/category/servis-pembersihan/';
+  if (value.includes('commercial')) return '/category/commercial/';
+  if (value.includes('maintenance') || value.includes('waterproof')) return '/category/maintenance/';
+  if (value.includes('technical') || value.includes('electrical')) return '/category/technical-guides/';
+  return '/category/renovation/';
+};
 ---
 <div class="archive-exact-page">
   <CorePageTitle title={sourceH1 || archive.title} description={archive.introduction} />
-
   <section class="archive-exact-section">
     <div class="exact-wrap p23-archive-layout">
-      <div>
-        <header class="p23-archive-intro">
-          <p>{archive.type} archive · retained guides</p>
-          <h2>Latest articles</h2>
-          <span>{archive.description}</span>
-        </header>
-        <div class="p23-archive-list">
-          {articles.map((article) => (
-            <article class="p23-archive-entry">
-              <p>{article.category}</p>
+      <div class="p23-archive-list">
+        {articles.map((article) => (
+          <article class="p23-archive-entry">
+            <a class="p23-entry-image" href={`${base}${article.route}`}>
+              <img src={`${base}${article.image}`} alt={article.imageAlt} width={article.imageWidth || 900} height={article.imageHeight || 600} loading="lazy" />
+            </a>
+            <div>
+              <img src={`${base}/assets/media/avartar1-90x90-68065c41.webp`} alt="" width="48" height="48" loading="lazy" />
+              <p><a href={`${base}${categoryRoute(article.category)}`}>{article.category}</a></p>
               <h2><a href={`${base}${article.route}`}>{article.title}</a></h2>
               <span>{article.summary}</span>
-              <time datetime={article.published}>{article.published}</time>
+              <div class="p23-entry-meta"><time datetime={article.published}>{article.published}</time><a href={`${base}${article.route}#respond`}>No Comments</a></div>
               <a class="p23-read-more" href={`${base}${article.route}`}>Read more →</a>
-            </article>
-          ))}
-        </div>
+            </div>
+          </article>
+        ))}
       </div>
-      <Prompt23ArchiveSidebar
-        serviceHref={archive.serviceHref}
-        serviceLabel={archive.serviceLabel}
-      />
-    </div>
-  </section>
-
-  <section class="archive-exact-cta">
-    <div class="exact-wrap">
-      <div>
-        <p>Plan the next step</p>
-        <h2>Connect the guide to the actual property</h2>
-        <span>Use these articles to prepare questions, then confirm the scope from the site and requested work.</span>
-      </div>
-      <nav aria-label="Archive next steps">
-        <a class="core-button" href={`${base}${archive.serviceHref}`}>{archive.serviceLabel}</a>
-        <a href={`${base}/blog/`}>Browse all guides →</a>
-      </nav>
+      <Prompt23ArchiveSidebar />
     </div>
   </section>
 </div>

@@ -4,15 +4,16 @@ import ServiceFaqList from './ServiceFaqList.astro';
 import ServiceContentBlock from './ServiceContentBlock.astro';
 
 interface ContentBlock {
-  type: 'heading' | 'paragraph' | 'list' | 'table' | 'image';
+  type: 'heading' | 'paragraph' | 'list' | 'table' | 'image' | 'link';
   level?: number;
   text?: string;
   html?: string;
   ordered?: boolean;
-  items?: string[];
+  items?: (string | { text: string; html: string })[];
   rows?: string[][];
   src?: string;
   alt?: string;
+  href?: string;
 }
 
 const {
@@ -38,18 +39,28 @@ for (const block of section.blocks) {
 }
 const safeIntro = introBlocks.filter((block) => !unsafe(block.html || block.text));
 const safeGroups = groups.filter((group) =>
-  group.blocks.length > 0 &&
   !unsafe([group.heading.text, ...group.blocks.map((block) => block.html || block.text || block.items?.join(' '))].join(' ')));
 const derivedFaqs = safeGroups.map((group) => ({
   question: group.heading.text || '',
   answer: group.blocks.filter((block) => block.type === 'paragraph').map((block) => strip(block.html || block.text)).join(' '),
+  answerHtml: group.blocks.filter((block) => block.type === 'paragraph').map((block) => block.html || block.text).join(' '),
 })).filter((faq) => faq.question && faq.answer);
 const faqs = explicitFaqs?.length ? explicitFaqs : derivedFaqs;
+const faqLinks = safeGroups.flatMap((group) => group.blocks.filter((block) => block.type === 'link'));
 const ctaSection = /quote|quotation|hubungi|get an? .*quote/i.test(section.title);
 
 ---
 {isFaq && faqs.length ? (
-  <ServiceFaqList title={section.title} faqs={faqs} />
+  <>
+    <ServiceFaqList title={section.title} faqs={faqs} />
+    {faqLinks.length > 0 && (
+      <section class="service-exact-section service-exact-section--knowledge">
+        <div class="exact-wrap service-exact-knowledge-links">
+          {faqLinks.map((block) => <ServiceContentBlock block={block} />)}
+        </div>
+      </section>
+    )}
+  </>
 ) : (
   <section class:list={['service-exact-section', { 'service-exact-section--tint': index % 2 === 1, 'service-exact-section--cta': ctaSection }]}>
     <div class="exact-wrap">
@@ -76,7 +87,7 @@ const ctaSection = /quote|quotation|hubungi|get an? .*quote/i.test(section.title
             <a href="tel:+601111334496">Call +60 11-1133 4496</a>
           </aside>
         </div>
-      ) : !pricingSection && safeGroups.length > 0 && (
+      ) : safeGroups.length > 0 && (
         <div class:list={['service-exact-groups', { 'service-exact-groups--single': safeGroups.length === 1 }]}>
           {safeGroups.map((group) => (
             <article>

@@ -1,0 +1,66 @@
+---
+import { load } from 'cheerio';
+import CorePageTitle from '../core/CorePageTitle.astro';
+
+const { content } = Astro.props as { content: string };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const $ = load(content);
+const clean = (value = '') => value.replace(/\s+/g, ' ').trim();
+const introHeading = clean($('h2').first().text());
+const intro = clean($('p').first().text());
+const cards = $('h3').map((_, heading) => {
+  const node = $(heading);
+  let card = node.parent();
+  while (card.length && !(card.find('img').length === 1 && clean(card.text()).length > 100)) card = card.parent();
+  const name = clean(node.text());
+  const role = clean(node.parent().text()).replace(name, '').trim();
+  const full = clean(card.text());
+  const quote = full.replace(`${name} ${role}`.trim(), '').trim();
+  return { name, role, quote, image: card.find('img').first().attr('src') || '' };
+}).get();
+const rateHeading = clean($('h2').last().text());
+const rateText = clean($('h2').last().parent().parent().find('p').first().text()) || clean($('p').last().text());
+const rateImages = $('img').slice(-2).map((_, image) => $(image).attr('src') || '').get();
+const decorative = [
+  '/assets/media/testi1-355d6f8a.webp',
+  '/assets/media/testi2-5a7736f8.webp',
+  '/assets/media/testi1-355d6f8a.webp',
+  '/assets/media/testi2-5a7736f8.webp',
+];
+const media = (src: string) => src.startsWith('/') ? `${base}${src}` : src;
+---
+<div class="held-page testimonials-page">
+  <CorePageTitle title="Testimonials" description="Testimonials" />
+  <section class="testimonial-intro"><div class="exact-wrap"><p class="core-kicker">testimonials</p><h2>{introHeading}</h2><p>{intro}</p></div></section>
+  <section class="testimonial-featured">
+    <div class="exact-wrap testimonial-viewport" data-held-testimonial-carousel data-held-carousel>
+      <div class="testimonial-track">
+        {cards.slice(0, 4).map((card, index) => (
+          <article><img class="testimonial-decoration" src={`${base}${decorative[index]}`} alt="" width="360" height="360" /><span class="quote-mark">“</span><p>{card.quote}</p><div><img src={media(card.image)} alt="" width="90" height="90" /><h3>{card.name}<small>{card.role}</small></h3></div></article>
+        ))}
+      </div>
+      <div class="held-slider-controls"><button type="button" data-held-prev aria-label="Previous testimonial">←</button><button type="button" data-held-next aria-label="Next testimonial">→</button></div>
+    </div>
+  </section>
+  <section class="testimonial-list"><div class="exact-wrap">
+    {cards.slice(4).map((card) => <article data-held-reveal><span>“</span><p>{card.quote}</p><div><img src={media(card.image)} alt="" width="90" height="90" /><h3>{card.name}<small>{card.role}</small></h3></div></article>)}
+  </div></section>
+  <section class="testimonial-rate">
+    <div class="exact-wrap"><img src={media(rateImages[0])} alt="" width="600" height="500" /><div><h2>{rateHeading}</h2><p>{rateText}</p><a class="core-button core-button-orange" href={`${base}/contact-us/`}>Share Your Though</a></div><img class="rate-logo" src={media(rateImages[1])} alt="" width="180" height="70" /></div>
+  </section>
+</div>
+
+<script>
+  const viewport = document.querySelector<HTMLElement>('[data-held-testimonial-carousel]');
+  const track = viewport?.querySelector<HTMLElement>('.testimonial-track');
+  const cards = track ? [...track.children] as HTMLElement[] : [];
+  let active = 0;
+  const show = (index: number) => {
+    if (!track || !cards.length) return;
+    active = (index + cards.length) % cards.length;
+    track.style.transform = `translateX(-${cards[active].offsetLeft}px)`;
+  };
+  document.querySelector('[data-held-prev]')?.addEventListener('click', () => show(active - 1));
+  document.querySelector('[data-held-next]')?.addEventListener('click', () => show(active + 1));
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) window.setInterval(() => show(active + 1), 5500);
+</script>

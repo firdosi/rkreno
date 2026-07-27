@@ -1,0 +1,37 @@
+---
+import { load } from 'cheerio';
+import CorePageTitle from '../core/CorePageTitle.astro';
+
+const { content } = Astro.props as { content: string };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const $ = load(content);
+const clean = (value = '') => value.replace(/\s+/g, ' ').trim();
+const entries = $('h3').map((_, heading) => {
+  const node = $(heading);
+  let card = node.parent();
+  while (card.length && card.find('img').length !== 1) card = card.parent();
+  const text = clean(card.text());
+  return {
+    year: text.match(/\b(?:19|20)\d{2}\b/)?.[0] || '',
+    title: clean(node.text()),
+    description: clean(card.find('p').first().text()),
+    image: card.find('img').first().attr('src') || '',
+    alt: card.find('img').first().attr('alt') || '',
+  };
+}).get();
+const media = (src: string) => src.startsWith('/') ? `${base}${src}` : src;
+---
+<div class="held-page held-history-page">
+  <CorePageTitle title="Company History" description="Company History" />
+  <section class="history-timeline" aria-label="Company history timeline">
+    <div class="exact-wrap">
+      {entries.map((entry, index) => (
+        <article class:list={['history-entry', { reverse: index % 2 === 1 }]} data-held-reveal>
+          <figure><img src={media(entry.image)} alt={entry.alt} width="496" height="262" loading={index < 2 ? 'eager' : 'lazy'} /></figure>
+          <div class="history-year"><span>{entry.year}</span></div>
+          <div class="history-copy"><h2>{entry.title}</h2><p>{entry.description}</p></div>
+        </article>
+      ))}
+    </div>
+  </section>
+</div>

@@ -1,7 +1,6 @@
 ---
 import CorePageTitle from './core/CorePageTitle.astro';
 import Prompt22ArticleSidebar from './article/Prompt22ArticleSidebar.astro';
-import type { BatchArticle } from '@data/batch2-articles';
 import { addIntrinsicImageDimensions } from '@data/media-dimensions';
 
 interface WordPressArticle {
@@ -11,36 +10,19 @@ interface WordPressArticle {
   html: string;
 }
 
-const { article, wordpressContent } = Astro.props as {
-  article: BatchArticle;
+const { sourceContent, wordpressContent } = Astro.props as {
+  article: unknown;
   wordpressContent: WordPressArticle;
+  sourceContent: string;
 };
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const content = addIntrinsicImageDimensions(wordpressContent.html)
-  .replaceAll('href="/', `href="${base}/`)
-  .replaceAll('src="/', `src="${base}/`);
-const date = (value: string) => new Intl.DateTimeFormat('en-MY', {
-  day: '2-digit',
-  month: 'long',
-  year: 'numeric',
-}).format(new Date(value));
+const content = addIntrinsicImageDimensions(sourceContent);
+const hasSourceH1 = /<h1[\s>]/i.test(sourceContent);
 ---
-<CorePageTitle title={wordpressContent.sourceTitle} />
+{!hasSourceH1 && <CorePageTitle title={wordpressContent.sourceTitle} />}
 <article class="article-exact-page">
-  <div class="exact-wrap article-exact-meta">
-    <span>{article.category}</span>
-    <span>Published <time datetime={wordpressContent.published}>{date(wordpressContent.published)}</time></span>
-    {wordpressContent.modified !== wordpressContent.published && (
-      <span>Updated <time datetime={wordpressContent.modified}>{date(wordpressContent.modified)}</time></span>
-    )}
-  </div>
-
   <div class="exact-wrap p22-article-layout">
     <div class="article-exact-content" set:html={content} />
-    <Prompt22ArticleSidebar
-      serviceHref={article.serviceHref}
-      serviceLabel={article.serviceLabel}
-      related={article.related}
-    />
+    <Prompt22ArticleSidebar />
   </div>
 </article>
+import CorePageTitle from './core/CorePageTitle.astro';

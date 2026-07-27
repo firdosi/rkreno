@@ -1,0 +1,36 @@
+---
+import { load } from 'cheerio';
+import CorePageTitle from '../core/CorePageTitle.astro';
+import PartnerBand from './PartnerBand.astro';
+
+const { content } = Astro.props as { content: string };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const $ = load(content);
+const clean = (value = '') => value.replace(/\s+/g, ' ').trim();
+const introHeading = clean($('h2').first().text());
+const intro = clean($('h2').first().parent().parent().find('p').first().text()) || clean($('p').first().text());
+const members = $('h4').map((_, heading) => {
+  const node = $(heading);
+  let card = node.parent();
+  while (card.length && card.find('img').length !== 1) card = card.parent();
+  const text = clean(card.text());
+  const name = clean(node.text());
+  return { name, role: text.replace(name, '').trim(), image: card.find('img').first().attr('src') || '' };
+}).get();
+const media = (src: string) => src.startsWith('/') ? `${base}${src}` : src;
+---
+<div class="held-page team-page">
+  <CorePageTitle title="Our Team" description="Our Team" />
+  <section class="team-intro"><div class="exact-wrap"><p class="core-kicker">our leadership</p><h2>{introHeading}</h2><p>{intro}</p></div></section>
+  <section class="team-grid-section">
+    <div class="exact-wrap team-grid">
+      {members.map((member) => (
+        <article data-held-reveal>
+          <a class="team-photo" href="https://rkrenosolution.com/team-detail/"><img src={media(member.image)} alt="" width="500" height="600" loading="lazy" /></a>
+          <div><h3><a href="https://rkrenosolution.com/team-detail/">{member.name}</a></h3><p>{member.role}</p><span aria-hidden="true">f&nbsp;&nbsp;𝕏&nbsp;&nbsp;in&nbsp;&nbsp;◎</span></div>
+        </article>
+      ))}
+    </div>
+  </section>
+  <PartnerBand />
+</div>

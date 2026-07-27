@@ -79,8 +79,8 @@ export const serviceExactConfig: Record<string, ServiceExactConfig> = {
     variant: 'building',
     heroTitle: 'Building Renovation',
     lead: 'Our expertise combines visionary design with practical execution, ensuring functional, beautiful spaces that meet the demands of modern life and exceed expectations.',
-    image: '/assets/media/service1-875x1001-6a2b0a4a.webp',
-    imageAlt: 'Neutral construction and building-renovation service image',
+    image: '/assets/media/Renovation-31522f13.svg',
+    imageAlt: 'Building renovation',
     skipPatterns: [/professionally qualified/i, /frequently asked questions/i, /need any helps/i],
   },
   '/electrical-services-selangor/': {

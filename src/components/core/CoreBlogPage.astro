@@ -1,18 +1,19 @@
 ---
 import CorePageTitle from './CorePageTitle.astro';
+import Prompt23ArchiveSidebar from '../archive/Prompt23ArchiveSidebar.astro';
 import { retainedArticleCatalog } from '@data/retained-article-catalog';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const archives = [
-  ['/category/commercial/', 'Commercial'],
-  ['/category/hvac-guides/', 'HVAC Guides'],
-  ['/category/maintenance/', 'Maintenance'],
-  ['/category/renovation/', 'Renovation'],
-  ['/category/servis-pembersihan/', 'Servis Pembersihan'],
-  ['/category/technical-guides/', 'Technical Guides'],
-  ['/tag/interior-finishing/', 'Interior Finishing'],
-  ['/tag/office-fit-out/', 'Office Fit-Out'],
-  ['/tag/waterproofing/', 'Waterproofing'],
+const pageOneRoutes = [
+  '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/',
+  '/commercial-retail-shop-renovation-in-kuala-lumpur/',
+  '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/',
+  '/office-renovation-petaling-jaya-corporate-fit-out-experts/',
 ];
+const pageOne = pageOneRoutes.map((route) => retainedArticleCatalog.find((article) => article.route === route)).filter(Boolean);
+const categoryRoute = (category: string) => category === 'Commercial' ? '/category/commercial/'
+  : category === 'Renovation' ? '/category/renovation/'
+  : category === 'Servis Pembersihan' ? '/category/servis-pembersihan/'
+  : '/category/maintenance/';
 ---
 <div class="core-page p21-blog">
   <CorePageTitle title="Blog" description="Practical guides for renovation, aircond, electrical, waterproofing, ceiling and cleaning work." />
@@ -20,7 +21,7 @@ const archives = [
   <section class="core-section p21-blog-section">
     <div class="exact-wrap p21-blog-layout">
       <div class="p21-blog-list core-blog-grid">
-        {retainedArticleCatalog.map((article) => (
+        {pageOne.map((article) => article && (
           <article>
             <a class="p21-blog-image" href={`${base}${article.route}`}>
               <img
@@ -34,36 +35,18 @@ const archives = [
               />
             </a>
             <div>
-              <p class="core-blog-meta"><span>{article.category}</span> · <time datetime={article.published}>{article.published}</time></p>
+              <img src={`${base}/assets/media/avartar1-90x90-68065c41.webp`} alt="" width="48" height="48" loading="lazy" />
+              <p class="core-blog-meta"><a href={`${base}${categoryRoute(article.category)}`}>{article.category}</a></p>
               <h2><a href={`${base}${article.route}`}>{article.title}</a></h2>
-              <p>{article.summary}</p>
-              <a class="core-read-link" href={`${base}${article.route}`}>Read More →</a>
+              <p><span>by raoisrar</span> <a href={`${base}${article.route}#respond`}>No Comments</a></p>
+              <a class="core-read-link" href={`${base}${article.route}`}>Read more</a>
             </div>
           </article>
         ))}
-        <nav class="core-pagination" aria-label="Blog pagination"><span aria-current="page">1</span><a href="#top">2</a><a href="#top">Next Page →</a></nav>
+        <nav class="core-pagination" aria-label="Blog pagination"><a href="https://rkrenosolution.com/blog/page/2/">2</a><a href="https://rkrenosolution.com/blog/page/4/">4</a><a href="https://rkrenosolution.com/blog/page/2/">NEXT PAGE</a></nav>
       </div>
 
-      <aside class="p21-blog-sidebar">
-        <form role="search" aria-label="Blog search">
-          <label for="blog-search">Search posts</label>
-          <div><input id="blog-search" type="search" disabled /><button type="button" disabled>Search</button></div>
-        </form>
-        <nav class="core-blog-topics" aria-label="Blog categories">
-          <h2>Categories</h2>
-          {archives.map(([href, label]) => <a href={`${base}${href}`}>{label}</a>)}
-        </nav>
-        <div>
-          <h2>Service Links</h2>
-          <a href={`${base}/services/`}>All Services</a>
-          <a href={`${base}/contact-us/`}>Contact RK Reno</a>
-          <a href="https://wa.me/601111334496">WhatsApp</a>
-        </div>
-      </aside>
+      <Prompt23ArchiveSidebar />
     </div>
-  </section>
-
-  <section class="p21-blog-cta">
-    <div class="exact-wrap"><p>Need help connecting a guide to your property?</p><a class="core-button core-button-orange" href={`${base}/contact-us/`}>Get a Quote →</a></div>
   </section>
 </div>
