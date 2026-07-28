@@ -368,7 +368,7 @@ const pageSchema = isDemolition
   ) : page.path === '/testimonials/' ? (
     <TestimonialsPage content={repairedContent} />
   ) : batchArticle ? (
-    <ArticlePage article={batchArticle} wordpressContent={exactArticle} sourceContent={content} />
+    <ArticlePage article={batchArticle} wordpressContent={exactArticle} sourceContent={content} sourceTitle={sourceHeroTitle || page.h1} />
   ) : page.path === '/' ? (
     <ExactHomePage />
   ) : page.path === '/services/' ? (

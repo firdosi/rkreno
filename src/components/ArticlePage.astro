@@ -10,15 +10,15 @@ interface WordPressArticle {
   html: string;
 }
 
-const { sourceContent, wordpressContent } = Astro.props as {
+const { sourceContent, wordpressContent, sourceTitle } = Astro.props as {
   article: unknown;
   wordpressContent: WordPressArticle;
   sourceContent: string;
+  sourceTitle: string;
 };
 const content = addIntrinsicImageDimensions(sourceContent);
-const hasSourceH1 = /<h1[\s>]/i.test(sourceContent);
 ---
-{!hasSourceH1 && <CorePageTitle title={wordpressContent.sourceTitle} />}
+<CorePageTitle title={sourceTitle || wordpressContent.sourceTitle} description="Description Details" />
 <article class="article-exact-page">
   <div class="exact-wrap p22-article-layout">
     <div class="article-exact-content" set:html={content} />
