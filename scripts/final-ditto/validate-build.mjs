@@ -86,18 +86,24 @@ if (target === 'github') {
   }
 }
 
-const parityCsv = await readFile(path.join(root, 'reports', 'public', 'final-content-parity.csv'), 'utf8');
-const parityStatuses = [...parityCsv.matchAll(/,"(EXACT|SOURCE_ASSET_MISSING|NEW_PAGE|OWNER_REVIEW_REQUIRED|PARITY_DIFFERENCE)"\s*$/gm)]
-  .map((match) => match[1]);
-const exactCount = parityStatuses.filter((status) => status === 'EXACT').length;
+const parityJson = JSON.parse(await readFile(
+  path.join(root, 'reports', 'public', 'prompt-1-1-bidirectional-parity.json'), 'utf8',
+));
+const parityStatuses = parityJson.routes.map(({ status }) => status);
+const matchCount = parityStatuses.filter((status) => status === 'MATCH').length;
+const differenceCount = parityStatuses.filter((status) => status === 'DIFFERENCE').length;
 const sourceMissingCount = parityStatuses.filter((status) => status === 'SOURCE_ASSET_MISSING').length;
 const newPageCount = parityStatuses.filter((status) => status === 'NEW_PAGE').length;
 if (parityStatuses.length !== 48) errors.push(`parity records ${parityStatuses.length}`);
-if (exactCount < 44) errors.push(`EXACT routes ${exactCount}`);
 if (sourceMissingCount > 3) errors.push(`SOURCE_ASSET_MISSING routes ${sourceMissingCount}`);
 if (newPageCount !== 1) errors.push(`NEW_PAGE routes ${newPageCount}`);
-for (const forbiddenStatus of ['OWNER_REVIEW_REQUIRED', 'PARITY_DIFFERENCE']) {
-  if (parityStatuses.includes(forbiddenStatus)) errors.push(`forbidden parity status ${forbiddenStatus}`);
+if (matchCount + differenceCount + sourceMissingCount + newPageCount !== 48) {
+  errors.push('unknown strict parity status');
+}
+for (const route of parityJson.routes.filter(({ status }) => status === 'MATCH')) {
+  const unresolved = Object.values(route.differences || {}).some((value) =>
+    Array.isArray(value) ? value.length > 0 : Boolean(value));
+  if (unresolved) errors.push(`${route.route}: falsely labelled MATCH`);
 }
 try {
   await access(path.join(root, 'src', 'components', 'ditto', 'WordPressSourcePage.astro'));
