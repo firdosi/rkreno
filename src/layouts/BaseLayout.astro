@@ -1,8 +1,6 @@
 ---
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
-import ExactHomeHeader from '@components/home/ExactHomeHeader.astro';
-import ExactHomeFooter from '@components/home/ExactHomeFooter.astro';
 import ContactActions from '@components/ContactActions.astro';
 import StagingBanner from '@components/StagingBanner.astro';
 import TrackingBody from '@components/TrackingBody.astro';
@@ -24,6 +22,11 @@ import '../styles/prompt-2-2.css';
 import '../styles/prompt-2-3.css';
 import '../styles/final-ditto.css';
 import '../styles/held-wordpress-pages.css';
+import '../styles/tokens.css';
+import '../styles/shared-foundations.css';
+import '../styles/shared-header.css';
+import '../styles/shared-header-mobile.css';
+import '../styles/shared-footer.css';
 
 interface Props {
   title: string;
@@ -50,7 +53,6 @@ const {
   exactHome = false,
   wordpressCore = false
 } = Astro.props;
-const useWordpressChrome = exactHome || wordpressCore;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const socialImage = ogImage || '/assets/media/RK-Reno-Solutions-Logo-942f64bb.png';
 const image = socialImage.startsWith('http')
@@ -95,14 +97,16 @@ const image = socialImage.startsWith('http')
     <TrackingBody />
     <a class="skip-link" href="#main-content">Skip to content</a>
     <StagingBanner />
-    {useWordpressChrome ? <ExactHomeHeader /> : <Header />}
+    <Header />
     <main id="main-content"><slot /></main>
-    {useWordpressChrome ? <ExactHomeFooter /> : <Footer />}
+    <Footer />
     <ContactActions />
     <AnalyticsConsent />
     <script>
       import { bootEnquiryForms } from '../scripts/enquiry-form-client';
+      import { bootSharedChrome } from '../scripts/shared-chrome';
       bootEnquiryForms('[data-core-enquiry-form], [data-preview-form]');
+      bootSharedChrome();
     </script>
   </body>
 </html>

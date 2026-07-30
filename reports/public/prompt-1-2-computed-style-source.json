@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-07-30T00:00:00.000Z",
+  "source": "https://rkrenosolution.com/",
+  "method": "Browser DOM inspection and getComputedStyle at the requested viewports",
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 1000
+    },
+    "tablet": {
+      "width": 768,
+      "height": 1024
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "shared": {
+    "body": {
+      "fontFamily": "Roboto, sans-serif",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "color": "rgb(119, 119, 119)",
+      "background": "rgb(255, 255, 255)"
+    },
+    "heading": {
+      "fontFamily": "Maven Pro, sans-serif",
+      "h1Desktop": "64px/70px 600",
+      "h1Mobile": "32px/35px 600",
+      "letterSpacingDesktop": "-0.64px"
+    },
+    "transition": ".25s cubic-bezier(.645,.045,.355,1)"
+  },
+  "desktop": {
+    "topBar": {
+      "selector": ".elementor-element-47be13c",
+      "height": "87px",
+      "padding": "0 15px",
+      "background": "rgb(21, 21, 21)"
+    },
+    "header": {
+      "selector": "#pxl-header-elementor",
+      "height": "187px",
+      "zIndex": "1001",
+      "navbarHeight": "100px"
+    },
+    "logo": {
+      "width": "162.984px",
+      "height": "49.984px"
+    },
+    "navLink": {
+      "font": "500 18px/93px Roboto",
+      "activeColor": "rgb(230, 126, 34)"
+    },
+    "dropdown": {
+      "width": "338.781px",
+      "padding": "18px 0",
+      "marginTop": "30px",
+      "border": "1px solid rgb(235, 235, 235)",
+      "background": "rgb(255, 255, 255)",
+      "transition": ".3s linear"
+    },
+    "headerCta": {
+      "width": "258.89px",
+      "height": "100px",
+      "padding": "0 66px",
+      "font": "600 16px/24px Roboto",
+      "background": "rgb(230, 126, 34)"
+    },
+    "footer": {
+      "mainHeight": "338.984px",
+      "bottomHeight": "58px",
+      "background": "rgb(255, 255, 255)",
+      "heading": "600 20px/30px Roboto"
+    },
+    "newsletterButton": {
+      "width": "103.609px",
+      "height": "42px",
+      "radius": "30px",
+      "border": "1px solid rgb(235, 235, 235)"
+    }
+  },
+  "tablet": {
+    "breakpoint": "source Elementor tablet <=1024px",
+    "header": "90px mobile arrangement",
+    "footer": "two-column then full-width newsletter"
+  },
+  "mobile": {
+    "header": {
+      "width": "390px",
+      "height": "90px",
+      "logo": "117.39px × 36px",
+      "menuButton": "36px × 26px",
+      "zIndex": "999"
+    },
+    "drawer": {
+      "position": "fixed",
+      "inset": "0",
+      "width": "390px",
+      "height": "844px",
+      "padding": "40px 35px",
+      "background": "rgb(255, 255, 255)",
+      "zIndex": "1000",
+      "backdrop": "rgba(0, 0, 0, .6)"
+    },
+    "drawerSearch": {
+      "width": "305px",
+      "height": "44px",
+      "padding": "0 22px",
+      "background": "rgb(248, 248, 248)"
+    },
+    "menuItem": {
+      "width": "305px",
+      "height": "47px"
+    },
+    "submenu": {
+      "items": 10,
+      "expandedHeight": "470px"
+    },
+    "footer": {
+      "mainHeight": "934.23px",
+      "bottomHeight": "156px",
+      "heading": "600 17px/25.5px Roboto",
+      "logo": "117.328px × 35.984px"
+    }
+  },
+  "componentsNotDeterministic": {
+    "floatingControls": "The current source snapshot exposed phone/WhatsApp destinations but no stable fixed plugin box; Prompt 1.2 explicitly requires native floating controls.",
+    "pageTitleAndCards": "These vary by route and remain recorded in Prompt 1.1 route evidence; no Prompt 1.3 body reconstruction was performed."
+  }
+}

@@ -4,6 +4,7 @@ import path from 'node:path';
 import { root, validateRegistry } from './lib/route-registry.mjs';
 
 const results = [];
+const skipBuild = process.argv.includes('--skip-build');
 const run = (name, command, args, options = {}) => new Promise((resolve) => {
   const child = spawn(command, args, {
     cwd: root,
@@ -47,8 +48,12 @@ if (!registry.passed) {
   process.exit(1);
 }
 await stop('Source-snapshot validation', 'node', ['scripts/final-ditto/validate-source-snapshot.mjs']);
-await stop('Astro GitHub Pages build', process.platform === 'win32' ? 'npm.cmd' : 'npm',
-  ['run', 'build'], { env: { DEPLOY_TARGET: 'github' } });
+if (skipBuild) {
+  results.push({ name: 'Astro GitHub Pages build (parent-supplied)', passed: true, exitCode: 0 });
+} else {
+  await stop('Astro GitHub Pages build', process.platform === 'win32' ? 'npm.cmd' : 'npm',
+    ['run', 'build'], { env: { DEPLOY_TARGET: 'github' } });
+}
 await stop('Interaction inventory', 'node', ['scripts/final-ditto/inventory-interactions.mjs']);
 await stop('Interaction comparison', 'node', ['scripts/final-ditto/compare-interactions.mjs']);
 await stop('Visual capture infrastructure', 'node', ['scripts/final-ditto/capture-parity-screenshots.mjs', '--check']);
@@ -77,7 +82,14 @@ const scannable = repositoryFiles.filter((file) =>
 let secretSafe = true;
 for (const file of scannable) {
   const absolute = path.join(root, file);
-  if ((await stat(absolute)).size > 5_000_000) continue;
+  let metadata;
+  try {
+    metadata = await stat(absolute);
+  } catch (error) {
+    if (error?.code === 'ENOENT') continue;
+    throw error;
+  }
+  if (metadata.size > 5_000_000) continue;
   const content = await readFile(absolute, 'utf8');
   if (content.includes('\0')) continue;
   if (secretPatterns.some((pattern) => pattern.test(content))) secretSafe = false;

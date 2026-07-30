@@ -1,0 +1,29 @@
+/* Prompt 1.2 tokens: measured from rkrenosolution.com on 2026-07-30. */
+:root {
+  --rk-font-body: "Roboto", Arial, sans-serif;
+  --rk-font-heading: "Maven Pro", Arial, sans-serif;
+  --rk-primary: #e67e22;
+  --rk-primary-hover: #151515;
+  --rk-ink: #252525;
+  --rk-text: #777;
+  --rk-muted: #9c9c9c;
+  --rk-dark: #151515;
+  --rk-surface: #fff;
+  --rk-surface-soft: #f8f8f8;
+  --rk-border: #ebebeb;
+  --rk-container: 1430px;
+  --rk-gutter: 15px;
+  --rk-topbar-height: 87px;
+  --rk-navbar-height: 100px;
+  --rk-mobile-header-height: 90px;
+  --rk-dropdown-width: 338.781px;
+  --rk-control-radius: 30px;
+  --rk-shadow: 0 12px 30px rgba(0, 0, 0, .12);
+  --rk-transition: .25s cubic-bezier(.645, .045, .355, 1);
+  --rk-drawer-transition: .3s linear;
+  --orange: var(--rk-primary);
+  --orange-dark: var(--rk-primary);
+  --ink: var(--rk-ink);
+  --muted: var(--rk-text);
+  --line: var(--rk-border);
+}

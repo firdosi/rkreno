@@ -29,6 +29,7 @@
     "capture:prompt-1-1-visual": "node scripts/final-ditto/capture-parity-screenshots.mjs",
     "compare:prompt-1-1-visual": "node scripts/final-ditto/compare-parity-screenshots.mjs",
     "test:prompt-1-1": "node scripts/final-ditto/run-prompt-1-1.mjs",
+    "test:prompt-1-2": "node scripts/prompt-1-2/run-prompt-1-2.mjs",
     "audit": "node scripts/audit-live-site.mjs && node scripts/compare-backups.mjs",
     "refresh:priority": "node scripts/refresh-priority-layouts.mjs",
     "refresh:theme": "node scripts/refresh-theme-layouts.mjs",

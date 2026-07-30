@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "viewports": {
+    "desktop": {
+      "width": 1440,
+      "height": 1000
+    },
+    "tablet": {
+      "width": 768,
+      "height": 1024
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844
+    }
+  },
+  "representativeRoutes": [
+    "/",
+    "/services/",
+    "/about-us/",
+    "/contact-us/",
+    "/aircond-installation-kl/",
+    "/house-renovation-in-kuala-lumpur/",
+    "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+    "/category/renovation/",
+    "/our-projects/",
+    "/testimonials/",
+    "/demolition-contractor-kl-selangor/"
+  ],
+  "results": {
+    "desktop": {
+      "status": "MATCH",
+      "horizontalOverflow": false,
+      "duplicateHeader": false,
+      "duplicateFooter": false,
+      "duplicateFloatingActions": false
+    },
+    "tablet": {
+      "status": "MATCH",
+      "horizontalOverflow": false,
+      "duplicateHeader": false,
+      "duplicateFooter": false,
+      "duplicateFloatingActions": false
+    },
+    "mobile": {
+      "status": "MATCH",
+      "horizontalOverflow": false,
+      "duplicateHeader": false,
+      "duplicateFooter": false,
+      "duplicateFloatingActions": false
+    }
+  },
+  "rawCaptureDirectory": ".audit-cache/prompt-1-2"
+}

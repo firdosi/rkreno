@@ -1,12 +1,12 @@
 # Prompt 1.1 validation summary
 
-Generated: 2026-07-29T19:28:45.702Z
+Generated: 2026-07-30T10:34:32.968Z
 
 | Check | Result |
 |---|---|
 | Route-registry validation | PASS |
 | Source-snapshot validation | PASS |
-| Astro GitHub Pages build | PASS |
+| Astro GitHub Pages build (parent-supplied) | PASS |
 | Interaction inventory | PASS |
 | Interaction comparison | PASS |
 | Visual capture infrastructure | PASS |

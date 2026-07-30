@@ -1,0 +1,106 @@
+html {
+  scroll-padding-top: var(--rk-navbar-height);
+}
+
+body {
+  color: var(--rk-text);
+  font-family: var(--rk-font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--rk-font-body);
+}
+
+.rk-container {
+  width: min(var(--rk-container), calc(100% - (2 * var(--rk-gutter))));
+  margin-inline: auto;
+}
+
+.rk-container--narrow {
+  width: min(970px, calc(100% - (2 * var(--rk-gutter))));
+  margin-inline: auto;
+}
+
+.rk-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 28px;
+  border: 1px solid transparent;
+  background: var(--rk-primary);
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: background-color var(--rk-transition), color var(--rk-transition);
+}
+
+.rk-button:hover,
+.rk-button:focus-visible {
+  background: var(--rk-primary-hover);
+}
+
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--rk-primary);
+  outline-offset: 3px;
+}
+
+.rk-field,
+.rk-form input:not([type="checkbox"]):not([type="radio"]),
+.rk-form select,
+.rk-form textarea {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 20px;
+  border: 1px solid var(--rk-border);
+  border-radius: 0;
+  background: #fff;
+  color: var(--rk-ink);
+}
+
+.rk-form textarea {
+  min-height: 140px;
+  padding-block: 14px;
+}
+
+.rk-reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rk-reveal[data-active="true"] {
+    animation: rk-reveal-up .45s ease both;
+  }
+  @keyframes rk-reveal-up {
+    from { opacity: 0; transform: translateY(40px); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}

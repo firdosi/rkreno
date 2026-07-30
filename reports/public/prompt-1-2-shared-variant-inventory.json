@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-30T10:34:33.175Z",
+  "sourceSnapshotDate": "2026-07-29",
+  "representativeRoutes": [
+    "/",
+    "/services/",
+    "/about-us/",
+    "/contact-us/",
+    "/aircond-installation-kl/",
+    "/house-renovation-in-kuala-lumpur/",
+    "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+    "/category/renovation/",
+    "/our-projects/",
+    "/testimonials/",
+    "/demolition-contractor-kl-selangor/"
+  ],
+  "headerVariants": [
+    {
+      "variantId": "rk-source-header-v1",
+      "routes": [
+        "/",
+        "/services/",
+        "/about-us/",
+        "/contact-us/",
+        "/servis-aircond-murah-kl/",
+        "/aircond-installation-kl/",
+        "/upah-pasang-aircond-selangor/",
+        "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+        "/service/building-renovation/",
+        "/electrical-services-selangor/",
+        "/house-renovation-in-kuala-lumpur/",
+        "/house-renovation-in-selangor/",
+        "/home-renovation-contractor-in-subang-jaya/",
+        "/office-renovation-in-kuala-lumpur/",
+        "/waterproofing-contractor-kuala-lumpur/",
+        "/plaster-ceiling-contractor-kl/",
+        "/faq/",
+        "/blog/",
+        "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+        "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+        "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+        "/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/",
+        "/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/",
+        "/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/",
+        "/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/",
+        "/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/",
+        "/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+        "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+        "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/servis-cuci-rumah-kl/",
+        "/thank-you/",
+        "/category/commercial/",
+        "/category/hvac-guides/",
+        "/category/maintenance/",
+        "/category/renovation/",
+        "/category/servis-pembersihan/",
+        "/category/technical-guides/",
+        "/tag/interior-finishing/",
+        "/tag/office-fit-out/",
+        "/tag/waterproofing/",
+        "/company-history/",
+        "/our-projects-2/",
+        "/our-projects/",
+        "/our-team/",
+        "/testimonials/",
+        "/demolition-contractor-kl-selangor/"
+      ],
+      "sourceSelectors": [
+        "header#pxl-header-elementor",
+        "#pxl-header-mobile"
+      ],
+      "desktopStructure": [
+        "87px information bar",
+        "100px logo/navigation/quote row",
+        "338.781px Services dropdown"
+      ],
+      "tabletStructure": [
+        "90px logo/menu-button row",
+        "full-viewport drawer"
+      ],
+      "mobileStructure": [
+        "90px logo/menu-button row",
+        "full-viewport drawer",
+        "independent Services accordion"
+      ],
+      "images": [
+        "/assets/media/RK-Reno-Solutions-Logo-942f64bb.png"
+      ],
+      "links": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Services",
+          "href": "#"
+        },
+        {
+          "label": "Blog",
+          "href": "/blog/"
+        },
+        {
+          "label": "About Us",
+          "href": "/about-us/"
+        },
+        {
+          "label": "Contact Us",
+          "href": "/contact-us/"
+        },
+        {
+          "label": "Aircond Installation KL",
+          "href": "/aircond-installation-kl/"
+        },
+        {
+          "label": "Electrical Services Selangor",
+          "href": "/electrical-services-selangor/"
+        },
+        {
+          "label": "House Renovation in Kuala Lumpur",
+          "href": "/house-renovation-in-kuala-lumpur/"
+        },
+        {
+          "label": "House Renovation in Selangor",
+          "href": "/house-renovation-in-selangor/"
+        },
+        {
+          "label": "Office Renovation in Kuala Lumpur",
+          "href": "/office-renovation-in-kuala-lumpur/"
+        },
+        {
+          "label": "Plaster Ceiling Contractor KL",
+          "href": "/plaster-ceiling-contractor-kl/"
+        },
+        {
+          "label": "Servis Aircond Murah KL",
+          "href": "/servis-aircond-murah-kl/"
+        },
+        {
+          "label": "Servis Cuci Rumah KL",
+          "href": "/servis-cuci-rumah-kl/"
+        },
+        {
+          "label": "Upah Pasang Aircond Selangor",
+          "href": "/upah-pasang-aircond-selangor/"
+        },
+        {
+          "label": "Waterproofing Contractor Kuala Lumpur",
+          "href": "/waterproofing-contractor-kuala-lumpur/"
+        }
+      ],
+      "interactionBehaviour": [
+        "pointer and keyboard dropdown",
+        "Escape and outside-click close",
+        "drawer overlay and Escape close",
+        "body scroll lock"
+      ],
+      "stickyBehaviour": {
+        "desktopThresholdPx": 187,
+        "mobileThresholdPx": 90,
+        "layoutShift": false
+      },
+      "differencesFromOtherVariants": "No second visible source header variant was found across the 47 mirrored routes."
+    }
+  ],
+  "footerVariants": [
+    {
+      "variantId": "rk-source-footer-v1",
+      "routes": [
+        "/",
+        "/services/",
+        "/about-us/",
+        "/contact-us/",
+        "/servis-aircond-murah-kl/",
+        "/aircond-installation-kl/",
+        "/upah-pasang-aircond-selangor/",
+        "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+        "/service/building-renovation/",
+        "/electrical-services-selangor/",
+        "/house-renovation-in-kuala-lumpur/",
+        "/house-renovation-in-selangor/",
+        "/home-renovation-contractor-in-subang-jaya/",
+        "/office-renovation-in-kuala-lumpur/",
+        "/waterproofing-contractor-kuala-lumpur/",
+        "/plaster-ceiling-contractor-kl/",
+        "/faq/",
+        "/blog/",
+        "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+        "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+        "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+        "/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/",
+        "/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/",
+        "/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/",
+        "/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/",
+        "/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/",
+        "/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+        "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+        "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/servis-cuci-rumah-kl/",
+        "/thank-you/",
+        "/category/commercial/",
+        "/category/hvac-guides/",
+        "/category/maintenance/",
+        "/category/renovation/",
+        "/category/servis-pembersihan/",
+        "/category/technical-guides/",
+        "/tag/interior-finishing/",
+        "/tag/office-fit-out/",
+        "/tag/waterproofing/",
+        "/company-history/",
+        "/our-projects-2/",
+        "/our-projects/",
+        "/our-team/",
+        "/testimonials/",
+        "/demolition-contractor-kl-selangor/"
+      ],
+      "sourceSelectors": [
+        "footer#pxl-footer-elementor"
+      ],
+      "desktopStructure": [
+        "logo/tagline/socials",
+        "company address",
+        "local newsletter",
+        "copyright/legal row"
+      ],
+      "tabletStructure": [
+        "two-column main grid",
+        "newsletter full row"
+      ],
+      "mobileStructure": [
+        "single-column stack",
+        "156px copyright/legal block"
+      ],
+      "images": [
+        "/assets/media/RK-Reno-Solutions-Logo-942f64bb.png"
+      ],
+      "links": [
+        "mailto:",
+        "tel:",
+        "map",
+        "four source placeholder social links",
+        "three source placeholder legal links"
+      ],
+      "interactionBehaviour": [
+        "link hover/focus",
+        "newsletter locally intercepted without delivery"
+      ],
+      "stickyBehaviour": "Native static footer avoids the source theme reveal script and its layout instability.",
+      "differencesFromOtherVariants": "No second visible source footer variant was found."
+    }
+  ],
+  "pageTitleVariants": [
+    {
+      "variantId": "homepage-hero",
+      "routes": [
+        "/"
+      ],
+      "description": "Homepage owns its source hero; no shared page title is injected."
+    },
+    {
+      "variantId": "standard-page-title",
+      "routes": [
+        "/services/",
+        "/about-us/",
+        "/contact-us/",
+        "/servis-aircond-murah-kl/",
+        "/aircond-installation-kl/",
+        "/upah-pasang-aircond-selangor/",
+        "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+        "/service/building-renovation/",
+        "/electrical-services-selangor/",
+        "/house-renovation-in-kuala-lumpur/",
+        "/house-renovation-in-selangor/",
+        "/home-renovation-contractor-in-subang-jaya/",
+        "/office-renovation-in-kuala-lumpur/",
+        "/waterproofing-contractor-kuala-lumpur/",
+        "/plaster-ceiling-contractor-kl/",
+        "/faq/",
+        "/blog/",
+        "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+        "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+        "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+        "/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/",
+        "/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/",
+        "/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/",
+        "/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/",
+        "/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/",
+        "/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+        "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+        "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/",
+        "/servis-cuci-rumah-kl/",
+        "/thank-you/",
+        "/category/commercial/",
+        "/category/hvac-guides/",
+        "/category/maintenance/",
+        "/category/renovation/",
+        "/category/servis-pembersihan/",
+        "/category/technical-guides/",
+        "/tag/interior-finishing/",
+        "/tag/office-fit-out/",
+        "/tag/waterproofing/",
+        "/company-history/",
+        "/our-projects-2/",
+        "/our-projects/",
+        "/our-team/",
+        "/testimonials/",
+        "/demolition-contractor-kl-selangor/"
+      ],
+      "description": "Existing source-evidenced page-title wrappers remain connected; page-body reconstruction is deferred."
+    },
+    {
+      "variantId": "article-title",
+      "routes": [
+        "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+        "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+        "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+        "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+        "/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/",
+        "/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/",
+        "/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/",
+        "/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/",
+        "/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/",
+        "/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+        "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+        "/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/",
+        "/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/"
+      ],
+      "description": "Article title treatment remains route-owned."
+    },
+    {
+      "variantId": "archive-title",
+      "routes": [
+        "/category/commercial/",
+        "/category/hvac-guides/",
+        "/category/maintenance/",
+        "/category/renovation/",
+        "/category/servis-pembersihan/",
+        "/category/technical-guides/",
+        "/tag/interior-finishing/",
+        "/tag/office-fit-out/",
+        "/tag/waterproofing/"
+      ],
+      "description": "Archive title treatment remains route-owned."
+    }
+  ]
+}

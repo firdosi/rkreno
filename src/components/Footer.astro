@@ -2,36 +2,43 @@
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<footer class="site-footer">
-  <div class="wrap footer-grid">
-    <div>
-      <a class="brand brand-light" href={`${base}/`}>
+<footer class="rk-footer" data-shared-footer>
+  <div class="rk-footer__main">
+    <div class="rk-footer__brand">
+      <a href={`${base}/`} aria-label="RK Reno Solution home">
         <img src={`${base}/assets/media/RK-Reno-Solutions-Logo-942f64bb.png`} alt="RK Reno Solution" width="1575" height="483" />
       </a>
-      <p>Building better spaces through practical renovation, repair and installation work in Kuala Lumpur and Selangor.</p>
+      <h2>Building a Better Future – Innovative, Sustainable, Reliable.</h2>
+      <div class="rk-socials" aria-label="Social media">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">◎</a>
+        <a href="#" aria-label="Pinterest">p</a>
+        <a href="#" aria-label="Social profile">a</a>
+      </div>
     </div>
-    <div>
-      <h2>Company Address</h2>
-      <a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a>
-      <a href="tel:+601111334496">+60 11 1133 4496</a>
-      <p>4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</p>
+    <div class="rk-footer__address">
+      <h2>COMPANY ADDRESS</h2>
+      <p><strong>Mail to:</strong> <a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a></p>
+      <p><strong>Phone:</strong> <a href="tel:+601111334496">+60 11 1133 4496</a></p>
+      <p><strong>Address:</strong> 4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur<br /><a class="rk-location" href="https://maps.google.com/?q=4-2%2C+Jalan+3%2F50C%2C+Setapak%2C+53000+Kuala+Lumpur">Our Locations</a></p>
     </div>
-    <div>
-      <h2>Services</h2>
-      <a href={`${base}/service/building-renovation/`}>Building Renovation</a>
-      <a href={`${base}/servis-aircond-murah-kl/`}>Aircond Servicing</a>
-      <a href={`${base}/electrical-services-selangor/`}>Electrical Services</a>
-    </div>
-    <div>
-      <h2>Useful Links</h2>
-      <a href={`${base}/about-us/`}>About Us</a>
-      <a href={`${base}/blog/`}>Blog</a>
-      <a href={`${base}/faq/`}>FAQ</a>
-      <a href={`${base}/home-renovation-contractor-in-subang-jaya/`}>Subang Jaya Renovation</a>
-      <a href={`${base}/contact-us/`}>Contact Us</a>
+    <div class="rk-footer__newsletter">
+      <h2>Sign up to our Newletters.</h2>
+      <p>Sign up to get first dibs on new arrivals, sales, exclusive content, events and more!</p>
+      <form data-footer-newsletter>
+        <label class="sr-only" for="rk-newsletter-email">Email address</label>
+        <input id="rk-newsletter-email" type="email" placeholder="Email Address..." required />
+        <button type="submit">Sign up</button>
+      </form>
+      <p class="rk-newsletter-status" role="status" aria-live="polite"></p>
     </div>
   </div>
-  <div class="wrap copyright">
-    <p>Copyright © 2026 RK Reno Solution. All rights reserved.</p>
+  <div class="rk-footer__bottom">
+    <p>Copyright © 2025 RK Reno Solutions. All Rights Reserved.</p>
+    <nav aria-label="Legal">
+      <a href="#">Privacy Policies</a>
+      <a href="#">Term of Use</a>
+      <a href="#">Site Map</a>
+    </nav>
   </div>
 </footer>
