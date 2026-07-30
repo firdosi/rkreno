@@ -1,33 +1,50 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const currentPath = Astro.url.pathname.replace(base, '') || '/';
+const isHome = currentPath === '/';
+const newsletterAction = isHome || currentPath === '/contact-us/'
+  ? `${currentPath}#wpcf7-f6-o3`
+  : `${currentPath}#wpcf7-f6-o2`;
 ---
 
-<footer class="rk-footer" data-shared-footer>
+<footer class:list={['rk-footer', isHome ? 'rk-footer--home' : 'rk-footer--inner']} data-shared-footer>
+  {!isHome && (
+    <section class="rk-footer-cta">
+      <div>
+        <h2>Ready to work together?</h2>
+        <p>Whether you have a project in mind and you’re looking for a reliable construction partner<br />or you’re looking to take the next step in your career, we want to hear from you!</p>
+        <nav aria-label="Work with RK Reno">
+          <a href={`${base}/contact-us/`}>Get a Quote</a>
+          <a href="https://rkrenosolution.com/career/">Career with us</a>
+        </nav>
+      </div>
+    </section>
+  )}
   <div class="rk-footer__main">
     <div class="rk-footer__brand">
       <a href={`${base}/`} aria-label="RK Reno Solution home">
-        <img src={`${base}/assets/media/RK-Reno-Solutions-Logo-942f64bb.png`} alt="RK Reno Solution" width="1575" height="483" />
+        <img src={`${base}/assets/media/RK-Reno-Solutions-Logo-942f64bb.png`} alt="" width="1575" height="483" />
       </a>
       <h2>Building a Better Future – Innovative, Sustainable, Reliable.</h2>
       <div class="rk-socials" aria-label="Social media">
-        <a href="#" aria-label="Facebook">f</a>
-        <a href="#" aria-label="Instagram">◎</a>
-        <a href="#" aria-label="Pinterest">p</a>
-        <a href="#" aria-label="Social profile">a</a>
+        <a href="#" aria-label="Facebook"></a>
+        <a href="#" aria-label="Instagram"></a>
+        <a href="#" aria-label="Pinterest"></a>
+        <a href="#" aria-label="Social profile"></a>
       </div>
     </div>
     <div class="rk-footer__address">
       <h2>COMPANY ADDRESS</h2>
       <p><strong>Mail to:</strong> <a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a></p>
       <p><strong>Phone:</strong> <a href="tel:+601111334496">+60 11 1133 4496</a></p>
-      <p><strong>Address:</strong> 4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur<br /><a class="rk-location" href="https://maps.google.com/?q=4-2%2C+Jalan+3%2F50C%2C+Setapak%2C+53000+Kuala+Lumpur">Our Locations</a></p>
+      <p><strong>Address:</strong> <a class="rk-address-link" href="https://share.google/ZxiE3enIVqmg6LSSm">4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur<br /><span class="rk-location">Our Locations</span></a></p>
     </div>
     <div class="rk-footer__newsletter">
       <h2>Sign up to our Newletters.</h2>
       <p>Sign up to get first dibs on new arrivals, sales, exclusive content, events and more!</p>
-      <form data-footer-newsletter>
+      <form action={newsletterAction} data-footer-newsletter>
         <label class="sr-only" for="rk-newsletter-email">Email address</label>
-        <input id="rk-newsletter-email" type="email" placeholder="Email Address..." required />
+        <input id="rk-newsletter-email" type="text" name="your-email" placeholder="Email Address..." required />
         <button type="submit">Sign up</button>
       </form>
       <p class="rk-newsletter-status" role="status" aria-live="polite"></p>

@@ -1,7 +1,6 @@
 ---
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
-import ContactActions from '@components/ContactActions.astro';
 import StagingBanner from '@components/StagingBanner.astro';
 import TrackingBody from '@components/TrackingBody.astro';
 import TrackingHead from '@components/TrackingHead.astro';
@@ -100,7 +99,6 @@ const image = socialImage.startsWith('http')
     <Header />
     <main id="main-content"><slot /></main>
     <Footer />
-    <ContactActions />
     <AnalyticsConsent />
     <script>
       import { bootEnquiryForms } from '../scripts/enquiry-form-client';

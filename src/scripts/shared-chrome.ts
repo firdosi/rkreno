@@ -40,7 +40,7 @@ export const bootSharedChrome = () => {
     drawer?.removeAttribute('inert');
     if (menuButton) setExpanded(menuButton, true);
     document.documentElement.classList.add('rk-scroll-locked');
-    closeButton?.focus({ preventScroll: true });
+    menuButton?.blur();
   };
   menuButton?.addEventListener('click', openDrawer);
   closeButton?.addEventListener('click', closeDrawer);
@@ -54,7 +54,7 @@ export const bootSharedChrome = () => {
   header.querySelector<HTMLFormElement>('[data-local-search]')?.addEventListener('submit', (event) => event.preventDefault());
 
   const applyStickyState = () => {
-    const threshold = matchMedia('(max-width: 1199px)').matches ? 90 : 187;
+    const threshold = 149;
     const stuck = scrollY > threshold;
     header.classList.toggle('is-stuck', stuck);
     header.dataset.state = stuck ? 'stuck' : 'initial';
@@ -65,9 +65,7 @@ export const bootSharedChrome = () => {
     if (desktopMenu && !desktopMenu.contains(event.target as Node)) closeDropdown();
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape') return;
-    closeDropdown();
-    if (header.classList.contains('is-drawer-open')) closeDrawer();
+    if (event.key === 'Escape') return;
   });
 
   document.querySelector<HTMLFormElement>('[data-footer-newsletter]')?.addEventListener('submit', (event) => {

@@ -6,6 +6,11 @@
   color: var(--rk-ink);
   font-family: var(--rk-font-body);
 }
+.rk-header--inner { height: 171px; background: transparent; }
+.rk-header--inner .rk-header__desktop { padding-top: 71px; }
+.rk-header--inner .rk-topbar { display: none; }
+.rk-header--inner .rk-navbar { transform: translateX(-11.5px); }
+.rk-header--inner .rk-dropdown { left: 32px; }
 
 .rk-topbar {
   height: var(--rk-topbar-height);
@@ -28,6 +33,7 @@
 .rk-topbar__inner p { flex: 0 0 390px; margin: 0; color: #fff; }
 .rk-topbar__contacts { display: flex; align-items: center; gap: 23px; margin-left: 90px; white-space: nowrap; }
 .rk-topbar a, .rk-language { color: #fff; }
+.rk-language--secondary { margin-left: -18px; }
 .rk-topbar a:hover { color: var(--rk-primary); }
 .rk-topbar a span {
   display: inline-grid;
@@ -62,6 +68,7 @@
   width: 162.984px;
   height: 49.984px;
   object-fit: contain;
+  transform: translateX(-5px);
 }
 
 .rk-nav { display: flex; height: 100%; align-items: center; justify-content: center; }
@@ -86,10 +93,10 @@
 .rk-dropdown {
   position: absolute;
   top: 93px;
-  left: 0;
+  left: 18px;
   z-index: 99;
   width: var(--rk-dropdown-width);
-  margin: 30px 0 0;
+  margin: 3px 0 0;
   padding: 18px 0;
   border: 1px solid var(--rk-border);
   background: #fff;
@@ -98,7 +105,7 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
-  transition: opacity var(--rk-drawer-transition), transform var(--rk-drawer-transition), visibility var(--rk-drawer-transition);
+  transition: .3s linear;
 }
 .rk-nav__services.is-open .rk-dropdown,
 .rk-nav__services:focus-within .rk-dropdown { opacity: 1; visibility: visible; transform: none; }
@@ -147,9 +154,12 @@
   top: 0;
   right: 0;
   left: 0;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+  box-shadow: none;
 }
+.rk-header.is-stuck .rk-brand img { width: 150px; height: 46px; }
 .rk-header.is-stuck .rk-topbar { display: none; }
+.rk-header--inner.is-stuck .rk-header__desktop { padding-top: 0; }
+.rk-header--inner.is-stuck .rk-brand img { width: 162.984px; height: 49.984px; }
 
 @media (max-width: 1366px) {
   .rk-topbar__inner > p, .rk-language { display: none; }

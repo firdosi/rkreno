@@ -1,18 +1,25 @@
-# Prompt 1.2 validation summary
+# Prompt 1.2 correction validation summary
 
-Generated: 2026-07-30T10:34:49.621Z
+Generated: 2026-07-30T13:01:51.211Z
 
-| Validation group | Result |
+| Calculated validation group | Result |
 |---|---|
-| GitHub Pages Astro build (existing successful build) | PASS |
-| Prompt 1.1 complete regression | PASS |
-| Prompt 1.2 report generation | PASS |
-| Prompt 1.2 35-check validation | PASS |
-| Prompt 1.2 representative visual capture (existing successful capture) | PASS |
+| GitHub regression build | PASS |
+| Prompt 1.1 regression | PASS |
+| Local evidence build | PASS |
+| Fresh 47-route shared capture | PASS |
+| Route-specific evidence comparison | PASS |
+| Calculated report generation | PASS |
+| Correction report generation | PASS |
+| Labeled quick-reference generation | PASS |
+| Hardcoded-result detection | PASS |
+| Measured Prompt 1.2 validation | PASS |
+| GitHub Pages build | PASS |
 
 Overall: PASS
 
-- 35 required Prompt 1.2 checks are enforced by `validate-shared.mjs`.
-- Prompt 1.1 remains truthful: 47 mirrored full-page DIFFERENCE routes and zero full-page MATCH routes.
+- Fresh capture session: prompt-1-2-2026-07-30T12-47-25-264Z
+- Independently measured shared-difference results: 376
+- Full-page DIFFERENCE results from Prompt 1.1: 47
 - Prompt 1.3 page-body reconstruction was not started.
-- No production, WordPress, VPS, DNS, Hostinger, Cloudflare, SMTP, Turnstile, analytics or ConvortAI change was performed.
+- No production or VPS operation is part of this validator.

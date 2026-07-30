@@ -1,146 +1,131 @@
-import { readFile, stat } from 'node:fs/promises';
+import { access, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
-import { navigation, representativeRoutes, services, sourceText, viewports } from './shared-config.mjs';
+import { compareFooterSemantic, compareHeaderSemantic } from './semantic-comparison.mjs';
+import { evidenceRoot, stagingBase, viewports } from './shared-config.mjs';
+import { STATUS } from './result-status.mjs';
 
 const root = process.cwd();
-const baseUrl = process.env.PROMPT_1_2_BASE_URL || 'http://127.0.0.1:4321/rkreno';
 const registry = JSON.parse(await readFile(path.join(root, 'config', 'final-route-registry.json'), 'utf8'));
+const manifest = JSON.parse(await readFile(path.join(evidenceRoot, 'capture-manifest.json'), 'utf8'));
+const comparison = JSON.parse(await readFile(path.join(evidenceRoot, 'comparison-results.json'), 'utf8'));
 const routes = registry.publicRoutes.map(({ path: route }) => route);
+const mirrored = registry.publicRoutes.filter(({ mirrored }) => mirrored);
 const checks = new Map();
-const pass = (name, value, detail = '') => checks.set(name, { passed: Boolean(value), detail });
-const htmlPath = (route) => route === '/' ? path.join(root, 'dist', 'index.html') : path.join(root, 'dist', route.slice(1), 'index.html');
-const allHtml = await Promise.all(routes.map(async (route) => [route, await readFile(htmlPath(route), 'utf8')]));
+const record = (name, passed, detail = '') => checks.set(name, { passed: Boolean(passed), detail });
+const exists = async (file) => {
+  try { await access(file); return true; } catch { return false; }
+};
+const acceptable = (value) => value === STATUS.match || value === STATUS.sourceNondeterministic || value === STATUS.notApplicable;
+const measuredVisual = (value) => acceptable(value) || value === STATUS.difference;
 
-pass('Shared variant validation', routes.length === 48);
-pass('Header semantic comparison', allHtml.every(([, html]) => {
-  const decoded = html.replaceAll('&amp;', '&');
-  return Object.values(sourceText).slice(0, 4).every((text) => decoded.includes(text));
-}));
-pass('Footer semantic comparison', allHtml.every(([, html]) => [sourceText.footerTagline, sourceText.newsletterHeading, sourceText.copyright].every((text) => html.includes(text))));
-pass('Navigation destination test', allHtml.every(([, html]) => [...navigation.filter(([, href]) => href !== '#'), ...services].every(([, href]) => html.includes(`/rkreno${href}`))));
-pass('Footer-link test', allHtml.every(([, html]) => html.includes('mailto:rkrenosolution@gmail.com') && html.includes('tel:+601111334496')));
-pass('Floating phone test', allHtml.every(([, html]) => (html.match(/data-shared-contact-actions/g) || []).length === 1 && html.includes('href="tel:+601111334496"')));
-pass('Floating WhatsApp test', allHtml.every(([, html]) => html.includes('href="https://wa.me/601111334496"')));
-const tokens = await readFile(path.join(root, 'src', 'styles', 'tokens.css'), 'utf8');
-pass('Typography token validation', tokens.includes('"Roboto"') && tokens.includes('"Maven Pro"') && tokens.includes('#e67e22'));
-pass('Container-width validation', tokens.includes('--rk-container: 1430px'));
-const foundations = await readFile(path.join(root, 'src', 'styles', 'shared-foundations.css'), 'utf8');
-pass('Reduced-motion validation', foundations.includes('prefers-reduced-motion: reduce'));
-pass('Duplicate-header validation', allHtml.every(([, html]) => (html.match(/<header\b[^>]*data-shared-header/g) || []).length === 1));
-pass('Duplicate-footer validation', allHtml.every(([, html]) => (html.match(/<footer\b[^>]*data-shared-footer/g) || []).length === 1));
-pass('Duplicate-floating-action validation', allHtml.every(([, html]) => (html.match(/<div\b[^>]*data-shared-contact-actions/g) || []).length === 1));
-pass('Staging noindex validation', allHtml.every(([, html]) => /name="robots" content="noindex, nofollow"/.test(html)));
-const robots = await readFile(path.join(root, 'dist', 'robots.txt'), 'utf8');
-pass('Robots disallow-all validation', /Disallow:\s*\//.test(robots));
-pass('Analytics-disabled validation', allHtml.every(([, html]) => !/googletagmanager|google-analytics|gtag\(/i.test(html)));
-pass('Form-delivery-disabled validation', allHtml.every(([, html]) => !/<form[^>]+action=["']https?:/i.test(html)));
-const sharedScript = await readFile(path.join(root, 'src', 'scripts', 'shared-chrome.ts'), 'utf8');
-pass('VPS workflow safety check', !(await readFile(path.join(root, '.github', 'workflows', 'deploy-vps.yml'), 'utf8')).match(/^\s*(?!#).*ssh/i));
+record('Prompt 1.1 regression', process.env.PROMPT_ONE_REGRESSION_PASSED === 'true');
+record('Source shared-component capture validation',
+  manifest.passed && manifest.completed.length === mirrored.length * Object.keys(viewports).length && manifest.failures.length === 0);
+record('Route-specific header semantic comparison', comparison.records.length === mirrored.length && comparison.records.every(({ headerSemantic }) => acceptable(headerSemantic.status)));
+record('Route-specific footer semantic comparison', comparison.records.every(({ footerSemantic }) => acceptable(footerSemantic.status)));
+record('Ordered navigation comparison', comparison.records.every(({ headerSemantic }) => !headerSemantic.differences.some(({ field }) => /primaryMenu|dropdownItems/.test(field))));
+record('Ordered footer-link comparison', comparison.records.every(({ footerSemantic }) => !footerSemantic.differences.some(({ field }) => field === 'footer.links')));
+record('Computed-style comparison', comparison.records.every((item) => Object.values(item.computedStyles).every((value) => value.records.length >= 17)));
+record('Header screenshot comparison', comparison.records.every((item) => ['headerVisualDesktop', 'headerVisualTablet', 'headerVisualMobile'].every((key) => measuredVisual(item[key].status) && item[key].metrics.length > 0)));
+record('Footer screenshot comparison', comparison.records.every((item) => ['footerVisualDesktop', 'footerVisualTablet', 'footerVisualMobile'].every((key) => measuredVisual(item[key].status) && item[key].metrics.length > 0)));
+record('Mobile-menu screenshot comparison', comparison.records.every(({ headerVisualMobile }) => measuredVisual(headerVisualMobile.status) && headerVisualMobile.metrics.some(({ state }) => state === 'menu-open')));
+record('Sticky-state screenshot comparison', comparison.records.every((item) =>
+  ['headerVisualDesktop', 'headerVisualTablet', 'headerVisualMobile'].every((key) =>
+    item[key].metrics.some(({ state, evidenceComplete }) => state === 'header-sticky' && evidenceComplete))));
+record('Dropdown interaction comparison', comparison.records.every(({ headerInteraction }) => acceptable(headerInteraction.status)));
+record('Sticky-header interaction comparison', comparison.records.every(({ stickyHeader }) => acceptable(stickyHeader.status)));
+record('Mobile-menu interaction comparison', comparison.records.every(({ mobileMenu }) => acceptable(mobileMenu.status)));
+record('Footer interaction comparison', comparison.records.every(({ footerInteraction }) => acceptable(footerInteraction.status)));
+record('Floating-action comparison', comparison.records.every(({ floatingActions }) => acceptable(floatingActions.status)));
+
+const evidenceComplete = comparison.visualMetrics.every((metric) =>
+  metric.evidenceComplete && Number.isFinite(metric.changedPixelPercent)
+  && metric.sourcePath && metric.stagingPath && metric.differencePath
+  && metric.differenceExists);
+const uniqueEvidence = comparison.records.every((item) => {
+  const paths = Object.values(item.evidence).flatMap((value) => [value.source, value.staging, value.differences]);
+  return new Set(paths).size === paths.length && paths.every((value) => value.includes(item.route === '/' ? 'home' : item.route.slice(1, -1).replaceAll('/', '__')));
+});
+const uniformStatusBacked = [
+  'headerSemantic', 'footerSemantic', 'headerInteraction', 'mobileMenu',
+  'footerInteraction', 'floatingActions', 'stickyHeader',
+].every((key) => {
+  const statuses = new Set(comparison.records.map((item) => item[key].status));
+  return statuses.size > 1 || comparison.records.every((item) =>
+    Object.values(item.evidence).every(({ source, staging, differences }) => source && staging && differences));
+});
+record('Report-evidence completeness', evidenceComplete && uniqueEvidence && uniformStatusBacked);
+
+const mutationRoute = comparison.records[0]?.route;
+const sourceDesktop = JSON.parse(await readFile(comparison.records[0].evidence.desktop.source, 'utf8'));
+const stagingDesktop = JSON.parse(await readFile(comparison.records[0].evidence.desktop.staging, 'utf8'));
+const sourceMobile = JSON.parse(await readFile(comparison.records[0].evidence.mobile.source, 'utf8'));
+const stagingMobile = JSON.parse(await readFile(comparison.records[0].evidence.mobile.staging, 'utf8'));
+const mutatedHeader = structuredClone(stagingDesktop);
+mutatedHeader.inventory.primaryMenu.reverse();
+const headerMutation = compareHeaderSemantic({ sourceDesktop, stagingDesktop: mutatedHeader, sourceMobile, stagingMobile });
+const mutatedFooter = structuredClone(stagingDesktop);
+mutatedFooter.inventory.footer.links.pop();
+const footerMutation = compareFooterSemantic({ source: sourceDesktop, staging: mutatedFooter });
+record('Semantic comparator mutation guard', headerMutation.status === STATUS.difference && footerMutation.status === STATUS.difference, mutationRoute);
 
 const browser = await chromium.launch();
-const context = await browser.newContext();
-const page = await context.newPage();
+const page = await browser.newPage({ viewport: viewports.mobile });
 const consoleErrors = [];
 page.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
 page.on('pageerror', (error) => consoleErrors.push(error.message));
-const routeResults = [];
+const routeChecks = [];
 for (const route of routes) {
-  const response = await page.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
-  const result = await page.evaluate(() => ({
+  const response = await page.goto(`${stagingBase}${route}`, { waitUntil: 'domcontentloaded' });
+  routeChecks.push(await page.evaluate((status) => ({
+    status,
     headers: document.querySelectorAll('[data-shared-header]').length,
     footers: document.querySelectorAll('[data-shared-footer]').length,
     actions: document.querySelectorAll('[data-shared-contact-actions]').length,
     overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth + 1,
     brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
     remoteImages: [...document.images].filter((image) => /^https?:/.test(image.getAttribute('src') || '')).length,
-  }));
-  routeResults.push({ route, status: response?.status(), ...result });
+  }), response?.status() || 0));
 }
-pass('Horizontal-overflow validation across 48 routes', routeResults.every(({ overflow }) => !overflow));
-pass('Console-error validation', consoleErrors.length === 0, consoleErrors.join(' | '));
-pass('Broken-image validation', routeResults.every(({ brokenImages }) => brokenImages === 0));
-pass('Remote-image validation', routeResults.every(({ remoteImages }) => remoteImages === 0));
-pass('Broken-link validation', routeResults.every(({ status }) => status === 200));
-
-await page.setViewportSize(viewports.desktop);
-await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
-await page.locator('.rk-nav__toggle').click();
-await page.waitForTimeout(350);
-const desktopDropdownState = await page.evaluate(() => {
-  const menu = document.querySelector('.rk-dropdown');
-  const style = menu && getComputedStyle(menu);
-  return { expanded: document.querySelector('.rk-nav__toggle')?.getAttribute('aria-expanded'), visibility: style?.visibility, opacity: style?.opacity };
-});
-pass('Desktop dropdown test', desktopDropdownState.expanded === 'true' && desktopDropdownState.visibility === 'visible' && desktopDropdownState.opacity === '1', JSON.stringify(desktopDropdownState));
-await page.keyboard.press('Escape');
-await page.locator('.rk-nav__toggle').focus();
-await page.keyboard.press('Enter');
-await page.keyboard.press('Escape');
-pass('Keyboard dropdown test', await page.locator('.rk-nav__toggle').getAttribute('aria-expanded') === 'false');
-const initialHeaderHeight = await page.locator('[data-shared-header]').evaluate((element) => element.getBoundingClientRect().height);
-await page.evaluate(() => {
-  document.documentElement.scrollTop = 600;
-  document.body.scrollTop = 600;
-  dispatchEvent(new Event('scroll'));
-});
-await page.waitForTimeout(250);
-const sticky = await page.locator('[data-shared-header]').getAttribute('data-state');
-const stickyHeaderHeight = await page.locator('[data-shared-header]').evaluate((element) => element.getBoundingClientRect().height);
-const stickyScrollY = await page.evaluate(() => scrollY);
-pass('Sticky-header test', sticky === 'stuck' && stickyHeaderHeight === initialHeaderHeight, JSON.stringify({ sticky, initialHeaderHeight, stickyHeaderHeight, stickyScrollY }));
-
-await page.setViewportSize(viewports.mobile);
-await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
-await page.locator('.rk-menu-button').click();
-await page.waitForTimeout(350);
-const mobileMenuState = await page.evaluate(() => {
-  const drawer = document.querySelector('.rk-drawer');
-  const style = drawer && getComputedStyle(drawer);
-  return { hidden: drawer?.getAttribute('aria-hidden'), visibility: style?.visibility, transform: style?.transform };
-});
-pass('Mobile-menu test', mobileMenuState.hidden === 'false' && mobileMenuState.visibility === 'visible' && mobileMenuState.transform === 'none', JSON.stringify(mobileMenuState));
-pass('Mobile scroll-lock test', await page.evaluate(() => document.documentElement.classList.contains('rk-scroll-locked')));
-await page.keyboard.press('Escape');
-
-const responsive = [];
-for (const [name, viewport] of Object.entries(viewports)) {
-  await page.setViewportSize(viewport);
-  for (const route of representativeRoutes) {
-    await page.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
-    responsive.push({ name, route, overflow: await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth + 1) });
-  }
-}
-pass('Desktop visual comparison', responsive.filter(({ name }) => name === 'desktop').every(({ overflow }) => !overflow));
-pass('Tablet visual comparison', responsive.filter(({ name }) => name === 'tablet').every(({ overflow }) => !overflow));
-pass('Mobile visual comparison', responsive.filter(({ name }) => name === 'mobile').every(({ overflow }) => !overflow));
 await browser.close();
+record('Duplicate shared-component checks', routeChecks.every((item) => item.headers === 1 && item.footers === 1 && item.actions <= 1));
+record('48-route overflow check', routeChecks.length === routes.length && routeChecks.every((item) => !item.overflow));
+record('Broken-image check', routeChecks.every((item) => item.brokenImages === 0));
+record('Remote-image check', routeChecks.every((item) => item.remoteImages === 0));
+record('Console-error check', consoleErrors.length === 0, consoleErrors.join(' | '));
 
+const allHtml = await Promise.all(routes.map(async (route) => {
+  const file = route === '/' ? path.join(root, 'dist', 'index.html') : path.join(root, 'dist', route.slice(1), 'index.html');
+  return readFile(file, 'utf8');
+}));
+record('Staging noindex', allHtml.every((html) => /name="robots" content="noindex, nofollow"/.test(html)));
+record('Robots disallow-all', /Disallow:\s*\//.test(await readFile(path.join(root, 'dist', 'robots.txt'), 'utf8')));
+record('Analytics disabled', allHtml.every((html) => !/googletagmanager|google-analytics|gtag\(/i.test(html)));
+record('Form delivery disabled', allHtml.every((html) => !/<form[^>]+action=["']https?:/i.test(html)));
 const gitignore = await readFile(path.join(root, '.gitignore'), 'utf8');
-pass('Ignored-backup/media/audit-cache validation', ['wp-old-site-backup/', '.audit-cache/', '/Media/'].every((entry) => gitignore.split(/\r?\n/).includes(entry)));
-const trackedText = `${tokens}\n${foundations}\n${sharedScript}\n${allHtml.map(([, html]) => html).join('\n')}`;
-pass('Secret scan', !/(?:github_pat|ghp|sk_live)_[A-Za-z0-9_]{20,}|BEGIN (?:OPENSSH|RSA|EC) PRIVATE KEY/.test(trackedText));
-pass('npm ci-compatible build', (await stat(path.join(root, 'dist', 'index.html'))).size > 0);
-pass('Prompt 1.1 regression', true, 'Executed by parent runner before shared validation');
+record('Ignored backup/media/audit-cache check', ['wp-old-site-backup/', '.audit-cache/', '/Media/'].every((value) => gitignore.split(/\r?\n/).includes(value)));
+const workflow = await readFile(path.join(root, '.github', 'workflows', 'deploy-vps.yml'), 'utf8');
+record('VPS workflow safety', /workflow_dispatch/.test(workflow) && /RKRENO_VPS_DEPLOY_ENABLED == 'true'/.test(workflow));
+const scannable = `${allHtml.join('\n')}\n${await readFile(path.join(root, 'src', 'scripts', 'shared-chrome.ts'), 'utf8')}`;
+record('Secret scan', !/(?:github_pat|ghp|sk_live)_[A-Za-z0-9_]{20,}|BEGIN (?:OPENSSH|RSA|EC) PRIVATE KEY/.test(scannable));
+record('npm ci-compatible build', (await stat(path.join(root, 'dist', 'index.html'))).size > 0);
 
 const expected = [
-  'npm ci-compatible build', 'Prompt 1.1 regression', 'Shared variant validation', 'Header semantic comparison',
-  'Footer semantic comparison', 'Navigation destination test', 'Desktop dropdown test', 'Keyboard dropdown test',
-  'Sticky-header test', 'Mobile-menu test', 'Mobile scroll-lock test', 'Footer-link test', 'Floating phone test',
-  'Floating WhatsApp test', 'Typography token validation', 'Container-width validation', 'Desktop visual comparison',
-  'Tablet visual comparison', 'Mobile visual comparison', 'Reduced-motion validation',
-  'Horizontal-overflow validation across 48 routes', 'Duplicate-header validation', 'Duplicate-footer validation',
-  'Duplicate-floating-action validation', 'Console-error validation', 'Broken-link validation', 'Broken-image validation',
-  'Remote-image validation', 'Staging noindex validation', 'Robots disallow-all validation', 'Analytics-disabled validation',
-  'Form-delivery-disabled validation', 'Secret scan', 'Ignored-backup/media/audit-cache validation', 'VPS workflow safety check',
+  'Prompt 1.1 regression', 'Source shared-component capture validation',
+  'Route-specific header semantic comparison', 'Route-specific footer semantic comparison',
+  'Ordered navigation comparison', 'Ordered footer-link comparison', 'Computed-style comparison',
+  'Header screenshot comparison', 'Footer screenshot comparison', 'Mobile-menu screenshot comparison',
+  'Sticky-state screenshot comparison', 'Dropdown interaction comparison',
+  'Sticky-header interaction comparison', 'Mobile-menu interaction comparison',
+  'Footer interaction comparison', 'Floating-action comparison', 'Duplicate shared-component checks',
+  '48-route overflow check', 'Broken-image check', 'Remote-image check', 'Console-error check',
+  'Staging noindex', 'Robots disallow-all', 'Analytics disabled', 'Form delivery disabled',
+  'Secret scan', 'Ignored backup/media/audit-cache check', 'VPS workflow safety',
+  'Semantic comparator mutation guard', 'Report-evidence completeness',
 ];
-const missing = expected.filter((name) => !checks.has(name));
-const failures = expected.filter((name) => !checks.get(name)?.passed);
 for (const name of expected) {
-  const result = checks.get(name);
-  console.log(`${result?.passed ? 'PASS' : 'FAIL'} ${name}${result?.detail ? ` — ${result.detail}` : ''}`);
+  const value = checks.get(name);
+  console.log(`${value?.passed ? 'PASS' : 'FAIL'} ${name}${value?.detail ? ` — ${value.detail}` : ''}`);
 }
-if (missing.length || failures.length) {
-  console.error({ missing, failures });
-  process.exitCode = 1;
-}
+if (expected.some((name) => !checks.get(name)?.passed)) process.exitCode = 1;

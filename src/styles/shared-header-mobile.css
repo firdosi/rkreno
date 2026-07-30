@@ -32,8 +32,11 @@
     inset: 0;
     z-index: 1000;
     display: block;
+    width: 300px;
+    max-width: 100%;
     overflow: hidden auto;
     background: #fff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .08);
     visibility: hidden;
     transform: translateX(100%);
     transition: transform var(--rk-drawer-transition), visibility var(--rk-drawer-transition);
@@ -76,7 +79,7 @@
   .rk-drawer__search button svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; }
   .rk-mobile-nav, .rk-mobile-submenu { margin: 20px 0 0; padding: 0; list-style: none; }
   .rk-mobile-nav > li { border-bottom: 1px solid var(--rk-border); }
-  .rk-mobile-nav > li > a, .rk-mobile-nav__row {
+  .rk-mobile-nav > li > a, .rk-mobile-nav__row, .rk-mobile-nav__row > a {
     display: flex;
     min-height: 47px;
     align-items: center;
@@ -85,6 +88,7 @@
     font-size: 15px;
     font-weight: 500;
   }
+  .rk-mobile-nav__row > a { flex: 1; }
   .rk-mobile-nav a.is-current { color: var(--rk-primary); }
   .rk-submenu-button {
     width: 28px;
@@ -121,7 +125,11 @@
   .rk-header.is-stuck .rk-mobilebar {
     position: fixed;
     inset: 0 0 auto;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+    box-shadow: 0 10px 50px rgba(0, 0, 0, .05);
   }
   html.rk-scroll-locked { overflow: hidden; }
+}
+
+@media (max-width: 480px) {
+  .rk-drawer { width: 100%; }
 }

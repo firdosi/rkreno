@@ -16,7 +16,7 @@ const { sourceContent, wordpressContent, sourceTitle } = Astro.props as {
   sourceContent: string;
   sourceTitle: string;
 };
-const content = addIntrinsicImageDimensions(sourceContent);
+const content = addIntrinsicImageDimensions(sourceContent.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ''));
 ---
 <CorePageTitle title={sourceTitle || wordpressContent.sourceTitle} description="Description Details" />
 <article class="article-exact-page">
