@@ -23,8 +23,16 @@ const extractionFunction = ({ target, properties }) => {
   const source = target === 'source';
   const header = source ? document.querySelector('header#pxl-header-elementor') : document.querySelector('[data-shared-header]');
   const footer = source ? document.querySelector('footer#pxl-footer-elementor') : document.querySelector('[data-shared-footer]');
+  const footerRoots = source
+    ? [...footer?.querySelectorAll('.footer-elementor-inner > .elementor > *') || []]
+      .filter((element) => /company address|copyright/i.test(element.textContent || ''))
+    : [footer].filter(Boolean);
+  const footerElements = (selector) => footerRoots.flatMap((root) => [...root.querySelectorAll(selector)]);
+  const footerElement = (selector) => footerRoots.map((root) => root.querySelector(selector)).find(Boolean) || null;
   const mobileDrawer = source ? document.querySelector('.pxl-header-menu') : document.querySelector('.rk-drawer');
-  const topbar = source ? document.querySelector('.elementor-element-47be13c') : document.querySelector('.rk-topbar');
+  const topbar = source
+    ? document.querySelector('.elementor-element-47be13c, .elementor-element-364a77d')
+    : document.querySelector('.rk-topbar');
   const logo = source
     ? (document.querySelector('#pxl-header-elementor .pxl-logo img') || document.querySelector('#pxl-header-mobile img'))
     : document.querySelector('.rk-brand img');
@@ -47,12 +55,12 @@ const extractionFunction = ({ target, properties }) => {
     ...[...topbar.querySelectorAll('p')].filter(visible).slice(0, 1).map((item) => ({ kind: 'text', label: text(item), href: null })),
     ...[...topbar.querySelectorAll('a')].filter(visible).map((item) => ({ kind: 'link', ...link(item) })),
   ] : [];
-  const footerHeadings = footer ? [...footer.querySelectorAll('h1,h2,h3,h4,h5,h6')].filter(visible).map(text) : [];
-  const footerLinks = footer ? [...footer.querySelectorAll('a')].filter(visible).map(link) : [];
+  const footerHeadings = footerElements('h1,h2,h3,h4,h5,h6').filter(visible).map(text);
+  const footerLinks = footerElements('a').filter(visible).map(link);
   const footerLogo = source
-    ? ([...footer?.querySelectorAll('img') || []].find((image) => /rk-reno-solutions-logo/i.test(image.getAttribute('src') || '')) || footer?.querySelector('img'))
+    ? (footerElements('img').find((image) => /rk-reno-solutions-logo/i.test(image.getAttribute('src') || '')) || footerElement('img'))
     : footer?.querySelector('.rk-footer__brand img');
-  const newsletter = footer?.querySelector('form');
+  const newsletter = footerElement('form');
   const fixedActions = [...document.querySelectorAll('a[href^="tel:"],a[href*="wa.me"],a[href*="whatsapp"]')]
     .filter((element) => {
       if (!visible(element)) return false;
@@ -73,9 +81,9 @@ const extractionFunction = ({ target, properties }) => {
     h2: document.querySelector('main h2'),
     paragraph: document.querySelector('main p'),
     button: document.querySelector('main a[class*="btn"],main a[class*="button"],main button'),
-    footer,
-    footerHeading: footer?.querySelector('h2,h3,h4'),
-    footerLink: footer?.querySelector('a'),
+    footer: source ? footerRoots[0] : footer,
+    footerHeading: footerElement('h2,h3,h4'),
+    footerLink: footerElement('a'),
     newsletter,
     floatingControl: fixedActions.length ? document.querySelector('a[href^="tel:"],a[href*="wa.me"]') : null,
   };
@@ -93,11 +101,11 @@ const extractionFunction = ({ target, properties }) => {
       visibleNavLandmarks: [...document.querySelectorAll('nav')].filter(visible).length,
       footer: {
         logo: { src: footerLogo?.getAttribute('src') || null, alt: footerLogo?.getAttribute('alt') || '', box: box(footerLogo) },
-        description: text(source ? footer?.querySelector('h2,h3,h4') : footer?.querySelector('.rk-footer__brand h2')),
+        description: text(source ? footerElement('h2,h3,h4') : footer?.querySelector('.rk-footer__brand h2')),
         headings: footerHeadings,
         links: footerLinks,
         addressText: text(source
-          ? [...footer?.querySelectorAll('h3,h4') || []].find((item) => /company address/i.test(text(item)))?.closest('.e-con')
+          ? footerElements('h3,h4').find((item) => /company address/i.test(text(item)))?.closest('.e-con')
           : footer?.querySelector('.rk-footer__address')),
         newsletter: newsletter ? {
           heading: text(newsletter.closest('div')?.querySelector('h2,h3,h4')),
@@ -105,7 +113,7 @@ const extractionFunction = ({ target, properties }) => {
           button: text(newsletter.querySelector('button,input[type="submit"]')),
           action: newsletter.getAttribute('action') || '',
         } : null,
-        copyright: text([...footer?.querySelectorAll('p') || []].find((item) => /copyright/i.test(text(item)))),
+        copyright: text(footerElements('p').find((item) => /copyright/i.test(text(item)))),
       },
       floatingActions: fixedActions,
     },

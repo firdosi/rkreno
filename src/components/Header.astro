@@ -17,9 +17,10 @@ const secondary = primaryNavigation.filter(({ label }) => ['Blog', 'About Us', '
       <div class="rk-topbar__inner">
         <p>Reliable Renovation, Repair &amp; Installation Services in KL and Selangor</p>
         <div class="rk-topbar__contacts">
-          <a href="tel:+601111334496"><span aria-hidden="true">☎</span> +60 11 1133 4496</a>
-          <a href="mailto:rkrenosolution@gmail.com"><span aria-hidden="true">✉</span> rkrenosolution@gmail.com</a>
-          <a href="#"><span aria-hidden="true">●</span> 4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</a>
+          <a href="tel:+601111334496"><span aria-hidden="true"><i class="fas fa-phone-alt"></i></span>+60 11 1133 4496</a>
+          <a href="mailto:rkrenosolution@gmail.com"><span aria-hidden="true"><i class="fas fa-envelope"></i></span>rkrenosolution@gmail.com</a>
+          <a href="#"><span aria-hidden="true"><i class="fas fa-map-marker-alt"></i></span>4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</a>
+          <span class="rk-language-current" aria-hidden="true"><img src={`${base}/assets/media/shared-language-flag.jpg`} alt="" />English</span>
           <a class="rk-language" href="#" aria-label="English">English</a>
           <a class="rk-language rk-language--secondary" href="#" aria-label="Korean">Korean</a>
         </div>
@@ -30,27 +31,27 @@ const secondary = primaryNavigation.filter(({ label }) => ['Blog', 'About Us', '
         <img src={`${base}/assets/media/RK-Reno-Solutions-Logo-942f64bb.png`} alt="" width="1575" height="483" />
       </a>
       <nav class="rk-nav" aria-label="Primary navigation">
-        <a class:list={['rk-nav__link', { 'is-current': isCurrent('/') }]} href={link('/')} aria-current={isCurrent('/') ? 'page' : undefined}>Home</a>
+        <a class:list={['rk-nav__link', { 'is-current': isCurrent('/') }]} href={link('/')} aria-current={isCurrent('/') ? 'page' : undefined}><span class="rk-menu-text">Home</span></a>
         <div class="rk-nav__services">
           <button class="rk-nav__link rk-nav__toggle" type="button" aria-expanded="false" aria-controls="rk-services-menu">
-            Services <span aria-hidden="true">⌄</span>
+            <span class="rk-menu-text">Services <span class="rk-menu-indicator" aria-hidden="true">⌄</span></span>
           </button>
           <ul class="rk-dropdown" id="rk-services-menu">
-            {services.map((item) => <li><a href={link(item.href)}>{item.label}</a></li>)}
+            {services.map((item) => <li><a href={link(item.href)}><span class="rk-menu-text">{item.label}</span></a></li>)}
           </ul>
         </div>
         {secondary.map((item) => (
-          <a class:list={['rk-nav__link', { 'is-current': isCurrent(item.href) }]} href={link(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+          <a class:list={['rk-nav__link', { 'is-current': isCurrent(item.href) }]} href={link(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}><span class="rk-menu-text">{item.label}</span></a>
         ))}
       </nav>
       <button class="rk-search" type="button" aria-label="Search">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"></circle><path d="m16 16 5 5"></path></svg>
+        <svg viewBox="0 0 21 21" aria-hidden="true"><path d="M9.02 0a9.02 9.02 0 0 1 6.93 14.79L21 19.84 19.84 21l-5.05-5.05A9.02 9.02 0 1 1 9.02 0Zm0 16.4a7.38 7.38 0 1 0 0-14.76 7.38 7.38 0 0 0 0 14.76Z"></path></svg>
       </button>
       <a class="rk-cart" href="#" aria-label="Cart, 0 items">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2 12h11l2-8H7"></path><circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle></svg>
+        <svg viewBox="0 0 21 21" aria-hidden="true"><path d="M18.75 15H5.25a.75.75 0 0 1-.75-.63L3 5.38a.75.75 0 0 1 .75-.88h16.5a.75.75 0 0 1 .74.87l-1.5 9a.75.75 0 0 1-.74.63ZM5.92 13.5h12.2L19.37 6H4.64l1.28 7.5ZM3.1 5.91l-.73-4.41H0V0h3a.75.75 0 0 1 .75.63l.84 5.02-1.49.26ZM19.5 18H5.62a.75.75 0 0 1-.74-.66l-.46-3.75 1.5-.18.37 3.09H19.5V18ZM6.38 21a1.12 1.12 0 1 0 0-2.25 1.12 1.12 0 0 0 0 2.25Zm12 0a1.12 1.12 0 1 0 0-2.25 1.12 1.12 0 0 0 0 2.25Z"></path></svg>
         <span>0</span>
       </a>
-      <a class="rk-header-cta" href={link('/contact-us/')}>Get A Quote <span aria-hidden="true">→</span></a>
+      <a class="rk-header-cta" href={link('/contact-us/')}>Get&nbsp;A&nbsp;Quote <span aria-hidden="true">→</span></a>
     </div>
   </div>
 
@@ -77,18 +78,18 @@ const secondary = primaryNavigation.filter(({ label }) => ['Blog', 'About Us', '
       </form>
       <nav aria-label="Mobile navigation">
         <ul class="rk-mobile-nav">
-          <li><a class:list={{ 'is-current': isCurrent('/') }} href={link('/')} aria-current={isCurrent('/') ? 'page' : undefined}>Home</a></li>
+          <li><a class:list={{ 'is-current': isCurrent('/') }} href={link('/')} aria-current={isCurrent('/') ? 'page' : undefined}><span>Home</span></a></li>
           <li>
             <div class="rk-mobile-nav__row">
-              <a href="#">Services</a>
+              <a href="#"><span>Services</span></a>
               <button class="rk-submenu-button" type="button" aria-label="Toggle Services submenu" aria-expanded="false" aria-controls="rk-mobile-services">⌄</button>
             </div>
             <ul class="rk-mobile-submenu" id="rk-mobile-services">
-              {services.map((item) => <li><a href={link(item.href)}>{item.label}</a></li>)}
+              {services.map((item) => <li><a href={link(item.href)}><span>{item.label}</span></a></li>)}
             </ul>
           </li>
           {secondary.map((item) => (
-            <li><a class:list={{ 'is-current': isCurrent(item.href) }} href={link(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a></li>
+            <li><a class:list={{ 'is-current': isCurrent(item.href) }} href={link(item.href)} aria-current={isCurrent(item.href) ? 'page' : undefined}><span>{item.label}</span></a></li>
           ))}
         </ul>
       </nav>

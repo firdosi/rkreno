@@ -1,6 +1,9 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { evidenceDir, sourceOrigin, stagingBase } from './shared-config.mjs';
+import {
+  captureElement, captureFloatingRegion, captureIsolatedFooter, captureUnion,
+} from './capture-geometry.mjs';
 import { extractEvidence } from './evidence-extractors.mjs';
 
 const selectors = {
@@ -14,7 +17,7 @@ const selectors = {
     close: '.pxl-menu-close',
     submenuToggle: '#menu-menu-main-2 > li:nth-child(2) .pxl-menu-toggle',
     overlay: '.pxl-header-menu-backdrop',
-    topbar: '.elementor-element-47be13c',
+    topbar: '.elementor-element-47be13c, .elementor-element-364a77d',
     logo: '.pxl-header-elementor-sticky .pxl-logo img, .pxl-header-mobile-fixed .pxl-logo img, #pxl-header-mobile img, #pxl-header-elementor .pxl-logo img',
     stickyDesktop: '.pxl-header-elementor-sticky',
     stickyMobile: '.pxl-header-mobile-fixed',
@@ -118,13 +121,6 @@ const measureStickyThreshold = async (page, selector) => {
   return { threshold: changed?.scrollY ?? null, samples };
 };
 
-const captureElement = async (page, selector, output) => {
-  const locator = page.locator(selector).first();
-  if (await locator.count() !== 1) return { captured: false, path: output };
-  await locator.screenshot({ path: output, animations: 'disabled' });
-  return { captured: true, path: output };
-};
-
 const captureInteractions = async (page, target, viewportName, outputDir) => {
   const use = selectors[target];
   const desktop = viewportName === 'desktop';
@@ -188,7 +184,12 @@ const captureInteractions = async (page, target, viewportName, outputDir) => {
       values.dropdown.outsideClickClosed = null;
     }
     await openByHover();
-    await captureElement(page, use.dropdown, path.join(outputDir, 'dropdown-open.png'));
+    values.dropdown.capture = await captureUnion(
+      page,
+      [use.desktopToggle, use.dropdown],
+      path.join(outputDir, 'dropdown-open.png'),
+      1,
+    );
     await page.locator(contentRoot).first().hover({ position: { x: 2, y: 2 } });
   } else {
     const toggle = page.locator(use.mobileToggle).first();
@@ -204,7 +205,11 @@ const captureInteractions = async (page, target, viewportName, outputDir) => {
       })),
       focusTarget: await page.evaluate(() => document.activeElement?.getAttribute('aria-label') || document.activeElement?.tagName),
     };
-    await page.screenshot({ path: path.join(outputDir, 'menu-open.png'), animations: 'disabled' });
+    values.mobileMenu.menuCapture = await captureElement(
+      page,
+      use.drawer,
+      path.join(outputDir, 'menu-open.png'),
+    );
     const submenu = page.locator(use.submenuToggle).first();
     if (await submenu.count() === 1) {
       await submenu.click();
@@ -213,7 +218,11 @@ const captureInteractions = async (page, target, viewportName, outputDir) => {
       values.mobileMenu.submenuItemCount = target === 'source'
         ? await page.locator('#menu-menu-main-2 > li:nth-child(2) .sub-menu > li > a').count()
         : await page.locator('.rk-mobile-submenu > li > a').count();
-      await page.screenshot({ path: path.join(outputDir, 'submenu-open.png'), animations: 'disabled' });
+      values.mobileMenu.submenuCapture = await captureElement(
+        page,
+        use.drawer,
+        path.join(outputDir, 'submenu-open.png'),
+      );
     }
     await page.keyboard.press('Escape');
     await page.waitForTimeout(450);
@@ -241,7 +250,11 @@ const captureInteractions = async (page, target, viewportName, outputDir) => {
     topbarVisible: desktop ? await isViewportVisible(use.topbar) : false,
     mainLayoutShift: mainBoxBefore && mainBoxAfter ? (mainBoxAfter.y - mainBoxBefore.y) + measuredScrollY : null,
   };
-  await captureElement(page, stickySelector, path.join(outputDir, 'header-sticky.png'));
+  values.sticky.capture = await captureElement(
+    page,
+    stickySelector,
+    path.join(outputDir, 'header-sticky.png'),
+  );
   await page.evaluate(() => scrollTo(0, 0));
   await page.waitForFunction(() => scrollY < 1, { timeout: 3000 }).catch(() => {});
   values.returnToTop = {
@@ -281,12 +294,16 @@ export const captureTarget = async ({ page, target, route, viewportName, session
   trace('header');
   await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
   await page.waitForTimeout(600);
-  captures.footer = await captureElement(page, use.footer, path.join(outputDir, 'footer.png'));
+  captures.footer = await captureIsolatedFooter(
+    page,
+    use.footer,
+    path.join(outputDir, 'footer.png'),
+  );
   trace('footer');
-  await page.screenshot({
-    path: path.join(outputDir, 'floating-actions.png'),
-    animations: 'disabled',
-  });
+  captures.floatingActions = await captureFloatingRegion(
+    page,
+    path.join(outputDir, 'floating-actions.png'),
+  );
   const evidence = {
     schemaVersion: 2,
     sessionId,

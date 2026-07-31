@@ -17,19 +17,49 @@ const exists = async (file) => {
   try { await access(file); return true; } catch { return false; }
 };
 const acceptable = (value) => value === STATUS.match || value === STATUS.sourceNondeterministic || value === STATUS.notApplicable;
-const measuredVisual = (value) => acceptable(value) || value === STATUS.difference;
+const visualMatch = (value) => value === STATUS.match || value === STATUS.notApplicable;
+const visualIndex = new Map(comparison.visualMetrics.map((metric) => [
+  `${metric.route}|${metric.viewport}|${metric.state}`,
+  metric,
+]));
+const visualStateMatches = (record, viewport, state) => {
+  const metric = visualIndex.get(`${record.route}|${viewport}|${state}`);
+  return metric?.evidenceComplete && metric.differences.length === 0;
+};
 
 record('Prompt 1.1 regression', process.env.PROMPT_ONE_REGRESSION_PASSED === 'true');
 record('Source shared-component capture validation',
-  manifest.passed && manifest.completed.length === mirrored.length * Object.keys(viewports).length && manifest.failures.length === 0);
+  manifest.passed
+  && manifest.completed.length === mirrored.length * Object.keys(viewports).length
+  && manifest.screenshots.length === manifest.expectedScreenshotPairs
+  && manifest.screenshots.every(({ source, staging, differenceScreenshot }) =>
+    source?.captured && staging?.captured && source.capturedAt && staging.capturedAt
+    && source.scrollPosition && staging.scrollPosition && differenceScreenshot)
+  && manifest.failures.length === 0);
 record('Route-specific header semantic comparison', comparison.records.length === mirrored.length && comparison.records.every(({ headerSemantic }) => acceptable(headerSemantic.status)));
 record('Route-specific footer semantic comparison', comparison.records.every(({ footerSemantic }) => acceptable(footerSemantic.status)));
 record('Ordered navigation comparison', comparison.records.every(({ headerSemantic }) => !headerSemantic.differences.some(({ field }) => /primaryMenu|dropdownItems/.test(field))));
 record('Ordered footer-link comparison', comparison.records.every(({ footerSemantic }) => !footerSemantic.differences.some(({ field }) => field === 'footer.links')));
-record('Computed-style comparison', comparison.records.every((item) => Object.values(item.computedStyles).every((value) => value.records.length >= 17)));
-record('Header screenshot comparison', comparison.records.every((item) => ['headerVisualDesktop', 'headerVisualTablet', 'headerVisualMobile'].every((key) => measuredVisual(item[key].status) && item[key].metrics.length > 0)));
-record('Footer screenshot comparison', comparison.records.every((item) => ['footerVisualDesktop', 'footerVisualTablet', 'footerVisualMobile'].every((key) => measuredVisual(item[key].status) && item[key].metrics.length > 0)));
-record('Mobile-menu screenshot comparison', comparison.records.every(({ headerVisualMobile }) => measuredVisual(headerVisualMobile.status) && headerVisualMobile.metrics.some(({ state }) => state === 'menu-open')));
+record('Computed-style comparison', comparison.records.every((item) =>
+  Object.values(item.computedStyles).every((value) => visualMatch(value.status))));
+record('Desktop visual parity', comparison.records.every((item) =>
+  ['header-initial', 'header-sticky', 'dropdown-open', 'footer', 'floating-actions']
+    .every((state) => visualStateMatches(item, 'desktop', state))));
+record('Tablet visual parity', comparison.records.every((item) =>
+  ['header-initial', 'header-sticky', 'menu-open', 'submenu-open', 'footer', 'floating-actions']
+    .every((state) => visualStateMatches(item, 'tablet', state))));
+record('Mobile visual parity', comparison.records.every((item) =>
+  ['header-initial', 'header-sticky', 'menu-open', 'submenu-open', 'footer', 'floating-actions']
+    .every((state) => visualStateMatches(item, 'mobile', state))));
+record('Dropdown visual parity', comparison.records.every((item) =>
+  visualStateMatches(item, 'desktop', 'dropdown-open')));
+record('Drawer visual parity', comparison.records.every((item) =>
+  ['tablet', 'mobile'].every((viewport) =>
+    ['menu-open', 'submenu-open'].every((state) => visualStateMatches(item, viewport, state)))));
+record('Footer visual parity', comparison.records.every((item) =>
+  ['desktop', 'tablet', 'mobile'].every((viewport) => visualStateMatches(item, viewport, 'footer'))));
+record('Floating-action visual parity', comparison.records.every((item) =>
+  ['desktop', 'tablet', 'mobile'].every((viewport) => visualStateMatches(item, viewport, 'floating-actions'))));
 record('Sticky-state screenshot comparison', comparison.records.every((item) =>
   ['headerVisualDesktop', 'headerVisualTablet', 'headerVisualMobile'].every((key) =>
     item[key].metrics.some(({ state, evidenceComplete }) => state === 'header-sticky' && evidenceComplete))));
@@ -115,8 +145,9 @@ const expected = [
   'Prompt 1.1 regression', 'Source shared-component capture validation',
   'Route-specific header semantic comparison', 'Route-specific footer semantic comparison',
   'Ordered navigation comparison', 'Ordered footer-link comparison', 'Computed-style comparison',
-  'Header screenshot comparison', 'Footer screenshot comparison', 'Mobile-menu screenshot comparison',
-  'Sticky-state screenshot comparison', 'Dropdown interaction comparison',
+  'Desktop visual parity', 'Tablet visual parity', 'Mobile visual parity',
+  'Dropdown visual parity', 'Drawer visual parity', 'Footer visual parity',
+  'Floating-action visual parity', 'Sticky-state screenshot comparison', 'Dropdown interaction comparison',
   'Sticky-header interaction comparison', 'Mobile-menu interaction comparison',
   'Footer interaction comparison', 'Floating-action comparison', 'Duplicate shared-component checks',
   '48-route overflow check', 'Broken-image check', 'Remote-image check', 'Console-error check',

@@ -2,7 +2,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
 import { captureTarget } from './capture-target.mjs';
-import { evidenceRoot, viewports } from './shared-config.mjs';
+import { evidenceRoot, statesForViewport, viewports } from './shared-config.mjs';
 
 const registry = JSON.parse(await readFile(path.join(process.cwd(), 'config', 'final-route-registry.json'), 'utf8'));
 const routes = registry.publicRoutes.filter(({ mirrored }) => mirrored).map(({ path: route }) => route);
@@ -14,7 +14,10 @@ const manifest = {
   routes,
   viewports,
   expectedEvidencePairs: routes.length * Object.keys(viewports).length,
+  expectedScreenshotPairs: routes.length
+    * Object.values(statesForViewport).reduce((total, states) => total + states.length, 0),
   completed: [],
+  screenshots: [],
   failures: [],
 };
 await mkdir(evidenceRoot, { recursive: true });
@@ -50,6 +53,32 @@ for (const [viewportName, viewport] of Object.entries(viewports)) {
           sourceCapturedAt: source.capturedAt,
           stagingCapturedAt: staging.capturedAt,
         });
+        const stateCaptures = (evidence) => ({
+          'header-initial': evidence.captures.headerInitial,
+          'header-sticky': evidence.interaction.sticky.capture,
+          'dropdown-open': evidence.interaction.dropdown?.capture,
+          'menu-open': evidence.interaction.mobileMenu?.menuCapture,
+          'submenu-open': evidence.interaction.mobileMenu?.submenuCapture,
+          footer: evidence.captures.footer,
+          'floating-actions': evidence.captures.floatingActions,
+        });
+        const sourceCaptures = stateCaptures(source);
+        const stagingCaptures = stateCaptures(staging);
+        for (const state of Object.keys(sourceCaptures)) {
+          if (!sourceCaptures[state] && !stagingCaptures[state]) continue;
+          manifest.screenshots.push({
+            route,
+            viewport: viewportName,
+            state,
+            source: sourceCaptures[state] || null,
+            staging: stagingCaptures[state] || null,
+            differenceScreenshot: path.join(
+              evidenceRoot, 'differences', viewportName,
+              route === '/' ? 'home' : route.slice(1, -1).replaceAll('/', '__'),
+              `${state}.png`,
+            ),
+          });
+        }
         console.log(`CAPTURED ${viewportName} ${route}`);
       } catch (error) {
         manifest.failures.push({ route, viewport: viewportName, message: error.message });

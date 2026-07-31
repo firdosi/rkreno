@@ -1,7 +1,7 @@
 /* Prompt 1.2 tokens: measured from rkrenosolution.com on 2026-07-30. */
 :root {
-  --rk-font-body: "Roboto", Arial, sans-serif;
-  --rk-font-heading: "Maven Pro", Arial, sans-serif;
+  --rk-font-body: "Roboto", sans-serif;
+  --rk-font-heading: "Maven Pro", sans-serif;
   --rk-primary: #e67e22;
   --rk-primary-hover: #151515;
   --rk-ink: #252525;

@@ -7,9 +7,8 @@ const newsletterAction = isHome || currentPath === '/contact-us/'
   : `${currentPath}#wpcf7-f6-o2`;
 ---
 
-<footer class:list={['rk-footer', isHome ? 'rk-footer--home' : 'rk-footer--inner']} data-shared-footer>
-  {!isHome && (
-    <section class="rk-footer-cta">
+{!isHome && (
+  <section class="rk-footer-cta">
       <div>
         <h2>Ready to work together?</h2>
         <p>Whether you have a project in mind and you’re looking for a reliable construction partner<br />or you’re looking to take the next step in your career, we want to hear from you!</p>
@@ -18,8 +17,9 @@ const newsletterAction = isHome || currentPath === '/contact-us/'
           <a href="https://rkrenosolution.com/career/">Career with us</a>
         </nav>
       </div>
-    </section>
-  )}
+  </section>
+)}
+<footer class:list={['rk-footer', isHome ? 'rk-footer--home' : 'rk-footer--inner']} data-shared-footer>
   <div class="rk-footer__main">
     <div class="rk-footer__brand">
       <a href={`${base}/`} aria-label="RK Reno Solution home">
@@ -27,10 +27,10 @@ const newsletterAction = isHome || currentPath === '/contact-us/'
       </a>
       <h2>Building a Better Future – Innovative, Sustainable, Reliable.</h2>
       <div class="rk-socials" aria-label="Social media">
-        <a href="#" aria-label="Facebook"></a>
-        <a href="#" aria-label="Instagram"></a>
-        <a href="#" aria-label="Pinterest"></a>
-        <a href="#" aria-label="Social profile"></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        <a href="#" aria-label="X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Snapchat"><i class="fab fa-snapchat-ghost" aria-hidden="true"></i></a>
       </div>
     </div>
     <div class="rk-footer__address">
