@@ -3,31 +3,14 @@ import CorePageTitle from './CorePageTitle.astro';
 import CoreFinalCta from './CoreFinalCta.astro';
 import { coreFaqs } from '@data/core-pages';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const topics = [...new Set(coreFaqs.map((item) => item.topic))];
 ---
 <div class="core-page p21-faq">
-  <CorePageTitle title="Frequently Asked Questions" description="Answers about RK Reno Solution services, site information and the enquiry process." />
-
-  <section class="core-section p21-faq-list core-faq-list">
-    <div class="exact-wrap">
-      {coreFaqs.map((item) => (
-        <details>
-          <summary>{item.question}<span aria-hidden="true">⌃</span></summary>
-          <p>{item.answer}</p>
-        </details>
-      ))}
-    </div>
-  </section>
-
-  <section class="p21-faq-question">
-    <div class="exact-wrap">
-      <div>
-        <h2>Couldn’t Find Your Answer? Ask Us Questions!</h2>
-        <p>We will answer any questions you have, don’t hesitate to contact us immediately. We will reply you within 24 hours.</p>
-        <a class="core-button core-button-light" href={`${base}/contact-us/`}>Contact Us →</a>
-      </div>
-      <img src={`${base}/assets/media/faq1-7160bab8.webp`} alt="" width="640" height="520" loading="lazy" />
-    </div>
-  </section>
-
+  <CorePageTitle title="Frequently Asked Questions" description="Answers about renovation, demolition, aircond, electrical, waterproofing, cleaning, quotations and service areas." />
+  <section class="core-section p2-faq-intro"><div class="exact-wrap p2-split"><div><p class="core-kicker">BEFORE WORK BEGINS</p><h2>Use These Answers to Prepare Your Enquiry</h2><p>Property condition, measurements, access and building rules can change the final recommendation. These answers explain the usual planning points, not a site-specific promise.</p></div><a class="core-button core-button-orange" href={`${base}/services/`}>Browse All Services</a></div></section>
+  <section class="core-section p21-faq-list core-faq-list"><div class="exact-wrap">
+    {topics.map((topic) => <section class="p2-faq-topic"><h2>{topic}</h2>{coreFaqs.filter((item) => item.topic === topic).map((item) => <details><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</section>)}
+  </div></section>
+  <section class="p21-faq-question"><div class="exact-wrap"><div><h2>Have a Site-Specific Question?</h2><p>Send the exact location, property type and work details through WhatsApp, or use the staging-safe contact form to prepare your enquiry.</p><div class="core-button-row"><a class="core-button core-button-light" href="https://wa.me/601111334496">Ask on WhatsApp</a><a class="core-button core-button-outline" href={`${base}/contact-us/`}>Contact Us</a></div></div><img src={`${base}/assets/media/faq1-7160bab8.webp`} alt="Planning questions for renovation and property services" width="640" height="520" loading="lazy" /></div></section>
   <CoreFinalCta />
 </div>

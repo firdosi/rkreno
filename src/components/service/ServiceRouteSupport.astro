@@ -1,0 +1,18 @@
+---
+interface Props { route: string; }
+const { route } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const linkCatalog: Record<string, [string, string][]> = {
+  aircond: [['/servis-aircond-murah-kl/', 'Aircond servicing'], ['/aircond-installation-kl/', 'Installation in KL'], ['/upah-pasang-aircond-selangor/', 'Installation in Selangor']],
+  renovation: [['/house-renovation-in-kuala-lumpur/', 'House renovation KL'], ['/house-renovation-in-selangor/', 'House renovation Selangor'], ['/office-renovation-in-kuala-lumpur/', 'Office renovation'], ['/demolition-contractor-kl-selangor/', 'Interior demolition']],
+  property: [['/electrical-services-selangor/', 'Electrical services'], ['/waterproofing-contractor-kuala-lumpur/', 'Waterproofing'], ['/plaster-ceiling-contractor-kl/', 'Plaster ceiling'], ['/servis-cuci-rumah-kl/', 'House cleaning']],
+};
+const group = /aircond/.test(route) ? 'aircond' : /renovation|building/.test(route) ? 'renovation' : 'property';
+const related = linkCatalog[group].filter(([href]) => href !== route).slice(0, 3);
+---
+<section class="service-exact-section p2-service-support">
+  <div class="exact-wrap p2-support-grid">
+    <div><p class="core-kicker">PLAN THE ENQUIRY</p><h2>Confirm the Site Before Work Begins</h2><ol><li>Share the exact Kuala Lumpur or Selangor location.</li><li>Send photos, measurements and the work you need.</li><li>Review access, inclusions, exclusions and the quotation.</li></ol></div>
+    <aside><h3>Contact and related services</h3><p>Share your property location, photos and required work. Availability depends on the exact address and scope.</p><div class="core-button-row"><a class="core-button" href="https://wa.me/601111334496">WhatsApp for a Quote</a><a href="tel:+601111334496">Call +60 11 1133 4496</a></div><nav aria-label="Related services">{related.map(([href, label]) => <a href={`${base}${href}`}>{label} <span aria-hidden="true">→</span></a>)}</nav></aside>
+  </div>
+</section>

@@ -1,51 +1,23 @@
 ---
 import CorePageTitle from './CorePageTitle.astro';
-import Prompt23ArchiveSidebar from '../archive/Prompt23ArchiveSidebar.astro';
+import CoreFinalCta from './CoreFinalCta.astro';
 import { retainedArticleCatalog } from '@data/retained-article-catalog';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const pageOneRoutes = [
-  '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/',
-  '/commercial-retail-shop-renovation-in-kuala-lumpur/',
-  '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/',
-  '/office-renovation-petaling-jaya-corporate-fit-out-experts/',
+const serviceLinks = [
+  ['/house-renovation-in-kuala-lumpur/', 'House renovation'],
+  ['/servis-aircond-murah-kl/', 'Aircond servicing'],
+  ['/waterproofing-contractor-kuala-lumpur/', 'Waterproofing'],
+  ['/servis-cuci-rumah-kl/', 'Cleaning'],
 ];
-const pageOne = pageOneRoutes.map((route) => retainedArticleCatalog.find((article) => article.route === route)).filter(Boolean);
-const categoryRoute = (category: string) => category === 'Commercial' ? '/category/commercial/'
-  : category === 'Renovation' ? '/category/renovation/'
-  : category === 'Servis Pembersihan' ? '/category/servis-pembersihan/'
-  : '/category/maintenance/';
 ---
 <div class="core-page p21-blog">
   <CorePageTitle title="Blog" description="Practical guides for renovation, aircond, electrical, waterproofing, ceiling and cleaning work." />
-
-  <section class="core-section p21-blog-section">
-    <div class="exact-wrap p21-blog-layout">
-      <div class="p21-blog-list core-blog-grid">
-        {pageOne.map((article) => article && (
-          <article>
-            <a class="p21-blog-image" href={`${base}${article.route}`}>
-              <img
-                src={`${base}${article.image}`}
-                srcset={article.imageSrcSet?.map(({src,width})=>`${base}${src} ${width}w`).join(', ')}
-                sizes="(max-width:760px) 100vw, 320px"
-                alt={article.imageAlt}
-                width={article.imageWidth}
-                height={article.imageHeight}
-                loading="lazy"
-              />
-            </a>
-            <div>
-              <img src={`${base}/assets/media/avartar1-90x90-68065c41.webp`} alt="" width="48" height="48" loading="lazy" />
-              <p class="core-blog-meta"><a href={`${base}${categoryRoute(article.category)}`}>{article.category}</a></p>
-              <h2><a href={`${base}${article.route}`}>{article.title}</a></h2>
-              <p><span>by raoisrar</span> <a href={`${base}${article.route}#respond`}>No Comments</a></p>
-              <a class="core-read-link" href={`${base}${article.route}`}>Read more</a>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <Prompt23ArchiveSidebar />
-    </div>
-  </section>
+  <section class="core-section p2-blog-intro"><div class="exact-wrap p2-split"><div><p class="core-kicker">PLANNING GUIDES</p><h2>Research the Work Before Requesting a Quote</h2><p>Browse all 14 retained guides for scope, pricing context, access considerations and questions to ask before property work begins.</p></div><nav aria-label="Related services">{serviceLinks.map(([href, label]) => <a href={`${base}${href}`}>{label}</a>)}</nav></div></section>
+  <section class="core-section p21-blog-section"><div class="exact-wrap"><div class="p2-blog-grid">
+    {retainedArticleCatalog.map((article) => <article>
+      <a class="p21-blog-image" href={`${base}${article.route}`}><img src={`${base}${article.image}`} srcset={article.imageSrcSet?.map(({src,width}) => `${base}${src} ${width}w`).join(', ')} sizes="(max-width:760px) 100vw, 380px" alt={article.imageAlt} width={article.imageWidth} height={article.imageHeight} loading="lazy" /></a>
+      <div><p class="core-blog-meta"><span>{article.category}</span> · <time datetime={article.published}>{new Date(`${article.published}T00:00:00`).toLocaleDateString('en-MY', { day: 'numeric', month: 'short', year: 'numeric' })}</time></p><h2><a href={`${base}${article.route}`}>{article.title}</a></h2><p>{article.summary}</p><a class="core-read-link" href={`${base}${article.route}`}>Read guide <span aria-hidden="true">→</span></a></div>
+    </article>)}
+  </div></div></section>
+  <CoreFinalCta />
 </div>

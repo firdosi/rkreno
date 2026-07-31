@@ -1,27 +1,26 @@
 ---
-import { homeSteps, homeTestimonials } from '@data/homepage-exact';
+import { homeSteps } from '@data/homepage-exact';
+import { retainedArticleCatalog } from '@data/retained-article-catalog';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const guideRoutes = new Set([
+  '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/',
+  '/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/',
+  '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/',
+]);
+const guides = retainedArticleCatalog.filter((article) => guideRoutes.has(article.route));
 ---
-<section class="exact-process exact-section" data-source-background="/assets/media/home6-bg-04-2008c412.png">
+<section class="exact-process exact-section">
   <div class="exact-wrap">
-    <div class="exact-section-title">
-      <p class="exact-eyebrow">OUR PROCESS</p>
-      <h2>How We Handle Your Project</h2>
-      <p>We keep the process simple, clear, and organized so you know what to expect before the work begins.</p>
-    </div>
-    <div class="exact-process-map">
-      <div class="exact-process-center"><strong>04</strong><span>STEPS</span></div>
-      {homeSteps.map((step, index) => (
-        <article class={`step-${index + 1}`}>
-          <strong>{step.number}</strong>
-          <div><h3>{step.title}</h3><p>{step.text}</p></div>
-        </article>
-      ))}
-    </div>
-    <div class="exact-process-cta">
-      <p>Ready to improve your space?</p>
-      <a href={`${base}/contact-us/`}>Free Consultation <span>→</span></a>
-    </div>
+    <div class="exact-section-title"><p class="exact-eyebrow">OUR PROCESS</p><h2>How We Handle Your Project</h2><p>Use this process for aircond, renovation, demolition and supporting property-service enquiries.</p></div>
+    <div class="exact-process-map"><div class="exact-process-center"><strong>04</strong><span>STEPS</span></div>{homeSteps.map((step, index) => <article class={`step-${index + 1}`}><strong>{step.number}</strong><div><h3>{step.title}</h3><p>{step.text}</p></div></article>)}</div>
+    <div class="exact-process-cta"><p>Ready to discuss the property?</p><a href={`${base}/contact-us/`}>Request a quotation <span>→</span></a></div>
+  </div>
+</section>
+
+<section class="exact-section prompt2-areas">
+  <div class="exact-wrap prompt2-split">
+    <div><p class="exact-eyebrow">SERVICE AREAS</p><h2>Kuala Lumpur and Selangor Enquiries</h2><p>Share the exact address, property type and required work. Availability, building access and the need for a site inspection are confirmed before scheduling.</p><a class="exact-text-link" href={`${base}/contact-us/`}>Check your location <span>→</span></a></div>
+    <img src={`${base}/assets/media/Service-areas-in-KL-and-Selangor-0f0a8548.jpg`} alt="Service areas across Kuala Lumpur and Selangor" width="1000" height="700" loading="lazy" />
   </div>
 </section>
 
@@ -29,82 +28,17 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <div class="exact-wrap exact-enquiry-grid">
     <div aria-hidden="true"></div>
     <form class="exact-contact-form" aria-label="Enquiry form preview" data-preview-form data-configured="false" novalidate>
-      <p class="exact-eyebrow">CONTACT US</p>
-      <h2>Get In Touch With Us</h2>
-      <div class="exact-field-grid">
-        <input type="text" name="name" placeholder="Name*" required />
-        <input type="tel" name="phone" placeholder="Phone number*" required />
-        <input type="email" name="email" placeholder="Email*" />
-        <input type="text" name="company" placeholder="Company Name" />
-        <select name="service" required><option value="">Project type*</option><option>Building Construction</option><option>Architecture Design</option><option>building renovation</option></select>
-        <input type="text" name="budget" placeholder="Budget*" />
-      </div>
-      <textarea name="projectDetails" placeholder="Write message...*" required></textarea>
-      <label><input type="checkbox" name="consent" required /> <span>I have read the privacy statement and understand that my personal data will be processed for the purpose of providing the necessary information and assistance.*</span></label>
-      <button type="submit">Submit <span>→</span></button>
-      <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+      <p class="exact-eyebrow">CONTACT US</p><h2>Share Your Project Details</h2>
+      <div class="exact-field-grid"><input type="text" name="name" placeholder="Name*" required /><input type="tel" name="phone" placeholder="Phone number*" required /><input type="email" name="email" placeholder="Email" /><input type="text" name="location" placeholder="Property location*" required /><select name="service" required><option value="">Service needed*</option><option>Aircond servicing or installation</option><option>House or office renovation</option><option>Demolition or strip-out</option><option>Electrical, waterproofing or ceiling</option><option>Cleaning</option></select><input type="text" name="propertyType" placeholder="Property type" /></div>
+      <textarea name="projectDetails" placeholder="Required work, current condition and preferred timing*" required></textarea>
+      <label><input type="checkbox" name="consent" required /> <span>I agree that RK Reno Solution may use these details to respond to my enquiry.</span></label>
+      <button type="submit">Preview enquiry <span>→</span></button><p class="form-status" data-form-status role="status" aria-live="polite">Preview only: no message will be sent from GitHub Pages.</p>
     </form>
   </div>
 </section>
 
-<section class="exact-testimonials exact-section">
-  <div class="exact-wrap exact-testimonial-grid">
-    <div class="exact-testimonial-image">
-      <img src={`${base}/assets/media/Construction-workers-discussing-renovation-plans-092133b6.jpg`} alt="Construction workers discussing renovation plans" width="1200" height="896" />
-    </div>
-    <div class="exact-testimonial-copy">
-      <p class="exact-eyebrow">CLIENT FEEDBACK</p>
-      <h2>What Customers Say About RK Reno Solution</h2>
-      <div class="exact-testimonial-cards" data-testimonial-track aria-live="polite">
-        {homeTestimonials.map((testimonial, index) => (
-          <article class:list={{ featured: index === 0 }}>
-            <div class="exact-stars">★★★★★ <span>”</span></div>
-            <blockquote>{testimonial.quote}</blockquote>
-            <div class="exact-reviewer">
-              <img src={`${base}/assets/media/avartar1-90x90-68065c41.webp`} alt="" width="90" height="90" />
-              <p><strong>{testimonial.name}</strong><span>{testimonial.role}</span></p>
-            </div>
-          </article>
-        ))}
-      </div>
-      <div class="exact-carousel-controls">
-        <button type="button" data-testimonial-previous aria-label="Previous testimonial">←</button>
-        <button type="button" data-testimonial-next aria-label="Next testimonial">→</button>
-      </div>
-    </div>
-  </div>
+<section class="exact-section prompt2-guides">
+  <div class="exact-wrap"><div class="exact-section-title"><p class="exact-eyebrow">PLANNING GUIDES</p><h2>Helpful Information Before You Request a Quote</h2></div><div class="prompt2-guide-grid">{guides.map((guide) => <article><img src={`${base}${guide.image}`} alt={guide.imageAlt} width={guide.imageWidth} height={guide.imageHeight} loading="lazy" /><p>{guide.category} · <time datetime={guide.published}>{guide.published}</time></p><h3><a href={`${base}${guide.route}`}>{guide.title}</a></h3><p>{guide.summary}</p></article>)}</div></div>
 </section>
 
-<script>
-  const track = document.querySelector<HTMLElement>('[data-testimonial-track]');
-  const previous = document.querySelector<HTMLButtonElement>('[data-testimonial-previous]');
-  const next = document.querySelector<HTMLButtonElement>('[data-testimonial-next]');
-  if (track && previous && next) {
-    const cards = [...track.querySelectorAll<HTMLElement>('article')];
-    let active = 0;
-    const show = (index: number) => {
-      active = (index + cards.length) % cards.length;
-      cards.forEach((card, cardIndex) => card.classList.toggle('featured', cardIndex === active));
-      track.scrollTo({ left: cards[active].offsetLeft - track.offsetLeft, behavior: 'smooth' });
-    };
-    previous.addEventListener('click', () => show(active - 1));
-    next.addEventListener('click', () => show(active + 1));
-    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.setInterval(() => show(active + 1), 6000);
-    }
-  }
-</script>
-
-<section class="exact-final-cta">
-  <div class="exact-wrap exact-final-inner">
-    <img src={`${base}/assets/media/home7-img7-f8f5cbc2.webp`} alt="" width="441" height="546" />
-    <div>
-      <h2>Need Renovation or Repair Work?</h2>
-      <p>Whether you need home renovation, office renovation, waterproofing, plaster ceiling, aircond installation, or cleaning services, RK Reno Solution is ready to help. Contact us today and share your project details.</p>
-      <div class="exact-actions">
-        <a class="exact-button exact-button-white" href={`${base}/contact-us/`}>Get Free Quote <span>→</span></a>
-        <a class="exact-button exact-button-outline" href={`${base}/contact-us/`}>Contact Us <span>→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="exact-final-cta"><div class="exact-wrap exact-final-inner"><img src={`${base}/assets/media/home7-img7-f8f5cbc2.webp`} alt="Renovation planning illustration" width="441" height="546" loading="lazy" /><div><h2>Need Aircond, Renovation or Demolition Work?</h2><p>Send your location, photos and required scope for an initial discussion. Final work and pricing depend on the confirmed site requirements.</p><div class="exact-actions"><a class="exact-button exact-button-white" href="https://wa.me/601111334496">WhatsApp RK Reno <span>→</span></a><a class="exact-button exact-button-outline" href="tel:+601111334496">Call +60 11 1133 4496</a></div></div></div></section>

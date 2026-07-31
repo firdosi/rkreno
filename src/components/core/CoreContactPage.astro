@@ -16,16 +16,18 @@ const disabled = !configured && !isGitHubStaging;
     <div class="exact-wrap p21-contact-grid">
       <div class="p21-contact-details">
         <h2>get in touch</h2>
-        <p>Have a question? Please contact us using the customer support channels below.</p>
+        <p>Share your property location, requested service, photos and approximate measurements so the team can review the enquiry.</p>
         <p>
           Address: <a href="https://share.google/ZxiE3enIVqmg6LSSm">4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur</a><br />
           Phone number: <a href="tel:+601111334496">+60 11 1133 4496</a><br />
           Email: <a href="mailto:rkrenosolution@gmail.com">rkrenosolution@gmail.com</a>
         </p>
-        <img src={`${base}/assets/media/ct-08-a16e9952.webp`} alt="" width="526" height="556" />
+        <div class="core-button-row"><a class="core-button core-button-orange" href="https://wa.me/601111334496">WhatsApp +60 11 1133 4496</a><a class="core-button core-button-outline" href="tel:+601111334496">Call Now</a></div>
+        <h3>Service areas</h3><p>Kuala Lumpur, Selangor and nearby Klang Valley locations, subject to the requested service and exact address.</p>
+        <img src={`${base}/assets/media/ct-08-a16e9952.webp`} alt="Contact RK Reno Solution about a property-service enquiry" width="526" height="556" />
       </div>
       <div class="p21-contact-form-wrap">
-        <p>Please submit all general enquiries in the contact form below and we look forward to hearing from you soon.</p>
+        <p>Use this form to preview the required enquiry details. On staging, no message is transmitted; use phone or WhatsApp for an active enquiry.</p>
         <form class="core-contact-form" data-core-enquiry-form data-endpoint={endpoint} data-configured={String(configured)} aria-describedby="core-form-note" novalidate>
           <label>Full Name*<input type="text" name="name" minlength="2" maxlength="100" required disabled={disabled} /></label>
           <label>Email Address*<input type="email" name="email" maxlength="254" disabled={disabled} /></label>
@@ -39,6 +41,7 @@ const disabled = !configured && !isGitHubStaging;
               <option value="Plaster Ceiling">Plaster Ceiling</option>
               <option value="Electrical Services">Electrical</option>
               <option value="House Cleaning">Cleaning</option>
+              <option value="Demolition">Demolition</option>
             </select>
           </label>
           <label class="core-full-field">Message<textarea name="projectDetails" rows="7" minlength="10" maxlength="2000" required disabled={disabled}></textarea></label>
@@ -52,7 +55,7 @@ const disabled = !configured && !isGitHubStaging;
             {configured ? 'Protected by validation, rate limiting and Cloudflare Turnstile.' : 'Preview only: complete the form to test its appearance. No message will be sent.'}
           </p>
         </form>
-        <img src={`${base}/assets/media/ct-07-83aecc11.webp`} alt="" width="510" height="565" loading="lazy" />
+        <img src={`${base}/assets/media/ct-07-83aecc11.webp`} alt="Property-service enquiry and quotation planning" width="510" height="565" loading="lazy" />
       </div>
     </div>
   </section>

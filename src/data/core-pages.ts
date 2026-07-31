@@ -74,28 +74,13 @@ export const coreServices = [
 ] as const;
 
 export const coreFaqs = [
-  {
-    question: 'How long does a typical construction project take?',
-    answer: 'Project timelines vary based on size and complexity. A residential project may take 3–6 months, while larger commercial builds could require 12 months or more.',
-  },
-  {
-    question: 'Do you provide custom designs?',
-    answer: 'Yes, we work closely with clients to create personalized designs that meet their needs and align with their vision.',
-  },
-  {
-    question: 'Are your projects eco-friendly?',
-    answer: 'We prioritize sustainability by using eco-friendly materials and incorporating energy-efficient solutions into our designs.',
-  },
-  {
-    question: 'What’s included in your pricing plans?',
-    answer: 'Our pricing plans include materials, labor, project management, and post-construction support. Additional customizations may incur extra costs.',
-  },
-  {
-    question: 'Do you handle permits and regulations?',
-    answer: 'Yes, we manage all necessary permits and ensure compliance with local building codes and regulations.',
-  },
-  {
-    question: 'What warranty do you offer on your projects?',
-    answer: 'We provide a warranty of up to [Insert Number] years, depending on the project type, along with lifetime support for major issues.',
-  },
+  { topic: 'Planning and quotations', question: 'What should I send for an initial quotation?', answer: 'Send the property location, clear photos or video, approximate measurements, the required work and any building access rules. A site review may still be needed before the final scope and price are confirmed.' },
+  { topic: 'Planning and quotations', question: 'Can you confirm a final price from photos alone?', answer: 'Photos can support an initial estimate, but access, quantities, existing damage and hidden conditions may require inspection. The quotation should identify inclusions, exclusions and possible additional work.' },
+  { topic: 'Renovation and demolition', question: 'Do renovation works require approval?', answer: 'Some structural changes, extensions and major alterations may require local-authority approval. Condos and commercial buildings may also require management forms, deposits and approved working hours.' },
+  { topic: 'Renovation and demolition', question: 'Can demolition be included with renovation work?', answer: 'Yes. Interior removal, strip-out, debris organisation and site preparation can be discussed with a renovation enquiry. Structural removal requires separate assessment and any necessary approval.' },
+  { topic: 'Aircond and electrical', question: 'What affects aircond installation or servicing cost?', answer: 'Unit horsepower, pipe and wiring length, drainage, outdoor-unit access, replacement work and the type of cleaning or repair can affect the price. Confirm the site-specific scope before work.' },
+  { topic: 'Aircond and electrical', question: 'What should I do if an electrical circuit keeps tripping?', answer: 'Stop using damaged fittings and arrange an inspection. Do not repeatedly reset a circuit where there is heat, smoke or a burning smell, because the cause may be an overload, appliance fault or damaged wiring.' },
+  { topic: 'Waterproofing, ceiling and cleaning', question: 'Can every leak be repaired without hacking?', answer: 'No single method suits every leak. The likely water path, substrate, tile joints, drainage and access should be inspected before a waterproofing or repair method is selected.' },
+  { topic: 'Waterproofing, ceiling and cleaning', question: 'What is included in a house-cleaning enquiry?', answer: 'The scope may cover move-in, deep or post-renovation cleaning. Confirm the rooms, surfaces, condition, accessible windows, equipment and exclusions in the quotation.' },
+  { topic: 'Service areas', question: 'Which areas do you serve?', answer: 'Enquiries are accepted across Kuala Lumpur, Selangor and nearby Klang Valley areas. Share the exact address through WhatsApp to confirm availability for the requested service.' },
 ] as const;

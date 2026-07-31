@@ -2,8 +2,10 @@
 import CoreFinalCta from '../core/CoreFinalCta.astro';
 import ServiceExactHero from './ServiceExactHero.astro';
 import ServiceExactSection from './ServiceExactSection.astro';
+import ServiceRouteSupport from './ServiceRouteSupport.astro';
 import { serviceExactConfig } from '@data/service-exact-config';
 import { priceCardsByRoute, priceTablesByRoute, pricingSectionPattern } from '@data/service-exact-pricing';
+import { serviceFaqsByRoute } from '@data/service-exact-faqs';
 
 interface Props {
   route: string;
@@ -34,13 +36,14 @@ const prompt22 = prompt22Routes.includes(route);
     <ServiceExactSection
       section={section}
       index={index}
-      skipPatterns={[]}
+      skipPatterns={config.skipPatterns || []}
       priceCards={priceCards}
       priceTable={index === 0 ? priceTable : undefined}
-      explicitFaqs={undefined}
+      explicitFaqs={serviceFaqsByRoute[route]}
       pricingSection={pricingSectionPattern.test(section.title)}
       prompt22Primary={prompt22 && index === 0 && route !== '/office-renovation-in-kuala-lumpur/'}
     />
   ))}
+  <ServiceRouteSupport route={route} />
   <CoreFinalCta />
 </div>

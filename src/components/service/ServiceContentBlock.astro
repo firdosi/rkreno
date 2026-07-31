@@ -40,8 +40,8 @@ const safeHtml = (value = '') => {
       <img
         src={`${base}${block.src}`}
         alt={block.alt || ''}
-        width={dimensions?.width}
-        height={dimensions?.height}
+        width={dimensions?.width || 1200}
+        height={dimensions?.height || 900}
         loading="lazy"
         decoding="async"
       />

@@ -1,78 +1,36 @@
 ---
 import CorePageTitle from './CorePageTitle.astro';
 import CoreFinalCta from './CoreFinalCta.astro';
-import { retainedArticleCatalog } from '@data/retained-article-catalog';
+import { coreServices } from '@data/core-pages';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const features = [
-  ['⌖', 'Site Checking', 'We review your space and service requirement before starting, so the work can be planned properly.'],
-  ['⚒', 'Workmanship', 'We focus on clean finishing, practical materials, and service work that fits your property needs.'],
-  ['↗', 'Clear Communication', 'We keep customers updated with simple guidance, clear next steps, and easy communication throughout the work.'],
+const groups = [
+  { title: 'Renovation and strip-out', routes: ['/service/building-renovation/', '/house-renovation-in-kuala-lumpur/', '/house-renovation-in-selangor/', '/office-renovation-in-kuala-lumpur/', '/demolition-contractor-kl-selangor/'] },
+  { title: 'Aircond and electrical', routes: ['/servis-aircond-murah-kl/', '/aircond-installation-kl/', '/upah-pasang-aircond-selangor/', '/electrical-services-selangor/'] },
+  { title: 'Waterproofing, ceiling and cleaning', routes: ['/waterproofing-contractor-kuala-lumpur/', '/plaster-ceiling-contractor-kl/', '/servis-cuci-rumah-kl/'] },
 ];
-const categoriesByRoute: Record<string, [string, string][]> = {
-  '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/': [['Maintenance', '/category/maintenance/'], ['Servis Pembersihan', '/category/servis-pembersihan/']],
-  '/commercial-retail-shop-renovation-in-kuala-lumpur/': [['Renovation', '/category/renovation/']],
-  '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/': [['Maintenance', '/category/maintenance/']],
-  '/office-renovation-petaling-jaya-corporate-fit-out-experts/': [['Commercial', '/category/commercial/']],
-  '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/': [['Maintenance', '/category/maintenance/']],
-  '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/': [['HVAC Guides', '/category/hvac-guides/']],
-};
-const articleRoutes = [
-  '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/',
-  '/commercial-retail-shop-renovation-in-kuala-lumpur/',
-  '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/',
-  '/office-renovation-petaling-jaya-corporate-fit-out-experts/',
-  '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/',
-  '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/',
-];
-const featuredArticles = articleRoutes
-  .map((route) => retainedArticleCatalog.find((article) => article.route === route))
-  .filter(Boolean);
 ---
 <div class="core-page p21-services">
-  <CorePageTitle title="Services" description="Renovation, repair and installation services for properties in Kuala Lumpur and Selangor." />
-
-  <section class="core-section p21-services-intro">
-    <div class="exact-wrap">
-      <p class="core-kicker">RK RENO SOLUTION</p>
-      <h2>Property Services Done with Care and Clear Planning</h2>
-      <p>Whether you need renovation, repair, ceiling work, leakage solutions, aircond installation, or cleaning service, our team starts by understanding your space, checking the work needed, and guiding you with the right service approach.</p>
+  <CorePageTitle title="Services" description="Renovation, aircond, electrical, waterproofing, ceiling, cleaning and demolition services in Kuala Lumpur and Selangor." />
+  <section class="core-section p2-service-hub-intro">
+    <div class="exact-wrap p2-split">
+      <div><p class="core-kicker">RK RENO SOLUTION</p><h2>Property Services Planned Around the Actual Site</h2><p>Choose the service that matches your property and work scope. We review location, access, existing condition and the requested outcome before confirming a quotation.</p></div>
+      <ul class="p2-check-list"><li>Home, office and commercial-property enquiries</li><li>Clear inclusions, exclusions and site requirements</li><li>Service availability across Kuala Lumpur and Selangor</li></ul>
     </div>
   </section>
-
-  <section class="core-features">
-    <div class="exact-wrap">
-      {features.map(([icon, title, text]) => (
-        <article><span>{icon}</span><h3>{title}</h3><p>{text}</p><a href={`${base}/about-us/`}>View More →</a></article>
-      ))}
-    </div>
-  </section>
-
-  <figure class="p21-services-photo">
-    <img src={`${base}/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg`} alt="Renovation contractor working in a commercial building" width="1600" height="900" />
-  </figure>
-
-  <section class="core-section p21-service-directory">
-    <div class="exact-wrap">
-      <div class="core-heading p21-centered-heading">
-        <p class="core-kicker">OUR SERVICES</p>
-        <h2>Renovation, Repair &amp; Installation Services in KL and Selangor</h2>
-        <p>RK Reno Solution helps homeowners, office owners, landlords, and businesses improve their spaces with reliable property services.</p>
-      </div>
-      <div class="p21-service-article-grid">
-        {featuredArticles.map((article) => article && (
-          <article>
-            <img src={`${base}/assets/media/avartar1-90x90-68065c41.webp`} alt="" width="48" height="48" loading="lazy" />
-            <div>
-              <p>{categoriesByRoute[article.route].map(([label, href], index) => <><a href={`${base}${href}`}>{label}</a>{index < categoriesByRoute[article.route].length - 1 && ' '}</>)}</p>
-              <h3><a href={`${base}${article.route}`}>{article.title}</a></h3>
-              <p><span>by raoisrar</span> <a href={`${base}${article.route}#respond`}>No Comments</a></p>
-              <a href={`${base}${article.route}`}>Read More →</a>
-            </div>
-          </article>
+  {groups.map((group) => (
+    <section class="core-section p2-service-group"><div class="exact-wrap">
+      <h2>{group.title}</h2>
+      <div class="p2-service-grid">
+        {coreServices.filter((service) => group.routes.includes(service.href)).map((service) => (
+          <article><a href={`${base}${service.href}`}><img src={`${base}${service.image}`} alt={`${service.title} service illustration`} width="720" height="480" loading="lazy" /></a><div><h3><a href={`${base}${service.href}`}>{service.title}</a></h3><p>{service.text}</p><a class="core-read-link" href={`${base}${service.href}`}>View service details <span aria-hidden="true">→</span></a></div></article>
         ))}
       </div>
-    </div>
-  </section>
+    </div></section>
+  ))}
+  <section class="core-section p2-service-planning"><div class="exact-wrap p2-split">
+    <img src={`${base}/assets/media/Renovation-planning-and-project-drawings-1-ea76b170.jpg`} alt="Renovation drawings used to plan a property-service scope" width="800" height="500" loading="lazy" />
+    <div><p class="core-kicker">BEFORE REQUESTING A QUOTE</p><h2>Share Enough Detail for a Useful Scope Review</h2><p>Send the property location, photos or video, approximate measurements, preferred work and any building access rules. For renovation and demolition, also identify which areas must remain protected.</p><div class="core-button-row"><a class="core-button core-button-orange" href="https://wa.me/601111334496">Send Details on WhatsApp</a><a class="core-button core-button-outline" href={`${base}/contact-us/`}>Contact Us</a></div></div>
+  </div></section>
   <CoreFinalCta />
 </div>

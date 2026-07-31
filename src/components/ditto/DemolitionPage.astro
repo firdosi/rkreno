@@ -2,66 +2,39 @@
 import CorePageTitle from '../core/CorePageTitle.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const services = [
-  ['Interior demolition', 'Removal work inside a property before the approved renovation scope begins.'],
-  ['Bathroom demolition', 'Careful removal of existing sanitary fittings, finishes and selected bathroom elements.'],
-  ['Partial wall removal', 'Enquiry-based assessment for selected non-structural or separately approved wall-removal work.'],
-  ['Fixture and fitting removal', 'Removal of cabinets, counters, lighting fittings and other agreed fixtures.'],
-  ['Office strip-out', 'Preparation of office interiors for a new fit-out or reinstatement scope.'],
-  ['Retail shop strip-out', 'Removal and organisation work before a retail renovation or handover.'],
-  ['Site preparation', 'Clearing and preparing agreed work areas for the next renovation trade.'],
-  ['Debris organisation and removal', 'Sorting, staging and removal planning based on site access and the agreed scope.'],
+  ['Interior demolition', 'Selected internal finishes and non-structural elements removed under an agreed scope.'],
+  ['Kitchen demolition', 'Removal of agreed cabinets, counters, finishes and fittings before kitchen renovation.'],
+  ['Bathroom demolition', 'Careful removal of sanitary fittings, tiles and selected bathroom elements.'],
+  ['Office and retail strip-out', 'Tenant fixtures and finishes removed for fit-out, reinstatement or handover preparation.'],
+  ['Fixture and fitting removal', 'Cabinets, counters, light fittings and other agreed fixtures removed in sequence.'],
+  ['Site preparation and debris', 'Protection, debris organisation and preparation for the next renovation trade.'],
 ];
 const process = [
-  ['01', 'Share the site details', 'Send the property location, photos, access information and the areas you want assessed.'],
-  ['02', 'Site and scope review', 'The existing construction, access, services and requested removals are reviewed before quotation.'],
-  ['03', 'Plan the work', 'Sequence, protection, debris handling and preparation for following renovation work are agreed.'],
-  ['04', 'Strip-out and preparation', 'The confirmed work is completed and the area is organised for the next approved stage.'],
+  ['01', 'Share site details', 'Send the property location, photos, access information and the areas to be assessed.'],
+  ['02', 'Inspection and quotation', 'Existing construction, visible services, quantities and access are reviewed before the scope is confirmed.'],
+  ['03', 'Plan protection and sequence', 'Retained areas, debris handling, isolation needs and preparation for following work are agreed.'],
+  ['04', 'Complete the agreed strip-out', 'The confirmed removal work is completed and the area is organised for its next approved stage.'],
+];
+const safety = [
+  'Structural or load-bearing changes need separate professional assessment and any required approval.',
+  'Electrical, plumbing, gas, aircond and fire-protection services must be identified before affected work begins.',
+  'Building-management rules, access hours, lift protection and debris routes should be confirmed for managed properties.',
+  'Possible hazardous materials or unknown construction conditions require an appropriate specialist assessment.',
 ];
 const faqs = [
-  ['Can you quote demolition work from photos?', 'Photos help with an initial enquiry, but site conditions, access and the exact scope may require an inspection before quotation.'],
+  ['Can you quote demolition work from photos?', 'Photos support an initial enquiry, but site conditions, access and quantities may require an inspection before quotation.'],
   ['Do you remove structural walls?', 'Structural or load-bearing changes require separate professional assessment and any necessary approvals. No approval is guaranteed.'],
-  ['Can demolition be combined with renovation work?', 'Yes. The removal and preparation scope can be discussed as part of a wider renovation enquiry.'],
-  ['Which areas do you serve?', 'Demolition and strip-out enquiries are accepted for Kuala Lumpur and Selangor, subject to location and scope.'],
-  ['How is debris handled?', 'Debris organisation and removal are planned around the agreed scope, access conditions and applicable site requirements.'],
+  ['Can kitchen or bathroom removal be combined with renovation?', 'Yes. The agreed removal and preparation scope can be discussed with a kitchen, bathroom or wider renovation enquiry.'],
+  ['Which areas do you serve?', 'Demolition and strip-out enquiries are accepted for Kuala Lumpur and Selangor, subject to exact location and scope.'],
+  ['How is debris handled?', 'Debris organisation and removal are planned around the agreed quantities, access conditions and applicable site requirements.'],
 ];
 ---
 <div class="demolition-page">
-  <CorePageTitle title="Demolition Contractor KL & Selangor" description="Interior demolition, strip-out and renovation preparation enquiries in Kuala Lumpur and Selangor." />
-  <section class="demolition-hero">
-    <div class="exact-wrap">
-      <div class="ditto-reveal">
-        <p class="core-kicker">PREPARATION FOR RENOVATION</p>
-        <h2>Interior Demolition and Strip-Out Work</h2>
-        <p>RK Reno Solution accepts enquiries for interior removal, strip-out, site preparation and debris organisation before renovation work. Every quotation depends on the actual site, access and agreed scope.</p>
-        <div class="core-button-row">
-          <a class="core-button core-button-orange" href="tel:+601111334496">Call +60 11 1133 4496</a>
-          <a class="core-button core-button-outline" href="https://wa.me/601111334496">WhatsApp Enquiry</a>
-        </div>
-      </div>
-      <img src={`${base}/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg`} alt="Building prepared for renovation work" width="1376" height="768" />
-    </div>
-  </section>
-  <section class="core-section demolition-services">
-    <div class="exact-wrap">
-      <p class="core-kicker">SERVICES</p><h2>Demolition and Site-Preparation Enquiries</h2>
-      <div class="demolition-grid">
-        {services.map(([title, text], index) => <article class="ditto-reveal" style={`--ditto-delay:${index * 55}ms`}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>)}
-      </div>
-    </div>
-  </section>
-  <section class="core-section demolition-process">
-    <div class="exact-wrap">
-      <p class="core-kicker">WORK PROCESS</p><h2>From Enquiry to Renovation Preparation</h2>
-      <div>{process.map(([number, title, text]) => <article><strong>{number}</strong><h3>{title}</h3><p>{text}</p></article>)}</div>
-    </div>
-  </section>
-  <section class="core-section demolition-area">
-    <div class="exact-wrap">
-      <div><p class="core-kicker">SERVICE AREAS</p><h2>Kuala Lumpur and Selangor</h2><p>Share the exact address, building type, access restrictions and intended renovation scope so availability can be discussed.</p></div>
-      <img src={`${base}/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg`} alt="Property renovation in Kuala Lumpur and Selangor" width="1200" height="896" loading="lazy" />
-    </div>
-  </section>
-  <section class="core-section demolition-faq">
-    <div class="exact-wrap"><p class="core-kicker">FAQS</p><h2>Demolition Enquiry Questions</h2>{faqs.map(([question, answer]) => <details><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div>
-  </section>
+  <CorePageTitle title="Demolition Contractor KL & Selangor" description="Interior demolition, kitchen and bathroom removal, strip-out and renovation preparation in Kuala Lumpur and Selangor." />
+  <section class="demolition-hero"><div class="exact-wrap"><div><p class="core-kicker">PREPARATION FOR RENOVATION</p><h2>Interior Demolition and Strip-Out Work</h2><p>RK Reno Solution accepts enquiries for selected interior removal, kitchen and bathroom demolition, office or retail strip-out, site preparation and debris organisation. Every quotation depends on inspection, access and the agreed scope.</p><div class="core-button-row"><a class="core-button core-button-orange" href="https://wa.me/601111334496">Request an Inspection</a><a class="core-button core-button-outline" href="tel:+601111334496">Call +60 11 1133 4496</a></div></div><img src={`${base}/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg`} alt="Interior property prepared for demolition and renovation work" width="1376" height="768" /></div></section>
+  <section class="core-section demolition-services"><div class="exact-wrap"><p class="core-kicker">SERVICES</p><h2>Demolition and Site-Preparation Enquiries</h2><div class="demolition-grid">{services.map(([title, text], index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+  <section class="core-section demolition-process"><div class="exact-wrap"><p class="core-kicker">WORK PROCESS</p><h2>From Enquiry to Renovation Preparation</h2><div>{process.map(([number, title, text]) => <article><strong>{number}</strong><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+  <section class="core-section p2-demolition-safety"><div class="exact-wrap p2-split"><div><p class="core-kicker">SAFETY AND SITE CONTROL</p><h2>Check Structure, Services and Building Rules</h2><p>Demolition can expose hidden conditions. The confirmed method and limits must reflect the actual construction and site requirements.</p></div><ul class="p2-check-list">{safety.map((item) => <li>{item}</li>)}</ul></div></section>
+  <section class="core-section demolition-area"><div class="exact-wrap"><div><p class="core-kicker">SERVICE AREAS</p><h2>Kuala Lumpur and Selangor</h2><p>Share the exact address, building type, access restrictions and intended renovation scope so availability can be checked.</p><p>Planning the next stage? Review <a href={`${base}/house-renovation-in-kuala-lumpur/`}>house renovation in Kuala Lumpur</a>, <a href={`${base}/office-renovation-in-kuala-lumpur/`}>office renovation</a> or the complete <a href={`${base}/services/`}>service directory</a>.</p></div><img src={`${base}/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg`} alt="Property renovation preparation in Kuala Lumpur and Selangor" width="1200" height="896" loading="lazy" /></div></section>
+  <section class="core-section demolition-faq"><div class="exact-wrap"><p class="core-kicker">FAQS</p><h2>Demolition Enquiry Questions</h2>{faqs.map(([question, answer]) => <details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}<div class="core-button-row"><a class="core-button core-button-orange" href="https://wa.me/601111334496">Request a Site Review</a><a class="core-button core-button-outline" href={`${base}/contact-us/`}>Prepare Contact Details</a></div></div></section>
 </div>

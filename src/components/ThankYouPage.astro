@@ -1,15 +1,11 @@
 ---
 import CorePageTitle from './core/CorePageTitle.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<CorePageTitle
-  title="Thank You"
-/>
-<section class="utility-exact-page" aria-labelledby="confirmation-title">
-  <div class="exact-wrap utility-exact-card">
-    <h2 id="confirmation-title">Thank You!</h2>
-    <p>Your feedback has been submitted successfully. We appreciate your time and effort to help us improve!</p>
-  </div>
-</section>
-<aside class="staging-safety-note" aria-label="Staging form notice">
-  Private staging note: opening this URL directly does not confirm that an enquiry was submitted. Form network submission remains disabled.
-</aside>
+<CorePageTitle title="Thank You" description="Staging confirmation and direct contact options for RK Reno Solution." />
+<section class="utility-exact-page" aria-labelledby="confirmation-title"><div class="exact-wrap utility-exact-card">
+  <p class="core-kicker">STAGING PREVIEW</p><h2 id="confirmation-title">No Enquiry Has Been Sent from This Page</h2>
+  <p>This staging site does not transmit contact-form messages. To discuss renovation or property-service work now, contact RK Reno Solution directly by phone or WhatsApp.</p>
+  <div class="core-button-row"><a class="core-button core-button-orange" href="https://wa.me/601111334496">WhatsApp the Team</a><a class="core-button core-button-outline" href="tel:+601111334496">Call +60 11 1133 4496</a></div>
+  <nav class="p2-thank-links" aria-label="Continue browsing"><a href={`${base}/services/`}>Browse services</a><a href={`${base}/faq/`}>Read FAQs</a><a href={`${base}/`}>Return home</a></nav>
+</div></section>

@@ -1,0 +1,498 @@
+{
+  "generatedAt": "2026-07-31T11:22:46.349Z",
+  "scope": "Prompt 2 of 4 homepage, core pages and service pages",
+  "routeCount": 20,
+  "routes": [
+    {
+      "route": "/",
+      "pageType": "core",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "home.json",
+      "contentRequirements": {
+        "h1": "Reliable Renovation Contractor in KL & Selangor",
+        "headings": [
+          "Aircond, Renovation and Demolition Support"
+        ],
+        "statements": [
+          "aircond, renovation and demolition"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 0,
+        "images": 4,
+        "links": [
+          "/services/",
+          "/contact-us/"
+        ],
+        "pricing": false
+      }
+    },
+    {
+      "route": "/services/",
+      "pageType": "core",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "services.json",
+      "contentRequirements": {
+        "h1": "Services",
+        "headings": [
+          "Property Services Planned Around the Actual Site",
+          "Renovation and strip-out"
+        ],
+        "statements": [
+          "inclusions, exclusions and site requirements"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 0,
+        "images": 12,
+        "links": [
+          "/service/building-renovation/",
+          "/demolition-contractor-kl-selangor/"
+        ],
+        "pricing": false
+      }
+    },
+    {
+      "route": "/about-us/",
+      "pageType": "core",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "about-us.json",
+      "contentRequirements": {
+        "h1": "About Us",
+        "headings": [
+          "A Practical Renovation and Property-Service Team",
+          "From Enquiry to a Clearer Work Scope"
+        ],
+        "statements": [
+          "actual site"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 0,
+        "images": 5,
+        "links": [
+          "/services/",
+          "/contact-us/"
+        ],
+        "pricing": false
+      }
+    },
+    {
+      "route": "/contact-us/",
+      "pageType": "core",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "contact-us.json",
+      "contentRequirements": {
+        "h1": "Contact Us",
+        "headings": [
+          "get in touch",
+          "Service areas"
+        ],
+        "statements": [
+          "no message is transmitted"
+        ],
+        "lists": 0,
+        "tables": 0,
+        "faqs": 0,
+        "images": 2,
+        "links": [
+          "tel:+601111334496",
+          "https://wa.me/601111334496"
+        ],
+        "pricing": false
+      }
+    },
+    {
+      "route": "/faq/",
+      "pageType": "core",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "faq.json",
+      "contentRequirements": {
+        "h1": "Frequently Asked Questions",
+        "headings": [
+          "Planning and quotations",
+          "Service areas"
+        ],
+        "statements": [
+          "site-specific promise"
+        ],
+        "lists": 0,
+        "tables": 0,
+        "faqs": 9,
+        "images": 2,
+        "links": [
+          "/services/",
+          "/contact-us/"
+        ],
+        "pricing": false
+      }
+    },
+    {
+      "route": "/blog/",
+      "pageType": "core",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "blog.json",
+      "contentRequirements": {
+        "h1": "Blog",
+        "headings": [
+          "Research the Work Before Requesting a Quote"
+        ],
+        "statements": [
+          "all 14 retained guides"
+        ],
+        "lists": 0,
+        "tables": 0,
+        "faqs": 0,
+        "images": 14,
+        "links": [
+          "/house-renovation-in-kuala-lumpur/",
+          "/servis-aircond-murah-kl/"
+        ],
+        "pricing": false
+      }
+    },
+    {
+      "route": "/thank-you/",
+      "pageType": "core",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "thank-you.json",
+      "contentRequirements": {
+        "h1": "Thank You",
+        "headings": [
+          "No Enquiry Has Been Sent from This Page"
+        ],
+        "statements": [
+          "does not transmit contact-form messages"
+        ],
+        "lists": 0,
+        "tables": 0,
+        "faqs": 0,
+        "images": 0,
+        "links": [
+          "/services/",
+          "tel:+601111334496"
+        ],
+        "pricing": false
+      }
+    },
+    {
+      "route": "/servis-aircond-murah-kl/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "servis-aircond-murah-kl.json",
+      "contentRequirements": {
+        "h1": "Servis Aircond Murah KL",
+        "headings": [
+          "Perkhidmatan Penyaman Udara Menyeluruh"
+        ],
+        "statements": [
+          "RM 60"
+        ],
+        "lists": 1,
+        "tables": 1,
+        "faqs": 4,
+        "images": 2,
+        "links": [
+          "/aircond-installation-kl/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/aircond-installation-kl/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "aircond-installation-kl.json",
+      "contentRequirements": {
+        "h1": "Aircond Installation KL",
+        "headings": [
+          "Aircond Installation Services in Kuala Lumpur",
+          "Aircond Installation KL Prices"
+        ],
+        "statements": [
+          "RM220"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 7,
+        "images": 2,
+        "links": [
+          "/servis-aircond-murah-kl/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/upah-pasang-aircond-selangor/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "upah-pasang-aircond-selangor.json",
+      "contentRequirements": {
+        "h1": "Upah Pasang Aircond Selangor untuk Rumah, Pejabat & Kedai",
+        "headings": [
+          "Harga Upah Pasang Aircond Selangor",
+          "Proses Pemasangan Aircond"
+        ],
+        "statements": [
+          "RM220"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 7,
+        "images": 2,
+        "links": [
+          "/servis-aircond-murah-kl/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/service/building-renovation/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "service__building-renovation.json",
+      "contentRequirements": {
+        "h1": "building renovation",
+        "headings": [
+          "building renovation",
+          "Confirm the Site Before Work Begins"
+        ],
+        "statements": [
+          "location, photos and required work"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 0,
+        "images": 2,
+        "links": [
+          "/house-renovation-in-kuala-lumpur/",
+          "/contact-us/"
+        ],
+        "pricing": false
+      }
+    },
+    {
+      "route": "/electrical-services-selangor/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "electrical-services-selangor.json",
+      "contentRequirements": {
+        "h1": "Electrical Services Selangor",
+        "headings": [
+          "Reliable Electrical Services Selangor & KL"
+        ],
+        "statements": [
+          "RM 3,000"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 3,
+        "images": 2,
+        "links": [
+          "/waterproofing-contractor-kuala-lumpur/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/house-renovation-in-kuala-lumpur/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "house-renovation-in-kuala-lumpur.json",
+      "contentRequirements": {
+        "h1": "House Renovation in Kuala Lumpur",
+        "headings": [
+          "Home Renovation Services in Kuala Lumpur",
+          "House Renovation Process in Kuala Lumpur"
+        ],
+        "statements": [
+          "Painting from RM400"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 5,
+        "images": 2,
+        "links": [
+          "/office-renovation-in-kuala-lumpur/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/house-renovation-in-selangor/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "house-renovation-in-selangor.json",
+      "contentRequirements": {
+        "h1": "House Renovation in Selangor",
+        "headings": [
+          "Renovation Work for Homes, Condos, Offices & Shops",
+          "House Renovation Process"
+        ],
+        "statements": [
+          "Painting from RM400"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 4,
+        "images": 2,
+        "links": [
+          "/office-renovation-in-kuala-lumpur/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/home-renovation-contractor-in-subang-jaya/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "home-renovation-contractor-in-subang-jaya.json",
+      "contentRequirements": {
+        "h1": "Home Renovation Contractor in Subang Jaya",
+        "headings": [
+          "Why Choose Our Home Renovation Contractor in Subang Jaya?"
+        ],
+        "statements": [
+          "MBSJ"
+        ],
+        "lists": 1,
+        "tables": 1,
+        "faqs": 3,
+        "images": 2,
+        "links": [
+          "/house-renovation-in-kuala-lumpur/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/office-renovation-in-kuala-lumpur/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "office-renovation-in-kuala-lumpur.json",
+      "contentRequirements": {
+        "h1": "Office Renovation in Kuala Lumpur",
+        "headings": [
+          "Office Fit-Out and Renovation Services",
+          "Office Renovation Process"
+        ],
+        "statements": [
+          "RM30/sq ft"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 6,
+        "images": 2,
+        "links": [
+          "/demolition-contractor-kl-selangor/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/waterproofing-contractor-kuala-lumpur/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "waterproofing-contractor-kuala-lumpur.json",
+      "contentRequirements": {
+        "h1": "Waterproofing Contractor Kuala Lumpur",
+        "headings": [
+          "Why Hire Our Waterproofing Contractor Kuala Lumpur Team?"
+        ],
+        "statements": [
+          "RM 150"
+        ],
+        "lists": 1,
+        "tables": 1,
+        "faqs": 2,
+        "images": 2,
+        "links": [
+          "/plaster-ceiling-contractor-kl/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/plaster-ceiling-contractor-kl/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "plaster-ceiling-contractor-kl.json",
+      "contentRequirements": {
+        "h1": "Plaster Ceiling Contractor KL",
+        "headings": [
+          "Designs by Plaster Ceiling Contractor KL"
+        ],
+        "statements": [
+          "RM 3.50"
+        ],
+        "lists": 1,
+        "tables": 1,
+        "faqs": 5,
+        "images": 2,
+        "links": [
+          "/waterproofing-contractor-kuala-lumpur/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/servis-cuci-rumah-kl/",
+      "pageType": "service",
+      "sourceStatus": "COMPLETE",
+      "sourceSnapshot": "servis-cuci-rumah-kl.json",
+      "contentRequirements": {
+        "h1": "Servis Cuci Rumah KL",
+        "headings": [
+          "Pakej Servis Cuci Rumah KL"
+        ],
+        "statements": [
+          "RM 300"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 4,
+        "images": 2,
+        "links": [
+          "/electrical-services-selangor/",
+          "/contact-us/"
+        ],
+        "pricing": true
+      }
+    },
+    {
+      "route": "/demolition-contractor-kl-selangor/",
+      "pageType": "service",
+      "sourceStatus": "NEW_PAGE",
+      "sourceSnapshot": null,
+      "contentRequirements": {
+        "h1": "Demolition Contractor KL & Selangor",
+        "headings": [
+          "Demolition and Site-Preparation Enquiries",
+          "Check Structure, Services and Building Rules"
+        ],
+        "statements": [
+          "kitchen and bathroom demolition"
+        ],
+        "lists": 1,
+        "tables": 0,
+        "faqs": 5,
+        "images": 2,
+        "links": [
+          "/house-renovation-in-kuala-lumpur/",
+          "/contact-us/"
+        ],
+        "pricing": false
+      }
+    }
+  ]
+}
