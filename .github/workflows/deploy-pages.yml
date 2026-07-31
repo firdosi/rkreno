@@ -30,27 +30,7 @@ jobs:
       - run: npm run build
         env:
           DEPLOY_TARGET: github
-      - run: npm run check:final-staging
-      - name: Add public recovery review artifacts
-        shell: bash
-        run: |
-          mkdir -p dist/reports/final-ditto-review dist/reports/visuals/final-ditto-review
-          cp reports/public/final-content-parity.csv dist/reports/
-          cp reports/public/final-wordpress-page-inventory.json dist/reports/
-          cp reports/public/final-wordpress-claim-review.md dist/reports/
-          cp reports/public/prompt-1-1-truthful-baseline.md dist/reports/
-          cp reports/public/prompt-1-1-bidirectional-parity.{json,csv} dist/reports/
-          cp reports/public/prompt-1-1-interaction-inventory.json dist/reports/
-          cp reports/public/prompt-1-1-interaction-differences.csv dist/reports/
-          cp reports/public/prompt-1-1-source-claim-register.md dist/reports/
-          cp reports/public/prompt-1-1-route-registry-summary.md dist/reports/
-          cp reports/public/prompt-1-1-validation-summary.md dist/reports/
-          cp reports/public/prompt-1-1-visual-comparison.json dist/reports/
-          cp reports/public/prompt-1-2-* dist/reports/
-          cp reports/public/final-ditto-review/index.html dist/reports/final-ditto-review/
-          cp reports/public/visuals/final-ditto-review/*.png dist/reports/visuals/final-ditto-review/
-          mkdir -p dist/reports/visuals/prompt-1-2
-          cp reports/public/visuals/prompt-1-2/*-side-by-side.png dist/reports/visuals/prompt-1-2/
+      - run: npm run test:migration -- --skip-build
       - uses: actions/configure-pages@v5
         with:
           enablement: true

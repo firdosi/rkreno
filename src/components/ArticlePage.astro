@@ -2,6 +2,7 @@
 import CorePageTitle from './core/CorePageTitle.astro';
 import Prompt22ArticleSidebar from './article/Prompt22ArticleSidebar.astro';
 import { addIntrinsicImageDimensions } from '@data/media-dimensions';
+import { load } from 'cheerio';
 
 interface WordPressArticle {
   sourceTitle: string;
@@ -16,7 +17,15 @@ const { sourceContent, wordpressContent, sourceTitle } = Astro.props as {
   sourceContent: string;
   sourceTitle: string;
 };
-const content = addIntrinsicImageDimensions(sourceContent.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ''));
+const $ = load(sourceContent.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ''));
+$('h1').remove();
+let previousHeading = 1;
+$('h2,h3,h4,h5,h6').each((_, heading) => {
+  const level = Number(heading.tagName.slice(1));
+  if (level > previousHeading + 1) heading.tagName = `h${previousHeading + 1}`;
+  previousHeading = Number(heading.tagName.slice(1));
+});
+const content = addIntrinsicImageDimensions($('body').html() || $.root().html() || '');
 ---
 <CorePageTitle title={sourceTitle || wordpressContent.sourceTitle} description="Description Details" />
 <article class="article-exact-page">

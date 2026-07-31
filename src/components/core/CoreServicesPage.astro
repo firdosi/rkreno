@@ -65,7 +65,7 @@ const featuredArticles = articleRoutes
             <img src={`${base}/assets/media/avartar1-90x90-68065c41.webp`} alt="" width="48" height="48" loading="lazy" />
             <div>
               <p>{categoriesByRoute[article.route].map(([label, href], index) => <><a href={`${base}${href}`}>{label}</a>{index < categoriesByRoute[article.route].length - 1 && ' '}</>)}</p>
-              <h4><a href={`${base}${article.route}`}>{article.title}</a></h4>
+              <h3><a href={`${base}${article.route}`}>{article.title}</a></h3>
               <p><span>by raoisrar</span> <a href={`${base}${article.route}#respond`}>No Comments</a></p>
               <a href={`${base}${article.route}`}>Read More →</a>
             </div>

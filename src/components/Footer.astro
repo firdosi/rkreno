@@ -2,9 +2,7 @@
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const currentPath = Astro.url.pathname.replace(base, '') || '/';
 const isHome = currentPath === '/';
-const newsletterAction = isHome || currentPath === '/contact-us/'
-  ? `${currentPath}#wpcf7-f6-o3`
-  : `${currentPath}#wpcf7-f6-o2`;
+const year = new Date().getFullYear();
 ---
 
 {!isHome && (
@@ -14,7 +12,7 @@ const newsletterAction = isHome || currentPath === '/contact-us/'
         <p>Whether you have a project in mind and you’re looking for a reliable construction partner<br />or you’re looking to take the next step in your career, we want to hear from you!</p>
         <nav aria-label="Work with RK Reno">
           <a href={`${base}/contact-us/`}>Get a Quote</a>
-          <a href="https://rkrenosolution.com/career/">Career with us</a>
+          <a href="https://wa.me/601111334496">WhatsApp us</a>
         </nav>
       </div>
   </section>
@@ -26,12 +24,6 @@ const newsletterAction = isHome || currentPath === '/contact-us/'
         <img src={`${base}/assets/media/RK-Reno-Solutions-Logo-942f64bb.png`} alt="" width="1575" height="483" />
       </a>
       <h2>Building a Better Future – Innovative, Sustainable, Reliable.</h2>
-      <div class="rk-socials" aria-label="Social media">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-        <a href="#" aria-label="X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
-        <a href="#" aria-label="Snapchat"><i class="fab fa-snapchat-ghost" aria-hidden="true"></i></a>
-      </div>
     </div>
     <div class="rk-footer__address">
       <h2>COMPANY ADDRESS</h2>
@@ -39,23 +31,9 @@ const newsletterAction = isHome || currentPath === '/contact-us/'
       <p><strong>Phone:</strong> <a href="tel:+601111334496">+60 11 1133 4496</a></p>
       <p><strong>Address:</strong> <a class="rk-address-link" href="https://share.google/ZxiE3enIVqmg6LSSm">4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur<br /><span class="rk-location">Our Locations</span></a></p>
     </div>
-    <div class="rk-footer__newsletter">
-      <h2>Sign up to our Newletters.</h2>
-      <p>Sign up to get first dibs on new arrivals, sales, exclusive content, events and more!</p>
-      <form action={newsletterAction} data-footer-newsletter>
-        <label class="sr-only" for="rk-newsletter-email">Email address</label>
-        <input id="rk-newsletter-email" type="text" name="your-email" placeholder="Email Address..." required />
-        <button type="submit">Sign up</button>
-      </form>
-      <p class="rk-newsletter-status" role="status" aria-live="polite"></p>
-    </div>
   </div>
   <div class="rk-footer__bottom">
-    <p>Copyright © 2025 RK Reno Solutions. All Rights Reserved.</p>
-    <nav aria-label="Legal">
-      <a href="#">Privacy Policies</a>
-      <a href="#">Term of Use</a>
-      <a href="#">Site Map</a>
-    </nav>
+    <p>Copyright © {year} RK Reno Solution. All rights reserved.</p>
+    <a href={`${base}/sitemap.xml`}>Sitemap</a>
   </div>
 </footer>

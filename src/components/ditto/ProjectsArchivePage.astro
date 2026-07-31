@@ -33,10 +33,10 @@ const media = (src: string) => src.startsWith('/') ? `${base}${src}` : src;
       <div class="project-grid" data-project-grid>
         {projects.map((project) => (
           <article data-project-categories={project.categories.join('|')} data-held-reveal>
-            <a class="project-image" href={`https://rkrenosolution.com${project.href}`}><img src={media(project.image)} alt="" width="767" height="767" loading="lazy" /></a>
+            <a class="project-image" href={`${base}/contact-us/`}><img src={media(project.image)} alt="" width="767" height="767" loading="lazy" /></a>
             <div class="project-overlay">
-              <p>{project.categories.map((category, index) => <><a href={`https://rkrenosolution.com/portfolio/${category.toLowerCase().replaceAll(' ', '-')}/`}>{category}</a>{index < project.categories.length - 1 && ' - '}</>)}</p>
-              <h3><a href={`https://rkrenosolution.com${project.href}`}>{project.title}</a></h3>
+              <p>{project.categories.map((category, index) => <><a href={`${base}/services/`}>{category}</a>{index < project.categories.length - 1 && ' - '}</>)}</p>
+              <h3><a href={`${base}/contact-us/`}>{project.title}</a></h3>
               <p>{project.description}</p>
             </div>
           </article>

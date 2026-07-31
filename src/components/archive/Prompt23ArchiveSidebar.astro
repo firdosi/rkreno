@@ -3,30 +3,22 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const categories = [
   ['Commercial', '/category/commercial/'],
   ['HVAC Guides', '/category/hvac-guides/'],
-  ['Interior Design', '/category/interior-design/'],
+  ['Interior Finishing', '/tag/interior-finishing/'],
   ['Maintenance', '/category/maintenance/'],
   ['Renovation', '/category/renovation/'],
   ['Servis Pembersihan', '/category/servis-pembersihan/'],
   ['Technical Guides', '/category/technical-guides/'],
 ];
 const tags = [
-  ['Aircond Maintenance', '/tag/aircond-maintenance/'],
-  ['Ceiling Works', '/tag/ceiling-works/'],
-  ['Cleaning', '/tag/cleaning/'],
-  ['Guide', '/tag/guide/'],
+  ['Aircond Maintenance', '/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/'],
+  ['Cleaning', '/category/servis-pembersihan/'],
   ['Interior Finishing', '/tag/interior-finishing/'],
-  ['Kuala Lumpur', '/tag/kuala-lumpur/'],
   ['Office Fit-Out', '/tag/office-fit-out/'],
-  ['Pemasangan Aircond', '/tag/pemasangan-aircond/'],
+  ['Pemasangan Aircond', '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/'],
   ['Waterproofing', '/tag/waterproofing/'],
-  ['Wiring', '/tag/wiring/'],
+  ['Wiring', '/category/technical-guides/'],
 ];
-const retained = new Set([
-  '/category/commercial/', '/category/hvac-guides/', '/category/maintenance/',
-  '/category/renovation/', '/category/servis-pembersihan/', '/category/technical-guides/',
-  '/tag/interior-finishing/', '/tag/office-fit-out/', '/tag/waterproofing/',
-]);
-const sourceHref = (href: string) => retained.has(href) ? `${base}${href}` : `https://rkrenosolution.com${href}`;
+const sourceHref = (href: string) => `${base}${href}`;
 ---
 <aside class="p23-archive-sidebar" aria-label="Archive navigation">
   <form role="search" data-preview-search>

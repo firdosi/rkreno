@@ -3,22 +3,19 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const categories = [
   ['Commercial', '/category/commercial/'],
   ['HVAC Guides', '/category/hvac-guides/'],
-  ['Interior Design', '/category/interior-design/'],
+  ['Interior Finishing', '/tag/interior-finishing/'],
   ['Maintenance', '/category/maintenance/'],
   ['Renovation', '/category/renovation/'],
   ['Servis Pembersihan', '/category/servis-pembersihan/'],
   ['Technical Guides', '/category/technical-guides/'],
 ];
 const tags = [
-  ['Aircond Maintenance', '/tag/aircond-maintenance/'],
+  ['Aircond Maintenance', '/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/'],
   ['Interior Finishing', '/tag/interior-finishing/'],
   ['Office Fit-Out', '/tag/office-fit-out/'],
   ['Waterproofing', '/tag/waterproofing/'],
 ];
-const sourceHref = (href: string) =>
-  ['/category/interior-design/', '/tag/aircond-maintenance/'].includes(href)
-    ? `https://rkrenosolution.com${href}`
-    : `${base}${href}`;
+const sourceHref = (href: string) => `${base}${href}`;
 ---
 <aside class="p22-article-sidebar" aria-label="Article sidebar">
   <form class="wp-sidebar-search" role="search" data-preview-search>

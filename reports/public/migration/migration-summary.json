@@ -1,0 +1,18 @@
+{
+  "generated": "2026-07-31T10:41:29.011Z",
+  "passing": true,
+  "errors": [],
+  "routeCount": 48,
+  "indexableCount": 33,
+  "sitemapCount": 33,
+  "brokenLinks": 0,
+  "brokenImages": 0,
+  "remoteWordPressImages": 0,
+  "redirects": 23,
+  "gone": 66,
+  "known404": 9,
+  "staticErrors": [],
+  "browserErrors": [],
+  "safetyErrors": [],
+  "missingAssetRoutes": 1
+}

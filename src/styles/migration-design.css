@@ -1,0 +1,166 @@
+/* Maintainable migration-era overrides. These intentionally replace WordPress-parity geometry. */
+:root {
+  --rk-primary: #e87522;
+  --rk-dark: #121212;
+  --rk-ink: #202020;
+  --rk-surface-soft: #f6f4f1;
+  --rk-border: #dedbd7;
+  --rk-shadow: 0 16px 45px rgb(27 24 20 / 10%);
+}
+
+body { overflow-x: clip; }
+
+.rk-header,
+.rk-header--inner { height: auto; }
+
+.rk-topbar__inner {
+  width: min(1320px, calc(100% - 48px));
+  justify-content: space-between;
+}
+
+.rk-topbar__inner p { flex: 0 1 auto; }
+
+.rk-topbar__contacts {
+  flex: 0 1 auto;
+  justify-content: flex-end;
+  gap: 24px;
+  margin-left: 32px;
+}
+
+.rk-topbar__contacts > a + a { margin-left: 0; }
+
+.rk-navbar,
+.rk-header--inner .rk-navbar {
+  grid-template-columns: minmax(170px, 240px) minmax(0, 1fr) auto;
+  width: min(1440px, 100%);
+  min-height: 92px;
+  padding: 0 24px;
+}
+
+.rk-navbar::after,
+.rk-header--inner .rk-navbar::after { display: none; }
+
+.rk-brand,
+.rk-header--inner .rk-brand {
+  width: auto;
+  min-width: 0;
+  justify-content: flex-start;
+}
+
+.rk-brand img { width: 164px; height: auto; }
+
+.rk-nav,
+.rk-header--inner .rk-nav {
+  grid-column: 2;
+  width: auto;
+  justify-self: end;
+  margin: 0 26px 0 0;
+  transform: none;
+}
+
+.rk-nav > .rk-nav__link:not(:last-child),
+.rk-nav__services,
+.rk-header--inner .rk-nav > .rk-nav__link:not(:last-child),
+.rk-header--inner .rk-nav__services { margin-right: 8px; }
+
+.rk-nav__link { padding-inline: 14px; }
+
+.rk-header-cta,
+.rk-header--inner .rk-header-cta {
+  grid-column: 3;
+  min-width: 176px;
+  height: 52px;
+  align-self: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-radius: 3px;
+  font-size: 15px;
+  line-height: 52px;
+}
+
+.rk-header.is-stuck .rk-header__desktop { box-shadow: 0 8px 24px rgb(0 0 0 / 9%); }
+
+.rk-footer__main,
+.rk-footer--inner .rk-footer__main {
+  grid-template-columns: minmax(260px, .85fr) minmax(360px, 1.15fr);
+  min-height: 0;
+}
+
+.rk-footer__brand,
+.rk-footer__address,
+.rk-footer--inner .rk-footer__brand,
+.rk-footer--inner .rk-footer__address {
+  min-height: 310px;
+  padding: 62px clamp(24px, 6vw, 96px);
+}
+
+.rk-footer__brand h2 { max-width: 390px; }
+.rk-footer__address { box-shadow: inset 1px 0 var(--rk-border); }
+.rk-footer--inner .rk-footer__address { box-shadow: inset 1px 0 #4e4e4e; }
+
+.rk-footer__bottom {
+  min-height: 68px;
+  padding: 14px clamp(24px, 5vw, 72px);
+}
+
+.rk-footer__bottom > a { font-size: 14px; font-weight: 600; }
+
+.rk-footer-cta > div { width: min(1200px, calc(100% - 48px)); }
+
+main :is(img, video, iframe) { max-width: 100%; }
+
+main table { display: block; max-width: 100%; overflow-x: auto; }
+
+@media (max-width: 1180px) {
+  .rk-topbar__inner > p { display: none; }
+  .rk-topbar__contacts { width: 100%; justify-content: space-between; margin-left: 0; }
+  .rk-nav { margin-right: 12px; }
+  .rk-nav__link { padding-inline: 9px; font-size: 14px; }
+}
+
+@media (max-width: 1024px) {
+  .rk-header__desktop { display: none; }
+  .rk-mobilebar { display: flex; }
+  .rk-footer__main,
+  .rk-footer--inner .rk-footer__main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    min-height: 0;
+  }
+  .rk-footer__brand,
+  .rk-footer__address,
+  .rk-footer--inner .rk-footer__brand,
+  .rk-footer--inner .rk-footer__address {
+    min-height: 300px;
+    padding: 56px 32px;
+  }
+  .rk-footer__bottom { position: static; display: flex; min-height: 76px; flex-direction: row; }
+  .rk-footer__bottom p,
+  .rk-footer__bottom > a { position: static; }
+}
+
+@media (max-width: 767px) {
+  .rk-footer-cta p br { display: none; }
+  .rk-footer__main,
+  .rk-footer--inner .rk-footer__main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .rk-footer__brand,
+  .rk-footer__address,
+  .rk-footer--inner .rk-footer__brand,
+  .rk-footer--inner .rk-footer__address {
+    min-height: 0;
+    padding: 48px 20px;
+  }
+  .rk-footer__address,
+  .rk-footer--inner .rk-footer__address {
+    box-shadow: inset 0 1px var(--rk-border);
+  }
+  .rk-footer__bottom {
+    min-height: 110px;
+    align-items: flex-start;
+    padding: 28px 20px;
+  }
+  .rk-footer__bottom p { width: auto; white-space: normal; }
+}

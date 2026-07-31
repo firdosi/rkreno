@@ -26,8 +26,8 @@ const media = (src: string) => src.startsWith('/') ? `${base}${src}` : src;
     <div class="exact-wrap team-grid">
       {members.map((member) => (
         <article data-held-reveal>
-          <a class="team-photo" href="https://rkrenosolution.com/team-detail/"><img src={media(member.image)} alt="" width="500" height="600" loading="lazy" /></a>
-          <div><h3><a href="https://rkrenosolution.com/team-detail/">{member.name}</a></h3><p>{member.role}</p><span aria-hidden="true">f&nbsp;&nbsp;𝕏&nbsp;&nbsp;in&nbsp;&nbsp;◎</span></div>
+          <a class="team-photo" href={`${base}/contact-us/`}><img src={media(member.image)} alt="" width="500" height="600" loading="lazy" /></a>
+          <div><h3>{member.name}</h3><p>{member.role}</p></div>
         </article>
       ))}
     </div>

@@ -51,8 +51,6 @@ export const bootSharedChrome = () => {
     header.classList.toggle('is-submenu-open', open);
     submenuButton.textContent = open ? '⌃' : '⌄';
   });
-  header.querySelector<HTMLFormElement>('[data-local-search]')?.addEventListener('submit', (event) => event.preventDefault());
-
   const applyStickyState = () => {
     const threshold = 149;
     const stuck = scrollY > threshold;
@@ -65,12 +63,8 @@ export const bootSharedChrome = () => {
     if (desktopMenu && !desktopMenu.contains(event.target as Node)) closeDropdown();
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') return;
-  });
-
-  document.querySelector<HTMLFormElement>('[data-footer-newsletter]')?.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const status = document.querySelector<HTMLElement>('.rk-newsletter-status');
-    if (status) status.textContent = 'Thank you. This staging form does not send data.';
+    if (event.key !== 'Escape') return;
+    closeDropdown();
+    if (header.classList.contains('is-drawer-open')) closeDrawer();
   });
 };

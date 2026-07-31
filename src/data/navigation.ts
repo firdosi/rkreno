@@ -13,7 +13,7 @@ export const services = [
 
 export const primaryNavigation = [
   { label: 'Home', href: '/' },
-  { label: 'Services', href: '#' },
+  { label: 'Services', href: '/services/' },
   { label: 'Blog', href: '/blog/' },
   { label: 'About Us', href: '/about-us/' },
   { label: 'Contact Us', href: '/contact-us/' },
