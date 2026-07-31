@@ -1,10 +1,10 @@
 # Final GitHub safety report
 
-Generated: 2026-07-31T12:01:53.605Z
+Generated: 2026-07-31T15:59:18.630Z
 
 Status: **PASS**
 
-- Tracked files scanned: 677
+- Tracked files scanned: 692
 - Backup, owner media and audit cache: ignored and not tracked
 - Private-key signature scan: clear
 - Pages workflow: migration validation enabled

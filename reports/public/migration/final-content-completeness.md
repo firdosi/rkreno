@@ -1,6 +1,6 @@
 # Final content completeness report
 
-Generated: 2026-07-31T12:01:53.605Z
+Generated: 2026-07-31T15:59:18.630Z
 
 Status: **PASS**
 
@@ -8,7 +8,7 @@ All 48 routes pass fresh H1, heading-order and rendered-content checks. Source-d
 
 | Route | Main words | Result |
 | --- | --- | --- |
-| / | 669 | PASS |
+| / | 687 | PASS |
 | /services/ | 315 | PASS |
 | /about-us/ | 253 | PASS |
 | /contact-us/ | 143 | PASS |

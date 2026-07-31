@@ -27,12 +27,24 @@ const retiredRoutes = new Map([
 ]);
 const safeHtml = (value = '') => {
   let html = value;
-  for (const [route, destination] of retiredRoutes) html = html.replaceAll(`href="${route}`, `href="${destination}`);
+  for (const [route, destination] of retiredRoutes) {
+    html = html
+      .replaceAll(`href="https://rkrenosolution.com${route}`, `href="${destination}`)
+      .replaceAll(`href="https://www.rkrenosolution.com${route}`, `href="${destination}`)
+      .replaceAll(`href="${route}`, `href="${destination}`);
+  }
   return html.replaceAll('href="/', `href="${base}/`);
+};
+const safeHref = (value = '') => {
+  try {
+    const url = new URL(value, 'https://rkrenosolution.com');
+    const destination = retiredRoutes.get(url.pathname) || url.pathname;
+    return ['rkrenosolution.com', 'www.rkrenosolution.com'].includes(url.hostname) ? `${base}${destination}` : value;
+  } catch { return value; }
 };
 ---
 {block.type === 'paragraph' ? <p set:html={safeHtml(block.html || block.text)} />
-  : block.type === 'link' && block.href ? <a class="core-button" href={block.href.startsWith('/') ? `${base}${block.href}` : block.href}>{block.text}</a>
+  : block.type === 'link' && block.href ? <a class="core-button" href={safeHref(block.href)}>{block.text}</a>
   : block.type === 'list' && block.ordered ? <ol>{block.items?.map((item) => <li set:html={safeHtml(typeof item === 'string' ? item : item.html)} />)}</ol>
   : block.type === 'list' ? <ul>{block.items?.map((item) => <li set:html={safeHtml(typeof item === 'string' ? item : item.html)} />)}</ul>
   : block.type === 'image' && block.src ? (

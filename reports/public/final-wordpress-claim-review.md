@@ -90,6 +90,15 @@ Generated from the rendered WordPress capture dated 2026-07-27T12:51:56.191Z. Mi
 
 
 
+
+
+
+
+
+
+
+
+
 ## Prompt 3 disposition
 
 | Route | Exact claim | Source | Current usage | Classification | Production action |

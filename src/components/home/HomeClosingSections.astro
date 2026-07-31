@@ -29,8 +29,15 @@ const guides = retainedArticleCatalog.filter((article) => guideRoutes.has(articl
     <div aria-hidden="true"></div>
     <form class="exact-contact-form" aria-label="Enquiry form preview" data-preview-form data-configured="false" novalidate>
       <p class="exact-eyebrow">CONTACT US</p><h2>Share Your Project Details</h2>
-      <div class="exact-field-grid"><input type="text" name="name" placeholder="Name*" required /><input type="tel" name="phone" placeholder="Phone number*" required /><input type="email" name="email" placeholder="Email" /><input type="text" name="location" placeholder="Property location*" required /><select name="service" required><option value="">Service needed*</option><option>Aircond servicing or installation</option><option>House or office renovation</option><option>Demolition or strip-out</option><option>Electrical, waterproofing or ceiling</option><option>Cleaning</option></select><input type="text" name="propertyType" placeholder="Property type" /></div>
-      <textarea name="projectDetails" placeholder="Required work, current condition and preferred timing*" required></textarea>
+      <div class="exact-field-grid">
+        <label class="exact-field-label"><span>Full name *</span><input type="text" name="name" autocomplete="name" required /></label>
+        <label class="exact-field-label"><span>Phone number *</span><input type="tel" name="phone" autocomplete="tel" inputmode="tel" required /></label>
+        <label class="exact-field-label"><span>Email address</span><input type="email" name="email" autocomplete="email" /></label>
+        <label class="exact-field-label"><span>Property location *</span><input type="text" name="location" autocomplete="street-address" required /></label>
+        <label class="exact-field-label"><span>Service needed *</span><select name="service" required><option value="">Choose a service</option><option>Aircond servicing or installation</option><option>House or office renovation</option><option>Demolition or strip-out</option><option>Electrical, waterproofing or ceiling</option><option>Cleaning</option></select></label>
+        <label class="exact-field-label"><span>Property type</span><input type="text" name="propertyType" /></label>
+      </div>
+      <label class="exact-field-label exact-field-label--details"><span>Required work, current condition and preferred timing *</span><textarea name="projectDetails" required></textarea></label>
       <label><input type="checkbox" name="consent" required /> <span>I agree that RK Reno Solution may use these details to respond to my enquiry.</span></label>
       <button type="submit">Preview enquiry <span>→</span></button><p class="form-status" data-form-status role="status" aria-live="polite">Preview only: no message will be sent from GitHub Pages.</p>
     </form>

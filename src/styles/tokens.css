@@ -1,4 +1,20 @@
 /* Prompt 1.2 tokens: measured from rkrenosolution.com on 2026-07-30. */
+@font-face {
+  font-family: "Roboto";
+  src: local("Arial");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maven Pro";
+  src: local("Trebuchet MS");
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+}
+
 :root {
   --rk-font-body: "Roboto", sans-serif;
   --rk-font-heading: "Maven Pro", sans-serif;

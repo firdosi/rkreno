@@ -124,27 +124,41 @@ const taxonomyArticles = nativeTaxonomy && 'articles' in nativeTaxonomy
 const nativePage = Boolean(batchPage || batchArticle || nativeTaxonomy || isHeldRoute || isDemolition || ['/faq/', '/blog/', '/thank-you/'].includes(page.path));
 const parityContent = wordpressParityContent[page.path as keyof typeof wordpressParityContent];
 const sourceTitleIsSafe = !/\bRM\s*\d|guarantee|warranty|24\s*\/\s*7|\d+\+?\s+(?:customers|projects|years)/i.test(page.title);
-const layoutTitle = sourceTitleIsSafe
+const uniqueTitleOverrides: Record<string, string> = {
+  '/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/': 'House Renovation Planning Guide Kuala Lumpur 2026 | RK Reno',
+};
+const layoutTitle = uniqueTitleOverrides[page.path] || (sourceTitleIsSafe
   ? page.title
   : nativeTaxonomy ? `${nativeTaxonomy.title} - RK Reno Solution`
     : batchArticle ? `${batchArticle.title} - RK Reno Solution`
-      : batchPage ? `${batchPage.title} - RK Reno Solution` : page.title;
+      : batchPage ? `${batchPage.title} - RK Reno Solution` : page.title);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const repairedLinks = [
-  ['/about/', 'https://rkrenosolution.com/about/'],
+  ['https://rkrenosolution.com/about/', '/about-us/'],
+  ['/about/', '/about-us/'],
   ['/services/%20https://rkrenosolution.com/about-us/', '/about-us/'],
   ['/6-ways-to-get-the-most-out-of-your-project-search-software', '/blog/'],
-  ['/home-2/', '/home-2-2/'],
-  ['/blog/page/2/', 'https://rkrenosolution.com/blog/page/2/'],
-  ['/blog/page/4/', 'https://rkrenosolution.com/blog/page/4/'],
-  ['/tag/ceiling-works/', 'https://rkrenosolution.com/tag/ceiling-works/'],
-  ['/tag/kuala-lumpur/', 'https://rkrenosolution.com/tag/kuala-lumpur/'],
-  ['/tag/wiring/', 'https://rkrenosolution.com/tag/wiring/'],
-  ['/category/interior-design/', 'https://rkrenosolution.com/category/interior-design/'],
-  ['/tag/aircond-maintenance/', 'https://rkrenosolution.com/tag/aircond-maintenance/'],
-  ['/tag/cleaning/', 'https://rkrenosolution.com/tag/cleaning/'],
-  ['/tag/guide/', 'https://rkrenosolution.com/tag/guide/'],
-  ['/tag/pemasangan-aircond/', 'https://rkrenosolution.com/tag/pemasangan-aircond/'],
+  ['/home-2/', '/'],
+  ['/blog/page/2/', '/blog/'],
+  ['/blog/page/4/', '/blog/'],
+  ['/tag/ceiling-works/', '/tag/interior-finishing/'],
+  ['/tag/kuala-lumpur/', '/category/servis-pembersihan/'],
+  ['/tag/wiring/', '/category/technical-guides/'],
+  ['/category/interior-design/', '/tag/interior-finishing/'],
+  ['/tag/aircond-maintenance/', '/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/'],
+  ['/tag/cleaning/', '/category/servis-pembersihan/'],
+  ['/tag/guide/', '/blog/'],
+  ['/tag/pemasangan-aircond/', '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/'],
+  ['https://rkrenosolution.com/service/building-construction/', '/services/'],
+  ['https://rkrenosolution.com/service/architecture-design/', '/services/'],
+  ['https://rkrenosolution.com/service/flooring-roofing/', '/services/'],
+  ['https://rkrenosolution.com/service/general-contracting/', '/services/'],
+  ['https://rkrenosolution.com/service/repair-expand/', '/services/'],
+  ['/service/building-construction/', '/services/'],
+  ['/service/architecture-design/', '/services/'],
+  ['/service/flooring-roofing/', '/services/'],
+  ['/service/general-contracting/', '/services/'],
+  ['/service/repair-expand/', '/services/'],
   ['/wp-admin/', '/']
 ];
 let repairedContent = page.content;

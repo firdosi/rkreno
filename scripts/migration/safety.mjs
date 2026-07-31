@@ -16,7 +16,9 @@ export async function validateSafety(root) {
   if (privateKey.status === 0 && privateKey.stdout.trim()) errors.push('Private key material found in tracked files.');
   const pagesWorkflow = await readFile(path.join(root, '.github/workflows/deploy-pages.yml'), 'utf8');
   const vpsWorkflow = await readFile(path.join(root, '.github/workflows/deploy-vps.yml'), 'utf8');
-  if (!pagesWorkflow.includes('npm run test:migration -- --skip-build')) errors.push('Pages workflow does not run migration validation.');
+  if (!pagesWorkflow.includes('npm run test:migration -- --skip-build') && !pagesWorkflow.includes('npm run test:final')) {
+    errors.push('Pages workflow does not run migration or final validation.');
+  }
   if (!vpsWorkflow.includes("github.event_name == 'workflow_dispatch'") || !vpsWorkflow.includes("RKRENO_VPS_DEPLOY_ENABLED == 'true'")) {
     errors.push('VPS workflow lacks manual-dispatch and enable-flag guards.');
   }
