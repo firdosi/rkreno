@@ -1,16 +1,9 @@
 # Final claims-review report
 
-Generated: 2026-07-31T11:22:46.321Z
+Generated: 2026-07-31T12:03:15.417Z
 
 Status: **PASS**
 
-Production deployment remains blocked pending owner review. Claims are not verified by migration or design parity.
+Production remains blocked pending owner review. Prompt 3 records 12 unsupported claim groups as REMOVE_BEFORE_PRODUCTION; none are displayed as verified identities, projects, testimonials, qualifications or warranties.
 
-| Classification | Recorded claims |
-| --- | --- |
-| OWNER_CONFIRMED | 0 |
-| EVIDENCE_AVAILABLE | 0 |
-| SOURCE_ONLY | 81 |
-| REMOVE_BEFORE_PRODUCTION | 0 |
-
-The detailed wording and route mapping remain in `reports/public/final-wordpress-claim-review.md`.
+See `reports/public/final-wordpress-claim-review.md` and `reports/public/migration/prompt-3-claims-review.md`.

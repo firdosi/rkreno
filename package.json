@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "test:migration": "node scripts/migration/run-migration.mjs",
     "test:prompt-2": "node scripts/prompt-2/run-prompt-2.mjs",
+    "test:prompt-3": "node scripts/prompt-3/run-prompt-3.mjs",
     "preview:production": "node scripts/prompt-3-1/production-simulator.mjs",
     "test:production-readiness": "node scripts/prompt-3-1/run-production-readiness.mjs",
     "test:form-security": "node scripts/prompt-3-2/test-form-security.mjs",

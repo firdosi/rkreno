@@ -20,6 +20,7 @@ import '../styles/prompt-2-1.css';
 import '../styles/prompt-2-2.css';
 import '../styles/prompt-2-3.css';
 import '../styles/prompt-2-scope.css';
+import '../styles/prompt-3-scope.css';
 import '../styles/final-ditto.css';
 import '../styles/held-wordpress-pages.css';
 import '../styles/tokens.css';
@@ -58,7 +59,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const socialImage = ogImage || '/assets/media/RK-Reno-Solutions-Logo-942f64bb.png';
 const image = socialImage.startsWith('http')
   ? socialImage
-  : new URL(`${base}${socialImage}`, Astro.site).href;
+  : new URL(socialImage, 'https://rkrenosolution.com').href;
 ---
 <!doctype html>
 <html lang="en">

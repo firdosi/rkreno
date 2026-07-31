@@ -1,39 +1,12 @@
 ---
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const categories = [
-  ['Commercial', '/category/commercial/'],
-  ['HVAC Guides', '/category/hvac-guides/'],
-  ['Interior Finishing', '/tag/interior-finishing/'],
-  ['Maintenance', '/category/maintenance/'],
-  ['Renovation', '/category/renovation/'],
-  ['Servis Pembersihan', '/category/servis-pembersihan/'],
-  ['Technical Guides', '/category/technical-guides/'],
+const archives = [
+  ['Commercial', '/category/commercial/'], ['Aircond', '/category/hvac-guides/'], ['Maintenance', '/category/maintenance/'],
+  ['Renovation', '/category/renovation/'], ['Cleaning', '/category/servis-pembersihan/'], ['Technical', '/category/technical-guides/'],
+  ['Interior finishing', '/tag/interior-finishing/'], ['Office fit-out', '/tag/office-fit-out/'], ['Waterproofing', '/tag/waterproofing/'],
 ];
-const tags = [
-  ['Aircond Maintenance', '/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/'],
-  ['Cleaning', '/category/servis-pembersihan/'],
-  ['Interior Finishing', '/tag/interior-finishing/'],
-  ['Office Fit-Out', '/tag/office-fit-out/'],
-  ['Pemasangan Aircond', '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/'],
-  ['Waterproofing', '/tag/waterproofing/'],
-  ['Wiring', '/category/technical-guides/'],
-];
-const sourceHref = (href: string) => `${base}${href}`;
 ---
-<aside class="p23-archive-sidebar" aria-label="Archive navigation">
-  <form role="search" data-preview-search>
-    <label for="archive-search">Search</label>
-    <div><input id="archive-search" type="search" placeholder="Search..." /><button type="submit">⌕</button></div>
-    <small data-search-status role="status"></small>
-  </form>
-  <section><h2>CATEGORIES</h2><nav>{categories.map(([label, href]) => <a href={sourceHref(href)}>{label}</a>)}</nav></section>
-  <section><h2>TAGS</h2><nav class="wp-tag-cloud">{tags.map(([label, href]) => <a href={sourceHref(href)}>{label}</a>)}</nav></section>
+<aside class="p23-archive-sidebar" aria-label="Guide collections">
+  <section class="p3-archive-help"><p class="core-kicker">NEED SITE ADVICE?</p><h2>Use a Guide, Then Confirm the Scope</h2><p>Articles provide planning context. Send the actual property details before work or pricing is confirmed.</p><a class="core-button" href="https://wa.me/601111334496">WhatsApp RK Reno</a></section>
+  <section><h2>GUIDE COLLECTIONS</h2><nav>{archives.map(([label, href]) => <a href={`${base}${href}`}>{label}</a>)}</nav></section>
 </aside>
-
-<script>
-  document.querySelectorAll<HTMLFormElement>('[data-preview-search]').forEach((form) => form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const status = form.querySelector<HTMLElement>('[data-search-status]');
-    if (status) status.textContent = 'Search is unavailable on this static preview.';
-  }));
-</script>

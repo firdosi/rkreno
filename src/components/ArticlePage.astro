@@ -4,34 +4,56 @@ import Prompt22ArticleSidebar from './article/Prompt22ArticleSidebar.astro';
 import { addIntrinsicImageDimensions } from '@data/media-dimensions';
 import { load } from 'cheerio';
 
-interface WordPressArticle {
-  sourceTitle: string;
-  published: string;
-  modified: string;
-  html: string;
-}
-
-const { sourceContent, wordpressContent, sourceTitle } = Astro.props as {
-  article: unknown;
-  wordpressContent: WordPressArticle;
-  sourceContent: string;
-  sourceTitle: string;
-};
+interface WordPressArticle { sourceTitle: string; published: string; modified: string; html: string; faqs?: { question: string; answer: string }[]; }
+const { article, sourceContent, wordpressContent, sourceTitle } = Astro.props as any as { article: any; wordpressContent: WordPressArticle; sourceContent: string; sourceTitle: string; };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const $ = load(sourceContent.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ''));
-$('h1').remove();
-let previousHeading = 1;
-$('h2,h3,h4,h5,h6').each((_, heading) => {
-  const level = Number(heading.tagName.slice(1));
-  if (level > previousHeading + 1) heading.tagName = `h${previousHeading + 1}`;
-  previousHeading = Number(heading.tagName.slice(1));
+$('h1,.rk-blog-header,.entry-header,.post-author,.author-box,#respond,.comments-area,script,form').remove();
+$('table').each((_, table) => { if (!$(table).parent().hasClass('article-table-scroll')) $(table).wrap('<div class="article-table-scroll"></div>'); });
+$('a[href^="/wp-admin"],a[href="#respond"]').remove();
+const repairedLinks = new Map([['/about/','/about-us/'],['/tag/ceiling-works/','/plaster-ceiling-contractor-kl/'],['/tag/wiring/','/electrical-services-selangor/'],['/tag/guide/','/blog/'],['/tag/kuala-lumpur/','/category/renovation/'],['/tag/aircond-maintenance/','/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/'],['/tag/cleaning/','/category/servis-pembersihan/']]);
+$('a[href]').each((_, node) => { const anchor=$(node),href=(anchor.attr('href')||'').replace(/^https?:\/\/rkrenosolution\.com/i,'').replace(base,''); if(repairedLinks.has(href)) anchor.attr('href',`${base}${repairedLinks.get(href)}`); });
+$('img').each((_, node) => { const image=$(node); if(!image.attr('width')) image.attr('width','1200'); if(!image.attr('height')) image.attr('height','900'); if(image.attr('alt')===undefined) image.attr('alt',''); });
+const unsupported = /warranty|guarantee|100% pure|over 10 years|certified expert|dedicated project manager|full tenancy deposit|free inspection/i;
+$('li,p,div').each((_, node) => {
+  const item = $(node);
+  if (item.children('li,p,div').length === 0 && unsupported.test(item.text())) item.remove();
 });
+$('*').contents().filter((_, node) => node.type === 'text').each((_, node) => {
+  if (!node.data) return;
+  node.data = node.data
+    .replace(/permanently protect/gi, 'protect according to the assessed system')
+    .replace(/permanently blocks/gi, 'can block')
+    .replace(/permanently solve/gi, 'assess and address')
+    .replace(/Book Free Inspection/gi, 'Request an Inspection')
+    .replace(/By RK [A-Za-z ]+Expert/gi, 'RK Reno Solution')
+    .replace(/our team delivers stunning retail fit-outs on time and within budget/gi, 'the work scope should be reviewed against the premises, access and confirmed quotation')
+    .replace(/The electricity savings \(up to 40%\) will pay for the price difference within 1 year\./gi, 'Actual energy use and payback depend on the unit, room, settings, maintenance and usage pattern.')
+    .replace(/We ensure your sprinklers, smoke detectors, and emergency lighting meet all local regulations\./gi, 'Fire-safety requirements must be confirmed with building management and the relevant qualified parties.')
+    .replace(/all custom carpentry \(racks, counters\) is built in our factory while our on-site team handles the hacking, wiring, and ceiling works/gi, 'custom carpentry and on-site work should be sequenced around the confirmed design, access and work scope')
+    .replace(/we gladly accommodate night and weekend shifts for noisy hacking works/gi, 'possible work hours depend on building approval and the confirmed programme')
+    .replace(/Our trained specialists apply the chosen waterproofing system\./gi, 'The selected waterproofing system is applied to the confirmed area and preparation scope.')
+    .replace(/We replace old wires with modern PVC-insulated copper cables \(SIRIM approved\) to ensure safety and longevity\./gi, 'Any replacement cable specification and regulated electrical scope must be confirmed in the quotation and by the responsible qualified party.')
+    .replace(/We handle the submission for fire safety inspection\./gi, 'Fire-safety submission requirements should be confirmed with building management and the relevant qualified parties.')
+    .replace(/Breathing in silica dust from cement can trigger severe asthma and allergies\. Our team uses wet-dry industrial vacuums equipped with HEPA filters to safely extract this hazardous dust from your home\./gi, 'Fine construction dust requires suitable controls and cleaning methods. Confirm the equipment, affected surfaces and cleaning limits in the quotation.')
+    .replace(/RK Reno Solution brings absolutely everything\./gi, 'Confirm which equipment and cleaning materials are included in the agreed package.');
+});
+let previousHeading = 1;
+$('h2,h3,h4,h5,h6').each((_, heading) => { const level = Number(heading.tagName.slice(1)); if (level > previousHeading + 1) heading.tagName = `h${previousHeading + 1}`; previousHeading = Number(heading.tagName.slice(1)); });
 const content = addIntrinsicImageDimensions($('body').html() || $.root().html() || '');
+const showExplicitFaqs = Boolean(wordpressContent.faqs?.length && $('details').length === 0);
+const published = wordpressContent.published?.slice(0, 10) || article.published;
+const formattedDate = new Date(`${published}T00:00:00`).toLocaleDateString('en-MY', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
-<CorePageTitle title={sourceTitle || wordpressContent.sourceTitle} description="Description Details" />
+<CorePageTitle title={sourceTitle || wordpressContent.sourceTitle} description={article.summary} />
 <article class="article-exact-page">
+  <header class="p3-article-intro"><div class="exact-wrap"><p class="article-exact-meta"><span>{article.category}</span><time datetime={published}>{formattedDate}</time></p><p>{article.summary}</p><img src={`${base}${article.image}`} alt={article.imageAlt} width={article.imageWidth || 1200} height={article.imageHeight || 800} fetchpriority="high" /></div></header>
   <div class="exact-wrap p22-article-layout">
-    <div class="article-exact-content" set:html={content} />
-    <Prompt22ArticleSidebar />
+    <div class="article-exact-content">
+      <Fragment set:html={content} />
+      {showExplicitFaqs && <section class="p3-article-faq"><h2>Frequently Asked Questions</h2>{wordpressContent.faqs?.map((faq) => <details><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</section>}
+    </div>
+    <Prompt22ArticleSidebar route={article.route} serviceHref={article.serviceHref} serviceLabel={article.serviceLabel} related={article.related} />
   </div>
+  <section class="p3-article-closing"><div class="exact-wrap"><div><p class="core-kicker">PRICING AND SCOPE</p><h2>Confirm Current Requirements Before Work</h2><p>Published prices are planning references where shown. Materials, access, quantities and site condition can change the final quotation.</p></div><div class="core-button-row"><a class="core-button core-button-orange" href="https://wa.me/601111334496">Send Site Details</a><a class="core-button core-button-outline" href={`${base}/contact-us/`}>Contact RK Reno</a></div></div></section>
 </article>
-import CorePageTitle from './core/CorePageTitle.astro';

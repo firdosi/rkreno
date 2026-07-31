@@ -17,6 +17,11 @@ export interface RetainedArticle {
 }
 
 const articleData = { ...batch2Articles, ...batch3Articles };
+const decodeTitle = (value: string) => value
+  .replaceAll('&amp;', '&')
+  .replaceAll('&#8211;', '–')
+  .replaceAll('&#8217;', '’')
+  .replaceAll('&#038;', '&');
 const priceGuide: RetainedArticle = {
   route: '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/',
   title: 'Upah Pasang Aircond Selangor: Panduan Harga & Pemasangan (2026)',
@@ -42,7 +47,7 @@ export const retainedArticleCatalog: RetainedArticle[] = retainedArticles.map(
     const dimensions = getMediaDimensions(image);
     return {
       route,
-      title: source?.sourceTitle || article?.title || fallbackTitle,
+      title: decodeTitle(source?.sourceTitle || article?.title || fallbackTitle),
       summary: article?.summary || 'Practical property-service planning guidance.',
       image,
       imageAlt: article?.imageAlt || 'General property-service planning imagery',

@@ -1,36 +1,11 @@
 ---
-import { load } from 'cheerio';
 import CorePageTitle from '../core/CorePageTitle.astro';
-import PartnerBand from './PartnerBand.astro';
-
-const { content } = Astro.props as { content: string };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const $ = load(content);
-const clean = (value = '') => value.replace(/\s+/g, ' ').trim();
-const introHeading = clean($('h2').first().text());
-const intro = clean($('h2').first().parent().parent().find('p').first().text()) || clean($('p').first().text());
-const members = $('h4').map((_, heading) => {
-  const node = $(heading);
-  let card = node.parent();
-  while (card.length && card.find('img').length !== 1) card = card.parent();
-  const text = clean(card.text());
-  const name = clean(node.text());
-  return { name, role: text.replace(name, '').trim(), image: card.find('img').first().attr('src') || '' };
-}).get();
-const media = (src: string) => src.startsWith('/') ? `${base}${src}` : src;
+const workflow = [['Site inspection','Review the property condition, access, dimensions and affected services.'],['Scope planning','Translate the requested outcome into work items, materials and exclusions.'],['Trade coordination','Sequence the agreed renovation, electrical, plumbing, aircond or finishing work.'],['Customer communication','Share practical next steps and confirm changes before additional work proceeds.']];
 ---
-<div class="held-page team-page">
-  <CorePageTitle title="Our Team" description="Our Team" />
-  <section class="team-intro"><div class="exact-wrap"><p class="core-kicker">our leadership</p><h2>{introHeading}</h2><p>{intro}</p></div></section>
-  <section class="team-grid-section">
-    <div class="exact-wrap team-grid">
-      {members.map((member) => (
-        <article data-held-reveal>
-          <a class="team-photo" href={`${base}/contact-us/`}><img src={media(member.image)} alt="" width="500" height="600" loading="lazy" /></a>
-          <div><h3>{member.name}</h3><p>{member.role}</p></div>
-        </article>
-      ))}
-    </div>
-  </section>
-  <PartnerBand />
+<div class="held-page p3-restored-page">
+  <CorePageTitle title="Our Team" description="How RK Reno Solution handles inspection, scope planning, trade coordination and customer communication." />
+  <section class="core-section"><div class="exact-wrap p3-restored-hero"><div><p class="core-kicker">HOW THE TEAM WORKS</p><h2>A Property-Service Workflow Without Fictional Profiles</h2><p>The restored WordPress template contained names, portraits and roles that are not verified as RK Reno personnel. They are excluded rather than presented as real employees.</p><p>RK Reno Solution coordinates enquiries around the actual site and the trades required for the agreed work.</p></div><img src={`${base}/assets/media/Construction-workers-discussing-renovation-plans-092133b6.jpg`} alt="Property work requirements being discussed on site" width="1200" height="800" /></div></section>
+  <section class="core-section p3-restored-tint"><div class="exact-wrap"><p class="core-kicker">WORKING TOGETHER</p><h2>Inspection, Planning and Coordination</h2><div class="p3-stage-grid">{workflow.map(([title,text],index) => <article><strong>{String(index+1).padStart(2,'0')}</strong><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+  <section class="core-section"><div class="exact-wrap p3-restored-split"><img src={`${base}/assets/media/Renovation-planning-and-project-drawings-1-ea76b170.jpg`} alt="Drawings and property information used to coordinate work" width="800" height="500" loading="lazy" /><div><h2>Prepare for the First Discussion</h2><ul><li>Property address and type</li><li>Photos, video and approximate measurements</li><li>Required work and intended finish</li><li>Access rules and preferred timing</li></ul><div class="core-button-row"><a class="core-button core-button-orange" href="https://wa.me/601111334496">Contact the Team</a><a class="core-button core-button-outline" href={`${base}/contact-us/`}>Contact Details</a><a href={`${base}/about-us/`}>About RK Reno</a></div></div></div></section>
 </div>

@@ -2,52 +2,21 @@
 import CorePageTitle from './core/CorePageTitle.astro';
 import Prompt23ArchiveSidebar from './archive/Prompt23ArchiveSidebar.astro';
 import type { RetainedArticle } from '@data/retained-article-catalog';
-
-interface Archive {
-  type: string;
-  title: string;
-  description: string;
-  introduction: string;
-}
-
-const { archive, articles, sourceH1 } = Astro.props as {
-  archive: Archive;
-  articles: RetainedArticle[];
-  sourceH1?: string;
-};
+interface Archive { type: string; title: string; description: string; introduction: string; serviceHref: string; serviceLabel: string; }
+const { archive, articles } = Astro.props as { archive: Archive; articles: RetainedArticle[]; sourceH1?: string; };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const categoryRoute = (category: string) => {
-  const value = category.toLowerCase();
-  if (value.includes('aircond') || value.includes('hvac')) return '/category/hvac-guides/';
-  if (value.includes('clean') || value.includes('pembersihan')) return '/category/servis-pembersihan/';
-  if (value.includes('commercial')) return '/category/commercial/';
-  if (value.includes('maintenance') || value.includes('waterproof')) return '/category/maintenance/';
-  if (value.includes('technical') || value.includes('electrical')) return '/category/technical-guides/';
-  return '/category/renovation/';
-};
+const date = (value: string) => new Date(`${value}T00:00:00`).toLocaleDateString('en-MY', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 <div class="archive-exact-page">
-  <CorePageTitle title={sourceH1 || archive.title} description={archive.introduction} />
-  <section class="archive-exact-section">
-    <div class="exact-wrap p23-archive-layout">
-      <div class="p23-archive-list">
-        {articles.map((article) => (
-          <article class="p23-archive-entry">
-            <a class="p23-entry-image" href={`${base}${article.route}`}>
-              <img src={`${base}${article.image}`} alt={article.imageAlt} width={article.imageWidth || 900} height={article.imageHeight || 600} loading="lazy" />
-            </a>
-            <div>
-              <img src={`${base}/assets/media/avartar1-90x90-68065c41.webp`} alt="" width="48" height="48" loading="lazy" />
-              <p><a href={`${base}${categoryRoute(article.category)}`}>{article.category}</a></p>
-              <h2><a href={`${base}${article.route}`}>{article.title}</a></h2>
-              <span>{article.summary}</span>
-              <div class="p23-entry-meta"><time datetime={article.published}>{article.published}</time><a href={`${base}${article.route}#respond`}>No Comments</a></div>
-              <a class="p23-read-more" href={`${base}${article.route}`}>Read more →</a>
-            </div>
-          </article>
-        ))}
-      </div>
-      <Prompt23ArchiveSidebar />
+  <CorePageTitle title={archive.title} description={archive.description} />
+  <section class="p3-archive-intro"><div class="exact-wrap"><p class="core-kicker">{archive.type} ARCHIVE</p><h2>{archive.title}</h2><p>{archive.introduction}</p><a href={`${base}${archive.serviceHref}`}>{archive.serviceLabel} <span aria-hidden="true">→</span></a></div></section>
+  <section class="archive-exact-section"><div class="exact-wrap p23-archive-layout">
+    <div class="p23-archive-list">
+      {articles.map((article) => <article class="p23-archive-entry">
+        <a class="p23-entry-image" href={`${base}${article.route}`}><img src={`${base}${article.image}`} alt={article.imageAlt} width={article.imageWidth || 900} height={article.imageHeight || 600} loading="lazy" /></a>
+        <div><p class="core-blog-meta"><span>{article.category}</span> · <time datetime={article.published}>{date(article.published)}</time></p><h2><a href={`${base}${article.route}`}>{article.title}</a></h2><p>{article.summary}</p><a class="p23-read-more" href={`${base}${article.route}`}>Read guide <span aria-hidden="true">→</span></a></div>
+      </article>)}
     </div>
-  </section>
+    <Prompt23ArchiveSidebar />
+  </div></section>
 </div>

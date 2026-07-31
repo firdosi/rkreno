@@ -1,57 +1,11 @@
 ---
-import { load } from 'cheerio';
 import CorePageTitle from '../core/CorePageTitle.astro';
-import PartnerBand from './PartnerBand.astro';
-
-const { content } = Astro.props as { content: string };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const $ = load(content);
-const clean = (value = '') => value.replace(/\s+/g, ' ').trim();
-const filters = ['All', 'Commercial', 'Electrical', 'Home Renovation', 'Office Renovation', 'Residential', 'Stadium', 'Waterproofing'];
-const projects = $('h3').map((_, heading) => {
-  const node = $(heading);
-  let card = node.parent();
-  while (card.length && card.find('img').length !== 1) card = card.parent();
-  const links = card.find('a').map((__, anchor) => ({ text: clean($(anchor).text()), href: $(anchor).attr('href') || '' })).get();
-  const categories = links.filter(({ text }) => filters.includes(text)).map(({ text }) => text);
-  const text = clean(card.text());
-  const title = clean(node.text());
-  const href = links.find(({ text }) => text === title)?.href || '/our-projects-2/';
-  return { title, description: text.replace(categories.join(' - '), '').replace(title, '').trim(), categories, image: card.find('img').first().attr('src') || '', href: href.replace(base, '') };
-}).get();
-const media = (src: string) => src.startsWith('/') ? `${base}${src}` : src;
+const stages = [['01','Existing condition','Photograph affected rooms, finishes, services and access points.'],['02','Requested outcome','List the work required and identify features or areas that must remain.'],['03','Site constraints','Confirm measurements, management rules, work hours, protection and debris routes.'],['04','Quotation review','Compare the defined scope, materials, exclusions and possible additions.']];
 ---
-<div class="held-page projects-page projects-layout-two">
-  <CorePageTitle title="Our Projects 2" description="Our Projects 2" />
-  <section class="project-showcase">
-    <div class="exact-wrap">
-      <h2>EXPLORE OUR BEST RECENTLY COMPLETED PROJECTS</h2>
-      <div class="project-filters" aria-label="Project filters">
-        {filters.map((filter, index) => <button type="button" class:list={{ active: index === 0 }} data-alt-project-filter={filter} data-project-filter={filter}>{filter}</button>)}
-      </div>
-      <div class="project-grid" data-alt-project-grid>
-        {projects.map((project) => (
-          <article data-alt-project-categories={project.categories.join('|')} data-held-reveal>
-            <a class="project-image" href={`${base}/contact-us/`}><img src={media(project.image)} alt="" width="709" height="709" loading="lazy" /></a>
-            <div class="project-overlay">
-              <p>{project.categories.map((category, index) => <><a href={`${base}/services/`}>{category}</a>{index < project.categories.length - 1 && ' - '}</>)}</p>
-              <h3><a href={`${base}/contact-us/`}>{project.title}</a></h3>
-              <p>{project.description}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-  <PartnerBand />
+<div class="held-page p3-restored-page">
+  <CorePageTitle title="Our Projects 2" description="Property preparation references and a practical pre-quotation workflow, without unverified project claims." />
+  <section class="core-section"><div class="exact-wrap p3-restored-hero"><div><p class="core-kicker">PROPERTY PREPARATION REFERENCES</p><h2>Turn Site Information into a Work Brief</h2><p>This second preserved projects URL has a distinct planning role. It explains how to prepare property information before renovation, repair or installation work is quoted.</p><p>The imagery is neutral service material and is not labelled as a completed RK Reno project.</p></div><img src={`${base}/assets/media/Modern-building-renovation-and-property-improvement-b1ec6039.jpg`} alt="Neutral property improvement reference, not a verified RK Reno project" width="1200" height="896" /></div></section>
+  <section class="core-section p3-restored-tint"><div class="exact-wrap"><p class="core-kicker">PRE-QUOTATION WORKFLOW</p><h2>Prepare a Clear Property Brief</h2><div class="p3-stage-grid">{stages.map(([number,title,text]) => <article><strong>{number}</strong><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>
+  <section class="core-section"><div class="exact-wrap p3-restored-split"><img src={`${base}/assets/media/Renovation-planning-and-project-drawings-6cfdb2fc.jpg`} alt="Renovation requirements being reviewed before quotation" width="1200" height="896" loading="lazy" /><div><h2>Continue to the Relevant Service</h2><p>Browse the service directory for renovation, aircond, electrical, waterproofing, ceiling, cleaning and demolition information.</p><div class="core-button-row"><a class="core-button core-button-orange" href={`${base}/services/`}>View Services</a><a class="core-button core-button-outline" href={`${base}/contact-us/`}>Contact RK Reno</a></div></div></div></section>
 </div>
-
-<script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-alt-project-filter]');
-  const cards = document.querySelectorAll<HTMLElement>('[data-alt-project-categories]');
-  buttons.forEach((button) => button.addEventListener('click', () => {
-    buttons.forEach((item) => item.classList.toggle('active', item === button));
-    const filter = button.dataset.altProjectFilter || 'All';
-    cards.forEach((card) => card.hidden = filter !== 'All' && !(card.dataset.altProjectCategories || '').split('|').includes(filter));
-  }));
-</script>

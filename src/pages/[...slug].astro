@@ -105,7 +105,7 @@ const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path] || bat
 const exactArticle = articleWordpressContent[page.path as keyof typeof articleWordpressContent];
 const sourceArticle = batch2Articles[page.path] || batch3Articles[page.path];
 const catalogArticle = retainedArticleByRoute[page.path];
-const batchArticle = sourceArticle || (exactArticle && catalogArticle ? {
+const batchArticle = sourceArticle ? { ...catalogArticle, ...sourceArticle, route: page.path } : (exactArticle && catalogArticle ? {
   ...catalogArticle,
   modified: exactArticle.modified,
   sections: [],
@@ -226,7 +226,21 @@ const showDemolitionLink = [
   '/home-renovation-contractor-in-subang-jaya/',
   '/office-renovation-in-kuala-lumpur/',
 ].includes(page.path);
-const pageSchema = isDemolition
+const heldDescriptions: Record<string, string> = {
+  '/company-history/': 'Source-safe background on RK Reno Solution, its current services, work approach and operating areas.',
+  '/our-projects/': 'A property work-scope gallery using neutral service imagery without unverified client or project claims.',
+  '/our-projects-2/': 'Property preparation references and a practical workflow for preparing a pre-quotation brief.',
+  '/our-team/': 'How RK Reno Solution handles inspection, planning, trade coordination and customer communication.',
+  '/testimonials/': 'RK Reno quotation and communication steps with unverified template testimonials intentionally excluded.',
+};
+const breadcrumbSchema = {
+  '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://rkrenosolution.com/' },
+    { '@type': 'ListItem', position: 2, name: sourceHeroTitle || catalogArticle?.title || nativeTaxonomy?.title || page.h1 || page.title, item: page.canonical },
+  ],
+};
+const pageSchema: any[] = isDemolition
   ? [{
       '@context': 'https://schema.org',
       '@type': 'Service',
@@ -337,18 +351,19 @@ const pageSchema = isDemolition
       isPartOf: { '@id': 'https://rkrenosolution.com/#website' },
     }]
   : page.schema;
+if ((batchArticle || nativeTaxonomy || isHeldRoute) && !pageSchema.some((item) => item['@type'] === 'BreadcrumbList')) pageSchema.push(breadcrumbSchema);
 ---
 <BaseLayout
   title={layoutTitle}
-  description={nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
+  description={heldDescriptions[page.path] || nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
     ? 'Practical renovation and property-service guides from RK Reno Solution.'
     : page.path === '/faq/'
       ? 'Answers about renovation, aircond, electrical, waterproofing, ceiling, quotation and service areas.'
       : page.description)}
   canonical={page.canonical}
-  ogImage={page.og?.image}
+  ogImage={catalogArticle?.image || page.og?.image}
   schema={pageSchema}
-  pageType={page.type}
+  pageType={batchArticle ? 'post' : page.type}
   externalStyles={nativePage ? [] : page.externalStyles}
   robots={nativeTaxonomy || isHeldRoute ? (isIndexable ? 'noindex, follow' : 'noindex, nofollow')
     : page.path === '/thank-you/' ? 'noindex, nofollow' : undefined}

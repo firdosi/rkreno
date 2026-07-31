@@ -1,37 +1,11 @@
 ---
-import { load } from 'cheerio';
 import CorePageTitle from '../core/CorePageTitle.astro';
-
-const { content } = Astro.props as { content: string };
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const $ = load(content);
-const clean = (value = '') => value.replace(/\s+/g, ' ').trim();
-const entries = $('h3').map((_, heading) => {
-  const node = $(heading);
-  let card = node.parent();
-  while (card.length && card.find('img').length !== 1) card = card.parent();
-  const text = clean(card.text());
-  return {
-    year: text.match(/\b(?:19|20)\d{2}\b/)?.[0] || '',
-    title: clean(node.text()),
-    description: clean(card.find('p').first().text()),
-    image: card.find('img').first().attr('src') || '',
-    alt: card.find('img').first().attr('alt') || '',
-  };
-}).get();
-const media = (src: string) => src.startsWith('/') ? `${base}${src}` : src;
+const services = [['/house-renovation-in-kuala-lumpur/','Residential renovation'],['/office-renovation-in-kuala-lumpur/','Office renovation'],['/aircond-installation-kl/','Aircond installation'],['/waterproofing-contractor-kuala-lumpur/','Waterproofing']];
 ---
-<div class="held-page held-history-page">
-  <CorePageTitle title="Company History" description="Company History" />
-  <section class="history-timeline" aria-label="Company history timeline">
-    <div class="exact-wrap">
-      {entries.map((entry, index) => (
-        <article class:list={['history-entry', { reverse: index % 2 === 1 }]} data-held-reveal>
-          <figure><img src={media(entry.image)} alt={entry.alt} width="496" height="262" loading={index < 2 ? 'eager' : 'lazy'} /></figure>
-          <div class="history-year"><span>{entry.year}</span></div>
-          <div class="history-copy"><h2>{entry.title}</h2><p>{entry.description}</p></div>
-        </article>
-      ))}
-    </div>
-  </section>
+<div class="held-page p3-restored-page">
+  <CorePageTitle title="Company History" description="Source-safe background on RK Reno Solution, its current services, work approach and operating areas." />
+  <section class="core-section"><div class="exact-wrap p3-restored-hero"><div><p class="core-kicker">BUSINESS BACKGROUND</p><h2>RK Reno Solution Today</h2><p>RK Reno Solution is a Kuala Lumpur property-service business supporting renovation, aircond, electrical, waterproofing, plaster ceiling, cleaning and interior demolition enquiries.</p><p>The available source does not verify a founding year, milestone timeline, awards, staff count or project totals, so those template claims are intentionally excluded.</p></div><img src={`${base}/assets/media/RK-Reno-Solution-contractor-reviewing-renovation-projec-1fc54dc9.jpg`} alt="Contractor reviewing current renovation requirements" width="896" height="1200" /></div></section>
+  <section class="core-section p3-restored-tint"><div class="exact-wrap"><p class="core-kicker">CURRENT SERVICES</p><h2>Property Work Across Multiple Trades</h2><div class="p3-link-grid">{services.map(([href,label]) => <a href={`${base}${href}`}>{label}<span aria-hidden="true">→</span></a>)}</div></div></section>
+  <section class="core-section"><div class="exact-wrap p3-restored-split"><img src={`${base}/assets/media/Renovation-planning-and-project-drawings-1-ea76b170.jpg`} alt="Drawings and information used for current renovation planning" width="800" height="500" loading="lazy" /><div><p class="core-kicker">CURRENT WORK APPROACH</p><h2>Site Details Before Final Scope</h2><ol><li>Collect the address, photos, measurements and requested work.</li><li>Review property condition, access and relevant management rules.</li><li>Confirm quotation inclusions, exclusions and possible additional work.</li><li>Coordinate the agreed sequence and preparation for following trades.</li></ol><p>Enquiries are accepted across Kuala Lumpur, Selangor and nearby areas, subject to the exact location and service.</p><div class="core-button-row"><a class="core-button core-button-orange" href="https://wa.me/601111334496">Discuss Your Property</a><a class="core-button core-button-outline" href={`${base}/contact-us/`}>Contact Details</a></div></div></div></section>
 </div>
