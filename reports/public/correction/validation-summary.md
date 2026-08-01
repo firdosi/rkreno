@@ -15,6 +15,6 @@ Status: **PASSED**
 - Broken internal links: 0
 - Broken images: 0
 - Core, service and article responsive routes: 33 at 1440px and 390px
-- Automated checks: 2428
+- Automated checks: 2425
 - Failures: 0
 - Safety: staging noindex retained; enquiry form disabled; no production systems changed.
