@@ -1,0 +1,28 @@
+---
+const { content } = Astro.props as any;
+---
+<form class="home-source-form" aria-labelledby="home-enquiry-title" data-staging-home-form novalidate>
+  <h2 id="home-enquiry-title">{content.heading}</h2>
+  <div class="home-source-form-grid">
+    <label><span>{content.fields[0]}</span><input type="text" name="your-name" autocomplete="name" required /></label>
+    <label><span>{content.fields[1]}</span><input type="tel" name="your-phone" autocomplete="tel" inputmode="tel" required /></label>
+    <label><span>{content.fields[2]}</span><input type="email" name="your-email" autocomplete="email" required /></label>
+    <label><span>{content.fields[3]}</span><input type="text" name="your-company" autocomplete="organization" /></label>
+    <label><span>{content.fields[4]}</span><select name="project-type" required>{content.projectTypes.map((option: string, index: number) => <option value={index ? option : ''}>{option}</option>)}</select></label>
+    <label><span>{content.fields[5]}</span><input type="text" name="your-budget" required /></label>
+    <label class="home-source-form-wide"><span>{content.fields[6]}</span><textarea name="your-message" rows="5" required></textarea></label>
+    <label class="home-source-consent"><input type="checkbox" name="consent" required /><span>{content.consent}</span></label>
+    <button type="submit">{content.button} <span aria-hidden="true">→</span></button>
+    <p class="home-source-form-status" data-form-status role="status" aria-live="polite" hidden>Staging preview: your message was not sent.</p>
+  </div>
+</form>
+<script is:inline>
+  document.querySelectorAll('[data-staging-home-form]').forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!(form instanceof HTMLFormElement) || !form.reportValidity()) return;
+      const status = form.querySelector('[data-form-status]');
+      if (status instanceof HTMLElement) status.hidden = false;
+    });
+  });
+</script>

@@ -1,0 +1,36 @@
+---
+const { content } = Astro.props as any;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const articlePurposes = [
+  'article-pu-injection',
+  'article-office-petaling-jaya',
+  'article-waterproofing-guide',
+  'article-aircond-selangor',
+  'article-deep-cleaning',
+  'article-commercial-retail',
+];
+---
+<div class="home-source-slider" data-home-slider>
+  <div class="home-source-track" id="homepage-featured-track" data-slider-track tabindex="0" aria-label="Featured articles">
+    {content.cards.map((card: any, index: number) => (
+      <article class="home-source-card" data-featured-card data-image-purpose={articlePurposes[index]}>
+        <a class="home-source-card-image" href={`${base}${card.href}`} aria-label={card.title}>
+          <img src={`${base}${card.image}`} alt={card.imageAlt} width="896" height="600" loading="lazy" />
+        </a>
+        <div class="home-source-card-body">
+          <p class="home-source-card-byline"><time datetime={card.dateTime}>{card.date}</time><span>by</span><span>{card.author}</span></p>
+          <h3><a href={`${base}${card.href}`}>{card.title}</a></h3>
+          <div class="home-source-card-taxonomy">
+            <span>{card.categories.map((category: any, categoryIndex: number) => <><a href={`${base}${category.href}`}>{category.text}</a>{categoryIndex < card.categories.length - 1 ? ', ' : ''}</>)}</span>
+            <a href={`${base}${card.href}#respond`}>{card.commentLabel}</a>
+          </div>
+          <a class="home-source-read-more" href={`${base}${card.href}`}>{card.readMoreLabel} <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    ))}
+  </div>
+  <div class="home-slider-controls" aria-label="Featured article controls">
+    <button type="button" data-slider-prev aria-controls="homepage-featured-track" aria-label="Previous featured articles">←</button>
+    <button type="button" data-slider-next aria-controls="homepage-featured-track" aria-label="Next featured articles">→</button>
+  </div>
+</div>

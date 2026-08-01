@@ -1,0 +1,18 @@
+---
+const { content } = Astro.props as any;
+---
+<div class="home-testimonial-slider" data-home-slider>
+  <div class="home-testimonial-track" id="homepage-testimonial-track" data-slider-track tabindex="0" aria-label="Customer testimonials">
+    {content.items.map((testimonial: any) => (
+      <blockquote data-testimonial>
+        <div class="home-stars" aria-label="Five star rating">★★★★★</div>
+        <p>“{testimonial.quote}”</p>
+        <footer><strong>{testimonial.name}</strong><span>{testimonial.role}</span></footer>
+      </blockquote>
+    ))}
+  </div>
+  <div class="home-slider-controls home-testimonial-controls" aria-label="Testimonial controls">
+    <button type="button" data-slider-prev aria-controls="homepage-testimonial-track" aria-label="Previous testimonial">←</button>
+    <button type="button" data-slider-next aria-controls="homepage-testimonial-track" aria-label="Next testimonial">→</button>
+  </div>
+</div>

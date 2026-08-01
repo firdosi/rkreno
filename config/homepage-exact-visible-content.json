@@ -1,0 +1,209 @@
+{
+  "sourceUrl": "https://rkrenosolution.com/",
+  "sectionOrder": [
+    "hero",
+    "introduction",
+    "featuredArticles",
+    "whyChoose",
+    "process",
+    "enquiry",
+    "testimonials",
+    "finalCta"
+  ],
+  "hero": {
+    "eyebrow": "RK Reno Solution",
+    "h1": "Reliable Renovation Contractor in KL & Selangor",
+    "paragraph": "Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish.",
+    "buttons": [
+      { "text": "Our Services", "href": "/services/" },
+      { "text": "Get Free Consultation", "href": "/contact-us/" }
+    ],
+    "trustStatement": "TRUSTED BY 1,250+ HAPPY CUSTOMERS"
+  },
+  "introduction": {
+    "experienceValue": "15+",
+    "experienceLabel": "YEAR OF EXPERIENCE IN CONSTRUCTION",
+    "eyebrow": "ABOUT RK RENO SOLUTION",
+    "heading": "Practical Renovation Solutions for Better Spaces",
+    "paragraph": "RK Reno Solution helps homeowners and business owners improve their spaces with renovation, repair, installation, and maintenance services. From site inspection to project completion, we focus on clear communication, practical solutions, and quality finishing.",
+    "benefits": [
+      {
+        "title": "Smart Work Planning",
+        "description": "We review your space, understand your needs, and plan the work properly before starting, so the project stays clear and organized."
+      },
+      {
+        "title": "Skilled Service Team",
+        "description": "Our team handles renovation, waterproofing, plaster ceiling, aircond installation, and cleaning work with care and attention to detail."
+      }
+    ],
+    "button": { "text": "Discover More", "href": "/about-us/" },
+    "phonePrompt": "Have questions? Call Us:",
+    "phone": "+60 11 1133 4496",
+    "phoneHref": "tel:+601111334496"
+  },
+  "featuredArticles": {
+    "eyebrow": "OUR SERVICES",
+    "heading": "Renovation, Repair & Installation Services in KL and Selangor",
+    "button": { "text": "All Services", "href": "/services/" },
+    "cards": [
+      {
+        "title": "PU Injection Waterproofing KL: How to Fix Wall Cracks Permanently",
+        "href": "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+        "date": "Apr 04 2026",
+        "dateTime": "2026-04-04",
+        "author": "raoisrar",
+        "categories": [{ "text": "Maintenance", "href": "/category/maintenance/" }],
+        "commentLabel": "No Comments",
+        "readMoreLabel": "Read more",
+        "image": "/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg",
+        "imageAlt": "PU injection waterproofing work for wall cracks"
+      },
+      {
+        "title": "Office Renovation Petaling Jaya: Corporate Fit-Out Experts",
+        "href": "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+        "date": "Apr 04 2026",
+        "dateTime": "2026-04-04",
+        "author": "raoisrar",
+        "categories": [{ "text": "Commercial", "href": "/category/commercial/" }],
+        "commentLabel": "No Comments",
+        "readMoreLabel": "Read more",
+        "image": "/assets/media/Office-renovation-service-in-Selangor-7928d19d.jpg",
+        "imageAlt": "Office renovation work in Petaling Jaya"
+      },
+      {
+        "title": "Waterproofing Contractor Kuala Lumpur: The Complete Guide to Stopping Leaks (2026)",
+        "href": "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+        "date": "Mar 28 2026",
+        "dateTime": "2026-03-28",
+        "author": "raoisrar",
+        "categories": [{ "text": "Maintenance", "href": "/category/maintenance/" }],
+        "commentLabel": "No Comments",
+        "readMoreLabel": "Read more",
+        "image": "/assets/media/Bathroom-waterproofing-service-in-KL-3293ca94.jpg",
+        "imageAlt": "Waterproofing inspection and repair work in Kuala Lumpur"
+      },
+      {
+        "title": "Upah Pasang Aircond Selangor: Panduan Harga & Pemasangan (2026)",
+        "href": "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+        "date": "Mar 28 2026",
+        "dateTime": "2026-03-28",
+        "author": "raoisrar",
+        "categories": [{ "text": "HVAC Guides", "href": "/category/hvac-guides/" }],
+        "commentLabel": "No Comments",
+        "readMoreLabel": "Read more",
+        "image": "/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg",
+        "imageAlt": "Juruteknik RK Reno menjalankan pemasangan aircond di Selangor"
+      },
+      {
+        "title": "Pakej Deep Cleaning Rumah KL (Termasuk Pre-Hari Raya)",
+        "href": "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+        "date": "Apr 04 2026",
+        "dateTime": "2026-04-04",
+        "author": "raoisrar",
+        "categories": [
+          { "text": "Maintenance", "href": "/category/maintenance/" },
+          { "text": "Servis Pembersihan", "href": "/category/servis-pembersihan/" }
+        ],
+        "commentLabel": "No Comments",
+        "readMoreLabel": "Read more",
+        "image": "/assets/media/detailed-kitchen-cleaning-kl-67669628.jpg",
+        "imageAlt": "Detailed kitchen cleaning service in Kuala Lumpur"
+      },
+      {
+        "title": "Commercial Retail Shop Renovation in Kuala Lumpur",
+        "href": "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+        "date": "Apr 04 2026",
+        "dateTime": "2026-04-04",
+        "author": "raoisrar",
+        "categories": [{ "text": "Renovation", "href": "/category/renovation/" }],
+        "commentLabel": "No Comments",
+        "readMoreLabel": "Read more",
+        "image": "/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg",
+        "imageAlt": "Commercial retail shop renovation work in Kuala Lumpur"
+      }
+    ]
+  },
+  "whyChoose": {
+    "eyebrow": "WHY CHOOSE RK RENO SOLUTION",
+    "heading": "Reliable Service for Homes, Offices & Commercial Spaces",
+    "paragraph": "We understand that renovation work needs trust, planning, and proper finishing. RK Reno Solution helps you complete property improvement work with clear guidance, site checking, and practical service support from start to finish.",
+    "statistics": [
+      { "value": "40+", "label": "Projects Completed" },
+      { "value": "95%", "label": "Customer Satisfaction" },
+      { "value": "16", "label": "Service Areas Covered" }
+    ],
+    "buttons": [
+      { "text": "More Why Choose Us", "href": "/about-us/" },
+      { "text": "Start Your Project", "href": "/contact-us/" }
+    ],
+    "benefits": [
+      {
+        "title": "Local Service Experience",
+        "description": "We understand common renovation, leakage, ceiling, aircond, and cleaning needs for properties in Kuala Lumpur and Selangor."
+      },
+      {
+        "title": "Clean & Careful Workmanship",
+        "description": "We focus on proper finishing, practical material use, and work that matches your space, budget, and service requirement."
+      },
+      {
+        "title": "Clear Communication",
+        "description": "We keep customers updated about the work process, timeline, and next steps so the project stays smooth and easy to manage."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "OUR PROCESS",
+    "heading": "How We Handle Your Project",
+    "paragraph": "We keep the process simple, clear, and organized so you know what to expect before the work begins.",
+    "stepsLabel": "STEPS",
+    "steps": [
+      { "number": "01", "title": "Inquiry & Consultation", "description": "Contact us through call or WhatsApp and share your service requirement, location, photos, or basic project details." },
+      { "number": "02", "title": "Site Check & Quotation", "description": "We check the project details, understand the work needed, and provide a quotation based on the scope, materials, and timeline." },
+      { "number": "03", "title": "Work Planning & Execution", "description": "After confirmation, our team starts the work according to the agreed plan and keeps you updated during the process." },
+      { "number": "04", "title": "Completion & Handover", "description": "Once the work is completed, we review the finishing, clean the work area where needed, and hand over the completed project." }
+    ],
+    "prompt": "Ready to improve your space?",
+    "button": { "text": "Free Consultation", "href": "/contact-us/" }
+  },
+  "enquiry": {
+    "heading": "Get In Touch With Us",
+    "fields": ["Name*", "Phone number*", "Email*", "Company Name", "Project type*", "Budget*", "Write message...*"],
+    "projectTypes": ["Project type*", "Building Construction", "Architecture Design", "building renovation"],
+    "consent": "I have read the privacy statement and understand that my personal data will be processed for the purpose of providing the necessary information and assistance.*",
+    "button": "Submit"
+  },
+  "testimonials": {
+    "eyebrow": "CLIENT FEEDBACK",
+    "heading": "What Customers Say About RK Reno Solution",
+    "items": [
+      { "quote": "We contacted RK Reno Solution for office improvement work. They understood our needs, gave practical suggestions, and completed the work with good communication.", "name": "Business Owner in Kuala Lumpur", "role": "Office Renovation Client" },
+      { "quote": "The team handled our repair and installation work properly. They were easy to communicate with and helped us complete the job without unnecessary stress.", "name": "Property Owner in KL", "role": "Repair & Installation Client" },
+      { "quote": "RK Reno Solution helped us with renovation work and explained the process clearly. The team was responsive, careful, and the final result looked clean and professional.", "name": "Homeowner in Selangor", "role": "Home Renovation Client" }
+    ]
+  },
+  "finalCta": {
+    "heading": "Need Renovation or Repair Work?",
+    "paragraph": "Whether you need home renovation, office renovation, waterproofing, plaster ceiling, aircond installation, or cleaning services, RK Reno Solution is ready to help. Contact us today and share your project details.",
+    "buttons": [
+      { "text": "Get Free Quote", "href": "/contact-us/" },
+      { "text": "Contact Us", "href": "/contact-us/" }
+    ]
+  },
+  "contactDetails": {
+    "phone": "+60 11 1133 4496",
+    "phoneHref": "tel:+601111334496",
+    "email": "rkrenosolution@gmail.com",
+    "emailHref": "mailto:rkrenosolution@gmail.com",
+    "address": "4-2, Jalan 3/50C, Setapak, 53000 Kuala Lumpur"
+  },
+  "sourceOnlyClaims": [
+    "TRUSTED BY 1,250+ HAPPY CUSTOMERS",
+    "15+ YEAR OF EXPERIENCE IN CONSTRUCTION",
+    "40+ Projects Completed",
+    "95% Customer Satisfaction",
+    "16 Service Areas Covered",
+    "We contacted RK Reno Solution for office improvement work. They understood our needs, gave practical suggestions, and completed the work with good communication.",
+    "The team handled our repair and installation work properly. They were easy to communicate with and helped us complete the job without unnecessary stress.",
+    "RK Reno Solution helped us with renovation work and explained the process clearly. The team was responsive, careful, and the final result looked clean and professional."
+  ]
+}

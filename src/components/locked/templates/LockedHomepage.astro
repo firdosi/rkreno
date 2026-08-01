@@ -1,123 +1,105 @@
 ---
-import RecoveryArticleCard from '../../core-recovery/RecoveryArticleCard.astro';
-import HomepagePreviewForm from '../../homepage-recovery/HomepagePreviewForm.astro';
-import { cardFromRecord } from '../locked-page-data';
-import { blogMediaByRoute, contactDetails, coreMedia, homeModel } from '../../../data/core-page-design';
-import { homepageGuideRoutes, homepageMedia, homepageStats, homepageTestimonials } from '../../../data/homepage-recovery';
+import HomepageFeaturedSlider from '../../homepage-recovery/HomepageFeaturedSlider.astro';
+import HomepageSlidersScript from '../../homepage-recovery/HomepageSlidersScript.astro';
+import HomepageSourceForm from '../../homepage-recovery/HomepageSourceForm.astro';
+import HomepageTestimonialSlider from '../../homepage-recovery/HomepageTestimonialSlider.astro';
+import manifest from '../../../../config/homepage-exact-visible-content.json';
+import imageMap from '../../../../config/homepage-image-map.json';
 
-const { record, allRecords, pageByRoute } = Astro.props as any;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const recordByRoute = new Map(allRecords.map((item: any) => [item.route, item]));
-const guides = homepageGuideRoutes.map((route) => cardFromRecord(recordByRoute.get(route), pageByRoute));
-const url = (path: string) => `${base}${path}`;
+const href = (path: string) => `${base}${path}`;
+const imageByPurpose = Object.fromEntries(imageMap.images.map((image) => [image.purpose, image]));
+const { hero, introduction, featuredArticles, whyChoose, process, enquiry, testimonials, finalCta } = manifest;
 ---
-<article class="source-locked-page recovery-page home-recovery" data-locked-template="homepage">
-  <section class="home-hero">
+<article class="source-locked-page recovery-page home-recovery" data-locked-template="homepage" data-homepage-exact>
+  <section class="home-hero" data-home-section="hero">
     <div class="home-shell home-hero-grid">
       <div class="home-hero-copy">
-        <p class="home-kicker">RK Reno Solution</p>
-        <h1>{record.content.h1}</h1>
-        <p>{record.content.paragraphs[0]}</p>
+        <p class="home-kicker">{hero.eyebrow}</p>
+        <h1>{hero.h1}</h1>
+        <p>{hero.paragraph}</p>
         <div class="home-actions">
-          <a class="home-button home-button-orange" href={url('/services/')}>Our Services <span aria-hidden="true">→</span></a>
-          <a class="home-button home-button-outline-dark" href={url('/contact-us/')}>Get Free Consultation <span aria-hidden="true">→</span></a>
+          {hero.buttons.map((button, index) => <a class:list={["home-button", index ? "home-button-outline-dark" : "home-button-orange"]} href={href(button.href)}>{button.text} <span aria-hidden="true">→</span></a>)}
         </div>
-        <p class="home-trust-line"><span aria-hidden="true">✓</span> Trusted for clear planning, practical service and careful work</p>
+        <p class="home-trust-line"><span aria-hidden="true">★★★★★</span>{hero.trustStatement}</p>
       </div>
-      <figure class="home-hero-media">
-        <img src={url(homepageMedia.hero)} alt="Modern commercial building representing RK Reno renovation work" width="995" height="899" fetchpriority="high" />
-        <figcaption>Renovation · Repair · Installation</figcaption>
-      </figure>
+      <img class="home-hero-image" data-image-purpose="hero-building" src={href(imageByPurpose['hero-building'].localPath)} alt={imageByPurpose['hero-building'].alt} width={imageByPurpose['hero-building'].width} height={imageByPurpose['hero-building'].height} fetchpriority="high" />
     </div>
   </section>
 
-  <section class="home-intro home-section">
+  <section class="home-intro home-section" data-home-section="introduction">
     <div class="home-shell home-intro-grid">
       <div class="home-intro-media">
-        <img src={url(coreMedia.contractor)} alt="RK Reno contractor reviewing a renovation project" width="1200" height="896" loading="lazy" />
-        <div class="home-experience"><strong>15+</strong><span>Years of experience<br />in construction</span></div>
+        <img class="home-intro-main" data-image-purpose="introduction-worker" src={href(imageByPurpose['introduction-worker'].localPath)} alt={imageByPurpose['introduction-worker'].alt} width={imageByPurpose['introduction-worker'].width} height={imageByPurpose['introduction-worker'].height} loading="lazy" />
+        <img class="home-intro-support" data-image-purpose="introduction-support" src={href(imageByPurpose['introduction-support'].localPath)} alt={imageByPurpose['introduction-support'].alt} width={imageByPurpose['introduction-support'].width} height={imageByPurpose['introduction-support'].height} loading="lazy" />
+        <div class="home-experience"><strong>{introduction.experienceValue}</strong><span>{introduction.experienceLabel}</span></div>
       </div>
       <div class="home-copy-block">
-        <p class="home-kicker">About RK Reno Solution</p>
-        <h2>Practical Renovation Solutions for Better Spaces</h2>
-        <p>{homeModel.introduction}</p>
+        <p class="home-kicker">{introduction.eyebrow}</p>
+        <h2>{introduction.heading}</h2>
+        <p>{introduction.paragraph}</p>
         <div class="home-mini-benefits">
-          <article><span>01</span><div><h3>Smart Work Planning</h3><p>We review your space, understand your needs, and plan the work properly before starting.</p></div></article>
-          <article><span>02</span><div><h3>Skilled Service Team</h3><p>Our team handles renovation, waterproofing, plaster ceiling, aircond installation, and cleaning work with care and attention to detail.</p></div></article>
+          {introduction.benefits.map((benefit, index) => <article><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{benefit.title}</h3><p>{benefit.description}</p></div></article>)}
         </div>
         <div class="home-inline-actions">
-          <a class="home-button home-button-orange" href={url('/about-us/')}>Discover More <span aria-hidden="true">→</span></a>
-          <a class="home-phone" href={contactDetails.phoneHref}><small>Have questions? Call Us:</small><strong>{contactDetails.phone}</strong></a>
+          <a class="home-button home-button-orange" href={href(introduction.button.href)}>{introduction.button.text} <span aria-hidden="true">→</span></a>
+          <a class="home-phone" href={introduction.phoneHref}><small>{introduction.phonePrompt}</small><strong>{introduction.phone}</strong></a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="home-featured home-section">
+  <section class="home-featured home-section" data-home-section="featuredArticles" data-image-purpose="featured-background">
     <div class="home-shell">
       <div class="home-section-head home-section-head-inverse">
-        <div><p class="home-kicker">Our services & guides</p><h2>Renovation, Repair & Installation Services in KL and Selangor</h2></div>
-        <a class="home-button home-button-orange" href={url('/services/')}>All Services <span aria-hidden="true">→</span></a>
+        <div><p class="home-kicker">{featuredArticles.eyebrow}</p><h2>{featuredArticles.heading}</h2></div>
+        <a class="home-button home-button-orange" href={href(featuredArticles.button.href)}>{featuredArticles.button.text} <span aria-hidden="true">→</span></a>
       </div>
-      <div class="home-featured-grid">
-        {guides.map((guide: any) => <RecoveryArticleCard article={guide} image={blogMediaByRoute[guide.route]} />)}
-      </div>
+      <HomepageFeaturedSlider content={featuredArticles} />
     </div>
   </section>
 
-  <section class="home-service home-section">
+  <section class="home-service home-section" data-home-section="whyChoose">
     <div class="home-shell home-service-grid">
       <div class="home-copy-block">
-        <p class="home-kicker">Why choose RK Reno Solution</p>
-        <h2>Reliable Service for Homes, Offices & Commercial Spaces</h2>
-        <p>We understand that renovation work needs trust, planning, and proper finishing. RK Reno Solution helps you complete property improvement work with clear guidance, site checking, and practical service support from start to finish.</p>
-        <div class="home-stats">
-          {homepageStats.map(([value, label]) => <div><strong>{value}</strong><span>{label}</span></div>)}
-        </div>
-        <div class="home-actions">
-          <a class="home-button home-button-orange" href={url('/about-us/')}>More Why Choose Us <span aria-hidden="true">→</span></a>
-          <a class="home-button home-button-outline-dark" href={url('/contact-us/')}>Start Your Project <span aria-hidden="true">→</span></a>
-        </div>
+        <p class="home-kicker">{whyChoose.eyebrow}</p>
+        <h2>{whyChoose.heading}</h2>
+        <p>{whyChoose.paragraph}</p>
+        <div class="home-stats">{whyChoose.statistics.map((stat) => <div><strong>{stat.value}</strong><span>{stat.label}</span></div>)}</div>
+        <div class="home-actions">{whyChoose.buttons.map((button, index) => <a class:list={["home-button", index ? "home-button-outline-dark" : "home-button-orange"]} href={href(button.href)}>{button.text} <span aria-hidden="true">→</span></a>)}</div>
       </div>
-      <img src={url(coreMedia.building)} alt="Modern building renovation and property improvement" width="1200" height="896" loading="lazy" />
+      <img data-image-purpose="why-choose-building" src={href(imageByPurpose['why-choose-building'].localPath)} alt={imageByPurpose['why-choose-building'].alt} width={imageByPurpose['why-choose-building'].width} height={imageByPurpose['why-choose-building'].height} loading="lazy" />
     </div>
-    <div class="home-shell home-benefit-grid">
-      {homeModel.benefits.map(([title, text], index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>)}
-    </div>
+    <div class="home-shell home-benefit-grid">{whyChoose.benefits.map((benefit, index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{benefit.title}</h3><p>{benefit.description}</p></article>)}</div>
   </section>
 
-  <section class="home-process home-section">
+  <section class="home-process home-section" data-home-section="process">
     <div class="home-shell">
-      <div class="home-section-head home-section-head-center"><div><p class="home-kicker">Our process</p><h2>How We Handle Your Project</h2><p>We keep the process simple, clear, and organized so you know what to expect before the work begins.</p></div></div>
-      <ol class="home-process-grid">
-        {homeModel.process.map(([number, title, text]) => <li><strong>{number}</strong><h3>{title}</h3><p>{text}</p></li>)}
-      </ol>
-      <div class="home-process-action"><span>Ready to improve your space?</span><a class="home-button home-button-orange" href={url('/contact-us/')}>Free Consultation <span aria-hidden="true">→</span></a></div>
+      <div class="home-section-head home-section-head-center"><div><p class="home-kicker">{process.eyebrow}</p><h2>{process.heading}</h2><p>{process.paragraph}</p></div></div>
+      <div class="home-process-map">
+        <div class="home-process-center"><strong>04</strong><span>{process.stepsLabel}</span></div>
+        {process.steps.map((step, index) => <article class={`home-process-step home-process-step-${index + 1}`}><strong>{step.number}</strong><div><h3>{step.title}</h3><p>{step.description}</p></div></article>)}
+      </div>
+      <div class="home-process-action"><span>{process.prompt}</span><a class="home-button home-button-orange" href={href(process.button.href)}>{process.button.text} <span aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
-  <section class="home-contact-preview home-section">
-    <div class="home-contact-backdrop"><img src={url(homepageMedia.contact)} alt="Contemporary building exterior" width="992" height="735" loading="lazy" /></div>
-    <div class="home-shell home-contact-grid"><HomepagePreviewForm /></div>
+  <section class="home-enquiry home-section" data-home-section="enquiry" data-image-purpose="enquiry-building" style={`--home-enquiry-image:url('${href(imageByPurpose['enquiry-building'].localPath)}')`}>
+    <div class="home-shell home-enquiry-grid"><HomepageSourceForm content={enquiry} /></div>
   </section>
 
-  <section class="home-testimonials home-section">
-    <div class="home-shell">
-      <div class="home-testimonial-intro">
-        <img src={url(coreMedia.electrical)} alt="Construction workers discussing renovation plans" width="1200" height="896" loading="lazy" />
-        <div><p class="home-kicker">Client feedback</p><h2>What Customers Say About RK Reno Solution</h2><p>Feedback presented here is preserved from the source homepage.</p></div>
-      </div>
-      <div class="home-testimonial-grid">
-        {homepageTestimonials.map((testimonial) => <blockquote><div class="home-stars" aria-label="Five star rating">★★★★★</div><p>“{testimonial.quote}”</p><footer><strong>{testimonial.name}</strong><span>{testimonial.project}</span></footer></blockquote>)}
-      </div>
+  <section class="home-testimonials home-section" data-home-section="testimonials">
+    <div class="home-shell home-testimonial-layout">
+      <img data-image-purpose="testimonial-construction" src={href(imageByPurpose['testimonial-construction'].localPath)} alt={imageByPurpose['testimonial-construction'].alt} width={imageByPurpose['testimonial-construction'].width} height={imageByPurpose['testimonial-construction'].height} loading="lazy" />
+      <div class="home-testimonial-content"><p class="home-kicker">{testimonials.eyebrow}</p><h2>{testimonials.heading}</h2><HomepageTestimonialSlider content={testimonials} /></div>
     </div>
   </section>
 
-  <section class="home-final-cta">
-    <div class="home-final-texture" style={`background-image:url('${url(homepageMedia.ctaTexture)}')`}></div>
+  <section class="home-final-cta" data-home-section="finalCta" data-image-purpose="final-cta-texture" style={`--home-final-texture:url('${href(imageByPurpose['final-cta-texture'].localPath)}')`}>
     <div class="home-shell home-final-grid">
-      <img src={url(homepageMedia.ctaWorker)} alt="Renovation worker holding a project clipboard" width="442" height="546" loading="lazy" />
-      <div><p class="home-kicker">Start a conversation</p><h2>Need Renovation or Repair Work?</h2><p>{homeModel.closing}</p><div class="home-actions"><a class="home-button home-button-orange" href={url('/contact-us/')}>Get Free Quote <span aria-hidden="true">→</span></a><a class="home-button home-button-outline-light" href={contactDetails.whatsappHref}>Contact Us <span aria-hidden="true">→</span></a></div></div>
+      <img data-image-purpose="final-cta-worker" src={href(imageByPurpose['final-cta-worker'].localPath)} alt={imageByPurpose['final-cta-worker'].alt} width={imageByPurpose['final-cta-worker'].width} height={imageByPurpose['final-cta-worker'].height} loading="lazy" />
+      <div><h2>{finalCta.heading}</h2><p>{finalCta.paragraph}</p><div class="home-actions">{finalCta.buttons.map((button, index) => <a class:list={["home-button", index ? "home-button-outline-light" : "home-button-orange"]} href={href(button.href)}>{button.text} <span aria-hidden="true">→</span></a>)}</div></div>
     </div>
   </section>
+  <HomepageSlidersScript />
 </article>

@@ -14,13 +14,13 @@ Status: **PASSED**
 - Source-locked title, description, canonical, robots, Open Graph, Twitter and JSON-LD checks: PASS.
 - Single source H1 and important business content: PASS.
 - Six source-linked guides, source counters, four-step process and three source testimonials: PASS.
-- Enquiry preview is disabled and has no submit action: PASS.
+- Enquiry form is enabled and safely intercepted without an action: PASS.
 
 ## Automated review
 
-- Homepage checks: 67.
+- Homepage checks: 72.
 - Homepage failures: 0.
 - Broken internal links across the built site: 0.
 - Broken local images across the built site: 0.
-- Desktop/tablet/mobile evidence: `homepage-screenshots/homepage-desktop.png`, `homepage-tablet.png`, `homepage-mobile.png`.
+- Desktop/tablet/mobile evidence: `homepage-final-screenshots/homepage-desktop.png`, `homepage-tablet.png`, `homepage-mobile.png`.
 

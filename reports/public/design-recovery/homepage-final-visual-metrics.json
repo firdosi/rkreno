@@ -1,0 +1,53 @@
+{
+  "status": "PASSED",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "screenshot": "reports/public/design-recovery/homepage-final-screenshots/homepage-desktop.png",
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "sections": 8,
+      "featuredCards": 6,
+      "testimonials": 3,
+      "enabledFields": 9,
+      "heroImageVisible": true,
+      "formStatusVisible": true,
+      "outboundSubmitRequests": 0
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "screenshot": "reports/public/design-recovery/homepage-final-screenshots/homepage-tablet.png",
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "sections": 8,
+      "featuredCards": 6,
+      "testimonials": 3,
+      "enabledFields": 9,
+      "heroImageVisible": true
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "screenshot": "reports/public/design-recovery/homepage-final-screenshots/homepage-mobile.png",
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "sections": 8,
+      "featuredCards": 6,
+      "testimonials": 3,
+      "enabledFields": 9,
+      "heroImageVisible": true
+    }
+  ],
+  "failures": []
+}

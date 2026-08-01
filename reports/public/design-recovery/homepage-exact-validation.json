@@ -1,0 +1,956 @@
+{
+  "summary": {
+    "status": "PASSED",
+    "exactContentMatchCount": 46,
+    "missingSourceContentCount": 0,
+    "rewrittenSourceContentCount": 0,
+    "imagePurposeMatchCount": 15,
+    "documentedFallbackCount": 5,
+    "seoRegressionCount": 0,
+    "brokenLinkCount": 0,
+    "checks": 100,
+    "failures": 0
+  },
+  "checks": [
+    {
+      "group": "content",
+      "name": "section order",
+      "passed": true,
+      "actual": [
+        "hero",
+        "introduction",
+        "featuredArticles",
+        "whyChoose",
+        "process",
+        "enquiry",
+        "testimonials",
+        "finalCta"
+      ],
+      "expected": [
+        "hero",
+        "introduction",
+        "featuredArticles",
+        "whyChoose",
+        "process",
+        "enquiry",
+        "testimonials",
+        "finalCta"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "hero eyebrow",
+      "passed": true,
+      "actual": "RK Reno Solution",
+      "expected": "RK Reno Solution"
+    },
+    {
+      "group": "content",
+      "name": "hero H1",
+      "passed": true,
+      "actual": "Reliable Renovation Contractor in KL & Selangor",
+      "expected": "Reliable Renovation Contractor in KL & Selangor"
+    },
+    {
+      "group": "content",
+      "name": "hero paragraph",
+      "passed": true,
+      "actual": "Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish.",
+      "expected": "Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish."
+    },
+    {
+      "group": "content",
+      "name": "hero trust statement",
+      "passed": true,
+      "actual": "TRUSTED BY 1,250+ HAPPY CUSTOMERS",
+      "expected": "TRUSTED BY 1,250+ HAPPY CUSTOMERS"
+    },
+    {
+      "group": "content",
+      "name": "hero CTA text",
+      "passed": true,
+      "actual": [
+        "Our Services",
+        "Get Free Consultation"
+      ],
+      "expected": [
+        "Our Services",
+        "Get Free Consultation"
+      ]
+    },
+    {
+      "group": "links",
+      "name": "hero CTA destinations",
+      "passed": true,
+      "actual": [
+        "/services/",
+        "/contact-us/"
+      ],
+      "expected": [
+        "/services/",
+        "/contact-us/"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "introduction experience",
+      "passed": true,
+      "actual": "15+",
+      "expected": "15+"
+    },
+    {
+      "group": "content",
+      "name": "introduction experience label",
+      "passed": true,
+      "actual": "YEAR OF EXPERIENCE IN CONSTRUCTION",
+      "expected": "YEAR OF EXPERIENCE IN CONSTRUCTION"
+    },
+    {
+      "group": "content",
+      "name": "introduction heading",
+      "passed": true,
+      "actual": "Practical Renovation Solutions for Better Spaces",
+      "expected": "Practical Renovation Solutions for Better Spaces"
+    },
+    {
+      "group": "content",
+      "name": "introduction paragraph",
+      "passed": true,
+      "actual": "RK Reno Solution helps homeowners and business owners improve their spaces with renovation, repair, installation, and maintenance services. From site inspection to project completion, we focus on clear communication, practical solutions, and quality finishing.",
+      "expected": "RK Reno Solution helps homeowners and business owners improve their spaces with renovation, repair, installation, and maintenance services. From site inspection to project completion, we focus on clear communication, practical solutions, and quality finishing."
+    },
+    {
+      "group": "content",
+      "name": "introduction benefit titles",
+      "passed": true,
+      "actual": [
+        "Smart Work Planning",
+        "Skilled Service Team"
+      ],
+      "expected": [
+        "Smart Work Planning",
+        "Skilled Service Team"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "introduction benefit descriptions",
+      "passed": true,
+      "actual": [
+        "We review your space, understand your needs, and plan the work properly before starting, so the project stays clear and organized.",
+        "Our team handles renovation, waterproofing, plaster ceiling, aircond installation, and cleaning work with care and attention to detail."
+      ],
+      "expected": [
+        "We review your space, understand your needs, and plan the work properly before starting, so the project stays clear and organized.",
+        "Our team handles renovation, waterproofing, plaster ceiling, aircond installation, and cleaning work with care and attention to detail."
+      ]
+    },
+    {
+      "group": "content",
+      "name": "introduction CTA",
+      "passed": true,
+      "actual": "Discover More",
+      "expected": "Discover More"
+    },
+    {
+      "group": "content",
+      "name": "introduction phone prompt",
+      "passed": true,
+      "actual": "Have questions? Call Us:",
+      "expected": "Have questions? Call Us:"
+    },
+    {
+      "group": "content",
+      "name": "introduction phone",
+      "passed": true,
+      "actual": "+60 11 1133 4496",
+      "expected": "+60 11 1133 4496"
+    },
+    {
+      "group": "content",
+      "name": "featured heading",
+      "passed": true,
+      "actual": "Renovation, Repair & Installation Services in KL and Selangor",
+      "expected": "Renovation, Repair & Installation Services in KL and Selangor"
+    },
+    {
+      "group": "content",
+      "name": "featured card count",
+      "passed": true,
+      "actual": 6,
+      "expected": 6
+    },
+    {
+      "group": "content",
+      "name": "featured title order",
+      "passed": true,
+      "actual": [
+        "PU Injection Waterproofing KL: How to Fix Wall Cracks Permanently",
+        "Office Renovation Petaling Jaya: Corporate Fit-Out Experts",
+        "Waterproofing Contractor Kuala Lumpur: The Complete Guide to Stopping Leaks (2026)",
+        "Upah Pasang Aircond Selangor: Panduan Harga & Pemasangan (2026)",
+        "Pakej Deep Cleaning Rumah KL (Termasuk Pre-Hari Raya)",
+        "Commercial Retail Shop Renovation in Kuala Lumpur"
+      ],
+      "expected": [
+        "PU Injection Waterproofing KL: How to Fix Wall Cracks Permanently",
+        "Office Renovation Petaling Jaya: Corporate Fit-Out Experts",
+        "Waterproofing Contractor Kuala Lumpur: The Complete Guide to Stopping Leaks (2026)",
+        "Upah Pasang Aircond Selangor: Panduan Harga & Pemasangan (2026)",
+        "Pakej Deep Cleaning Rumah KL (Termasuk Pre-Hari Raya)",
+        "Commercial Retail Shop Renovation in Kuala Lumpur"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "featured date order",
+      "passed": true,
+      "actual": [
+        "Apr 04 2026",
+        "Apr 04 2026",
+        "Mar 28 2026",
+        "Mar 28 2026",
+        "Apr 04 2026",
+        "Apr 04 2026"
+      ],
+      "expected": [
+        "Apr 04 2026",
+        "Apr 04 2026",
+        "Mar 28 2026",
+        "Mar 28 2026",
+        "Apr 04 2026",
+        "Apr 04 2026"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "featured author order",
+      "passed": true,
+      "actual": [
+        "raoisrar",
+        "raoisrar",
+        "raoisrar",
+        "raoisrar",
+        "raoisrar",
+        "raoisrar"
+      ],
+      "expected": [
+        "raoisrar",
+        "raoisrar",
+        "raoisrar",
+        "raoisrar",
+        "raoisrar",
+        "raoisrar"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "featured comment labels",
+      "passed": true,
+      "actual": [
+        "No Comments",
+        "No Comments",
+        "No Comments",
+        "No Comments",
+        "No Comments",
+        "No Comments"
+      ],
+      "expected": [
+        "No Comments",
+        "No Comments",
+        "No Comments",
+        "No Comments",
+        "No Comments",
+        "No Comments"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "featured read-more labels",
+      "passed": true,
+      "actual": [
+        "Read more",
+        "Read more",
+        "Read more",
+        "Read more",
+        "Read more",
+        "Read more"
+      ],
+      "expected": [
+        "Read more",
+        "Read more",
+        "Read more",
+        "Read more",
+        "Read more",
+        "Read more"
+      ]
+    },
+    {
+      "group": "links",
+      "name": "featured destination order",
+      "passed": true,
+      "actual": [
+        "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+        "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+        "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+        "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+        "/commercial-retail-shop-renovation-in-kuala-lumpur/"
+      ],
+      "expected": [
+        "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+        "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+        "/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+        "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+        "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+        "/commercial-retail-shop-renovation-in-kuala-lumpur/"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "why heading",
+      "passed": true,
+      "actual": "Reliable Service for Homes, Offices & Commercial Spaces",
+      "expected": "Reliable Service for Homes, Offices & Commercial Spaces"
+    },
+    {
+      "group": "content",
+      "name": "why paragraph",
+      "passed": true,
+      "actual": "We understand that renovation work needs trust, planning, and proper finishing. RK Reno Solution helps you complete property improvement work with clear guidance, site checking, and practical service support from start to finish.",
+      "expected": "We understand that renovation work needs trust, planning, and proper finishing. RK Reno Solution helps you complete property improvement work with clear guidance, site checking, and practical service support from start to finish."
+    },
+    {
+      "group": "content",
+      "name": "why statistic values",
+      "passed": true,
+      "actual": [
+        "40+",
+        "95%",
+        "16"
+      ],
+      "expected": [
+        "40+",
+        "95%",
+        "16"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "why statistic labels",
+      "passed": true,
+      "actual": [
+        "Projects Completed",
+        "Customer Satisfaction",
+        "Service Areas Covered"
+      ],
+      "expected": [
+        "Projects Completed",
+        "Customer Satisfaction",
+        "Service Areas Covered"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "why benefit titles",
+      "passed": true,
+      "actual": [
+        "Local Service Experience",
+        "Clean & Careful Workmanship",
+        "Clear Communication"
+      ],
+      "expected": [
+        "Local Service Experience",
+        "Clean & Careful Workmanship",
+        "Clear Communication"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "why benefit descriptions",
+      "passed": true,
+      "actual": [
+        "We understand common renovation, leakage, ceiling, aircond, and cleaning needs for properties in Kuala Lumpur and Selangor.",
+        "We focus on proper finishing, practical material use, and work that matches your space, budget, and service requirement.",
+        "We keep customers updated about the work process, timeline, and next steps so the project stays smooth and easy to manage."
+      ],
+      "expected": [
+        "We understand common renovation, leakage, ceiling, aircond, and cleaning needs for properties in Kuala Lumpur and Selangor.",
+        "We focus on proper finishing, practical material use, and work that matches your space, budget, and service requirement.",
+        "We keep customers updated about the work process, timeline, and next steps so the project stays smooth and easy to manage."
+      ]
+    },
+    {
+      "group": "content",
+      "name": "process heading",
+      "passed": true,
+      "actual": "How We Handle Your Project",
+      "expected": "How We Handle Your Project"
+    },
+    {
+      "group": "content",
+      "name": "process paragraph",
+      "passed": true,
+      "actual": "We keep the process simple, clear, and organized so you know what to expect before the work begins.",
+      "expected": "We keep the process simple, clear, and organized so you know what to expect before the work begins."
+    },
+    {
+      "group": "content",
+      "name": "process central marker",
+      "passed": true,
+      "actual": "04STEPS",
+      "expected": "04STEPS"
+    },
+    {
+      "group": "content",
+      "name": "process numbers",
+      "passed": true,
+      "actual": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "expected": [
+        "01",
+        "02",
+        "03",
+        "04"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "process title order",
+      "passed": true,
+      "actual": [
+        "Inquiry & Consultation",
+        "Site Check & Quotation",
+        "Work Planning & Execution",
+        "Completion & Handover"
+      ],
+      "expected": [
+        "Inquiry & Consultation",
+        "Site Check & Quotation",
+        "Work Planning & Execution",
+        "Completion & Handover"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "process descriptions",
+      "passed": true,
+      "actual": [
+        "Contact us through call or WhatsApp and share your service requirement, location, photos, or basic project details.",
+        "We check the project details, understand the work needed, and provide a quotation based on the scope, materials, and timeline.",
+        "After confirmation, our team starts the work according to the agreed plan and keeps you updated during the process.",
+        "Once the work is completed, we review the finishing, clean the work area where needed, and hand over the completed project."
+      ],
+      "expected": [
+        "Contact us through call or WhatsApp and share your service requirement, location, photos, or basic project details.",
+        "We check the project details, understand the work needed, and provide a quotation based on the scope, materials, and timeline.",
+        "After confirmation, our team starts the work according to the agreed plan and keeps you updated during the process.",
+        "Once the work is completed, we review the finishing, clean the work area where needed, and hand over the completed project."
+      ]
+    },
+    {
+      "group": "content",
+      "name": "enquiry heading",
+      "passed": true,
+      "actual": "Get In Touch With Us",
+      "expected": "Get In Touch With Us"
+    },
+    {
+      "group": "content",
+      "name": "form label order",
+      "passed": true,
+      "actual": [
+        "Name*",
+        "Phone number*",
+        "Email*",
+        "Company Name",
+        "Project type*",
+        "Budget*",
+        "Write message...*",
+        "I have read the privacy statement and understand that my personal data will be processed for the purpose of providing the necessary information and assistance.*"
+      ],
+      "expected": [
+        "Name*",
+        "Phone number*",
+        "Email*",
+        "Company Name",
+        "Project type*",
+        "Budget*",
+        "Write message...*",
+        "I have read the privacy statement and understand that my personal data will be processed for the purpose of providing the necessary information and assistance.*"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "project options",
+      "passed": true,
+      "actual": [
+        "Project type*",
+        "Building Construction",
+        "Architecture Design",
+        "building renovation"
+      ],
+      "expected": [
+        "Project type*",
+        "Building Construction",
+        "Architecture Design",
+        "building renovation"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "submit label",
+      "passed": true,
+      "actual": "Submit",
+      "expected": "Submit"
+    },
+    {
+      "group": "interaction",
+      "name": "form enabled",
+      "passed": true,
+      "actual": 0,
+      "expected": 0
+    },
+    {
+      "group": "interaction",
+      "name": "form safe local interception",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "content",
+      "name": "testimonial heading",
+      "passed": true,
+      "actual": "What Customers Say About RK Reno Solution",
+      "expected": "What Customers Say About RK Reno Solution"
+    },
+    {
+      "group": "content",
+      "name": "testimonial unique DOM count",
+      "passed": true,
+      "actual": 3,
+      "expected": 3
+    },
+    {
+      "group": "content",
+      "name": "testimonial quote order",
+      "passed": true,
+      "actual": [
+        "We contacted RK Reno Solution for office improvement work. They understood our needs, gave practical suggestions, and completed the work with good communication.",
+        "The team handled our repair and installation work properly. They were easy to communicate with and helped us complete the job without unnecessary stress.",
+        "RK Reno Solution helped us with renovation work and explained the process clearly. The team was responsive, careful, and the final result looked clean and professional."
+      ],
+      "expected": [
+        "We contacted RK Reno Solution for office improvement work. They understood our needs, gave practical suggestions, and completed the work with good communication.",
+        "The team handled our repair and installation work properly. They were easy to communicate with and helped us complete the job without unnecessary stress.",
+        "RK Reno Solution helped us with renovation work and explained the process clearly. The team was responsive, careful, and the final result looked clean and professional."
+      ]
+    },
+    {
+      "group": "content",
+      "name": "testimonial name order",
+      "passed": true,
+      "actual": [
+        "Business Owner in Kuala Lumpur",
+        "Property Owner in KL",
+        "Homeowner in Selangor"
+      ],
+      "expected": [
+        "Business Owner in Kuala Lumpur",
+        "Property Owner in KL",
+        "Homeowner in Selangor"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "testimonial role order",
+      "passed": true,
+      "actual": [
+        "Office Renovation Client",
+        "Repair & Installation Client",
+        "Home Renovation Client"
+      ],
+      "expected": [
+        "Office Renovation Client",
+        "Repair & Installation Client",
+        "Home Renovation Client"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "final CTA heading",
+      "passed": true,
+      "actual": "Need Renovation or Repair Work?",
+      "expected": "Need Renovation or Repair Work?"
+    },
+    {
+      "group": "content",
+      "name": "final CTA paragraph",
+      "passed": true,
+      "actual": "Whether you need home renovation, office renovation, waterproofing, plaster ceiling, aircond installation, or cleaning services, RK Reno Solution is ready to help. Contact us today and share your project details.",
+      "expected": "Whether you need home renovation, office renovation, waterproofing, plaster ceiling, aircond installation, or cleaning services, RK Reno Solution is ready to help. Contact us today and share your project details."
+    },
+    {
+      "group": "seo",
+      "name": "title exact",
+      "passed": true,
+      "actual": "Home - RK Reno Solution",
+      "expected": "Home - RK Reno Solution"
+    },
+    {
+      "group": "seo",
+      "name": "description exact",
+      "passed": true,
+      "actual": "RK Reno Solution Reliable Renovation Contractor in KL & Selangor Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish. Our Services Get Free Consultation TRUSTED BY 1,250+ HAPPY CUSTOMERS 1",
+      "expected": "RK Reno Solution Reliable Renovation Contractor in KL & Selangor Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish. Our Services Get Free Consultation TRUSTED BY 1,250+ HAPPY CUSTOMERS 1"
+    },
+    {
+      "group": "seo",
+      "name": "canonical exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/",
+      "expected": "https://rkrenosolution.com/"
+    },
+    {
+      "group": "seo",
+      "name": "og:locale exact",
+      "passed": true,
+      "actual": "en_US",
+      "expected": "en_US"
+    },
+    {
+      "group": "seo",
+      "name": "og:site_name exact",
+      "passed": true,
+      "actual": "RK Reno Solution -",
+      "expected": "RK Reno Solution -"
+    },
+    {
+      "group": "seo",
+      "name": "og:type exact",
+      "passed": true,
+      "actual": "article",
+      "expected": "article"
+    },
+    {
+      "group": "seo",
+      "name": "og:title exact",
+      "passed": true,
+      "actual": "Home - RK Reno Solution",
+      "expected": "Home - RK Reno Solution"
+    },
+    {
+      "group": "seo",
+      "name": "og:description exact",
+      "passed": true,
+      "actual": "RK Reno Solution Reliable Renovation Contractor in KL & Selangor Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish. Our Services Get Free Consultation TRUSTED BY 1,250+ HAPPY CUSTOMERS 1",
+      "expected": "RK Reno Solution Reliable Renovation Contractor in KL & Selangor Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish. Our Services Get Free Consultation TRUSTED BY 1,250+ HAPPY CUSTOMERS 1"
+    },
+    {
+      "group": "seo",
+      "name": "og:url exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/",
+      "expected": "https://rkrenosolution.com/"
+    },
+    {
+      "group": "seo",
+      "name": "og:image exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+      "expected": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png"
+    },
+    {
+      "group": "seo",
+      "name": "og:image:secure_url exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+      "expected": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png"
+    },
+    {
+      "group": "seo",
+      "name": "og:image:width exact",
+      "passed": true,
+      "actual": "1575",
+      "expected": "1575"
+    },
+    {
+      "group": "seo",
+      "name": "og:image:height exact",
+      "passed": true,
+      "actual": "483",
+      "expected": "483"
+    },
+    {
+      "group": "seo",
+      "name": "twitter:card exact",
+      "passed": true,
+      "actual": "summary_large_image",
+      "expected": "summary_large_image"
+    },
+    {
+      "group": "seo",
+      "name": "twitter:title exact",
+      "passed": true,
+      "actual": "Home - RK Reno Solution",
+      "expected": "Home - RK Reno Solution"
+    },
+    {
+      "group": "seo",
+      "name": "twitter:description exact",
+      "passed": true,
+      "actual": "RK Reno Solution Reliable Renovation Contractor in KL & Selangor Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish. Our Services Get Free Consultation TRUSTED BY 1,250+ HAPPY CUSTOMERS 1",
+      "expected": "RK Reno Solution Reliable Renovation Contractor in KL & Selangor Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish. Our Services Get Free Consultation TRUSTED BY 1,250+ HAPPY CUSTOMERS 1"
+    },
+    {
+      "group": "seo",
+      "name": "twitter:image exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+      "expected": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png"
+    },
+    {
+      "group": "seo",
+      "name": "JSON-LD exact",
+      "passed": true,
+      "actual": "[{\"@context\":\"https://schema.org\",\"@graph\":[{\"@id\":\"https://rkrenosolution.com/#breadcrumblist\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@id\":\"https://rkrenosolution.com#listItem\",\"@type\":\"ListItem\",\"name\":\"Home\",\"position\":1}]},{\"@id\":\"https://rkrenosolution.com/#organization\",\"@type\":\"Organization\",\"image\":{\"@id\":\"https://rkrenosolution.com/#organizationLogo\"},\"logo\":{\"@id\":\"https://rkrenosolution.com/#organizationLogo\",\"@type\":\"ImageObject\",\"height\":483,\"url\":\"https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png\",\"width\":1575},\"name\":\"RK Reno Solution\",\"url\":\"https://rkrenosolution.com/\"},{\"@id\":\"https://rkrenosolution.com/#webpage\",\"@type\":\"WebPage\",\"breadcrumb\":{\"@id\":\"https://rkrenosolution.com/#breadcrumblist\"},\"dateModified\":\"2026-05-21T12:12:21+00:00\",\"datePublished\":\"2025-03-26T02:58:50+00:00\",\"description\":\"RK Reno Solution Reliable Renovation Contractor in KL & Selangor Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish. Our Services Get Free Consultation TRUSTED BY 1,250+ HAPPY CUSTOMERS 1\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https://rkrenosolution.com/#website\"},\"name\":\"Home - RK Reno Solution\",\"url\":\"https://rkrenosolution.com/\"},{\"@id\":\"https://rkrenosolution.com/#website\",\"@type\":\"WebSite\",\"inLanguage\":\"en-US\",\"name\":\"RK Reno Solution\",\"publisher\":{\"@id\":\"https://rkrenosolution.com/#organization\"},\"url\":\"https://rkrenosolution.com/\"}]}]",
+      "expected": "[{\"@context\":\"https://schema.org\",\"@graph\":[{\"@id\":\"https://rkrenosolution.com/#breadcrumblist\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@id\":\"https://rkrenosolution.com#listItem\",\"@type\":\"ListItem\",\"name\":\"Home\",\"position\":1}]},{\"@id\":\"https://rkrenosolution.com/#organization\",\"@type\":\"Organization\",\"image\":{\"@id\":\"https://rkrenosolution.com/#organizationLogo\"},\"logo\":{\"@id\":\"https://rkrenosolution.com/#organizationLogo\",\"@type\":\"ImageObject\",\"height\":483,\"url\":\"https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png\",\"width\":1575},\"name\":\"RK Reno Solution\",\"url\":\"https://rkrenosolution.com/\"},{\"@id\":\"https://rkrenosolution.com/#webpage\",\"@type\":\"WebPage\",\"breadcrumb\":{\"@id\":\"https://rkrenosolution.com/#breadcrumblist\"},\"dateModified\":\"2026-05-21T12:12:21+00:00\",\"datePublished\":\"2025-03-26T02:58:50+00:00\",\"description\":\"RK Reno Solution Reliable Renovation Contractor in KL & Selangor Transform your home, office, or commercial space with RK Reno Solution. We provide renovation, waterproofing, plaster ceiling, aircond installation, and cleaning services with practical planning, skilled workmanship, and clear communication from start to finish. Our Services Get Free Consultation TRUSTED BY 1,250+ HAPPY CUSTOMERS 1\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https://rkrenosolution.com/#website\"},\"name\":\"Home - RK Reno Solution\",\"url\":\"https://rkrenosolution.com/\"},{\"@id\":\"https://rkrenosolution.com/#website\",\"@type\":\"WebSite\",\"inLanguage\":\"en-US\",\"name\":\"RK Reno Solution\",\"publisher\":{\"@id\":\"https://rkrenosolution.com/#organization\"},\"url\":\"https://rkrenosolution.com/\"}]}]"
+    },
+    {
+      "group": "seo",
+      "name": "staging robots safety exclusion",
+      "passed": true,
+      "actual": "noindex, nofollow",
+      "expected": "noindex, nofollow"
+    },
+    {
+      "group": "images",
+      "name": "hero-building",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "hero-building local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "introduction-worker",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "introduction-worker local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "introduction-support",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "introduction-support local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "featured-background",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "featured-background local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "why-choose-building",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "why-choose-building local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "enquiry-building",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "enquiry-building local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "testimonial-construction",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "testimonial-construction local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "final-cta-worker",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "final-cta-worker local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "final-cta-texture",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "final-cta-texture local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "article-pu-injection",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "article-pu-injection local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "article-office-petaling-jaya",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "article-office-petaling-jaya local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "article-waterproofing-guide",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "article-waterproofing-guide local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "article-aircond-selangor",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "article-aircond-selangor local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "article-deep-cleaning",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "article-deep-cleaning local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "images",
+      "name": "article-commercial-retail",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "article-commercial-retail local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "content",
+      "name": "no rewritten substitute copy",
+      "passed": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "group": "interaction",
+      "name": "featured slider has no autoplay",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    }
+  ]
+}
