@@ -1,16 +1,27 @@
 ---
-import LockedHero from '../LockedHero.astro';
-import LockedContentSections from '../LockedContentSections.astro';
-import { prepareLockedPage } from '../locked-page-data';
-const { record, page } = Astro.props as any;
-const data = prepareLockedPage(record, page);
+import RecoveryHero from '../../core-recovery/RecoveryHero.astro';
+import RecoverySectionHeading from '../../core-recovery/RecoverySectionHeading.astro';
+import DisabledEnquiryForm from '../../core-recovery/DisabledEnquiryForm.astro';
+import RecoveryCta from '../../core-recovery/RecoveryCta.astro';
+import { contactDetails, coreMedia, relatedServiceLinks } from '../../../data/core-page-design';
+const { record } = Astro.props as any;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<article class="source-locked-page locked-contact-page" data-locked-template="contact">
-  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="Talk to our team" compact />
-  <section class="locked-contact-actions" aria-label="Contact options"><div class="locked-wrap">
-    <a href="tel:+601111334496"><span>Call</span><strong>+60 11 1133 4496</strong></a>
-    <a href="https://wa.me/601111334496"><span>WhatsApp</span><strong>Start a conversation</strong></a>
-    <a href="mailto:rkrenosolution@gmail.com"><span>Email</span><strong>rkrenosolution@gmail.com</strong></a>
+<article class="source-locked-page recovery-page recovery-contact" data-locked-template="contact">
+  <RecoveryHero eyebrow="Talk to RK Reno" title={record.content.h1} lead={record.content.paragraphs[0]} image={coreMedia.planningWide} alt="Renovation plans ready for a project discussion" compact />
+  <section class="recovery-section recovery-contact-options"><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="Contact options" title="Choose the easiest way to reach the team" lead="Share the location, required service and any useful photos when requesting a quotation." />
+    <div class="recovery-contact-grid">
+      <a href={contactDetails.phoneHref}><span>Call</span><strong>{contactDetails.phone}</strong><small>Speak with RK Reno</small></a>
+      <a href={contactDetails.whatsappHref}><span>WhatsApp</span><strong>Start a project conversation</strong><small>Send location and photos</small></a>
+      <a href={contactDetails.emailHref}><span>Email</span><strong>{contactDetails.email}</strong><small>Send written project details</small></a>
+    </div>
   </div></section>
-  <div class="source-locked-body locked-contact-body"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="contact" /></div>
+  <section class="recovery-section recovery-contact-location"><div class="recovery-wrap">
+    <div><RecoverySectionHeading eyebrow="Address & coverage" title="Based in Setapak, serving KL and Selangor" lead="Contact the team to confirm availability for your exact project location." /><address>{contactDetails.address}</address><div class="recovery-area-chips"><span>Kuala Lumpur</span><span>Selangor</span><span>Setapak</span><span>Nearby areas by enquiry</span></div></div>
+    <img src={`${base}${coreMedia.areas}`} alt="RK Reno service coverage in Kuala Lumpur and Selangor" width="1200" height="896" loading="lazy" />
+  </div></section>
+  <section class="recovery-section recovery-form-section"><div class="recovery-wrap"><DisabledEnquiryForm /></div></section>
+  <nav class="recovery-section recovery-related-services" aria-label="Related services"><div class="recovery-wrap"><RecoverySectionHeading eyebrow="Explore before enquiring" title="Review a relevant service" /> <div>{relatedServiceLinks.map(([href, label]) => <a href={`${base}${href}`}>{label}<span aria-hidden="true">→</span></a>)}</div></div></nav>
+  <RecoveryCta title="Prefer to speak directly?" text="Call or WhatsApp RK Reno using the contact details above. The staging form remains disabled and sends no information." />
 </article>

@@ -1,11 +1,29 @@
 ---
-import LockedHero from '../LockedHero.astro';
-import LockedContentSections from '../LockedContentSections.astro';
-import { prepareLockedPage } from '../locked-page-data';
-const { record, page } = Astro.props as any;
-const data = prepareLockedPage(record, page);
+import RecoveryHero from '../../core-recovery/RecoveryHero.astro';
+import RecoverySectionHeading from '../../core-recovery/RecoverySectionHeading.astro';
+import RecoveryCta from '../../core-recovery/RecoveryCta.astro';
+import { aboutModel, coreMedia } from '../../../data/core-page-design';
+const { record } = Astro.props as any;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<article class="source-locked-page locked-about-page" data-locked-template="about">
-  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="RK Reno Solution" />
-  <div class="source-locked-body"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="about" /></div>
+<article class="source-locked-page recovery-page recovery-about" data-locked-template="about">
+  <RecoveryHero eyebrow="About RK Reno Solution" title={record.content.h1} lead={aboutModel.introduction} image={coreMedia.planning} alt="Contractor reviewing renovation plans" compact />
+  <section class="recovery-section recovery-about-values"><div class="recovery-wrap">
+    <article><p class="recovery-eyebrow">Our mission</p><h2>Simple, clear renovation support</h2><p>{aboutModel.mission}</p></article>
+    <article><p class="recovery-eyebrow">Core values</p><h2>Care for the work and the property</h2><p>{aboutModel.values}</p></article>
+  </div></section>
+  <section class="recovery-section recovery-split"><div class="recovery-wrap">
+    <img src={`${base}${coreMedia.planningWide}`} alt="Renovation planning and project drawings" width="1200" height="896" loading="lazy" />
+    <div><RecoverySectionHeading eyebrow="How projects are handled" title="Understand the space before work begins" lead={aboutModel.approach} /><ul class="recovery-check-list"><li>Understand the requested outcome</li><li>Review visible site conditions</li><li>Clarify the quotation scope</li><li>Plan access and work sequence</li></ul></div>
+  </div></section>
+  <section class="recovery-section recovery-expertise"><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="Service expertise" title="Practical support across property work" lead="RK Reno handles connected renovation, installation, repair and maintenance enquiries." />
+    <div class="recovery-expertise-grid">{aboutModel.expertise.map(([title, text, href], index) => <a href={`${base}${href}`}><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p><b>View service →</b></a>)}</div>
+  </div></section>
+  <section class="recovery-section recovery-communication"><div class="recovery-wrap">
+    <div><RecoverySectionHeading eyebrow="Communication & quotation" title="Know what is being discussed before work starts" lead="Every project starts with understanding the customer’s space, budget, and service needs. The quotation should make the planned scope and site-dependent items clear." /></div>
+    <img src={`${base}${coreMedia.contractor}`} alt="RK Reno contractor reviewing project information" width="896" height="1200" loading="lazy" />
+  </div></section>
+  <section class="recovery-section recovery-coverage"><div class="recovery-wrap"><RecoverySectionHeading eyebrow="Operating areas" title="Kuala Lumpur and Selangor coverage" lead={aboutModel.coverage} align="center" /><div class="recovery-area-chips recovery-area-chips-center"><span>Kuala Lumpur</span><span>Selangor</span><span>Setapak</span><span>Nearby areas by enquiry</span></div></div></section>
+  <RecoveryCta title="Planning renovation, repair or installation work?" text="Contact RK Reno Solution and share the property location, required service and any useful project photos." />
 </article>

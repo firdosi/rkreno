@@ -1,20 +1,20 @@
 ---
-import LockedHero from '../LockedHero.astro';
-import LockedContentSections from '../LockedContentSections.astro';
-import { cardFromRecord, prepareLockedPage, SERVICE_ROUTES } from '../locked-page-data';
-const { record, page, allRecords, pageByRoute } = Astro.props as any;
-const data = prepareLockedPage(record, page);
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const cards = allRecords.filter((item: any) => SERVICE_ROUTES.has(item.route)).map((item: any) => cardFromRecord(item, pageByRoute));
+import RecoveryHero from '../../core-recovery/RecoveryHero.astro';
+import RecoverySectionHeading from '../../core-recovery/RecoverySectionHeading.astro';
+import RecoveryServiceCard from '../../core-recovery/RecoveryServiceCard.astro';
+import RecoveryCta from '../../core-recovery/RecoveryCta.astro';
+import { cardFromRecord } from '../locked-page-data';
+import { coreMedia, serviceGroups, serviceMediaByRoute } from '../../../data/core-page-design';
+const { record, allRecords, pageByRoute } = Astro.props as any;
+const recordByRoute = new Map(allRecords.map((item: any) => [item.route, item]));
+const card = (route: string) => cardFromRecord(recordByRoute.get(route), pageByRoute);
 ---
-<article class="source-locked-page locked-services-hub" data-locked-template="services-hub">
-  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="Services across KL & Selangor" compact />
-  <section class="locked-directory" aria-labelledby="service-directory-title"><div class="locked-wrap">
-    <p class="locked-eyebrow">Service directory</p><h2 id="service-directory-title">Choose the right team for your space</h2>
-    <div class="locked-directory-grid">{cards.map((card: any) => <a class="locked-directory-card" href={`${base}${card.route}`}>
-      {card.image ? <img src={`${base}${card.image}`} alt={card.alt} width="720" height="480" loading="lazy" /> : <span class="locked-card-mark" aria-hidden="true">RK</span>}
-      <span class="locked-directory-copy"><strong>{card.title}</strong><span>{card.description}</span><small>View service <span aria-hidden="true">→</span></small></span>
-    </a>)}</div>
-  </div></section>
-  <div class="source-locked-body locked-hub-source"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="hub" /></div>
+<article class="source-locked-page recovery-page recovery-services-page" data-locked-template="services-hub">
+  <RecoveryHero eyebrow="Services across KL & Selangor" title={record.content.h1} lead={record.content.paragraphs[0]} image={coreMedia.commercial} alt="Renovation contractor working on a commercial property" compact />
+  <section class="recovery-section recovery-service-intro"><div class="recovery-wrap"><RecoverySectionHeading eyebrow="Complete service directory" title="Find the right service for your space" lead={record.content.paragraphs[1]} align="center" /></div></section>
+  {serviceGroups.map((group, index) => <section class:list={['recovery-section', 'recovery-service-group', { 'recovery-section-warm': index % 2 === 1 }]}><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="Service category" title={group.title} />
+    <div class="recovery-service-grid">{group.routes.map((route) => { const item = card(route); return <RecoveryServiceCard card={item} image={serviceMediaByRoute[route]} />; })}</div>
+  </div></section>)}
+  <RecoveryCta title="Not sure which service fits your project?" text="Share the property location, photos and required outcome so RK Reno can guide you toward the relevant service and quotation process." />
 </article>

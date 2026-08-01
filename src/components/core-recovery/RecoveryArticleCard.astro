@@ -1,0 +1,14 @@
+---
+const { article, image, featured = false } = Astro.props as any;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const date = article.date ? new Date(article.date).toLocaleDateString('en-MY', { year: 'numeric', month: 'short', day: 'numeric' }) : '';
+---
+<a class:list={['recovery-article-card', { 'recovery-article-featured': featured }]} href={`${base}${article.route}`}>
+  <img src={`${base}${image}`} alt={`${article.title} guide`} width="900" height="600" loading={featured ? 'eager' : 'lazy'} />
+  <span class="recovery-article-copy">
+    <small>{article.category || 'RK Reno guide'}{date && ` · ${date}`}</small>
+    <strong>{article.title}</strong>
+    <span>{article.description}</span>
+    <b>Read guide <span aria-hidden="true">→</span></b>
+  </span>
+</a>

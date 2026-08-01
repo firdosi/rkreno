@@ -1,11 +1,17 @@
 ---
-import LockedHero from '../LockedHero.astro';
-import LockedContentSections from '../LockedContentSections.astro';
-import { prepareLockedPage } from '../locked-page-data';
-const { record, page } = Astro.props as any;
-const data = prepareLockedPage(record, page);
+import RecoveryHero from '../../core-recovery/RecoveryHero.astro';
+import RecoverySectionHeading from '../../core-recovery/RecoverySectionHeading.astro';
+import RecoveryCta from '../../core-recovery/RecoveryCta.astro';
+import { coreMedia, faqGroups, relatedServiceLinks } from '../../../data/core-page-design';
+const { record } = Astro.props as any;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<article class="source-locked-page locked-faq-page" data-locked-template="faq">
-  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="Questions before your project" compact />
-  <div class="source-locked-body locked-faq-body"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="faq" /></div>
+<article class="source-locked-page recovery-page recovery-faq" data-locked-template="faq">
+  <RecoveryHero eyebrow="Project questions" title={record.content.h1} lead="Clear starting points for renovation planning, quotations and site requirements." image={coreMedia.faq} alt="Frequently asked questions about RK Reno services" compact />
+  <section class="recovery-section recovery-faq-groups"><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="Answers before you begin" title="Plan the next conversation with confidence" lead="Project details vary by property, access, materials and work scope. Use these answers as a practical starting point." />
+    <div class="recovery-faq-grid">{faqGroups.map((group) => <section><h2>{group.topic}</h2>{group.items.map(([question, answer]) => <details><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</section>)}</div>
+  </div></section>
+  <nav class="recovery-section recovery-related-services recovery-section-warm" aria-label="Related services"><div class="recovery-wrap"><RecoverySectionHeading eyebrow="Related services" title="Continue with the right project page" /><div>{relatedServiceLinks.map(([href, label]) => <a href={`${base}${href}`}>{label}<span aria-hidden="true">→</span></a>)}</div></div></nav>
+  <RecoveryCta title="Couldn’t find your answer?" text="Contact RK Reno with the property location and required work. The team can clarify the next step for a site review or quotation." />
 </article>

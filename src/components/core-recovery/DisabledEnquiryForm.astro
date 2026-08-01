@@ -1,0 +1,15 @@
+---
+const services = ['Home renovation', 'Office renovation', 'Aircond installation or service', 'Electrical services', 'Waterproofing', 'Plaster ceiling', 'Cleaning', 'Demolition or site preparation', 'Other property work'];
+---
+<form class="recovery-form" aria-labelledby="enquiry-preview-title" data-disabled-enquiry-form>
+  <div class="recovery-form-heading"><p class="recovery-eyebrow">Enquiry preview</p><h2 id="enquiry-preview-title">Share your project details</h2><p>This staging form is a visual preview and cannot send information. Contact RK Reno by WhatsApp, phone or email.</p></div>
+  <div class="recovery-form-grid">
+    <label><span>Full Name</span><input type="text" name="name" autocomplete="name" placeholder="Your full name" disabled /></label>
+    <label><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="you@example.com" disabled /></label>
+    <label><span>Phone Number</span><input type="tel" name="phone" autocomplete="tel" placeholder="+60" disabled /></label>
+    <label><span>Service</span><select name="service" disabled><option value="">Choose a service</option>{services.map((service) => <option>{service}</option>)}</select></label>
+    <label class="recovery-form-wide"><span>Project Details</span><textarea name="details" rows="5" placeholder="Location, property type and required work" disabled></textarea></label>
+    <label class="recovery-form-consent"><input type="checkbox" name="consent" disabled /><span>I understand this preview does not submit or store information.</span></label>
+    <button type="submit" disabled>Preview only — message not sent</button>
+  </div>
+</form>

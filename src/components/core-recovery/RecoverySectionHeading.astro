@@ -1,0 +1,8 @@
+---
+const { eyebrow, title, lead = '', align = 'left' } = Astro.props;
+---
+<header class:list={['recovery-heading', `recovery-heading-${align}`]}>
+  <p class="recovery-eyebrow">{eyebrow}</p>
+  <h2>{title}</h2>
+  {lead && <p>{lead}</p>}
+</header>

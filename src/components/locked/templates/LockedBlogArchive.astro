@@ -1,25 +1,23 @@
 ---
-import LockedHero from '../LockedHero.astro';
-import LockedContentSections from '../LockedContentSections.astro';
-import { cardFromRecord, prepareLockedPage, ARTICLE_ROUTES } from '../locked-page-data';
-const { record, page, allRecords, pageByRoute } = Astro.props as any;
-const data = prepareLockedPage(record, page);
+import RecoveryHero from '../../core-recovery/RecoveryHero.astro';
+import RecoverySectionHeading from '../../core-recovery/RecoverySectionHeading.astro';
+import RecoveryArticleCard from '../../core-recovery/RecoveryArticleCard.astro';
+import RecoveryCta from '../../core-recovery/RecoveryCta.astro';
+import { ARTICLE_ROUTES, cardFromRecord } from '../locked-page-data';
+import { blogMediaByRoute, coreMedia, relatedServiceLinks } from '../../../data/core-page-design';
+const { record, allRecords, pageByRoute } = Astro.props as any;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const articles = allRecords.filter((item: any) => ARTICLE_ROUTES.has(item.route)).map((item: any) => cardFromRecord(item, pageByRoute));
-const featured = articles[0];
+const records = new Map(allRecords.map((item: any) => [item.route, item]));
+const articles = [...ARTICLE_ROUTES].map((route) => cardFromRecord(records.get(route), pageByRoute));
+const [featured, ...rest] = articles;
 ---
-<article class="source-locked-page locked-blog-archive" data-locked-template="blog-archive">
-  <LockedHero title={data.heroTitle} lead={data.lead} image={featured?.image || data.heroImage} alt={featured?.alt || data.heroAlt} eyebrow="Renovation & property guides" compact />
-  {featured && <section class="locked-featured-article"><div class="locked-wrap"><a href={`${base}${featured.route}`}>
-    {featured.image && <img src={`${base}${featured.image}`} alt={featured.alt} width="960" height="640" />}
-    <span><small>Latest guide</small><strong>{featured.title}</strong><span>{featured.description}</span><b>Read the guide →</b></span>
-  </a></div></section>}
-  <section class="locked-article-catalog" aria-labelledby="article-catalog-title"><div class="locked-wrap">
-    <p class="locked-eyebrow">Knowledge centre</p><h2 id="article-catalog-title">Practical guides for better project decisions</h2>
-    <div class="locked-article-grid">{articles.map((article: any) => <a class="locked-article-card" href={`${base}${article.route}`}>
-      {article.image && <img src={`${base}${article.image}`} alt={article.alt} width="720" height="480" loading="lazy" />}
-      <span><small>{article.category || 'RK Reno guide'}{article.date && ` · ${new Date(article.date).toLocaleDateString('en-MY', { year: 'numeric', month: 'short', day: 'numeric' })}`}</small><strong>{article.title}</strong><span>{article.description}</span><b>Read article →</b></span>
-    </a>)}</div>
+<article class="source-locked-page recovery-page recovery-blog" data-locked-template="blog-archive">
+  <RecoveryHero eyebrow="Renovation & property guides" title={record.content.h1} lead="Practical reading about renovation planning, aircond work, waterproofing, electrical services, ceilings and property care." image={coreMedia.contractor} alt="RK Reno contractor reviewing renovation work" compact />
+  <section class="recovery-section recovery-blog-featured"><div class="recovery-wrap"><RecoverySectionHeading eyebrow="Featured guide" title="Start with a practical project overview" /> <RecoveryArticleCard article={featured} image={blogMediaByRoute[featured.route]} featured /></div></section>
+  <section class="recovery-section recovery-blog-catalog recovery-section-warm"><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="All guides" title="Research the work before requesting a quotation" lead="Browse all fourteen RK Reno articles by service topic and project need." />
+    <div class="recovery-article-grid">{rest.map((article) => <RecoveryArticleCard article={article} image={blogMediaByRoute[article.route]} />)}</div>
   </div></section>
-  <div class="source-locked-body locked-blog-source"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="blog" /></div>
+  <nav class="recovery-section recovery-related-services" aria-label="Related services"><div class="recovery-wrap"><RecoverySectionHeading eyebrow="From guide to service" title="Explore the relevant service pages" /><div>{relatedServiceLinks.map(([href, label]) => <a href={`${base}${href}`}>{label}<span aria-hidden="true">→</span></a>)}</div></div></nav>
+  <RecoveryCta title="Ready to discuss the actual property?" text="Articles provide general guidance. Share the site location, photos and required work for a project-specific discussion and quotation." />
 </article>

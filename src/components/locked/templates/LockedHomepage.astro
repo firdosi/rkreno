@@ -1,28 +1,49 @@
 ---
-import LockedHero from '../LockedHero.astro';
-import LockedContentSections from '../LockedContentSections.astro';
-import { cardFromRecord, prepareLockedPage, SERVICE_ROUTES } from '../locked-page-data';
-const { record, page, allRecords, pageByRoute } = Astro.props as any;
-const data = prepareLockedPage(record, page);
+import RecoveryHero from '../../core-recovery/RecoveryHero.astro';
+import RecoverySectionHeading from '../../core-recovery/RecoverySectionHeading.astro';
+import RecoveryServiceCard from '../../core-recovery/RecoveryServiceCard.astro';
+import RecoveryArticleCard from '../../core-recovery/RecoveryArticleCard.astro';
+import RecoveryCta from '../../core-recovery/RecoveryCta.astro';
+import { ARTICLE_ROUTES, cardFromRecord } from '../locked-page-data';
+import { blogMediaByRoute, coreMedia, homeModel, serviceMediaByRoute } from '../../../data/core-page-design';
+const { record, allRecords, pageByRoute } = Astro.props as any;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const priority = ['/aircond-installation-kl/', '/house-renovation-in-kuala-lumpur/', '/demolition-contractor-kl-selangor/'];
-const cards = priority.map((route) => allRecords.find((item: any) => item.route === route)).filter(Boolean)
-  .map((item: any) => cardFromRecord(item, pageByRoute));
-const serviceLinks = allRecords.filter((item: any) => SERVICE_ROUTES.has(item.route)).slice(0, 8);
+const recordByRoute = new Map(allRecords.map((item: any) => [item.route, item]));
+const card = (route: string) => cardFromRecord(recordByRoute.get(route), pageByRoute);
+const priority = homeModel.priorityRoutes.map(card);
+const services = homeModel.serviceRoutes.map(card);
+const guides = [...ARTICLE_ROUTES].slice(0, 3).map(card);
 ---
-<article class="source-locked-page locked-homepage" data-locked-template="homepage">
-  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="Renovation · Aircond · Property Services" />
-  <section class="locked-home-priority" aria-labelledby="priority-services">
-    <div class="locked-wrap">
-      <p class="locked-eyebrow">Start with your project</p><h2 id="priority-services">Priority services</h2>
-      <div class="locked-feature-grid">{cards.map((card: any) => <a class="locked-feature-card" href={`${base}${card.route}`}>
-        {card.image && <img src={`${base}${card.image}`} alt={card.alt} width="720" height="480" loading="lazy" />}
-        <span><strong>{card.title}</strong><small>Explore service</small></span>
-      </a>)}</div>
-    </div>
-  </section>
-  <div class="source-locked-body"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="home" /></div>
-  <nav class="locked-service-ribbon" aria-label="Main services"><div class="locked-wrap">
-    {serviceLinks.map((item: any) => <a href={`${base}${item.route}`}>{item.content.h1}</a>)}
-  </div></nav>
+<article class="source-locked-page recovery-page recovery-home" data-locked-template="homepage">
+  <RecoveryHero eyebrow="Renovation · Aircond · Property Services" title={record.content.h1} lead={record.content.paragraphs[0]} image={coreMedia.contractor} alt="RK Reno contractor reviewing a renovation project" />
+  <section class="recovery-section recovery-priority"><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="Priority services" title="Start with the work your property needs" lead="Direct access to RK Reno’s main aircond, renovation and site-preparation services." />
+    <div class="recovery-priority-grid">{priority.map((item: any) => <RecoveryServiceCard card={item} image={serviceMediaByRoute[item.route]} action="Explore service" />)}</div>
+  </div></section>
+  <section class="recovery-section recovery-services"><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="Property services" title="Renovation, repair and installation support" lead="Choose a service to review the scope, pricing information and quotation approach for Kuala Lumpur and Selangor." />
+    <div class="recovery-service-grid">{services.map((item: any) => <RecoveryServiceCard card={item} image={serviceMediaByRoute[item.route]} />)}</div>
+    <a class="recovery-text-link" href={`${base}/services/`}>View the complete service directory <span aria-hidden="true">→</span></a>
+  </div></section>
+  <section class="recovery-section recovery-split"><div class="recovery-wrap">
+    <img src={`${base}${coreMedia.building}`} alt="Modern building renovation and property improvement" width="1200" height="896" loading="lazy" />
+    <div><RecoverySectionHeading eyebrow="Practical renovation support" title="Better spaces start with a clear plan" lead={homeModel.introduction} /><a class="recovery-text-link" href={`${base}/about-us/`}>Learn about RK Reno <span aria-hidden="true">→</span></a></div>
+  </div></section>
+  <section class="recovery-section recovery-benefits"><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="Why RK Reno" title="Clear guidance from first conversation to handover" lead="Renovation work needs trust, planning and proper finishing. RK Reno focuses on practical service support from start to finish." align="center" />
+    <div class="recovery-benefit-grid">{homeModel.benefits.map(([title, text], index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+  </div></section>
+  <section class="recovery-section recovery-process"><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="Work process" title="A simple, organised project sequence" lead="We keep the process simple, clear, and organized so you know what to expect before the work begins." />
+    <ol>{homeModel.process.map(([number, title, text]) => <li><strong>{number}</strong><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol>
+  </div></section>
+  <section class="recovery-section recovery-split recovery-split-reverse"><div class="recovery-wrap">
+    <img src={`${base}${coreMedia.areas}`} alt="RK Reno service areas across Kuala Lumpur and Selangor" width="1200" height="896" loading="lazy" />
+    <div><RecoverySectionHeading eyebrow="Service areas" title="Kuala Lumpur, Selangor and nearby locations" lead="Share the exact address and requested work so the team can confirm service availability for your area." /><div class="recovery-area-chips"><span>Kuala Lumpur</span><span>Selangor</span><span>Setapak</span><span>Klang Valley enquiries</span></div></div>
+  </div></section>
+  <section class="recovery-section recovery-guides"><div class="recovery-wrap">
+    <RecoverySectionHeading eyebrow="Project guides" title="Useful reading before you request a quotation" lead="Explore practical aircond, renovation and property-service guidance from RK Reno." />
+    <div class="recovery-article-grid recovery-article-grid-three">{guides.map((guide: any) => <RecoveryArticleCard article={guide} image={blogMediaByRoute[guide.route]} />)}</div>
+  </div></section>
+  <RecoveryCta title="Need renovation or repair work?" text={homeModel.closing} />
 </article>
