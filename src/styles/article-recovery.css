@@ -83,6 +83,7 @@
   .article-recovery-takeaways ul { grid-template-columns: 1fr; }
 }
 @media (max-width: 600px) {
+  .article-recovery-page { max-width: 100%; overflow-x: clip; }
   .article-recovery-hero-copy { padding: 48px 20px; }
   .article-recovery-hero h1 { font-size: clamp(2.25rem, 11vw, 3.2rem); }
   .article-recovery-lead { font-size: 1.05rem; }
@@ -95,6 +96,8 @@
   .article-recovery-source-paragraph { font-size: 1.0625rem; line-height: 1.78; }
   .article-recovery-source-image { width: calc(100vw - 28px); }
   .article-recovery-section-pricing .article-recovery-section-inner, .article-recovery-section-process .article-recovery-section-inner { padding: 28px 20px; }
+  .article-recovery-section-inner, .article-recovery-source-table { min-width: 0; }
+  .article-recovery-source-table { width: 100%; box-sizing: border-box; }
   .article-recovery-service-cta, .article-recovery-final-cta { width: calc(100% - 28px); margin-top: 30px; padding: 30px 22px; border-radius: 18px; align-items: stretch; flex-direction: column; }
   .article-recovery-service-cta a, .article-recovery-final-cta a { width: 100%; text-align: center; }
   .article-recovery-related { width: calc(100% - 28px); margin-block: 62px; }
