@@ -27,7 +27,7 @@ import LockedContactPage from '@components/locked/templates/LockedContactPage.as
 import LockedFaqPage from '@components/locked/templates/LockedFaqPage.astro';
 import LockedBlogArchive from '@components/locked/templates/LockedBlogArchive.astro';
 import LockedServicePage from '@components/locked/templates/LockedServicePage.astro';
-import LockedArticlePage from '@components/locked/templates/LockedArticlePage.astro';
+import ArticleRecoveryRouter from '@components/article-recovery/ArticleRecoveryRouter.astro';
 import LockedStandardPage from '@components/locked/templates/LockedStandardPage.astro';
 import { ARTICLE_ROUTES, SERVICE_ROUTES } from '@components/locked/locked-page-data';
 import pages from '@data/site-pages.json';
@@ -418,7 +418,7 @@ if ((batchArticle || nativeTaxonomy || isHeldRoute) && !pageSchema.some((item) =
   ) : lockedRecord && page.path === '/blog/' ? (
     <LockedBlogArchive record={lockedRecord} page={page} allRecords={allLockedRecords} pageByRoute={pageByRoute} />
   ) : lockedRecord && ARTICLE_ROUTES.has(page.path) ? (
-    <LockedArticlePage record={lockedRecord} page={page} featuredImage={catalogArticle?.image} featuredAlt={catalogArticle?.imageAlt} />
+    <ArticleRecoveryRouter record={lockedRecord} page={page} allRecords={allLockedRecords} featuredImage={catalogArticle?.image} featuredAlt={catalogArticle?.imageAlt} />
   ) : lockedRecord && SERVICE_ROUTES.has(page.path) ? (
     <LockedServicePage record={lockedRecord} page={page} featuredImage={catalogArticle?.image} featuredAlt={catalogArticle?.imageAlt} />
   ) : lockedRecord ? (

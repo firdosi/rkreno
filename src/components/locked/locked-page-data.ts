@@ -88,7 +88,7 @@ export function prepareLockedPage(record: any, page: any, featuredImage = '', fe
   return {
     heroTitle: record.content.h1 || record.seo.title,
     lead: leadIndex >= 0 ? blocks[leadIndex].text : record.seo.description,
-    heroImage, heroAlt, sections, toc, resolveMedia, published, dateLabel,
+    heroImage, heroAlt, contentBody, sections, toc, resolveMedia, published, dateLabel,
   };
 }
 

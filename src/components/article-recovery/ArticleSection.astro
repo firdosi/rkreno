@@ -1,0 +1,28 @@
+---
+import ArticleBlock from './ArticleBlock.astro';
+const { section, resolveMedia } = Astro.props as any;
+const headerBlocks: any[] = [];
+const faqEntries: { question: any; answer: any[] }[] = [];
+if (section.kind === 'faq' && !section.blocks.some((block: any) => block.type === 'details')) {
+  let entry: { question: any; answer: any[] } | undefined;
+  for (const block of section.blocks) {
+    if (block.type === 'heading' && block.level >= 3 && /\?$/.test(block.text || '')) {
+      entry = { question: block, answer: [] };
+      faqEntries.push(entry);
+    } else if (entry) entry.answer.push(block);
+    else headerBlocks.push(block);
+  }
+}
+const regularBlocks = faqEntries.length ? headerBlocks : section.blocks;
+---
+<section id={section.id} class:list={['article-recovery-section', `article-recovery-section-${section.kind}`]} data-article-section={section.kind}>
+  <div class="article-recovery-section-inner">
+    {regularBlocks.map((block: any) => <ArticleBlock block={block} resolveMedia={resolveMedia} />)}
+    {faqEntries.length > 0 && <div class="article-recovery-faq-list">{faqEntries.map((entry) => (
+      <details class="article-recovery-faq">
+        <summary><h3 class="article-recovery-source-heading">{entry.question.text}</h3></summary>
+        <div>{entry.answer.map((block) => <ArticleBlock block={block} resolveMedia={resolveMedia} />)}</div>
+      </details>
+    ))}</div>}
+  </div>
+</section>

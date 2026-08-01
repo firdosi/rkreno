@@ -1,0 +1,13 @@
+---
+import AircondArticleTemplate from './AircondArticleTemplate.astro';
+import RenovationArticleTemplate from './RenovationArticleTemplate.astro';
+import TechnicalArticleTemplate from './TechnicalArticleTemplate.astro';
+import CleaningArticleTemplate from './CleaningArticleTemplate.astro';
+import { createArticleRecoveryModel } from '../../data/article-recovery';
+const { record, page, allRecords, featuredImage = '', featuredAlt = '' } = Astro.props as any;
+const model = createArticleRecoveryModel(record, page, allRecords, featuredImage, featuredAlt);
+---
+{model.family === 'aircond' ? <AircondArticleTemplate model={model} />
+  : model.family === 'renovation' ? <RenovationArticleTemplate model={model} />
+  : model.family === 'technical' ? <TechnicalArticleTemplate model={model} />
+  : <CleaningArticleTemplate model={model} />}

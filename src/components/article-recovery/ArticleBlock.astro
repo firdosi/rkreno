@@ -1,0 +1,29 @@
+---
+import { localRouteHref, safeSourceHtml } from '../../lib/source-content';
+const { block, resolveMedia } = Astro.props as any;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const missingOriginals = /(?:deep-cleaning-rumah-kuala-lumpur|cuci-bilik-air-rumah-kl|pakej-cuci-rumah-hari-raya|cucian-selepas-renovasi-rumah|cuci-dapur-rumah-berminyak|cuci-habuk-plaster-ceiling|servis-aircond-dan-cuci-rumah)\.webp/i;
+---
+{block.type === 'heading' ? (
+  block.level <= 2
+    ? <h2 class="article-recovery-source-heading" set:html={safeSourceHtml(block.html || block.text, base)} />
+    : <h3 class="article-recovery-source-heading" set:html={safeSourceHtml(block.html || block.text, base)} />
+) : block.type === 'p' ? (
+  <p class="article-recovery-source-paragraph" set:html={safeSourceHtml(block.html || block.text, base)} />
+) : block.type === 'blockquote' ? (
+  <blockquote set:html={safeSourceHtml(block.html || block.text, base)} />
+) : block.type === 'list' ? (
+  block.ordered
+    ? <ol class="article-recovery-source-list" set:html={safeSourceHtml(block.html, base)} />
+    : <ul class="article-recovery-source-list" set:html={safeSourceHtml(block.html, base)} />
+) : block.type === 'table' ? (
+  <div class="article-recovery-source-table" role="region" aria-label="Article table" tabindex="0"><table set:html={safeSourceHtml(block.html, base, 'table')} /></div>
+) : block.type === 'details' ? (
+  <details class="article-recovery-faq"><summary>{block.summary}</summary><p>{block.text}</p></details>
+) : block.type === 'image' ? (
+  missingOriginals.test(block.src || '')
+    ? <figure class="article-recovery-source-image article-recovery-source-missing" role="img" aria-label={block.alt || 'Source image unavailable'}><div><strong>Source image unavailable</strong><span>{block.alt || 'The original WordPress image is not available in the approved local assets.'}</span></div></figure>
+    : resolveMedia(block.src) && <figure class="article-recovery-source-image"><img src={`${base}${resolveMedia(block.src)}`} alt={block.alt || ''} width="1200" height="800" loading="lazy" /></figure>
+) : block.type === 'link' ? (
+  <p class="article-recovery-inline-action"><a href={localRouteHref(block.href, base)}>{block.text}</a></p>
+) : null}

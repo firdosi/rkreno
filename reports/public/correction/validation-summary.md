@@ -10,11 +10,11 @@ Status: **PASSED**
 - JSON-LD regressions: 0
 - Manually composed core pages: 6
 - Manually composed service pages: 13
-- Unchanged editorial article templates: 14
+- Article recovery templates: 14
 - Nested main landmarks: 0
 - Broken internal links: 0
 - Broken images: 0
-- Core and service responsive routes: 19 at 1440px and 390px
-- Automated checks: 2070
+- Core, service and article responsive routes: 33 at 1440px and 390px
+- Automated checks: 2428
 - Failures: 0
 - Safety: staging noindex retained; enquiry form disabled; no production systems changed.

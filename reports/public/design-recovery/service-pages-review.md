@@ -1,6 +1,6 @@
 # Service pages visual review
 
-Status: **PASS** for Prompt 2 service-page scope only. Article redesign is not approved.
+Status: **PASS** for Prompt 2 service-page scope only. Prompt 3 article results are reported separately.
 
 | Route | Template family | Main sections | Pricing result | Image result | CTA result | Desktop result | Mobile result | Remaining defects |
 |---|---|---|---|---|---|---|---|---|
@@ -25,5 +25,5 @@ Status: **PASS** for Prompt 2 service-page scope only. Article redesign is not a
 - Broken images: 0
 - Content regressions: 0
 - SEO regressions: 0
-- Homepage, About, Contact, FAQ, Blog archive, article pages and restored noindex pages were not redesigned.
+- Homepage, About, Contact, FAQ and restored noindex pages were not redesigned in Prompt 2.
 - Staging remains noindex; VPS deployment remains gated.
