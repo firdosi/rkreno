@@ -20,6 +20,7 @@ import ProjectsArchivePage from '@components/ditto/ProjectsArchivePage.astro';
 import ProjectsAlternatePage from '@components/ditto/ProjectsAlternatePage.astro';
 import TeamPage from '@components/ditto/TeamPage.astro';
 import TestimonialsPage from '@components/ditto/TestimonialsPage.astro';
+import SourceLockedPage from '@components/locked/SourceLockedPage.astro';
 import pages from '@data/site-pages.json';
 import routePolicy from '@data/route-policy.json';
 import { batch1Pages } from '@data/batch1-pages';
@@ -35,6 +36,7 @@ import { serviceFaqsByRoute } from '@data/service-exact-faqs';
 import { coreFaqs } from '@data/core-pages';
 import wordpressParityContent from '@data/wordpress-parity-content.json';
 import articleWordpressContent from '@data/article-wordpress-content.json';
+import liveWordpressLock from '../../config/live-wordpress-content-seo-lock.json';
 import { isIndexable } from '../config/runtime';
 
 interface PageRecord {
@@ -101,6 +103,7 @@ export function getStaticPaths() {
 const { page } = Astro.props as { page: PageRecord };
 const isHeldRoute = heldRoutes.has(page.path);
 const isDemolition = page.path === demolitionPage.path;
+const lockedRecord = liveWordpressLock.records.find((record) => record.route === page.path && record.sourceType === 'wordpress');
 const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path] || batch2Pages[page.path] || batch3Pages[page.path];
 const exactArticle = articleWordpressContent[page.path as keyof typeof articleWordpressContent];
 const sourceArticle = batch2Articles[page.path] || batch3Articles[page.path];
@@ -132,6 +135,9 @@ const layoutTitle = uniqueTitleOverrides[page.path] || (sourceTitleIsSafe
   : nativeTaxonomy ? `${nativeTaxonomy.title} - RK Reno Solution`
     : batchArticle ? `${batchArticle.title} - RK Reno Solution`
       : batchPage ? `${batchPage.title} - RK Reno Solution` : page.title);
+const lockedTitle = lockedRecord?.seo.title || layoutTitle;
+const lockedDescription = lockedRecord?.seo.description || '';
+const lockedCanonical = lockedRecord?.seo.canonical || page.canonical;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const repairedLinks = [
   ['https://rkrenosolution.com/about/', '/about-us/'],
@@ -368,15 +374,18 @@ const pageSchema: any[] = isDemolition
 if ((batchArticle || nativeTaxonomy || isHeldRoute) && !pageSchema.some((item) => item['@type'] === 'BreadcrumbList')) pageSchema.push(breadcrumbSchema);
 ---
 <BaseLayout
-  title={layoutTitle}
-  description={heldDescriptions[page.path] || nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
+  title={lockedTitle}
+  description={lockedRecord ? lockedDescription : heldDescriptions[page.path] || nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
     ? 'Practical renovation and property-service guides from RK Reno Solution.'
     : page.path === '/faq/'
       ? 'Answers about renovation, aircond, electrical, waterproofing, ceiling, quotation and service areas.'
       : page.description)}
-  canonical={page.canonical}
+  canonical={lockedCanonical}
   ogImage={catalogArticle?.image || page.og?.image}
-  schema={pageSchema}
+  schema={lockedRecord?.seo.jsonLd || pageSchema}
+  openGraph={lockedRecord?.seo.openGraph}
+  articleMeta={lockedRecord?.seo.article}
+  twitter={lockedRecord?.seo.twitter}
   pageType={batchArticle ? 'post' : page.type}
   externalStyles={nativePage ? [] : page.externalStyles}
   robots={nativeTaxonomy || isHeldRoute ? (isIndexable ? 'noindex, follow' : 'noindex, nofollow')
@@ -384,7 +393,15 @@ if ((batchArticle || nativeTaxonomy || isHeldRoute) && !pageSchema.some((item) =
   exactHome={page.path === '/'}
   wordpressCore={coreRoutes.includes(page.path) || Boolean(serviceExact) || Boolean(batchArticle) || Boolean(nativeTaxonomy) || isHeldRoute || isDemolition || page.path === '/thank-you/'}
 >
-  {isDemolition ? (
+  {lockedRecord ? (
+    <SourceLockedPage
+      record={lockedRecord}
+      page={page}
+      kind={batchArticle ? 'article' : (serviceExact || batch1ServicePages[page.path] || batch3Pages[page.path] || page.path === '/services/') ? 'service' : 'page'}
+      featuredImage={catalogArticle?.image}
+      featuredAlt={catalogArticle?.imageAlt}
+    />
+  ) : isDemolition ? (
     <DemolitionPage />
   ) : page.path === '/company-history/' ? (
     <CompanyHistoryPage content={repairedContent} />

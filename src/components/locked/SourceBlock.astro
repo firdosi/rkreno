@@ -1,0 +1,34 @@
+---
+import { localRouteHref, safeSourceHtml } from '../../lib/source-content';
+
+const { block, base, resolveMedia, headingId } = Astro.props as any;
+---
+{block.type === 'heading' ? (
+  block.level <= 2
+    ? <h2 id={headingId} set:html={safeSourceHtml(block.html || block.text, base)} />
+    : <h3 set:html={safeSourceHtml(block.html || block.text, base)} />
+) : block.type === 'p' ? (
+  /<(?:select|input|textarea|button)\b/i.test(block.html || '')
+    ? <p class="source-copy">{block.text}</p>
+    : <p class="source-copy" set:html={safeSourceHtml(block.html || block.text, base)} />
+) : block.type === 'blockquote' ? (
+  <blockquote set:html={safeSourceHtml(block.html || block.text, base)} />
+) : block.type === 'list' ? (
+  block.ordered
+    ? <ol class:list={{ 'source-card-list': block.items.length >= 3 && block.items.length <= 6 }} set:html={safeSourceHtml(block.html, base)} />
+    : <ul class:list={{ 'source-card-list': block.items.length >= 3 && block.items.length <= 6 }} set:html={safeSourceHtml(block.html, base)} />
+) : block.type === 'table' ? (
+  <div class="source-locked-table"><table set:html={safeSourceHtml(block.html, base, 'table')} /></div>
+) : block.type === 'details' ? (
+  <details><summary>{block.summary}</summary><p>{block.text}</p></details>
+) : block.type === 'image' ? (
+  resolveMedia(block.src) && <figure><img src={`${base}${resolveMedia(block.src)}`} alt={block.alt || ''} width="1200" height="800" loading="lazy" /></figure>
+) : block.type === 'link' ? (
+  <p class="source-locked-inline-action"><a href={localRouteHref(block.href, base)}>{block.text}</a></p>
+) : block.type === 'form' ? (
+  <section class="source-locked-form-preview" aria-label="Source form fields">
+    <h2>Send Your Project Details</h2>
+    <div>{[...new Set([...(block.labels || []), ...(block.fields || []).map((field) => field.placeholder).filter(Boolean)])].map((label) => <span>{label}</span>)}</div>
+    <p>Online submission is disabled on this staging build. Use WhatsApp or call for an enquiry.</p>
+  </section>
+) : null}

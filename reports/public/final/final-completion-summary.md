@@ -1,6 +1,6 @@
 # Final Completion Summary
 
-GitHub website: **COMPLETE**
+GitHub website: **SUPERSEDED — content/SEO correction in progress**
 
 Production release: **BLOCKED_BY_OWNER_CLAIM_REVIEW**
 

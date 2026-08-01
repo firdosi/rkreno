@@ -28,7 +28,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:final
+      - run: npm run build
+      - run: npm run test:content-seo-design
       - uses: actions/configure-pages@v5
         with:
           enablement: true

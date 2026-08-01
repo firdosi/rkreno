@@ -11,6 +11,7 @@
     "test:prompt-2": "node scripts/prompt-2/run-prompt-2.mjs",
     "test:prompt-3": "node scripts/prompt-3/run-prompt-3.mjs",
     "test:final": "node scripts/final/run-final.mjs",
+    "test:content-seo-design": "node scripts/correction/validate-content-seo-design.mjs",
     "preview:production": "node scripts/prompt-3-1/production-simulator.mjs",
     "test:production-readiness": "node scripts/prompt-3-1/run-production-readiness.mjs",
     "test:form-security": "node scripts/prompt-3-2/test-form-security.mjs",
