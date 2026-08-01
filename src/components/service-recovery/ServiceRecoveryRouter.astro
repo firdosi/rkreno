@@ -1,0 +1,12 @@
+---
+import AircondServicePage from './AircondServicePage.astro';
+import RenovationServicePage from './RenovationServicePage.astro';
+import SpecialistServicePage from './SpecialistServicePage.astro';
+import DemolitionServicePage from './DemolitionServicePage.astro';
+import type { ServiceRecoveryModel } from '../../data/service-recovery';
+const { model } = Astro.props as { model: ServiceRecoveryModel };
+---
+{model.family === 'aircond' ? <AircondServicePage model={model} />
+  : model.family === 'renovation' ? <RenovationServicePage model={model} />
+  : model.family === 'specialist' ? <SpecialistServicePage model={model} />
+  : <DemolitionServicePage model={model} />}

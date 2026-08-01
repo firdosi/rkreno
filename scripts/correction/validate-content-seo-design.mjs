@@ -32,6 +32,10 @@ const expectedTemplate = (route) => ({
 }[route] || (articleRoutes.has(route) ? 'article' : serviceRoutes.has(route) ? 'service' : 'standard'));
 const templateUsage = new Map();
 const coreRoutes = new Set(['/', '/services/', '/about-us/', '/contact-us/', '/faq/', '/blog/']);
+const serviceRecoveryRoutes = new Set(serviceRoutes);
+const aircondRoutes = new Set(['/servis-aircond-murah-kl/', '/aircond-installation-kl/', '/upah-pasang-aircond-selangor/']);
+const renovationRoutes = new Set(['/service/building-renovation/', '/house-renovation-in-kuala-lumpur/', '/house-renovation-in-selangor/', '/home-renovation-contractor-in-subang-jaya/', '/office-renovation-in-kuala-lumpur/']);
+const specialistRoutes = new Set(['/electrical-services-selangor/', '/waterproofing-contractor-kuala-lumpur/', '/plaster-ceiling-contractor-kl/', '/servis-cuci-rumah-kl/']);
 const coreRequiredText = {
   '/': [
     'Transform your home, office, or commercial space with RK Reno Solution.',
@@ -79,6 +83,9 @@ for (const record of lock.records) {
   if (!record.sourceUrl) {
     result(record.route, 'new page H1', clean($('h1').first().text()) === 'Demolition Contractor KL & Selangor');
     result(record.route, 'safe staging robots', /noindex/.test($('meta[name="robots"]').attr('content') || ''));
+    result(record.route, 'demolition family composition', $('[data-service-family="demolition"]').length === 1 && /controlled|strip-out|debris|site preparation/i.test(clean($('main').text())));
+    result(record.route, 'service final CTA', $('.service-recovery-final').length === 1);
+    result(record.route, 'service relevant body image', $('.service-recovery-page img').length >= 2, String($('.service-recovery-page img').length));
     continue;
   }
   const expected = record.seo;
@@ -108,7 +115,12 @@ for (const record of lock.records) {
     result(record.route, 'no raw broken form text', !/Building ConstructionArchitecture Designbuilding renovation|MessageAccept terms|Project type\*Building|Your services\*What are your needs|Send Message/i.test(mainText));
     result(record.route, 'no fake profile images', $('img[src*="avartar"],img[src*="gravatar"],img[src*="home7-img7"]').length === 0);
     if (record.route === '/') result(record.route, 'homepage has real service cards', $('.recovery-service-card').length >= 10 && new Set($('.recovery-service-card').toArray().map((node) => $(node).attr('href'))).size >= 7, String($('.recovery-service-card').length));
-    if (record.route === '/services/') result(record.route, 'service hub has grouped service cards', $('.recovery-service-group').length === 7 && $('.recovery-service-card').length === 13, `${$('.recovery-service-group').length}/${$('.recovery-service-card').length}`);
+    if (record.route === '/services/') {
+      const destinations = new Set($('[data-locked-template="services-hub"] a[href]').toArray().map((node) => $(node).attr('href')).filter((href) => href?.includes('/') && !href.startsWith('http')));
+      result(record.route, 'service hub has grouped categories', $('.recovery-service-group').length >= 3 && /Aircond services|Renovation services|Demolition and preparation|Electrical and specialist services|Property cleaning/i.test(clean($('main').text())));
+      result(record.route, 'service hub destinations complete', destinations.size >= 13, String(destinations.size));
+      result(record.route, 'service hub process and areas', $('.recovery-process-grid article').length === 4 && $('.recovery-location-section').length === 1);
+    }
     if (record.route === '/about-us/') result(record.route, 'about removes template team/history content', !/Meet Our Leadership|year of experience|Simple actions make a difference/i.test(mainText));
     if (record.route === '/contact-us/') {
       result(record.route, 'contact has structured disabled form', $('form[data-disabled-enquiry-form]').length === 1 && $('form[data-disabled-enquiry-form] :input:not(:disabled)').length === 0 && !$('form[data-disabled-enquiry-form]').attr('action'));
@@ -116,6 +128,23 @@ for (const record of lock.records) {
     }
     if (record.route === '/faq/') result(record.route, 'FAQ has accessible grouped accordions', $('.recovery-faq-grid > section').length === 2 && $('.recovery-faq-grid details').length === 6);
     if (record.route === '/blog/') result(record.route, 'blog archive uses 14 article cards', $('.recovery-article-card').length === 14, String($('.recovery-article-card').length));
+  } else if (serviceRecoveryRoutes.has(record.route)) {
+    const mainText = clean($('main').text());
+    result(record.route, 'manual service composition', $('.service-recovery-page').length === 1 && $('.source-locked-section,.source-locked-toc').length === 0);
+    result(record.route, 'service family selected', $('[data-service-family]').length === 1);
+    result(record.route, 'service eyebrow is specific', !/Renovation & property service/i.test($('.service-recovery-hero .service-recovery-eyebrow').text()));
+    result(record.route, 'service overview is useful', $('.service-recovery-overview article').length >= 3);
+    result(record.route, 'service pricing presentation', $('[data-service-pricing]').length === 1);
+    result(record.route, 'service relevant body image', $('.service-recovery-page img').length >= 2, String($('.service-recovery-page img').length));
+    result(record.route, 'service final CTA', $('.service-recovery-final').length === 1);
+    result(record.route, 'no active content form', $('.service-recovery-page form').length === 0);
+    if (aircondRoutes.has(record.route)) result(record.route, 'aircond pricing visible', $('[data-service-pricing="visible"]').length === 1 && /RM\s*\d/i.test(mainText));
+    if (renovationRoutes.has(record.route)) result(record.route, 'renovation process and cost factors', $('.service-family-renovation .service-recovery-numbered article').length === 4 && /cost|quotation|pricing/i.test(mainText));
+    if (specialistRoutes.has(record.route)) {
+      const required = record.route.includes('electrical') ? /circuit|wiring|electrical/i : record.route.includes('waterproofing') ? /leak|water|injection/i : record.route.includes('plaster') ? /ceiling|L-box|cornice/i : /cleaning|post-renovation|move-in/i;
+      result(record.route, 'specialist service-specific content', required.test(mainText));
+    }
+    if ((record.content.faqs || []).length) result(record.route, 'visible source-supported FAQs', $('.service-recovery-faqs details').length > 0, String($('.service-recovery-faqs details').length));
   } else {
   const sourceHeadingBlocks = record.content.orderedBlocks.filter((block) => block.type === 'heading');
   const firstSourceH1 = sourceHeadingBlocks.findIndex((block) => block.level === 1);
@@ -161,8 +190,8 @@ for (const record of lock.records) {
   }
   }
   const expectedInternal = [...new Set((record.content.internalLinks || []).filter((link) => link.text).map((link) => routeRepairs.get(new URL(link.href).pathname) || new URL(link.href).pathname))]
-    .filter((href) => !/^\/blog\/page\/(?:2|4)\/$/.test(href));
-  const actualInternal = new Set($('.source-locked-page a[href]').toArray().map((node) => {
+    .filter((href) => href !== record.route && !/^\/blog\/page\/(?:2|4)\/$/.test(href));
+  const actualInternal = new Set($('[data-locked-template] a[href]').toArray().map((node) => {
     try {
       const url = new URL($(node).attr('href'), 'https://rkrenosolution.com');
       return url.origin === 'https://rkrenosolution.com' ? url.pathname.replace(/^\/rkreno(?=\/)/, '') : '';
@@ -174,7 +203,7 @@ for (const record of lock.records) {
     const linkedFile = href === '/' ? path.join(root, 'dist/index.html') : path.join(root, 'dist', href.replace(/^\//, ''), 'index.html');
     result(record.route, 'internal link resolves', existsSync(linkedFile), href);
   }
-  for (const image of $('.source-locked-page img[src]').toArray()) {
+  for (const image of $('[data-locked-template] img[src]').toArray()) {
     const source = ($(image).attr('src') || '').replace(/^\/rkreno(?=\/)/, '');
     result(record.route, 'local image exists', source.startsWith('/assets/') && existsSync(path.join(root, 'dist', source.slice(1))), source);
   }
@@ -188,7 +217,7 @@ const responsiveCss = await readFile(path.join(root, 'src/styles/locked-responsi
 result('GLOBAL', 'desktop and mobile design rules', /@media\s*\(max-width:\s*760px\)/.test(responsiveCss) && /@media\s*\(max-width:\s*560px\)/.test(responsiveCss));
 result('GLOBAL', 'no standard template in locked indexable scope', [...templateUsage.values()].filter((name) => name === 'standard').length === 0);
 
-const reviewRoutes = ['/', '/services/', '/about-us/', '/contact-us/', '/faq/', '/blog/'];
+const reviewRoutes = [...coreRoutes, ...serviceRecoveryRoutes];
 const mime = { '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp' };
 const server = createServer(async (request, response) => {
   try {
@@ -214,15 +243,15 @@ try {
       await browserPage.goto(`http://127.0.0.1:${port}/rkreno${route}`, { waitUntil: 'load' });
       const metrics = await browserPage.evaluate(() => {
         const wrappers = [...document.querySelectorAll('.source-locked-table')];
-        const page = document.querySelector('.recovery-page');
+        const page = document.querySelector('.recovery-page,.service-recovery-page');
         const pageBlocks = page ? [...page.children].filter((node) => node.matches('header,section,nav,aside') && node.getBoundingClientRect().height > 0) : [];
         const gaps = pageBlocks.slice(1).map((node, index) => node.getBoundingClientRect().top - pageBlocks[index].getBoundingClientRect().bottom);
-        const sparseSections = [...document.querySelectorAll('.recovery-section')].filter((section) => {
+        const sparseSections = [...document.querySelectorAll('.recovery-section,.service-recovery-section')].filter((section) => {
           const rect = section.getBoundingClientRect();
           return rect.height > 360 && (section.textContent || '').trim().length < 100 && section.querySelectorAll('img,.recovery-service-card,.recovery-article-card,form,details').length === 0;
         });
-        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow)')].filter((node) => node.getBoundingClientRect().height > 0);
-        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap')].filter((node) => node.getBoundingClientRect().height > 0);
+        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow),.service-recovery-page p:not(.service-recovery-eyebrow)')].filter((node) => node.getBoundingClientRect().height > 0);
+        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap,.service-recovery-page .service-recovery-wrap')].filter((node) => node.getBoundingClientRect().height > 0);
           return {
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
@@ -256,28 +285,30 @@ for (const record of lock.records) {
   const values = record.sourceUrl
     ? coreRoutes.has(record.route)
       ? [record.route, 'WORDPRESS_CURATED_CORE', 'IMPORTANT_CONTENT_RETAINED', 'MATCH', 'DOCUMENTED_EXCLUSION', 'MATCH', 'MATCH', 'Core page manually composed; broken demo content and raw DOM order are intentionally excluded.']
-      : [record.route, 'WORDPRESS', 'MATCH', 'MATCH', 'DOCUMENTED_EXCLUSION', hasKnownMissing ? 'MISSING_ORIGINAL_ASSET' : 'MATCH', hasKnownMissing ? 'MISSING_ORIGINAL_ASSET' : 'MATCH', hasKnownMissing ? 'Seven unavailable cleaning originals use the documented cleaning fallback.' : 'Live source content and SEO are locked; staging robots remain noindex.']
+      : serviceRecoveryRoutes.has(record.route)
+        ? [record.route, 'WORDPRESS_CURATED_SERVICE', 'IMPORTANT_CONTENT_RETAINED', 'MATCH', 'DOCUMENTED_EXCLUSION', hasKnownMissing ? 'MISSING_ORIGINAL_ASSET' : 'MATCH', hasKnownMissing ? 'MISSING_ORIGINAL_ASSET' : 'MATCH', 'Service page manually composed by route purpose and family; raw Elementor order and unsupported claims are excluded.']
+        : [record.route, 'WORDPRESS', 'MATCH', 'MATCH', 'DOCUMENTED_EXCLUSION', hasKnownMissing ? 'MISSING_ORIGINAL_ASSET' : 'MATCH', hasKnownMissing ? 'MISSING_ORIGINAL_ASSET' : 'MATCH', hasKnownMissing ? 'Seven unavailable cleaning originals use the documented cleaning fallback.' : 'Live source content and SEO are locked; staging robots remain noindex.']
     : [record.route, 'OWNER_NEW', 'NEW_PAGE', 'NEW_PAGE', 'DOCUMENTED_EXCLUSION', 'MATCH', 'NEW_PAGE', 'No WordPress source exists; retained as the approved owner-created service page.'];
   rows.push(values.map((value) => `"${String(value).replaceAll('"', '""')}"`).join(','));
 }
 await writeFile(path.join(reportDir, 'content-seo-comparison.csv'), `${rows.join('\n')}\n`);
 
 const drifted = lock.records.filter((record) => record.sourceUrl && !record.localBaseline.contentTextMatches).map((record) => record.route);
-await writeFile(path.join(reportDir, 'content-seo-differences.md'), `# Content and SEO differences\n\n- Live WordPress SEO matched the stored crawl on all 32 source routes.\n- ${drifted.length} stored bodies differed from the normalized live body recorded by the content lock: ${drifted.join(', ')}.\n- The six core routes are manually composed from approved business content; raw DOM order, duplicate responsive fragments, demo-theme wording, fake testimonials and broken form strings are intentionally excluded.\n- Service-detail and article content remains rendered through the locked block engine.\n- Staging robots remain \`noindex, nofollow\`; this is a documented safety exclusion from the live WordPress robots value.\n- The demolition route remains classified \`NEW_PAGE\`.\n`);
+await writeFile(path.join(reportDir, 'content-seo-differences.md'), `# Content and SEO differences\n\n- Live WordPress SEO matched the stored crawl on all 32 source routes.\n- ${drifted.length} stored bodies differed from the normalized live body recorded by the content lock: ${drifted.join(', ')}.\n- The approved core pages remain manually composed; the services hub was refined inside Prompt 2.\n- Service-detail routes use route-purpose models and four family layouts; raw Elementor order and unsupported claims are excluded.\n- Article content remains on the locked editorial engine and was not redesigned.\n- Staging robots remain \`noindex, nofollow\`; this is a documented safety exclusion from the live WordPress robots value.\n- The demolition route remains classified \`NEW_PAGE\`.\n`);
 const countTemplate = (name) => [...templateUsage.values()].filter((value) => value === name).length;
-const contentCheckNames = new Set(['single exact H1', 'important business content retained', 'heading order exact', 'paragraph order exact', 'list order exact', 'table order exact', 'FAQ sequence exact', 'form labels retained', 'source image slots retained', 'source image purposes retained', 'source internal destinations retained']);
+const contentCheckNames = new Set(['single exact H1', 'important business content retained', 'heading order exact', 'paragraph order exact', 'list order exact', 'table order exact', 'FAQ sequence exact', 'form labels retained', 'source image slots retained', 'source image purposes retained', 'source internal destinations retained', 'aircond pricing visible', 'renovation process and cost factors', 'specialist service-specific content', 'demolition family composition', 'visible source-supported FAQs']);
 const seoCheckPattern = /^(?:title|description|canonical|JSON-LD|og:|article:|twitter:)/;
 const contentRegressions = checks.filter((check) => !check.passed && contentCheckNames.has(check.name)).length;
 const seoRegressions = checks.filter((check) => !check.passed && seoCheckPattern.test(check.name)).length;
 const nestedMainCount = checks.filter((check) => check.name === 'no nested main' && !check.passed).length;
 const genericTemplateCount = countTemplate('standard') + countTemplate('none');
 const textBlobCount = checks.filter((check) => check.name === 'structured content sections' && !check.passed).length;
-await writeFile(path.join(reportDir, 'design-rebuild-summary.md'), `# Design rebuild summary\n\n- Core scope: homepage, services, about, contact, FAQ and blog are manually composed from structured route-specific models.\n- Core exclusions: raw WordPress DOM order, demo-theme wording, fake testimonials/profile images, decorative spacers and broken form strings are not rendered.\n- Service-detail scope: ${countTemplate('service')} service pages remain on the existing rich locked template and were not redesigned in this prompt.\n- Article scope: ${countTemplate('article')} editorial guides remain on the existing locked article template and were not redesigned in this prompt.\n- Remaining generic locked templates: ${genericTemplateCount}.\n- Nested main landmarks: ${nestedMainCount}.\n- Content regressions: ${contentRegressions}.\n- SEO regressions: ${seoRegressions}.\n`);
+await writeFile(path.join(reportDir, 'design-rebuild-summary.md'), `# Design rebuild summary\n\n- Core scope: homepage, about, contact, FAQ and blog remain on their approved Prompt 1 compositions; the services hub was refined for Prompt 2.\n- Core exclusions: raw WordPress DOM order, demo-theme wording, fake testimonials/profile images, decorative spacers and broken form strings are not rendered.\n- Service-detail scope: ${countTemplate('service')} service pages use explicit route-purpose models and Aircond, Renovation, Specialist or Demolition family compositions.\n- Article scope: ${countTemplate('article')} editorial guides remain on the existing locked article template and were not redesigned in this prompt.\n- Remaining generic locked templates: ${genericTemplateCount}.\n- Nested main landmarks: ${nestedMainCount}.\n- Content regressions: ${contentRegressions}.\n- SEO regressions: ${seoRegressions}.\n`);
 
 const templateRows = [...templateUsage.entries()].map(([route, template]) => `| \`${route}\` | ${template} | ${template === expectedTemplate(route) ? 'PASS' : 'FAIL'} |`).join('\n');
 await writeFile(path.join(reportDir, 'template-usage-report.md'), `# Template usage report\n\n| Route | Template | Result |\n|---|---|---|\n${templateRows}\n\n- Homepage templates: ${countTemplate('homepage')}\n- Services hubs: ${countTemplate('services-hub')}\n- About templates: ${countTemplate('about')}\n- Contact templates: ${countTemplate('contact')}\n- FAQ templates: ${countTemplate('faq')}\n- Blog archives: ${countTemplate('blog-archive')}\n- Rich service templates: ${countTemplate('service')}\n- Editorial article templates: ${countTemplate('article')}\n- Generic/none: ${genericTemplateCount}\n`);
 
-await writeFile(path.join(reportDir, 'visual-review.md'), `# Visual review\n\nAutomated desktop and mobile review covered the eight required routes at 1440px and 390px. Checks include horizontal overflow, broken responsive images, contained tables, visible structured sections, compact mobile contents navigation and console errors. Final screenshot references are stored in \`reports/public/correction/visual-review/\`.\n`);
+await writeFile(path.join(reportDir, 'visual-review.md'), `# Visual review\n\nAutomated desktop and mobile review covered the approved core routes plus all service-detail routes at 1440px and 390px. Checks include horizontal overflow, broken images, contained tables, visible structured sections, body-text size, excessive blank space and console errors. Prompt 2 screenshots are stored in \`reports/public/design-recovery/service-screenshots/\`.\n`);
 
 const risky = /warranty|guarantee|100%|certified|expert|permanent|free inspection|years? of experience|customers|projects completed|savings|pay for/i;
 const claimRows = [];
@@ -288,7 +319,7 @@ await writeFile(path.join(reportDir, 'claim-review.md'), `# Source claim review\
 await writeFile(path.join(reportDir, 'missing-assets.md'), `# Missing original assets\n\nThe following seven WordPress cleaning images are unavailable locally and use \`/assets/media/detailed-kitchen-cleaning-kl-67669628.jpg\` as a clearly documented contextual fallback; it is not represented as the original.\n\n${[...missingOriginals].map((name) => `- ${name}`).join('\n')}\n`);
 const brokenLinks = checks.filter((check) => check.name === 'internal link resolves' && !check.passed).length;
 const brokenImages = checks.filter((check) => (check.name === 'local image exists' || check.name === 'no broken responsive image') && !check.passed).length;
-const validationReport = `# Correction validation summary\n\nStatus: **${failures.length ? 'FAILED' : 'PASSED'}**\n\n- Routes checked: ${lock.records.length}\n- WordPress source locks: ${lock.records.filter((record) => record.sourceUrl).length}\n- Approved-content regressions: ${contentRegressions}\n- SEO title matches: ${checks.filter((check) => check.name === 'title exact' && check.passed).length}/32\n- Meta-description matches: ${checks.filter((check) => check.name === 'description exact' && check.passed).length}/32\n- JSON-LD regressions: ${checks.filter((check) => check.name === 'JSON-LD exact' && !check.passed).length}\n- Manually composed core pages: 6\n- Unchanged rich service templates: ${countTemplate('service')}\n- Unchanged editorial article templates: ${countTemplate('article')}\n- Nested main landmarks: ${nestedMainCount}\n- Broken internal links: ${brokenLinks}\n- Broken images: ${brokenImages}\n- Core responsive routes: 6 at 1440px and 390px\n- Automated checks: ${checks.length}\n- Failures: ${failures.length}\n- Safety: staging noindex retained; enquiry form disabled; no production systems changed.\n\n${failures.length ? `## Failures\n\n${failures.map((failure) => `- ${failure}`).join('\n')}\n` : ''}`;
+const validationReport = `# Correction validation summary\n\nStatus: **${failures.length ? 'FAILED' : 'PASSED'}**\n\n- Routes checked: ${lock.records.length}\n- WordPress source locks: ${lock.records.filter((record) => record.sourceUrl).length}\n- Approved-content regressions: ${contentRegressions}\n- SEO title matches: ${checks.filter((check) => check.name === 'title exact' && check.passed).length}/32\n- Meta-description matches: ${checks.filter((check) => check.name === 'description exact' && check.passed).length}/32\n- JSON-LD regressions: ${checks.filter((check) => check.name === 'JSON-LD exact' && !check.passed).length}\n- Manually composed core pages: 6\n- Manually composed service pages: ${countTemplate('service')}\n- Unchanged editorial article templates: ${countTemplate('article')}\n- Nested main landmarks: ${nestedMainCount}\n- Broken internal links: ${brokenLinks}\n- Broken images: ${brokenImages}\n- Core and service responsive routes: ${reviewRoutes.length} at 1440px and 390px\n- Automated checks: ${checks.length}\n- Failures: ${failures.length}\n- Safety: staging noindex retained; enquiry form disabled; no production systems changed.\n\n${failures.length ? `## Failures\n\n${failures.map((failure) => `- ${failure}`).join('\n')}\n` : ''}`;
 await writeFile(path.join(reportDir, 'validation-summary.md'), validationReport.replace(/\n+$/, '\n'));
 
 let vastconOccurrences = 0;
@@ -308,7 +339,25 @@ const coreReviewRows = [
   ['/blog/', 'Hero; featured guide; 14-card archive; related services; CTA', 'Disconnected source archive blocks, profile image and pagination fragments', 'Blog desktop and mobile validated'],
 ];
 const coreReport = `# Core pages visual review\n\nStatus: **${failures.length ? 'NEEDS REPAIR' : 'PASS'}** for Prompt 1 core-page scope only. This does not approve service-detail pages or articles.\n\n| Page | Major sections present | Removed broken/template content | Desktop/mobile result | Remaining defects |\n|---|---|---|---|---|\n${coreReviewRows.map(([route, sections, removed, responsive]) => `| \`${route}\` | ${sections} | ${removed} | ${responsive} | ${failures.some((failure) => failure.startsWith(route + ' ') || failure.startsWith(route + '@')) ? 'See validation failures' : 'None found in reviewed scope'} |`).join('\n')}\n\n- Vastcon occurrences: ${vastconOccurrences}\n- Raw broken-form-text occurrences: ${rawBrokenFormTextCount}\n- Excessive blank-space issues: ${excessiveBlankIssues}\n- Broken links: ${brokenLinks}\n- Broken images: ${brokenImages}\n- Content regressions: ${contentRegressions}\n- SEO regressions: ${seoRegressions}\n- Service-detail and article templates were not redesigned.\n- Staging remains noindex with disabled form delivery and VPS protection.\n`;
-await writeFile(path.join(recoveryReportDir, 'core-pages-review.md'), coreReport);
+await writeFile(path.join(recoveryReportDir, 'core-pages-review.md'), coreReport.replace('Service-detail and article templates were not redesigned.', 'Prompt 1 core pages remain unchanged except the in-scope services hub; articles were not redesigned.'));
+
+const serviceReviewRoutes = ['/services/', ...serviceRecoveryRoutes];
+const familyFor = (route) => route === '/services/' ? 'Service hub' : aircondRoutes.has(route) ? 'Aircond' : renovationRoutes.has(route) ? 'Renovation' : specialistRoutes.has(route) ? 'Specialist' : 'Demolition';
+const sectionsFor = (route) => route === '/services/'
+  ? 'Hero; priority services; grouped Aircond and Renovation; Demolition; specialist services; Cleaning; process; areas; CTA'
+  : familyFor(route) === 'Aircond' ? 'Hero; overview; service types; pricing; inclusions; quotation factors; process; areas; FAQs; related links; CTA'
+    : familyFor(route) === 'Renovation' ? 'Hero; overview; property types; scope; pricing; cost factors; stages; areas; FAQs; related links; CTA'
+      : familyFor(route) === 'Specialist' ? 'Hero; overview; service-specific work; pricing; scope; quotation factors; process; areas; FAQs; related links; CTA'
+        : 'Hero; overview; controlled work types; safety and debris scope; pricing factors; process; areas; FAQs; renovation links; CTA';
+const serviceReviewRows = serviceReviewRoutes.map((route) => {
+  const defects = checks.filter((check) => (check.route === route || check.route.startsWith(`${route}@`)) && !check.passed);
+  const pricing = route === '/services/' ? 'Links to route-specific pricing' : 'Visible pricing or site-quotation explanation';
+  const images = route === '/services/' ? 'Distinct local category and service images' : checks.some((check) => check.route === route && check.name === 'service relevant body image' && check.passed) ? 'Relevant hero and body imagery' : 'Needs review';
+  return `| \`${route}\` | ${familyFor(route)} | ${sectionsFor(route)} | ${pricing} | ${images} | Final CTA visible | ${defects.length ? 'Needs repair' : 'PASS'} | ${defects.length ? 'Needs repair' : 'PASS'} | ${defects.length ? defects.map((check) => check.name).join('; ') : 'None found'} |`;
+});
+const genericRepeatedLayoutCount = checks.filter((check) => check.name === 'manual service composition' && !check.passed).length;
+const serviceReport = `# Service pages visual review\n\nStatus: **${failures.length ? 'NEEDS REPAIR' : 'PASS'}** for Prompt 2 service-page scope only. Article redesign is not approved.\n\n| Route | Template family | Main sections | Pricing result | Image result | CTA result | Desktop result | Mobile result | Remaining defects |\n|---|---|---|---|---|---|---|---|---|\n${serviceReviewRows.join('\n')}\n\n- Excessive blank-space issues: ${excessiveBlankIssues}\n- Generic repeated-layout issues: ${genericRepeatedLayoutCount}\n- Broken links: ${brokenLinks}\n- Broken images: ${brokenImages}\n- Content regressions: ${contentRegressions}\n- SEO regressions: ${seoRegressions}\n- Homepage, About, Contact, FAQ, Blog archive, article pages and restored noindex pages were not redesigned.\n- Staging remains noindex; VPS deployment remains gated.\n`;
+await writeFile(path.join(recoveryReportDir, 'service-pages-review.md'), serviceReport);
 
 console.log(`Content/SEO/design validation: ${checks.length} checks, ${failures.length} failures.`);
 if (failures.length) {

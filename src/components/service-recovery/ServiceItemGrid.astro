@@ -1,0 +1,7 @@
+---
+import type { ServiceItem } from '../../data/service-recovery';
+const { items, numbered = false } = Astro.props as { items: ServiceItem[]; numbered?: boolean };
+---
+<div class:list={['service-recovery-item-grid', { 'service-recovery-numbered': numbered }]}>
+  {items.map((item, index) => <article>{numbered && <span>{String(index + 1).padStart(2, '0')}</span>}<h3>{item.title}</h3><p>{item.text}</p></article>)}
+</div>

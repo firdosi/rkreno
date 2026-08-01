@@ -1,0 +1,8 @@
+---
+import ServiceSectionHeading from './ServiceSectionHeading.astro';
+const { areas } = Astro.props as { areas: string[] };
+---
+<section class="service-recovery-section service-recovery-locations"><div class="service-recovery-wrap service-recovery-location-layout">
+  <ServiceSectionHeading eyebrow="Service areas" title="Coverage across KL and Selangor" text="Availability depends on the exact location, work scope and schedule. Confirm your area when requesting a quotation." />
+  <div class="service-recovery-chips">{areas.map((area) => <span>{area}</span>)}</div>
+</div></section>

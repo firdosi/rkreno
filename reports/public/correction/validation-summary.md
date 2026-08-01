@@ -9,12 +9,12 @@ Status: **PASSED**
 - Meta-description matches: 32/32
 - JSON-LD regressions: 0
 - Manually composed core pages: 6
-- Unchanged rich service templates: 13
+- Manually composed service pages: 13
 - Unchanged editorial article templates: 14
 - Nested main landmarks: 0
 - Broken internal links: 0
 - Broken images: 0
-- Core responsive routes: 6 at 1440px and 390px
-- Automated checks: 1803
+- Core and service responsive routes: 19 at 1440px and 390px
+- Automated checks: 2070
 - Failures: 0
 - Safety: staging noindex retained; enquiry form disabled; no production systems changed.

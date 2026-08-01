@@ -14,7 +14,7 @@ import ArticlePage from '@components/ArticlePage.astro';
 import ThankYouPage from '@components/ThankYouPage.astro';
 import TaxonomyArchive from '@components/TaxonomyArchive.astro';
 import PriorityPageHero from '@components/PriorityPageHero.astro';
-import DemolitionPage from '@components/ditto/DemolitionPage.astro';
+import ServiceRecoveryRouter from '@components/service-recovery/ServiceRecoveryRouter.astro';
 import CompanyHistoryPage from '@components/ditto/CompanyHistoryPage.astro';
 import ProjectsArchivePage from '@components/ditto/ProjectsArchivePage.astro';
 import ProjectsAlternatePage from '@components/ditto/ProjectsAlternatePage.astro';
@@ -42,6 +42,7 @@ import taxonomyArchives from '@data/taxonomy-archives.json';
 import { retainedArticleByRoute } from '@data/retained-article-catalog';
 import { serviceExactConfig } from '@data/service-exact-config';
 import { serviceFaqsByRoute } from '@data/service-exact-faqs';
+import { serviceRecoveryModels } from '@data/service-recovery';
 import { coreFaqs } from '@data/core-pages';
 import wordpressParityContent from '@data/wordpress-parity-content.json';
 import articleWordpressContent from '@data/article-wordpress-content.json';
@@ -423,7 +424,7 @@ if ((batchArticle || nativeTaxonomy || isHeldRoute) && !pageSchema.some((item) =
   ) : lockedRecord ? (
     <LockedStandardPage record={lockedRecord} page={page} />
   ) : isDemolition ? (
-    <DemolitionPage />
+    <ServiceRecoveryRouter model={serviceRecoveryModels[page.path]} />
   ) : page.path === '/company-history/' ? (
     <CompanyHistoryPage content={repairedContent} />
   ) : page.path === '/our-projects/' ? (

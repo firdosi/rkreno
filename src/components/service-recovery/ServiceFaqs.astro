@@ -1,0 +1,9 @@
+---
+import ServiceSectionHeading from './ServiceSectionHeading.astro';
+import type { ServiceFaq } from '../../data/service-exact-faqs';
+const { faqs } = Astro.props as { faqs: ServiceFaq[] };
+---
+{faqs.length > 0 && <section class="service-recovery-section service-recovery-faqs"><div class="service-recovery-wrap service-recovery-faq-layout">
+  <ServiceSectionHeading eyebrow="Common questions" title="Details to confirm before booking" />
+  <div>{faqs.map((faq) => <details><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div>
+</div></section>}

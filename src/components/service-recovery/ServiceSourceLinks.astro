@@ -1,0 +1,6 @@
+---
+import ServiceSectionHeading from './ServiceSectionHeading.astro';
+const { links = [] } = Astro.props as { links?: { href: string; label: string }[] };
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+{links.length > 0 && <section class="service-recovery-section service-recovery-source-links"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Guides and connected services" title="Continue with the relevant project information" /><div>{links.map((link) => <a href={`${base}${link.href}`}>{link.label}<span>→</span></a>)}</div></div></section>}

@@ -18,5 +18,5 @@ Status: **PASS** for Prompt 1 core-page scope only. This does not approve servic
 - Broken images: 0
 - Content regressions: 0
 - SEO regressions: 0
-- Service-detail and article templates were not redesigned.
+- Prompt 1 core pages remain unchanged except the in-scope services hub; articles were not redesigned.
 - Staging remains noindex with disabled form delivery and VPS protection.

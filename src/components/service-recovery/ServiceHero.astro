@@ -1,0 +1,18 @@
+---
+import type { ServiceRecoveryModel } from '../../data/service-recovery';
+const { model } = Astro.props as { model: ServiceRecoveryModel };
+---
+<header class:list={['service-recovery-hero', `service-recovery-hero-${model.family}`]}>
+  <div class="service-recovery-wrap service-recovery-hero-grid">
+    <div class="service-recovery-hero-copy">
+      <p class="service-recovery-eyebrow">{model.eyebrow}</p>
+      <h1>{model.title}</h1>
+      <p class="service-recovery-lead">{model.lead}</p>
+      <div class="service-recovery-actions">
+        <a class="service-recovery-button service-recovery-button-primary" href="https://wa.me/601111334496">WhatsApp RK Reno</a>
+        <a class="service-recovery-button service-recovery-button-secondary" href="tel:+601111334496">Call +60 11 1133 4496</a>
+      </div>
+    </div>
+    <img src={model.heroImage} alt={model.heroAlt} width="720" height="520" loading="eager" />
+  </div>
+</header>

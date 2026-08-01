@@ -1,0 +1,8 @@
+---
+const { eyebrow, title, text = '' } = Astro.props;
+---
+<header class="service-recovery-heading">
+  {eyebrow && <p class="service-recovery-eyebrow">{eyebrow}</p>}
+  <h2>{title}</h2>
+  {text && <p>{text}</p>}
+</header>

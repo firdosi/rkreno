@@ -1,0 +1,14 @@
+---
+import ServiceHero from './ServiceHero.astro'; import ServiceOverview from './ServiceOverview.astro'; import ServiceSectionHeading from './ServiceSectionHeading.astro'; import ServiceItemGrid from './ServiceItemGrid.astro'; import ServicePricing from './ServicePricing.astro'; import ServiceLocations from './ServiceLocations.astro'; import ServiceFaqs from './ServiceFaqs.astro'; import ServiceRelated from './ServiceRelated.astro'; import ServiceSourceLinks from './ServiceSourceLinks.astro'; import ServiceFinalCta from './ServiceFinalCta.astro';
+import type { ServiceRecoveryModel } from '../../data/service-recovery';
+const { model } = Astro.props as { model: ServiceRecoveryModel };
+---
+<article class="service-recovery-page service-family-specialist" data-service-family="specialist" data-locked-template="service">
+  <ServiceHero model={model} /><ServiceOverview items={model.overview} />
+  <section class="service-recovery-section service-recovery-specialist-types"><div class="service-recovery-wrap"><div><ServiceSectionHeading eyebrow="Service-specific review" title={model.typesTitle} /><ServiceItemGrid items={model.types} /></div><img src={model.bodyImages[0].src} alt={model.bodyImages[0].alt} width="600" height="620" loading="lazy" /></div></section>
+  <ServicePricing model={model} />
+  <section class="service-recovery-section service-recovery-section-warm"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Scope and limitations" title={model.scopeTitle} /><ServiceItemGrid items={model.scope} /></div></section>
+  <section class="service-recovery-section service-recovery-section-dark"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Quotation factors" title={model.quotationTitle} /><ServiceItemGrid items={model.quotationFactors} /></div></section>
+  <section class="service-recovery-section"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Work sequence" title="Review, agree, complete and check" /><ServiceItemGrid items={model.process} numbered /></div></section>
+  <ServiceLocations areas={model.areas} /><ServiceFaqs faqs={model.faqs} /><ServiceRelated items={model.related} /><ServiceSourceLinks links={model.sourceLinks} /><ServiceFinalCta title={model.finalTitle} text={model.finalText} />
+</article>

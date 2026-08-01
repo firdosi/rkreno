@@ -1,17 +1,19 @@
 ---
-import LockedHero from '../LockedHero.astro';
-import LockedContentSections from '../LockedContentSections.astro';
-import { prepareLockedPage } from '../locked-page-data';
-const { record, page, featuredImage = '', featuredAlt = '' } = Astro.props as any;
-const data = prepareLockedPage(record, page, featuredImage, featuredAlt);
+import ServiceRecoveryRouter from '../../service-recovery/ServiceRecoveryRouter.astro';
+import { serviceRecoveryModels } from '../../../data/service-recovery';
+const { page, record } = Astro.props as any;
+const model = serviceRecoveryModels[page.path];
+if (!model) throw new Error(`Missing service recovery model for ${page.path}`);
+const repairs: Record<string, string> = {
+  '/about/': '/about-us/', '/tag/pemasangan-aircond/': '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/',
+  '/tag/ceiling-works/': '/plaster-ceiling-contractor-kl/', '/tag/wiring/': '/electrical-services-selangor/', '/tag/guide/': '/blog/',
+  '/tag/kuala-lumpur/': '/category/servis-pembersihan/', '/tag/aircond-maintenance/': '/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/',
+  '/tag/cleaning/': '/category/servis-pembersihan/', '/service/building-construction/': '/services/', '/service/architecture-design/': '/services/',
+  '/service/flooring-roofing/': '/services/', '/service/general-contracting/': '/services/', '/service/repair-expand/': '/services/',
+};
+const sourceLinks = [...new Map((record.content.internalLinks || []).filter((link: any) => link.text).map((link: any) => {
+  const path = repairs[new URL(link.href, 'https://rkrenosolution.com').pathname] || new URL(link.href, 'https://rkrenosolution.com').pathname;
+  return [path, { href: path, label: link.text }];
+})).values()].filter((link: any) => link.href !== page.path && !/^\/blog\/page\/(?:2|4)\/$/.test(link.href));
 ---
-<article class="source-locked-page locked-service-page" data-locked-template="service">
-  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="Renovation & property service" />
-  <section class="locked-service-facts" aria-label="Service highlights"><div class="locked-wrap">
-    <span><strong>KL &amp; Selangor</strong><small>Service areas</small></span>
-    <span><strong>Site-specific</strong><small>Scope and quotation</small></span>
-    <span><strong>Direct contact</strong><small>WhatsApp project discussion</small></span>
-  </div></section>
-  <div class="source-locked-body locked-service-body"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="service" /></div>
-  <aside class="locked-final-cta"><div class="locked-wrap"><div><p class="locked-eyebrow">Plan the next step</p><h2>Discuss your project with RK Reno</h2></div><a class="locked-button locked-button-primary" href="https://wa.me/601111334496">Request a quotation</a></div></aside>
-</article>
+<ServiceRecoveryRouter model={{ ...model, title: record.content.h1, sourceLinks }} />

@@ -1,0 +1,14 @@
+---
+import ServiceHero from './ServiceHero.astro'; import ServiceOverview from './ServiceOverview.astro'; import ServiceSectionHeading from './ServiceSectionHeading.astro'; import ServiceItemGrid from './ServiceItemGrid.astro'; import ServicePricing from './ServicePricing.astro'; import ServiceLocations from './ServiceLocations.astro'; import ServiceFaqs from './ServiceFaqs.astro'; import ServiceRelated from './ServiceRelated.astro'; import ServiceFinalCta from './ServiceFinalCta.astro';
+import type { ServiceRecoveryModel } from '../../data/service-recovery';
+const { model } = Astro.props as { model: ServiceRecoveryModel };
+---
+<article class="service-recovery-page service-family-demolition" data-service-family="demolition" data-locked-template="service">
+  <ServiceHero model={model} /><ServiceOverview items={model.overview} />
+  <section class="service-recovery-section"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Controlled work types" title={model.typesTitle} /><ServiceItemGrid items={model.types} /></div></section>
+  <section class="service-recovery-section service-recovery-demolition-split"><div class="service-recovery-wrap"><img src={model.bodyImages[0].src} alt={model.bodyImages[0].alt} width="600" height="640" loading="lazy" /><div><ServiceSectionHeading eyebrow="Protect what remains" title={model.scopeTitle} /><ServiceItemGrid items={model.scope} /></div></div></section>
+  <ServicePricing model={model} />
+  <section class="service-recovery-section service-recovery-section-dark"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Site inspection" title={model.quotationTitle} /><ServiceItemGrid items={model.quotationFactors} /></div></section>
+  <section class="service-recovery-section"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Removal and preparation" title="A controlled four-stage sequence" /><ServiceItemGrid items={model.process} numbered /></div></section>
+  <ServiceLocations areas={model.areas} /><ServiceFaqs faqs={model.faqs} /><ServiceRelated items={model.related} /><ServiceFinalCta title={model.finalTitle} text={model.finalText} />
+</article>

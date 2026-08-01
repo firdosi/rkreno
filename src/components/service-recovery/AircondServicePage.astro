@@ -1,0 +1,14 @@
+---
+import ServiceHero from './ServiceHero.astro'; import ServiceOverview from './ServiceOverview.astro'; import ServiceSectionHeading from './ServiceSectionHeading.astro'; import ServiceItemGrid from './ServiceItemGrid.astro'; import ServicePricing from './ServicePricing.astro'; import ServiceLocations from './ServiceLocations.astro'; import ServiceFaqs from './ServiceFaqs.astro'; import ServiceRelated from './ServiceRelated.astro'; import ServiceSourceLinks from './ServiceSourceLinks.astro'; import ServiceFinalCta from './ServiceFinalCta.astro';
+import type { ServiceRecoveryModel } from '../../data/service-recovery';
+const { model } = Astro.props as { model: ServiceRecoveryModel };
+---
+<article class="service-recovery-page service-family-aircond" data-service-family="aircond" data-locked-template="service">
+  <ServiceHero model={model} /><ServiceOverview items={model.overview} />
+  <section class="service-recovery-section"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Choose the right service" title={model.typesTitle} /><ServiceItemGrid items={model.types} /></div></section>
+  <ServicePricing model={model} />
+  <section class="service-recovery-section service-recovery-split"><div class="service-recovery-wrap"><img src={model.bodyImages[0].src} alt={model.bodyImages[0].alt} width="620" height="520" loading="lazy" /><div><ServiceSectionHeading eyebrow="Standard scope" title={model.scopeTitle} /><ServiceItemGrid items={model.scope} /></div></div></section>
+  <section class="service-recovery-section service-recovery-section-dark"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Before booking" title={model.quotationTitle} /><ServiceItemGrid items={model.quotationFactors} /></div></section>
+  <section class="service-recovery-section"><div class="service-recovery-wrap"><ServiceSectionHeading eyebrow="Installation or service sequence" title="A clear four-step process" /><ServiceItemGrid items={model.process} numbered /></div></section>
+  <ServiceLocations areas={model.areas} /><ServiceFaqs faqs={model.faqs} /><ServiceRelated items={model.related} /><ServiceSourceLinks links={model.sourceLinks} /><ServiceFinalCta title={model.finalTitle} text={model.finalText} />
+</article>

@@ -1,0 +1,7 @@
+---
+import type { ServiceItem } from '../../data/service-recovery';
+const { items } = Astro.props as { items: ServiceItem[] };
+---
+<section class="service-recovery-overview" aria-label="Service overview"><div class="service-recovery-wrap service-recovery-overview-grid">
+  {items.map((item) => <article><strong>{item.title}</strong><p>{item.text}</p></article>)}
+</div></section>

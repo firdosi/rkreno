@@ -1,0 +1,12 @@
+---
+import ServiceSectionHeading from './ServiceSectionHeading.astro';
+import type { ServiceRecoveryModel } from '../../data/service-recovery';
+const { model } = Astro.props as { model: ServiceRecoveryModel };
+const hasPrices = Boolean(model.pricingCards?.length || model.pricingTable);
+---
+<section class="service-recovery-section service-recovery-pricing" data-service-pricing={hasPrices ? 'visible' : 'quotation'}><div class="service-recovery-wrap">
+  <ServiceSectionHeading eyebrow="Pricing and quotation" title={hasPrices ? (model.pricingTable?.title || 'Published starting prices') : 'Pricing follows the confirmed work scope'} text={model.pricingTable?.intro || model.pricingNote} />
+  {model.pricingCards?.length && <div class="service-recovery-price-grid">{model.pricingCards.map((card) => <article><h3>{card.title}</h3><strong>{card.price}</strong>{card.note && <p>{card.note}</p>}{card.items?.length && <ul>{card.items.map((item) => <li>{item}</li>)}</ul>}</article>)}</div>}
+  {model.pricingTable && <div class="service-recovery-table-scroll"><table><thead><tr>{model.pricingTable.headers.map((header) => <th>{header}</th>)}</tr></thead><tbody>{model.pricingTable.rows.map((row) => <tr>{row.map((cell) => <td>{cell}</td>)}</tr>)}</tbody></table></div>}
+  <aside class="service-recovery-quote-note"><strong>Quotation note</strong><p>{model.pricingNote}</p></aside>
+</div></section>
