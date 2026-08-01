@@ -1,0 +1,19 @@
+---
+const { title, lead, image = '', alt = '', eyebrow, dateLabel = '', published = '', compact = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<header class:list={['locked-hero', 'source-locked-hero', { 'locked-hero-compact': compact, 'locked-hero-no-image': !image }]}>
+  <div class="locked-wrap locked-hero-grid">
+    <div class="locked-hero-copy">
+      <p class="locked-eyebrow">{eyebrow}</p>
+      <h1>{title}</h1>
+      {lead && <p class="locked-lead">{lead}</p>}
+      {dateLabel && <p class="locked-byline"><time datetime={published}>{dateLabel}</time><span>Kuala Lumpur &amp; Selangor</span></p>}
+      <div class="locked-actions">
+        <a class="locked-button locked-button-primary" href="https://wa.me/601111334496">WhatsApp RK Reno</a>
+        <a class="locked-button locked-button-secondary" href={`${base}/contact-us/`}>Request a Quotation</a>
+      </div>
+    </div>
+    {image && <figure class="locked-hero-media"><img class="source-locked-hero-media" src={`${base}${image}`} alt={alt} width="960" height="720" /></figure>}
+  </div>
+</header>

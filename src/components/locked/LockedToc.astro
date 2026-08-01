@@ -1,0 +1,9 @@
+---
+const { toc } = Astro.props as any;
+---
+{toc.length >= 3 && (
+  <nav class="source-locked-toc" aria-label="Article contents">
+    <p>In this guide</p>
+    <ol>{toc.map((item: any) => <li><a href={`#${item.id}`}>{item.text}</a></li>)}</ol>
+  </nav>
+)}

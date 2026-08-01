@@ -1,0 +1,17 @@
+---
+import LockedHero from '../LockedHero.astro';
+import LockedContentSections from '../LockedContentSections.astro';
+import { prepareLockedPage } from '../locked-page-data';
+const { record, page, featuredImage = '', featuredAlt = '' } = Astro.props as any;
+const data = prepareLockedPage(record, page, featuredImage, featuredAlt);
+---
+<article class="source-locked-page locked-service-page" data-locked-template="service">
+  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="Renovation & property service" />
+  <section class="locked-service-facts" aria-label="Service highlights"><div class="locked-wrap">
+    <span><strong>KL &amp; Selangor</strong><small>Service areas</small></span>
+    <span><strong>Site-specific</strong><small>Scope and quotation</small></span>
+    <span><strong>Direct contact</strong><small>WhatsApp project discussion</small></span>
+  </div></section>
+  <div class="source-locked-body locked-service-body"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="service" /></div>
+  <aside class="locked-final-cta"><div class="locked-wrap"><div><p class="locked-eyebrow">Plan the next step</p><h2>Discuss your project with RK Reno</h2></div><a class="locked-button locked-button-primary" href="https://wa.me/601111334496">Request a quotation</a></div></aside>
+</article>

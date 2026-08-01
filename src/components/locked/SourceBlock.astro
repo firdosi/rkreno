@@ -4,9 +4,11 @@ import { localRouteHref, safeSourceHtml } from '../../lib/source-content';
 const { block, base, resolveMedia, headingId } = Astro.props as any;
 ---
 {block.type === 'heading' ? (
-  block.level <= 2
-    ? <h2 id={headingId} set:html={safeSourceHtml(block.html || block.text, base)} />
-    : <h3 set:html={safeSourceHtml(block.html || block.text, base)} />
+  block.level >= 4 && /\?$/.test(block.text || '')
+    ? <details class="locked-question-only"><summary><h3 set:html={safeSourceHtml(block.html || block.text, base)} /></summary></details>
+    : block.level <= 2
+      ? <h2 id={headingId} set:html={safeSourceHtml(block.html || block.text, base)} />
+      : <h3 set:html={safeSourceHtml(block.html || block.text, base)} />
 ) : block.type === 'p' ? (
   /<(?:select|input|textarea|button)\b/i.test(block.html || '')
     ? <p class="source-copy">{block.text}</p>
@@ -26,9 +28,9 @@ const { block, base, resolveMedia, headingId } = Astro.props as any;
 ) : block.type === 'link' ? (
   <p class="source-locked-inline-action"><a href={localRouteHref(block.href, base)}>{block.text}</a></p>
 ) : block.type === 'form' ? (
-  <section class="source-locked-form-preview" aria-label="Source form fields">
+  <section class="source-locked-form-preview" aria-label="Enquiry form preview">
     <h2>Send Your Project Details</h2>
     <div>{[...new Set([...(block.labels || []), ...(block.fields || []).map((field) => field.placeholder).filter(Boolean)])].map((label) => <span>{label}</span>)}</div>
-    <p>Online submission is disabled on this staging build. Use WhatsApp or call for an enquiry.</p>
+    <p>This enquiry preview cannot send messages. Use WhatsApp or call to contact RK Reno.</p>
   </section>
 ) : null}

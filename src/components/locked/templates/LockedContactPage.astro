@@ -1,0 +1,16 @@
+---
+import LockedHero from '../LockedHero.astro';
+import LockedContentSections from '../LockedContentSections.astro';
+import { prepareLockedPage } from '../locked-page-data';
+const { record, page } = Astro.props as any;
+const data = prepareLockedPage(record, page);
+---
+<article class="source-locked-page locked-contact-page" data-locked-template="contact">
+  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="Talk to our team" compact />
+  <section class="locked-contact-actions" aria-label="Contact options"><div class="locked-wrap">
+    <a href="tel:+601111334496"><span>Call</span><strong>+60 11 1133 4496</strong></a>
+    <a href="https://wa.me/601111334496"><span>WhatsApp</span><strong>Start a conversation</strong></a>
+    <a href="mailto:rkrenosolution@gmail.com"><span>Email</span><strong>rkrenosolution@gmail.com</strong></a>
+  </div></section>
+  <div class="source-locked-body locked-contact-body"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="contact" /></div>
+</article>

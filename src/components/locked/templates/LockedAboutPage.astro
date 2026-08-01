@@ -1,0 +1,11 @@
+---
+import LockedHero from '../LockedHero.astro';
+import LockedContentSections from '../LockedContentSections.astro';
+import { prepareLockedPage } from '../locked-page-data';
+const { record, page } = Astro.props as any;
+const data = prepareLockedPage(record, page);
+---
+<article class="source-locked-page locked-about-page" data-locked-template="about">
+  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="RK Reno Solution" />
+  <div class="source-locked-body"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="about" /></div>
+</article>

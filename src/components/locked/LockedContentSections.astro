@@ -1,0 +1,29 @@
+---
+import SourceBlock from './SourceBlock.astro';
+const { sections, toc = [], resolveMedia, variant = 'standard', startIndex = 0 } = Astro.props as any;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+let tocCursor = startIndex;
+const treatment = (section: any, index: number) => {
+  const blocks = section.blocks || [];
+  if (blocks.some((block: any) => block.type === 'table')) return 'pricing';
+  if (blocks.some((block: any) => block.type === 'details')) return 'faq';
+  if (blocks.some((block: any) => block.type === 'image')) return 'media';
+  if (blocks.some((block: any) => block.type === 'list')) return 'list';
+  if (blocks.some((block: any) => block.type === 'form')) return 'form';
+  return index % 3 === 1 ? 'soft' : 'plain';
+};
+---
+<div class:list={['locked-section-stream', `locked-section-stream-${variant}`]}>
+  {sections.map((section: any, index: number) => (
+    <section class:list={['source-locked-section', `locked-treatment-${treatment(section, index)}`]}>
+      <div class="locked-section-inner">
+        {section.blocks.map((block: any) => <SourceBlock
+          block={block}
+          base={base}
+          resolveMedia={resolveMedia}
+          headingId={block.type === 'heading' && block.level <= 2 ? toc[tocCursor++]?.id : undefined}
+        />)}
+      </div>
+    </section>
+  ))}
+</div>

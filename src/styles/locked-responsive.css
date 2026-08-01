@@ -1,0 +1,57 @@
+@media (max-width: 980px) {
+  .locked-hero-grid { grid-template-columns: 1fr 380px; gap: 38px; }
+  .locked-hero h1 { font-size: clamp(2.5rem, 6vw, 4.2rem); }
+  .locked-directory-grid, .locked-article-grid { grid-template-columns: repeat(2, 1fr); }
+  .locked-article-shell { grid-template-columns: 1fr; padding-block: 54px; }
+  .locked-article-rail { position: static; }
+  .source-locked-toc ol { columns: 2; column-gap: 34px; }
+  .locked-treatment-media .locked-section-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .locked-hub-source .locked-section-stream, .locked-blog-source .locked-section-stream { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .locked-wrap, .locked-section-inner, .locked-hub-source .locked-section-stream, .locked-blog-source .locked-section-stream { width: min(100% - 34px, 680px); }
+  .locked-hero-grid { grid-template-columns: 1fr; min-height: auto; padding-block: 62px; }
+  .locked-hero h1 { max-width: none; font-size: clamp(2.35rem, 11vw, 3.7rem); }
+  .locked-hero-media { min-height: 330px; border-radius: 22px 22px 55px 22px; }
+  .locked-hero-media img { min-height: 330px; }
+  .locked-feature-grid { grid-template-columns: 1fr; }
+  .locked-feature-card, .locked-feature-card img { min-height: 300px; height: 300px; }
+  .locked-contact-actions { margin-top: 0; padding-top: 24px; background: var(--locked-cream); }
+  .locked-contact-actions .locked-wrap, .locked-service-facts .locked-wrap { grid-template-columns: 1fr; }
+  .locked-service-facts { margin-top: 0; padding: 20px 0; background: var(--locked-cream); }
+  .locked-service-facts span + span { border-top: 1px solid var(--locked-border); border-left: 0; }
+  .locked-featured-article a { grid-template-columns: 1fr; }
+  .locked-featured-article img { min-height: 280px; }
+  .locked-treatment-media .locked-section-inner, .locked-contact-body .source-locked-section:first-child .locked-section-inner, .locked-faq-body .source-locked-section:last-child .locked-section-inner { display: block; }
+  .locked-treatment-media figure, .locked-faq-body .source-locked-section:last-child figure { margin-top: 28px; }
+  .source-card-list { grid-template-columns: 1fr; }
+  .locked-final-cta .locked-wrap { align-items: flex-start; flex-direction: column; }
+  .locked-faq-body .source-locked-section:first-child .locked-section-inner { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .locked-wrap, .locked-section-inner, .locked-hub-source .locked-section-stream, .locked-blog-source .locked-section-stream { width: calc(100% - 28px); }
+  .locked-hero-grid { gap: 32px; padding-block: 50px; }
+  .locked-hero h1 { font-size: clamp(2.12rem, 11vw, 3.2rem); line-height: 1.03; }
+  .locked-hero .locked-lead { font-size: 1rem; line-height: 1.65; }
+  .locked-actions { display: grid; }
+  .locked-button { width: 100%; }
+  .locked-hero-media, .locked-hero-media img { min-height: 250px; }
+  .locked-home-priority, .locked-directory, .locked-article-catalog { padding: 64px 0; }
+  .locked-directory-grid, .locked-article-grid, .locked-hub-source .locked-section-stream, .locked-blog-source .locked-section-stream { grid-template-columns: 1fr; }
+  .source-locked-section { padding: 58px 0; }
+  .source-locked-section h2 { font-size: clamp(1.7rem, 8.5vw, 2.4rem); }
+  .source-copy, .locked-editorial-body .source-copy { font-size: 1rem; line-height: 1.78; }
+  .locked-treatment-list .locked-section-inner { padding: 24px 18px; }
+  .source-locked-toc ol { columns: 1; }
+  .locked-article-shell { width: calc(100% - 28px); gap: 32px; padding-block: 42px; }
+  .locked-article-shell .source-locked-section { padding-bottom: 48px; }
+  .locked-article-shell .source-locked-section + .source-locked-section { padding-top: 48px; }
+  .locked-byline span::before { display: none; }
+  .locked-byline { flex-direction: column; }
+  .locked-featured-article { padding-top: 44px; }
+  .locked-featured-article a > span { padding: 28px 22px; }
+  .locked-hub-source .locked-section-stream, .locked-blog-source .locked-section-stream { padding-block: 55px; }
+  .source-locked-form-preview { padding: 25px 18px; }
+}

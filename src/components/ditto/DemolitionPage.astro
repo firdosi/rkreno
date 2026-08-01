@@ -29,7 +29,7 @@ const faqs = [
   ['How is debris handled?', 'Debris organisation and removal are planned around the agreed quantities, access conditions and applicable site requirements.'],
 ];
 ---
-<div class="demolition-page">
+<div class="demolition-page" data-locked-template="service">
   <CorePageTitle title="Demolition Contractor KL & Selangor" description="Interior demolition, kitchen and bathroom removal, strip-out and renovation preparation in Kuala Lumpur and Selangor." />
   <section class="demolition-hero"><div class="exact-wrap"><div><p class="core-kicker">PREPARATION FOR RENOVATION</p><h2>Interior Demolition and Strip-Out Work</h2><p>RK Reno Solution accepts enquiries for selected interior removal, kitchen and bathroom demolition, office or retail strip-out, site preparation and debris organisation. Every quotation depends on inspection, access and the agreed scope.</p><div class="core-button-row"><a class="core-button core-button-orange" href="https://wa.me/601111334496">Request an Inspection</a><a class="core-button core-button-outline" href="tel:+601111334496">Call +60 11 1133 4496</a></div></div><img src={`${base}/assets/media/Renovation-contractor-for-commercial-buildings-93583952.jpg`} alt="Interior property prepared for demolition and renovation work" width="1376" height="768" /></div></section>
   <section class="core-section demolition-services"><div class="exact-wrap"><p class="core-kicker">SERVICES</p><h2>Demolition and Site-Preparation Enquiries</h2><div class="demolition-grid">{services.map(([title, text], index) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>

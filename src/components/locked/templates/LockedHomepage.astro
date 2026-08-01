@@ -1,0 +1,28 @@
+---
+import LockedHero from '../LockedHero.astro';
+import LockedContentSections from '../LockedContentSections.astro';
+import { cardFromRecord, prepareLockedPage, SERVICE_ROUTES } from '../locked-page-data';
+const { record, page, allRecords, pageByRoute } = Astro.props as any;
+const data = prepareLockedPage(record, page);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const priority = ['/aircond-installation-kl/', '/house-renovation-in-kuala-lumpur/', '/demolition-contractor-kl-selangor/'];
+const cards = priority.map((route) => allRecords.find((item: any) => item.route === route)).filter(Boolean)
+  .map((item: any) => cardFromRecord(item, pageByRoute));
+const serviceLinks = allRecords.filter((item: any) => SERVICE_ROUTES.has(item.route)).slice(0, 8);
+---
+<article class="source-locked-page locked-homepage" data-locked-template="homepage">
+  <LockedHero title={data.heroTitle} lead={data.lead} image={data.heroImage} alt={data.heroAlt} eyebrow="Renovation · Aircond · Property Services" />
+  <section class="locked-home-priority" aria-labelledby="priority-services">
+    <div class="locked-wrap">
+      <p class="locked-eyebrow">Start with your project</p><h2 id="priority-services">Priority services</h2>
+      <div class="locked-feature-grid">{cards.map((card: any) => <a class="locked-feature-card" href={`${base}${card.route}`}>
+        {card.image && <img src={`${base}${card.image}`} alt={card.alt} width="720" height="480" loading="lazy" />}
+        <span><strong>{card.title}</strong><small>Explore service</small></span>
+      </a>)}</div>
+    </div>
+  </section>
+  <div class="source-locked-body"><LockedContentSections sections={data.sections} toc={data.toc} resolveMedia={data.resolveMedia} variant="home" /></div>
+  <nav class="locked-service-ribbon" aria-label="Main services"><div class="locked-wrap">
+    {serviceLinks.map((item: any) => <a href={`${base}${item.route}`}>{item.content.h1}</a>)}
+  </div></nav>
+</article>

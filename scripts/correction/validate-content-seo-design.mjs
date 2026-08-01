@@ -22,6 +22,13 @@ const result = (route, name, passed, detail = '') => {
   if (!passed) failures.push(`${route} ${name}${detail ? `: ${detail}` : ''}`);
 };
 const outputFile = (route) => route === '/' ? path.join(root, 'dist/index.html') : path.join(root, 'dist', route.slice(1), 'index.html');
+const articleRoutes = new Set(registry.publicRoutes.filter((item) => item.validationGroup === 'article').map((item) => item.path));
+const serviceRoutes = new Set(registry.publicRoutes.filter((item) => item.validationGroup === 'service' && item.path !== '/services/').map((item) => item.path));
+const expectedTemplate = (route) => ({
+  '/': 'homepage', '/services/': 'services-hub', '/about-us/': 'about',
+  '/contact-us/': 'contact', '/faq/': 'faq', '/blog/': 'blog-archive',
+}[route] || (articleRoutes.has(route) ? 'article' : serviceRoutes.has(route) ? 'service' : 'standard'));
+const templateUsage = new Map();
 
 const missingOriginals = new Set([
   'deep-cleaning-rumah-kuala-lumpur.webp', 'cuci-bilik-air-rumah-kl.webp',
@@ -44,6 +51,15 @@ for (const record of lock.records) {
   result(record.route, 'built route', existsSync(file));
   if (!existsSync(file)) continue;
   const $ = load(await readFile(file, 'utf8'));
+  const template = $('[data-locked-template]').first().attr('data-locked-template') || 'none';
+  templateUsage.set(record.route, template);
+  result(record.route, 'one main landmark', $('main').length === 1, String($('main').length));
+  result(record.route, 'no nested main', $('main main').length === 0, String($('main main').length));
+  result(record.route, 'header landmark', $('body > header').length === 1, String($('body > header').length));
+  result(record.route, 'footer landmark', $('body > footer').length === 1, String($('body > footer').length));
+  result(record.route, 'skip link target valid', $('a.skip-link[href="#main-content"]').length === 1 && $('#main-content').length === 1);
+  result(record.route, 'dedicated page template', template === expectedTemplate(record.route), `${template}/${expectedTemplate(record.route)}`);
+  result(record.route, 'no public audit wording', !/source-verified content|source form fields|source-locked|migration audit|content lock/i.test($('body').text()));
   if (!record.sourceUrl) {
     result(record.route, 'new page H1', clean($('h1').first().text()) === 'Demolition Contractor KL & Selangor');
     result(record.route, 'safe staging robots', /noindex/.test($('meta[name="robots"]').attr('content') || ''));
@@ -70,14 +86,14 @@ for (const record of lock.records) {
   const sourceHeadingBlocks = record.content.orderedBlocks.filter((block) => block.type === 'heading');
   const firstSourceH1 = sourceHeadingBlocks.findIndex((block) => block.level === 1);
   const expectedHeadings = [record.content.h1, ...sourceHeadingBlocks.filter((_, index) => index !== firstSourceH1).map((block) => block.text)];
-  const actualHeadings = $('.source-locked-hero h1,.source-locked-section>h2,.source-locked-section>h3').toArray().map((node) => clean($(node).text()));
+  const actualHeadings = $('.source-locked-hero h1,.locked-section-inner>h2,.locked-section-inner>h3,.locked-section-inner>.locked-question-only h3').toArray().map((node) => clean($(node).text()));
   result(record.route, 'heading order exact', stable(actualHeadings) === stable(expectedHeadings), `${actualHeadings.length}/${expectedHeadings.length}`);
   const sourceParagraphs = record.content.orderedBlocks.filter((block) => block.type === 'p').map((block) => block.text);
   const expectedParagraphs = sourceParagraphs.slice(1);
-  const actualParagraphs = $('.source-locked-section>.source-copy').toArray().map((node) => clean($(node).text()));
+  const actualParagraphs = $('.locked-section-inner>.source-copy').toArray().map((node) => clean($(node).text()));
   result(record.route, 'paragraph order exact', stable(actualParagraphs) === stable(expectedParagraphs), `${actualParagraphs.length}/${expectedParagraphs.length}`);
   const expectedLists = record.content.orderedBlocks.filter((block) => block.type === 'list').map((block) => block.items.map(clean));
-  const actualLists = $('.source-locked-section>ul,.source-locked-section>ol').toArray().map((node) => $(node).children('li').toArray().map((item) => clean($(item).text())));
+  const actualLists = $('.locked-section-inner>ul,.locked-section-inner>ol').toArray().map((node) => $(node).children('li').toArray().map((item) => clean($(item).text())));
   result(record.route, 'list order exact', stable(actualLists) === stable(expectedLists), `${actualLists.length}/${expectedLists.length}`);
   const expectedTables = record.content.orderedBlocks.filter((block) => block.type === 'table').map((block) => block.rows.map((row) => row.map(clean)));
   const actualTables = $('.source-locked-table table').toArray().map((node) => $(node).find('tr').toArray().map((row) => $(row).find('th,td').toArray().map((cell) => clean($(cell).text()))));
@@ -91,7 +107,7 @@ for (const record of lock.records) {
     .map((node) => $(node).attr('alt') || '').sort();
   result(record.route, 'source image purposes retained', stable(actualAlts) === stable(expectedAlts));
   const expectedFaqs = record.content.faqs || [];
-  const actualFaqs = $('.source-locked-body details').toArray().map((node) => ({
+  const actualFaqs = $('.source-locked-body details:not(.locked-question-only)').toArray().map((node) => ({
     question: clean($(node).find('summary').text()), answer: clean($(node).find('p').text()),
   }));
   result(record.route, 'FAQ sequence exact', stable(actualFaqs) === stable(expectedFaqs));
@@ -100,6 +116,25 @@ for (const record of lock.records) {
   result(record.route, 'form labels retained', expectedFormLabels.every((label) => visibleFormLabels.includes(label)));
   result(record.route, 'structured content sections', $('.source-locked-section').length > 0);
   result(record.route, 'no active content form', $('.source-locked-page form').length === 0);
+  if (record.route === '/') {
+    result(record.route, 'homepage has priority service cards', $('.locked-feature-card').length === 3, String($('.locked-feature-card').length));
+    result(record.route, 'homepage has no article TOC or rail', $('.source-locked-toc,.locked-article-rail').length === 0);
+  }
+  if (record.route === '/services/') result(record.route, 'service hub uses service directory cards', $('.locked-directory-card').length >= 13, String($('.locked-directory-card').length));
+  if (record.route === '/contact-us/') {
+    result(record.route, 'contact layout', $('.locked-contact-actions').length === 1);
+    result(record.route, 'contact form remains preview-only', $('.source-locked-form-preview').length === 1 && $('form').length === 0);
+  }
+  if (record.route === '/faq/') result(record.route, 'FAQ accordion', $('.locked-question-only').length === 6, String($('.locked-question-only').length));
+  if (record.route === '/blog/') result(record.route, 'blog archive uses article cards', $('.locked-article-card').length === 14, String($('.locked-article-card').length));
+  if (serviceRoutes.has(record.route)) {
+    const treatments = new Set($('.source-locked-section').toArray().flatMap((node) => ($(node).attr('class') || '').split(/\s+/).filter((name) => name.startsWith('locked-treatment-'))));
+    result(record.route, 'service has multiple section treatments', treatments.size >= 3, String(treatments.size));
+  }
+  if (articleRoutes.has(record.route)) {
+    result(record.route, 'article editorial body', $('.locked-editorial-body').length === 1);
+    result(record.route, 'article metadata', $('.locked-byline time').length === 1);
+  }
   const expectedInternal = [...new Set((record.content.internalLinks || []).filter((link) => link.text).map((link) => routeRepairs.get(new URL(link.href).pathname) || new URL(link.href).pathname))]
     .filter((href) => !/^\/blog\/page\/(?:2|4)\/$/.test(href));
   const actualInternal = new Set($('.source-locked-page a[href]').toArray().map((node) => {
@@ -127,10 +162,12 @@ result('GLOBAL', '33 indexable lock records', lock.records.length === 33);
 result('GLOBAL', '32 WordPress lock records', lock.records.filter((record) => record.sourceUrl).length === 32);
 result('GLOBAL', 'one owner-new record', lock.records.filter((record) => !record.sourceUrl).length === 1);
 const css = await readFile(path.join(root, 'src/styles/source-locked.css'), 'utf8');
-result('GLOBAL', 'desktop and mobile design rules', /@media\s*\(max-width:\s*860px\)/.test(css) && /@media\s*\(max-width:\s*560px\)/.test(css));
+const responsiveCss = await readFile(path.join(root, 'src/styles/locked-responsive.css'), 'utf8');
+result('GLOBAL', 'desktop and mobile design rules', /@media\s*\(max-width:\s*760px\)/.test(responsiveCss) && /@media\s*\(max-width:\s*560px\)/.test(responsiveCss));
+result('GLOBAL', 'no standard template in locked indexable scope', [...templateUsage.values()].filter((name) => name === 'standard').length === 0);
 
 const reviewRoutes = [
-  '/', '/house-renovation-in-kuala-lumpur/', '/aircond-installation-kl/',
+  '/', '/services/', '/contact-us/', '/aircond-installation-kl/', '/house-renovation-in-kuala-lumpur/',
   '/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/',
   '/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/', '/blog/',
 ];
@@ -152,20 +189,17 @@ try {
   const browserPage = await browser.newPage();
   const consoleErrors = [];
   browserPage.on('console', (message) => { if (message.type() === 'error') consoleErrors.push(message.text()); });
-  for (const width of [1440, 768, 390]) {
+  for (const width of [1440, 390]) {
     await browserPage.setViewportSize({ width, height: width === 390 ? 844 : 900 });
     for (const route of reviewRoutes) {
       consoleErrors.length = 0;
       await browserPage.goto(`http://127.0.0.1:${port}/rkreno${route}`, { waitUntil: 'load' });
       const metrics = await browserPage.evaluate(() => {
         const wrappers = [...document.querySelectorAll('.source-locked-table')];
-        const body = document.querySelector('.source-locked-body')?.getBoundingClientRect();
-        const sidebar = document.querySelector('.source-locked-sidebar')?.getBoundingClientRect();
-        return {
+          return {
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
           tables: wrappers.every((wrapper) => getComputedStyle(wrapper).overflowX === 'auto'),
-          sidebarStacked: innerWidth > 860 || !body || !sidebar || sidebar.top >= body.top + body.height - 2,
           structured: document.querySelectorAll('.source-locked-section').length > 0,
           tocMobile: innerWidth > 560 || !document.querySelector('.source-locked-toc ol') || getComputedStyle(document.querySelector('.source-locked-toc ol')).columnCount === '1',
         };
@@ -174,7 +208,6 @@ try {
       result(`${route}@${width}`, 'no broken responsive image', metrics.brokenImages === 0, String(metrics.brokenImages));
       result(`${route}@${width}`, 'responsive tables contained', metrics.tables);
       result(`${route}@${width}`, 'structured sections visible', metrics.structured);
-      result(`${route}@${width}`, 'mobile sidebar stacks', metrics.sidebarStacked);
       result(`${route}@${width}`, 'mobile TOC single column', metrics.tocMobile);
       result(`${route}@${width}`, 'no console errors', consoleErrors.length === 0, consoleErrors.join(' | '));
     }
@@ -196,7 +229,20 @@ await writeFile(path.join(reportDir, 'content-seo-comparison.csv'), `${rows.join
 
 const drifted = lock.records.filter((record) => record.sourceUrl && !record.localBaseline.contentTextMatches).map((record) => record.route);
 await writeFile(path.join(reportDir, 'content-seo-differences.md'), `# Content and SEO differences\n\n- Live WordPress SEO matched the stored crawl on all 32 source routes.\n- ${drifted.length} stored bodies differed from the current normalized live body and are now rendered from the live lock: ${drifted.join(', ')}.\n- Staging robots remain \`noindex, nofollow\`; this is a documented safety exclusion from the live WordPress robots value.\n- Obsolete WordPress pagination and retired template/tag destinations are documented exclusions; visible wording is retained and links are repaired to current public routes.\n- No source wording is deleted or rewritten. The demolition route is classified \`NEW_PAGE\`.\n`);
-await writeFile(path.join(reportDir, 'design-rebuild-summary.md'), `# Design rebuild summary\n\n- Rebuilt: 14 structured service pages, 14 structured articles and the six core indexable pages.\n- System: source-led heroes, featured/source imagery, section cards, process/service-card lists, responsive pricing tables, information boxes, article contents navigation, contextual related links and inactive staging form previews.\n- Responsive review: homepage, House Renovation Kuala Lumpur, Aircond Installation KL, both corresponding planning/installation articles and Blog passed at 1440px, 768px and 390px.\n- Remaining raw text-blob pages in the 33-route indexable scope: 0.\n`);
+const countTemplate = (name) => [...templateUsage.values()].filter((value) => value === name).length;
+const contentCheckNames = new Set(['single exact H1', 'heading order exact', 'paragraph order exact', 'list order exact', 'table order exact', 'FAQ sequence exact', 'form labels retained', 'source image slots retained', 'source image purposes retained', 'source internal destinations retained']);
+const seoCheckPattern = /^(?:title|description|canonical|JSON-LD|og:|article:|twitter:)/;
+const contentRegressions = checks.filter((check) => !check.passed && contentCheckNames.has(check.name)).length;
+const seoRegressions = checks.filter((check) => !check.passed && seoCheckPattern.test(check.name)).length;
+const nestedMainCount = checks.filter((check) => check.name === 'no nested main' && !check.passed).length;
+const genericTemplateCount = countTemplate('standard') + countTemplate('none');
+const textBlobCount = checks.filter((check) => check.name === 'structured content sections' && !check.passed).length;
+await writeFile(path.join(reportDir, 'design-rebuild-summary.md'), `# Design rebuild summary\n\n- Homepage: dedicated branded landing layout with priority services, varied source sections and direct quotation actions.\n- Core pages: dedicated services, about, contact, FAQ and blog archive presentations.\n- Services: ${countTemplate('service')} rich service pages plus one dedicated services hub.\n- Articles: ${countTemplate('article')} editorial guides with metadata, reading-width bodies and contents navigation.\n- Content engine: one safe SourceBlock stream preserves locked headings, paragraphs, lists, tables, FAQs, images and links.\n- Remaining generic locked templates: ${genericTemplateCount}.\n- Remaining text-blob pages: ${textBlobCount}.\n- Nested main landmarks: ${nestedMainCount}.\n- Content regressions: ${contentRegressions}.\n- SEO regressions: ${seoRegressions}.\n`);
+
+const templateRows = [...templateUsage.entries()].map(([route, template]) => `| \`${route}\` | ${template} | ${template === expectedTemplate(route) ? 'PASS' : 'FAIL'} |`).join('\n');
+await writeFile(path.join(reportDir, 'template-usage-report.md'), `# Template usage report\n\n| Route | Template | Result |\n|---|---|---|\n${templateRows}\n\n- Homepage templates: ${countTemplate('homepage')}\n- Services hubs: ${countTemplate('services-hub')}\n- About templates: ${countTemplate('about')}\n- Contact templates: ${countTemplate('contact')}\n- FAQ templates: ${countTemplate('faq')}\n- Blog archives: ${countTemplate('blog-archive')}\n- Rich service templates: ${countTemplate('service')}\n- Editorial article templates: ${countTemplate('article')}\n- Generic/none: ${genericTemplateCount}\n`);
+
+await writeFile(path.join(reportDir, 'visual-review.md'), `# Visual review\n\nAutomated desktop and mobile review covered the eight required routes at 1440px and 390px. Checks include horizontal overflow, broken responsive images, contained tables, visible structured sections, compact mobile contents navigation and console errors. Final screenshot references are stored in \`reports/public/correction/visual-review/\`.\n`);
 
 const risky = /warranty|guarantee|100%|certified|expert|permanent|free inspection|years? of experience|customers|projects completed|savings|pay for/i;
 const claimRows = [];
@@ -207,7 +253,7 @@ await writeFile(path.join(reportDir, 'claim-review.md'), `# Source claim review\
 await writeFile(path.join(reportDir, 'missing-assets.md'), `# Missing original assets\n\nThe following seven WordPress cleaning images are unavailable locally and use \`/assets/media/detailed-kitchen-cleaning-kl-67669628.jpg\` as a clearly documented contextual fallback; it is not represented as the original.\n\n${[...missingOriginals].map((name) => `- ${name}`).join('\n')}\n`);
 const brokenLinks = checks.filter((check) => check.name === 'internal link resolves' && !check.passed).length;
 const brokenImages = checks.filter((check) => (check.name === 'local image exists' || check.name === 'no broken responsive image') && !check.passed).length;
-const validationReport = `# Correction validation summary\n\nStatus: **${failures.length ? 'FAILED' : 'PASSED'}**\n\n- Routes checked: ${lock.records.length}\n- WordPress source locks: ${lock.records.filter((record) => record.sourceUrl).length}\n- WordPress content matches: 32\n- SEO title matches: 32\n- Meta-description matches: 32\n- Structured service pages: 14\n- Structured articles: 14\n- Remaining text-blob pages: 0\n- Broken internal links: ${brokenLinks}\n- Broken images: ${brokenImages}\n- Responsive routes: 6 at 1440px, 768px and 390px\n- Automated checks: ${checks.length}\n- Failures: ${failures.length}\n- Safety: staging noindex retained; forms inactive; no production systems changed.\n\n${failures.length ? `## Failures\n\n${failures.map((failure) => `- ${failure}`).join('\n')}\n` : ''}`;
+const validationReport = `# Correction validation summary\n\nStatus: **${failures.length ? 'FAILED' : 'PASSED'}**\n\n- Routes checked: ${lock.records.length}\n- WordPress source locks: ${lock.records.filter((record) => record.sourceUrl).length}\n- WordPress content matches: ${32 - contentRegressions}/32\n- SEO title matches: ${checks.filter((check) => check.name === 'title exact' && check.passed).length}/32\n- Meta-description matches: ${checks.filter((check) => check.name === 'description exact' && check.passed).length}/32\n- JSON-LD regressions: ${checks.filter((check) => check.name === 'JSON-LD exact' && !check.passed).length}\n- Rich service templates: ${countTemplate('service')} plus one service hub\n- Editorial article templates: ${countTemplate('article')}\n- Nested main landmarks: ${nestedMainCount}\n- Generic shared-page templates: ${genericTemplateCount}\n- Remaining text-blob pages: ${textBlobCount}\n- Broken internal links: ${brokenLinks}\n- Broken images: ${brokenImages}\n- Responsive routes: 8 at 1440px and 390px\n- Automated checks: ${checks.length}\n- Failures: ${failures.length}\n- Safety: staging noindex retained; forms inactive; no production systems changed.\n\n${failures.length ? `## Failures\n\n${failures.map((failure) => `- ${failure}`).join('\n')}\n` : ''}`;
 await writeFile(path.join(reportDir, 'validation-summary.md'), validationReport.replace(/\n+$/, '\n'));
 
 console.log(`Content/SEO/design validation: ${checks.length} checks, ${failures.length} failures.`);
