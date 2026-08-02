@@ -1,0 +1,82 @@
+{
+  "route": "/aircond-installation-kl/",
+  "title": "Aircond Installation KL | Upah Pasang Aircond RM220",
+  "description": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote.",
+  "canonical": "https://rkrenosolution.com/aircond-installation-kl/",
+  "productionRobots": "max-image-preview:large",
+  "stagingRobots": "noindex, nofollow, max-image-preview:large",
+  "openGraph": {
+    "locale": "en_US",
+    "site_name": "RK Reno Solution -",
+    "type": "article",
+    "title": "Aircond Installation KL | Upah Pasang Aircond RM220",
+    "description": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote.",
+    "url": "https://rkrenosolution.com/aircond-installation-kl/",
+    "image": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+    "image:secure_url": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+    "image:width": "1575",
+    "image:height": "483"
+  },
+  "article": {
+    "published_time": "2026-03-28T10:07:44+00:00",
+    "modified_time": "2026-07-17T13:03:28+00:00"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Aircond Installation KL | Upah Pasang Aircond RM220",
+    "description": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote.",
+    "image": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png"
+  },
+  "jsonLd": [{
+    "@context": "https://schema.org",
+    "@graph": [{
+      "@type": "BreadcrumbList",
+      "@id": "https://rkrenosolution.com/aircond-installation-kl/#breadcrumblist",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "@id": "https://rkrenosolution.com#listItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://rkrenosolution.com",
+        "nextItem": { "@type": "ListItem", "@id": "https://rkrenosolution.com/aircond-installation-kl/#listItem", "name": "Aircond Installation KL" }
+      }, {
+        "@type": "ListItem",
+        "@id": "https://rkrenosolution.com/aircond-installation-kl/#listItem",
+        "position": 2,
+        "name": "Aircond Installation KL",
+        "previousItem": { "@type": "ListItem", "@id": "https://rkrenosolution.com#listItem", "name": "Home" }
+      }]
+    }, {
+      "@type": "Organization",
+      "@id": "https://rkrenosolution.com/#organization",
+      "name": "RK Reno Solution",
+      "url": "https://rkrenosolution.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+        "@id": "https://rkrenosolution.com/aircond-installation-kl/#organizationLogo",
+        "width": 1575,
+        "height": 483
+      },
+      "image": { "@id": "https://rkrenosolution.com/aircond-installation-kl/#organizationLogo" }
+    }, {
+      "@type": "WebPage",
+      "@id": "https://rkrenosolution.com/aircond-installation-kl/#webpage",
+      "url": "https://rkrenosolution.com/aircond-installation-kl/",
+      "name": "Aircond Installation KL | Upah Pasang Aircond RM220",
+      "description": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote.",
+      "inLanguage": "en-US",
+      "isPartOf": { "@id": "https://rkrenosolution.com/#website" },
+      "breadcrumb": { "@id": "https://rkrenosolution.com/aircond-installation-kl/#breadcrumblist" },
+      "datePublished": "2026-03-28T10:07:44+00:00",
+      "dateModified": "2026-07-17T13:03:28+00:00"
+    }, {
+      "@type": "WebSite",
+      "@id": "https://rkrenosolution.com/#website",
+      "url": "https://rkrenosolution.com/",
+      "name": "RK Reno Solution",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://rkrenosolution.com/#organization" }
+    }]
+  }]
+}

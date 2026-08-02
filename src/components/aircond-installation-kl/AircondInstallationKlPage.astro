@@ -1,0 +1,92 @@
+---
+import { aircondInstallationKl as content } from '../../data/aircond-installation-kl';
+import '../../styles/aircond-installation-kl.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const localHref = (href: string) => href.startsWith('/') ? `${base}${href}` : href;
+const number = (index: number) => String(index + 1).padStart(2, '0');
+---
+<article class="airkl-page" data-aircond-installation-kl data-service-family="aircond" data-locked-template="service">
+  <section class="airkl-hero" data-airkl-section="hero">
+    <div class="airkl-wrap airkl-hero-grid">
+      <div class="airkl-hero-copy">
+        <p class="airkl-eyebrow">{content.hero.eyebrow}</p>
+        <h1>{content.hero.h1}</h1>
+        <p class="airkl-lead">{content.hero.paragraph}</p>
+        <div class="airkl-hero-prices">{content.hero.prices.map((price) => <strong>{price}</strong>)}</div>
+        <div class="airkl-actions">
+          {content.hero.buttons.map((button, index) => <a class:list={['airkl-button', index ? 'airkl-button-light' : 'airkl-button-whatsapp']} href={localHref(button.href)} target={button.href.startsWith('http') ? '_blank' : undefined} rel={button.href.startsWith('http') ? 'noopener' : undefined}>{button.label}</a>)}
+        </div>
+        <div class="airkl-chips">{content.hero.chips.map((chip) => <span>{chip}</span>)}</div>
+      </div>
+      <figure class="airkl-hero-media">
+        <img src={localHref(content.hero.image.localPath)} alt={content.hero.image.alt} width={content.hero.image.width} height={content.hero.image.height} fetchpriority="high" />
+        <figcaption><strong>{content.hero.noteTitle}</strong><span>{content.hero.noteText}</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="airkl-facts" data-airkl-section="facts" aria-label="Installation facts">
+    <div class="airkl-wrap airkl-fact-grid">{content.facts.map((fact) => <article><strong>{fact.value}</strong><span>{fact.label}</span></article>)}</div>
+  </section>
+
+  <section class="airkl-section" data-airkl-section="services">
+    <div class="airkl-wrap">
+      <header class="airkl-heading airkl-heading-center"><p class="airkl-eyebrow">{content.services.eyebrow}</p><h2>{content.services.heading}</h2><p>{content.services.paragraph}</p></header>
+      <div class="airkl-service-grid">{content.services.items.map((item, index) => <article><span>{number(index)}</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div>
+      <aside class="airkl-package">
+        <div><p class="airkl-package-label">Base installation package</p><h3>{content.services.package.heading}</h3><p>{content.services.package.paragraph}</p></div>
+        <div class="airkl-package-grid">{content.services.package.items.map((item) => <div><strong>{item.value}</strong><span>{item.label}</span></div>)}</div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="airkl-section airkl-soft" data-airkl-section="costFactors">
+    <div class="airkl-wrap airkl-cost-layout">
+      <div><header class="airkl-heading"><p class="airkl-eyebrow">{content.costFactors.eyebrow}</p><h2>{content.costFactors.heading}</h2><p>{content.costFactors.paragraph}</p></header><ul class="airkl-check-list">{content.costFactors.items.map((item) => <li>{item}</li>)}</ul></div>
+      <aside class="airkl-quote"><p class="airkl-eyebrow">Quote preparation</p><h3>{content.costFactors.quote.heading}</h3><p>{content.costFactors.quote.paragraph}</p><ul>{content.costFactors.quote.items.map((item) => <li>{item}</li>)}</ul><a class="airkl-button airkl-button-whatsapp" href={content.costFactors.quote.button.href} target="_blank" rel="noopener">{content.costFactors.quote.button.label}</a></aside>
+    </div>
+  </section>
+
+  <section class="airkl-section airkl-pricing" id="harga" data-airkl-section="pricing" data-service-pricing="visible">
+    <div class="airkl-wrap">
+      <header class="airkl-heading airkl-heading-center"><p class="airkl-eyebrow">{content.pricing.eyebrow}</p><h2>{content.pricing.heading}</h2><p>{content.pricing.paragraph}</p></header>
+      <div class="airkl-price-grid">{content.pricing.cards.map((card, index) => <article class:list={{ 'airkl-price-featured': index === 0 }}><p class="airkl-price-kicker">Wall-mounted package</p><h3>{card.title}</h3><strong class="airkl-price-value">{card.price}</strong><span class="airkl-price-note">{card.note}</span><ul>{card.items.map((item) => <li>{item}</li>)}</ul></article>)}</div>
+      <div class="airkl-extra-grid">{content.pricing.extras.map((extra) => <article><h3>{extra.title}</h3><p>{extra.description}</p></article>)}</div>
+      <p class="airkl-qualification">{content.pricing.qualification}</p>
+    </div>
+  </section>
+
+  <section class="airkl-section airkl-soft" data-airkl-section="gallery">
+    <div class="airkl-wrap">
+      <header class="airkl-heading airkl-heading-center"><p class="airkl-eyebrow">{content.gallery.eyebrow}</p><h2>{content.gallery.heading}</h2><p>{content.gallery.paragraph}</p></header>
+      <div class="airkl-gallery">{content.gallery.images.map((image, index) => <figure class:list={{ 'airkl-gallery-featured': index === 1 }}><img src={localHref(image.localPath)} alt={image.alt} width={image.width} height={image.height} loading="lazy" /><figcaption>{image.caption}</figcaption></figure>)}</div>
+    </div>
+  </section>
+
+  <section class="airkl-section airkl-process-section" data-airkl-section="process">
+    <div class="airkl-wrap">
+      <header class="airkl-heading airkl-heading-center"><p class="airkl-eyebrow">{content.process.eyebrow}</p><h2>{content.process.heading}</h2><p>{content.process.paragraph}</p></header>
+      <ol class="airkl-process">{content.process.items.map((item, index) => <li><span>{number(index)}</span><h3>{item.title}</h3><p>{item.description}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="airkl-section airkl-soft" data-airkl-section="areasRelated">
+    <div class="airkl-wrap">
+      <header class="airkl-heading"><p class="airkl-eyebrow">{content.areas.eyebrow}</p><h2>{content.areas.heading}</h2><p>{content.areas.paragraph}</p></header>
+      <div class="airkl-areas">{content.areas.items.map((area) => <span>{area}</span>)}</div>
+      <div class="airkl-related">{content.related.map((item, index) => <article class:list={{ 'airkl-related-wide': index < 2 }}><h3>{item.title}</h3><p>{item.description}</p><a href={localHref(item.href)}>{item.button}<span aria-hidden="true">&rarr;</span></a></article>)}</div>
+    </div>
+  </section>
+
+  <section class="airkl-section" data-airkl-section="faqs">
+    <div class="airkl-wrap airkl-faq-layout">
+      <header class="airkl-heading"><p class="airkl-eyebrow">{content.faqs.eyebrow}</p><h2>{content.faqs.heading}</h2><p>Clear answers about the source installation scope, prices and quotation requirements.</p></header>
+      <div class="airkl-faqs">{content.faqs.items.map((faq, index) => <details open={index === 0}><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</div>
+    </div>
+  </section>
+
+  <section class="airkl-final" data-airkl-section="finalCta">
+    <div class="airkl-wrap"><p class="airkl-eyebrow">{content.finalCta.eyebrow}</p><h2>{content.finalCta.heading}</h2><p>{content.finalCta.paragraph}</p><a class="airkl-button airkl-button-whatsapp" href={content.finalCta.button.href} target="_blank" rel="noopener">{content.finalCta.button.label}</a></div>
+  </section>
+</article>

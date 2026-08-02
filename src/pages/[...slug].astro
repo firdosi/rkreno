@@ -28,6 +28,7 @@ import LockedFaqPage from '@components/locked/templates/LockedFaqPage.astro';
 import LockedBlogArchive from '@components/locked/templates/LockedBlogArchive.astro';
 import LockedServicePage from '@components/locked/templates/LockedServicePage.astro';
 import ArticleRecoveryRouter from '@components/article-recovery/ArticleRecoveryRouter.astro';
+import AircondInstallationKlPage from '@components/aircond-installation-kl/AircondInstallationKlPage.astro';
 import LockedStandardPage from '@components/locked/templates/LockedStandardPage.astro';
 import { ARTICLE_ROUTES, SERVICE_ROUTES } from '@components/locked/locked-page-data';
 import pages from '@data/site-pages.json';
@@ -47,6 +48,7 @@ import { coreFaqs } from '@data/core-pages';
 import wordpressParityContent from '@data/wordpress-parity-content.json';
 import articleWordpressContent from '@data/article-wordpress-content.json';
 import liveWordpressLock from '../../config/live-wordpress-content-seo-lock.json';
+import aircondInstallationKlSeo from '../../config/aircond-installation-kl-seo.json';
 import { isIndexable } from '../config/runtime';
 
 interface PageRecord {
@@ -114,6 +116,7 @@ const { page } = Astro.props as { page: PageRecord };
 const isHeldRoute = heldRoutes.has(page.path);
 const isDemolition = page.path === demolitionPage.path;
 const lockedRecord = liveWordpressLock.records.find((record) => record.route === page.path && record.sourceType === 'wordpress');
+const isAircondInstallationKl = page.path === '/aircond-installation-kl/';
 const allLockedRecords = liveWordpressLock.records;
 const pageByRoute = new Map([...(pages as PageRecord[]), demolitionPage].map((item) => [item.path, item]));
 const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path] || batch2Pages[page.path] || batch3Pages[page.path];
@@ -386,26 +389,29 @@ const pageSchema: any[] = isDemolition
 if ((batchArticle || nativeTaxonomy || isHeldRoute) && !pageSchema.some((item) => item['@type'] === 'BreadcrumbList')) pageSchema.push(breadcrumbSchema);
 ---
 <BaseLayout
-  title={lockedTitle}
-  description={lockedRecord ? lockedDescription : heldDescriptions[page.path] || nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
+  title={isAircondInstallationKl ? aircondInstallationKlSeo.title : lockedTitle}
+  description={isAircondInstallationKl ? aircondInstallationKlSeo.description : lockedRecord ? lockedDescription : heldDescriptions[page.path] || nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
     ? 'Practical renovation and property-service guides from RK Reno Solution.'
     : page.path === '/faq/'
       ? 'Answers about renovation, aircond, electrical, waterproofing, ceiling, quotation and service areas.'
       : page.description)}
-  canonical={lockedCanonical}
+  canonical={isAircondInstallationKl ? aircondInstallationKlSeo.canonical : lockedCanonical}
   ogImage={catalogArticle?.image || page.og?.image}
-  schema={lockedRecord?.seo.jsonLd || pageSchema}
-  openGraph={lockedRecord?.seo.openGraph}
-  articleMeta={lockedRecord?.seo.article}
-  twitter={lockedRecord?.seo.twitter}
+  schema={isAircondInstallationKl ? aircondInstallationKlSeo.jsonLd : lockedRecord?.seo.jsonLd || pageSchema}
+  openGraph={isAircondInstallationKl ? aircondInstallationKlSeo.openGraph : lockedRecord?.seo.openGraph}
+  articleMeta={isAircondInstallationKl ? aircondInstallationKlSeo.article : lockedRecord?.seo.article}
+  twitter={isAircondInstallationKl ? aircondInstallationKlSeo.twitter : lockedRecord?.seo.twitter}
   pageType={batchArticle ? 'post' : page.type}
   externalStyles={nativePage ? [] : page.externalStyles}
-  robots={nativeTaxonomy || isHeldRoute ? (isIndexable ? 'noindex, follow' : 'noindex, nofollow')
+  robots={isAircondInstallationKl ? (isIndexable ? aircondInstallationKlSeo.productionRobots : aircondInstallationKlSeo.stagingRobots)
+    : nativeTaxonomy || isHeldRoute ? (isIndexable ? 'noindex, follow' : 'noindex, nofollow')
     : page.path === '/thank-you/' ? 'noindex, nofollow' : undefined}
   exactHome={page.path === '/'}
   wordpressCore={coreRoutes.includes(page.path) || Boolean(serviceExact) || Boolean(batchArticle) || Boolean(nativeTaxonomy) || isHeldRoute || isDemolition || page.path === '/thank-you/'}
 >
-  {lockedRecord && page.path === '/' ? (
+  {isAircondInstallationKl ? (
+    <AircondInstallationKlPage />
+  ) : lockedRecord && page.path === '/' ? (
     <LockedHomepage record={lockedRecord} page={page} allRecords={allLockedRecords} pageByRoute={pageByRoute} />
   ) : lockedRecord && page.path === '/services/' ? (
     <LockedServicesHub record={lockedRecord} page={page} allRecords={allLockedRecords} pageByRoute={pageByRoute} />

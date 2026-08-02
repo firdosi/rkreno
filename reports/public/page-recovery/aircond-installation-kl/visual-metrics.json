@@ -1,0 +1,87 @@
+{
+  "status": "PASSED",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "sectionCount": 10,
+      "faqCount": 7,
+      "minBodyFont": 16,
+      "maxGap": 0
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "sectionCount": 10,
+      "faqCount": 7,
+      "minBodyFont": 16,
+      "maxGap": 0
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "sectionCount": 10,
+      "faqCount": 7,
+      "minBodyFont": 16,
+      "maxGap": 0,
+      "faqKeyboardToggle": true,
+      "mobileMenuOpened": true
+    }
+  ],
+  "smokeRoutes": [
+    {
+      "pathname": "/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1
+    },
+    {
+      "pathname": "/services/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1
+    },
+    {
+      "pathname": "/upah-pasang-aircond-selangor/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1
+    },
+    {
+      "pathname": "/servis-aircond-murah-kl/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1
+    },
+    {
+      "pathname": "/contact-us/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1
+    }
+  ],
+  "failures": []
+}

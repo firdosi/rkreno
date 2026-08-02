@@ -12,6 +12,7 @@ const lock = JSON.parse(await readFile(path.join(root, 'config/live-wordpress-co
 const pages = JSON.parse(await readFile(path.join(root, 'src/data/site-pages.json'), 'utf8'));
 const registry = JSON.parse(await readFile(path.join(root, 'config/final-route-registry.json'), 'utf8'));
 const homepageManifest = JSON.parse(await readFile(path.join(root, 'config/homepage-exact-visible-content.json'), 'utf8'));
+const aircondKlManifest = JSON.parse(await readFile(path.join(root, 'config/aircond-installation-kl-content.json'), 'utf8'));
 await mkdir(reportDir, { recursive: true });
 await mkdir(recoveryReportDir, { recursive: true });
 
@@ -96,7 +97,9 @@ for (const record of lock.records) {
   result(record.route, 'title exact', clean($('title').text()) === expected.title);
   result(record.route, 'description exact', ($('meta[name="description"]').attr('content') || '') === expected.description);
   result(record.route, 'canonical exact', ($('link[rel="canonical"]').attr('href') || '') === expected.canonical);
-  result(record.route, 'safe staging robots', /^noindex,\s*nofollow$/i.test($('meta[name="robots"]').attr('content') || ''));
+    result(record.route, 'safe staging robots', record.route === '/aircond-installation-kl/'
+      ? /^noindex,\s*nofollow,\s*max-image-preview:large$/i.test($('meta[name="robots"]').attr('content') || '')
+      : /^noindex,\s*nofollow$/i.test($('meta[name="robots"]').attr('content') || ''));
   for (const [key, value] of Object.entries(expected.openGraph || {})) {
     result(record.route, `og:${key} exact`, ($(`meta[property="og:${key}"]`).attr('content') || '') === value);
   }
@@ -108,7 +111,8 @@ for (const record of lock.records) {
   }
   const schema = $('script[type="application/ld+json"]').toArray().map((node) => JSON.parse($(node).html() || '{}'));
   result(record.route, 'JSON-LD exact', stable(schema) === stable(expected.jsonLd));
-  result(record.route, 'single exact H1', $('main h1').length === 1 && clean($('main h1').text()) === record.content.h1);
+  const expectedH1 = record.route === '/aircond-installation-kl/' ? aircondKlManifest.hero.h1 : record.content.h1;
+  result(record.route, 'single exact H1', $('main h1').length === 1 && clean($('main h1').text()) === expectedH1);
 
   if (coreRoutes.has(record.route)) {
     const mainText = clean($('main').text());
@@ -143,21 +147,32 @@ for (const record of lock.records) {
     if (record.route === '/blog/') result(record.route, 'blog archive uses 14 article cards', $('.recovery-article-card').length === 14, String($('.recovery-article-card').length));
   } else if (serviceRecoveryRoutes.has(record.route)) {
     const mainText = clean($('main').text());
-    result(record.route, 'manual service composition', $('.service-recovery-page').length === 1 && $('.source-locked-section,.source-locked-toc').length === 0);
-    result(record.route, 'service family selected', $('[data-service-family]').length === 1);
-    result(record.route, 'service eyebrow is specific', !/Renovation & property service/i.test($('.service-recovery-hero .service-recovery-eyebrow').text()));
-    result(record.route, 'service overview is useful', $('.service-recovery-overview article').length >= 3);
-    result(record.route, 'service pricing presentation', $('[data-service-pricing]').length === 1);
-    result(record.route, 'service relevant body image', $('.service-recovery-page img').length >= 2, String($('.service-recovery-page img').length));
-    result(record.route, 'service final CTA', $('.service-recovery-final').length === 1);
-    result(record.route, 'no active content form', $('.service-recovery-page form').length === 0);
-    if (aircondRoutes.has(record.route)) result(record.route, 'aircond pricing visible', $('[data-service-pricing="visible"]').length === 1 && /RM\s*\d/i.test(mainText));
+    if (record.route === '/aircond-installation-kl/') {
+      result(record.route, 'manual service composition', $('[data-aircond-installation-kl]').length === 1 && $('.source-locked-section,.source-locked-toc').length === 0);
+      result(record.route, 'service family selected', $('[data-service-family="aircond"]').length === 1);
+      result(record.route, 'service pricing presentation', $('[data-service-pricing="visible"]').length === 1);
+      result(record.route, 'service relevant body image', $('[data-aircond-installation-kl] img').length === 4, String($('[data-aircond-installation-kl] img').length));
+      result(record.route, 'service final CTA', $('.airkl-final').length === 1);
+      result(record.route, 'no active content form', $('[data-aircond-installation-kl] form').length === 0);
+      result(record.route, 'aircond pricing visible', /RM220/.test(mainText) && /RM280/.test(mainText));
+      result(record.route, 'visible source-supported FAQs', $('.airkl-faqs details').length === 7, String($('.airkl-faqs details').length));
+    } else {
+      result(record.route, 'manual service composition', $('.service-recovery-page').length === 1 && $('.source-locked-section,.source-locked-toc').length === 0);
+      result(record.route, 'service family selected', $('[data-service-family]').length === 1);
+      result(record.route, 'service eyebrow is specific', !/Renovation & property service/i.test($('.service-recovery-hero .service-recovery-eyebrow').text()));
+      result(record.route, 'service overview is useful', $('.service-recovery-overview article').length >= 3);
+      result(record.route, 'service pricing presentation', $('[data-service-pricing]').length === 1);
+      result(record.route, 'service relevant body image', $('.service-recovery-page img').length >= 2, String($('.service-recovery-page img').length));
+      result(record.route, 'service final CTA', $('.service-recovery-final').length === 1);
+      result(record.route, 'no active content form', $('.service-recovery-page form').length === 0);
+      if (aircondRoutes.has(record.route)) result(record.route, 'aircond pricing visible', $('[data-service-pricing="visible"]').length === 1 && /RM\s*\d/i.test(mainText));
     if (renovationRoutes.has(record.route)) result(record.route, 'renovation process and cost factors', $('.service-family-renovation .service-recovery-numbered article').length === 4 && /cost|quotation|pricing/i.test(mainText));
     if (specialistRoutes.has(record.route)) {
       const required = record.route.includes('electrical') ? /circuit|wiring|electrical/i : record.route.includes('waterproofing') ? /leak|water|injection/i : record.route.includes('plaster') ? /ceiling|L-box|cornice/i : /cleaning|post-renovation|move-in/i;
       result(record.route, 'specialist service-specific content', required.test(mainText));
     }
-    if ((record.content.faqs || []).length) result(record.route, 'visible source-supported FAQs', $('.service-recovery-faqs details').length > 0, String($('.service-recovery-faqs details').length));
+      if ((record.content.faqs || []).length) result(record.route, 'visible source-supported FAQs', $('.service-recovery-faqs details').length > 0, String($('.service-recovery-faqs details').length));
+    }
   } else {
   const isArticle = articleRoutes.has(record.route);
   const sourceHeadingBlocks = record.content.orderedBlocks.filter((block) => block.type === 'heading');
@@ -270,15 +285,15 @@ try {
       await browserPage.goto(`http://127.0.0.1:${port}/rkreno${route}`, { waitUntil: 'load' });
       const metrics = await browserPage.evaluate(() => {
         const wrappers = [...document.querySelectorAll('.source-locked-table,.article-recovery-source-table')];
-        const page = document.querySelector('.recovery-page,.service-recovery-page,.article-recovery-page');
+        const page = document.querySelector('.recovery-page,.service-recovery-page,.article-recovery-page,.airkl-page');
         const pageBlocks = page ? [...page.children].filter((node) => node.matches('header,section,nav,aside,div') && node.getBoundingClientRect().height > 0) : [];
         const gaps = pageBlocks.slice(1).map((node, index) => node.getBoundingClientRect().top - pageBlocks[index].getBoundingClientRect().bottom);
         const sparseSections = [...document.querySelectorAll('.recovery-section,.service-recovery-section,.article-recovery-section')].filter((section) => {
           const rect = section.getBoundingClientRect();
           return rect.height > 360 && (section.textContent || '').trim().length < 100 && section.querySelectorAll('img,.recovery-service-card,.recovery-article-card,form,details').length === 0;
         });
-        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow),.service-recovery-page p:not(.service-recovery-eyebrow),.article-recovery-source-paragraph')].filter((node) => node.getBoundingClientRect().height > 0);
-        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap,.service-recovery-page .service-recovery-wrap,.article-recovery-section-inner')].filter((node) => node.getBoundingClientRect().height > 0);
+        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow),.service-recovery-page p:not(.service-recovery-eyebrow),.article-recovery-source-paragraph,.airkl-page p:not(.airkl-eyebrow):not(.airkl-price-kicker):not(.airkl-package-label)')].filter((node) => node.getBoundingClientRect().height > 0);
+        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap,.service-recovery-page .service-recovery-wrap,.article-recovery-section-inner,.airkl-wrap')].filter((node) => node.getBoundingClientRect().height > 0);
           return {
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,

@@ -1,0 +1,952 @@
+{
+  "summary": {
+    "status": "PASSED",
+    "exactContentMatchCount": 34,
+    "missingContentCount": 0,
+    "rewrittenContentCount": 0,
+    "seoRegressionCount": 0,
+    "correctImageCount": 4,
+    "imageFallbackCount": 0,
+    "pricingValidation": "PASSED",
+    "faqValidation": "PASSED",
+    "whatsappValidation": "PASSED",
+    "brokenLinkCount": 0,
+    "failures": 0
+  },
+  "checks": [
+    {
+      "group": "content",
+      "name": "section order",
+      "passed": true,
+      "actual": [
+        "hero",
+        "facts",
+        "services",
+        "costFactors",
+        "pricing",
+        "gallery",
+        "process",
+        "areasRelated",
+        "faqs",
+        "finalCta"
+      ],
+      "expected": [
+        "hero",
+        "facts",
+        "services",
+        "costFactors",
+        "pricing",
+        "gallery",
+        "process",
+        "areasRelated",
+        "faqs",
+        "finalCta"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "one exact H1",
+      "passed": true,
+      "actual": [
+        "Professional Aircond Installation KL for Homes, Condos, Offices & Shops"
+      ],
+      "expected": [
+        "Professional Aircond Installation KL for Homes, Condos, Offices & Shops"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "H2 sequence",
+      "passed": true,
+      "actual": [
+        "Aircond Installation Services in Kuala Lumpur",
+        "What Can Increase the Installation Cost?",
+        "Aircond Installation KL Prices",
+        "RK Reno Aircond Installation Work",
+        "How the Aircond Installation Process Works",
+        "Aircond Installation Across Kuala Lumpur",
+        "Aircond Installation KL FAQs",
+        "Get an Aircond Installation KL Quote"
+      ],
+      "expected": [
+        "Aircond Installation Services in Kuala Lumpur",
+        "What Can Increase the Installation Cost?",
+        "Aircond Installation KL Prices",
+        "RK Reno Aircond Installation Work",
+        "How the Aircond Installation Process Works",
+        "Aircond Installation Across Kuala Lumpur",
+        "Aircond Installation KL FAQs",
+        "Get an Aircond Installation KL Quote"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "hero eyebrow",
+      "passed": true,
+      "actual": "Aircond Installation KL",
+      "expected": "Aircond Installation KL"
+    },
+    {
+      "group": "content",
+      "name": "hero paragraph",
+      "passed": true,
+      "actual": "Wall-mounted aircond installation in Kuala Lumpur for new units, replacements and relocation. Base installation starts from RM220 and includes 5 feet of copper pipe plus 5 feet of wiring.",
+      "expected": "Wall-mounted aircond installation in Kuala Lumpur for new units, replacements and relocation. Base installation starts from RM220 and includes 5 feet of copper pipe plus 5 feet of wiring."
+    },
+    {
+      "group": "pricing",
+      "name": "hero prices",
+      "passed": true,
+      "actual": [
+        "1.0HP & 1.5HP: RM220",
+        "2.0HP & 2.5HP: RM280"
+      ],
+      "expected": [
+        "1.0HP & 1.5HP: RM220",
+        "2.0HP & 2.5HP: RM280"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "hero button labels",
+      "passed": true,
+      "actual": [
+        "WhatsApp for a Quote",
+        "View Installation Prices"
+      ],
+      "expected": [
+        "WhatsApp for a Quote",
+        "View Installation Prices"
+      ]
+    },
+    {
+      "group": "links",
+      "name": "hero button destinations",
+      "passed": true,
+      "actual": [
+        "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20a%20quote%20for%20aircond%20installation%20in%20KL.%20Location%3A%20%5Barea%5D.%20Aircond%20HP%3A%20%5B1HP%2F1.5HP%2F2HP%2F2.5HP%5D.%20I%20will%20send%20photos%20of%20the%20installation%20area.",
+        "#harga"
+      ],
+      "expected": [
+        "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20a%20quote%20for%20aircond%20installation%20in%20KL.%20Location%3A%20%5Barea%5D.%20Aircond%20HP%3A%20%5B1HP%2F1.5HP%2F2HP%2F2.5HP%5D.%20I%20will%20send%20photos%20of%20the%20installation%20area.",
+        "#harga"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "hero chips",
+      "passed": true,
+      "actual": [
+        "5 feet copper pipe",
+        "5 feet wiring",
+        "Vacuum & testing"
+      ],
+      "expected": [
+        "5 feet copper pipe",
+        "5 feet wiring",
+        "Vacuum & testing"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "hero estimate note",
+      "passed": true,
+      "actual": [
+        "Need a more accurate estimate?",
+        "Send your KL location, aircond HP and photos of the indoor and outdoor areas."
+      ],
+      "expected": [
+        "Need a more accurate estimate?",
+        "Send your KL location, aircond HP and photos of the indoor and outdoor areas."
+      ]
+    },
+    {
+      "group": "content",
+      "name": "fact values",
+      "passed": true,
+      "actual": [
+        "From RM220",
+        "5 feet + 5 feet",
+        "Residential & commercial",
+        "Kuala Lumpur"
+      ],
+      "expected": [
+        "From RM220",
+        "5 feet + 5 feet",
+        "Residential & commercial",
+        "Kuala Lumpur"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "fact labels",
+      "passed": true,
+      "actual": [
+        "Base wall-mounted installation",
+        "Copper pipe and wiring included",
+        "Homes, condos, offices and shops",
+        "Check your exact area through WhatsApp"
+      ],
+      "expected": [
+        "Base wall-mounted installation",
+        "Copper pipe and wiring included",
+        "Homes, condos, offices and shops",
+        "Check your exact area through WhatsApp"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "services paragraph",
+      "passed": true,
+      "actual": "This page focuses on installation work. Final scope depends on the aircond HP, piping distance, wiring, access and any extra work required at the site.",
+      "expected": "This page focuses on installation work. Final scope depends on the aircond HP, piping distance, wiring, access and any extra work required at the site."
+    },
+    {
+      "group": "content",
+      "name": "service titles",
+      "passed": true,
+      "actual": [
+        "New Aircond Installation",
+        "Replace an Old Unit",
+        "Aircond Relocation",
+        "Copper Pipe & Drainage",
+        "Additional Wiring",
+        "Vacuum & Testing"
+      ],
+      "expected": [
+        "New Aircond Installation",
+        "Replace an Old Unit",
+        "Aircond Relocation",
+        "Copper Pipe & Drainage",
+        "Additional Wiring",
+        "Vacuum & Testing"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "service descriptions",
+      "passed": true,
+      "actual": [
+        "Wall-mounted installation for bedrooms, living rooms, offices and retail spaces.",
+        "Remove the old unit and prepare the area for the new aircond installation.",
+        "Dismantle and reinstall the aircond at another room, home or office location.",
+        "Copper pipe, insulation and drainage routing based on the agreed installation scope.",
+        "Extra wiring is available when the installation requires more than the included 5 feet.",
+        "Vacuum and basic system testing are carried out after installation."
+      ],
+      "expected": [
+        "Wall-mounted installation for bedrooms, living rooms, offices and retail spaces.",
+        "Remove the old unit and prepare the area for the new aircond installation.",
+        "Dismantle and reinstall the aircond at another room, home or office location.",
+        "Copper pipe, insulation and drainage routing based on the agreed installation scope.",
+        "Extra wiring is available when the installation requires more than the included 5 feet.",
+        "Vacuum and basic system testing are carried out after installation."
+      ]
+    },
+    {
+      "group": "content",
+      "name": "package heading",
+      "passed": true,
+      "actual": "What Is Included in the Base Installation Price?",
+      "expected": "What Is Included in the Base Installation Price?"
+    },
+    {
+      "group": "content",
+      "name": "package paragraph",
+      "passed": true,
+      "actual": "The RM220 and RM280 packages include the following basic installation items:",
+      "expected": "The RM220 and RM280 packages include the following basic installation items:"
+    },
+    {
+      "group": "content",
+      "name": "package values",
+      "passed": true,
+      "actual": [
+        "5 feet",
+        "5 feet",
+        "Basic",
+        "Standard"
+      ],
+      "expected": [
+        "5 feet",
+        "5 feet",
+        "Basic",
+        "Standard"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "package labels",
+      "passed": true,
+      "actual": [
+        "Copper pipe",
+        "Wiring",
+        "Drainage connection",
+        "Vacuum & testing"
+      ],
+      "expected": [
+        "Copper pipe",
+        "Wiring",
+        "Drainage connection",
+        "Vacuum & testing"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "cost paragraph",
+      "passed": true,
+      "actual": "The base price includes 5 feet of copper pipe and 5 feet of wiring. Extra materials and additional work are charged according to the actual site requirements.",
+      "expected": "The base price includes 5 feet of copper pipe and 5 feet of wiring. Extra materials and additional work are charged according to the actual site requirements."
+    },
+    {
+      "group": "content",
+      "name": "cost factors",
+      "passed": true,
+      "actual": [
+        "Copper pipe longer than 5 feet",
+        "Wiring longer than 5 feet or a new electrical point",
+        "Outdoor unit installed at a high or difficult location",
+        "Dismantling or relocating an old unit",
+        "Hacking, concealed piping or special brackets",
+        "Condo management rules or commercial site requirements"
+      ],
+      "expected": [
+        "Copper pipe longer than 5 feet",
+        "Wiring longer than 5 feet or a new electrical point",
+        "Outdoor unit installed at a high or difficult location",
+        "Dismantling or relocating an old unit",
+        "Hacking, concealed piping or special brackets",
+        "Condo management rules or commercial site requirements"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "quote heading",
+      "passed": true,
+      "actual": "Get a More Accurate Quote",
+      "expected": "Get a More Accurate Quote"
+    },
+    {
+      "group": "content",
+      "name": "quote paragraph",
+      "passed": true,
+      "actual": "Send the following information through WhatsApp so the team can review the initial scope.",
+      "expected": "Send the following information through WhatsApp so the team can review the initial scope."
+    },
+    {
+      "group": "content",
+      "name": "quote preparation items",
+      "passed": true,
+      "actual": [
+        "Your KL location",
+        "Aircond HP and model",
+        "Photo of the indoor location",
+        "Photo of the outdoor location",
+        "Whether the old unit must be removed"
+      ],
+      "expected": [
+        "Your KL location",
+        "Aircond HP and model",
+        "Photo of the indoor location",
+        "Photo of the outdoor location",
+        "Whether the old unit must be removed"
+      ]
+    },
+    {
+      "group": "links",
+      "name": "quote WhatsApp destination",
+      "passed": true,
+      "actual": "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20a%20quote%20for%20aircond%20installation%20in%20KL.%20Location%3A%20%5Barea%5D.%20HP%3A%20%5BHP%5D.%20Old%20unit%20removal%3A%20%5Byes%2Fno%5D.%20I%20will%20send%20site%20photos.",
+      "expected": "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20a%20quote%20for%20aircond%20installation%20in%20KL.%20Location%3A%20%5Barea%5D.%20HP%3A%20%5BHP%5D.%20Old%20unit%20removal%3A%20%5Byes%2Fno%5D.%20I%20will%20send%20site%20photos."
+    },
+    {
+      "group": "content",
+      "name": "pricing paragraph",
+      "passed": true,
+      "actual": "The prices below are for basic wall-mounted installation and include 5 feet of copper pipe plus 5 feet of wiring.",
+      "expected": "The prices below are for basic wall-mounted installation and include 5 feet of copper pipe plus 5 feet of wiring."
+    },
+    {
+      "group": "pricing",
+      "name": "pricing titles",
+      "passed": true,
+      "actual": [
+        "1.0HP & 1.5HP Wall-Mounted",
+        "2.0HP & 2.5HP Wall-Mounted"
+      ],
+      "expected": [
+        "1.0HP & 1.5HP Wall-Mounted",
+        "2.0HP & 2.5HP Wall-Mounted"
+      ]
+    },
+    {
+      "group": "pricing",
+      "name": "pricing values",
+      "passed": true,
+      "actual": [
+        "RM220",
+        "RM280"
+      ],
+      "expected": [
+        "RM220",
+        "RM280"
+      ]
+    },
+    {
+      "group": "pricing",
+      "name": "pricing notes",
+      "passed": true,
+      "actual": [
+        "Base installation price",
+        "Base installation price"
+      ],
+      "expected": [
+        "Base installation price",
+        "Base installation price"
+      ]
+    },
+    {
+      "group": "pricing",
+      "name": "pricing inclusions",
+      "passed": true,
+      "actual": [
+        [
+          "5 feet of copper pipe included",
+          "5 feet of wiring included",
+          "Basic drainage connection",
+          "Vacuum and basic testing"
+        ],
+        [
+          "5 feet of copper pipe included",
+          "5 feet of wiring included",
+          "Basic drainage connection",
+          "Vacuum and basic testing"
+        ]
+      ],
+      "expected": [
+        [
+          "5 feet of copper pipe included",
+          "5 feet of wiring included",
+          "Basic drainage connection",
+          "Vacuum and basic testing"
+        ],
+        [
+          "5 feet of copper pipe included",
+          "5 feet of wiring included",
+          "Basic drainage connection",
+          "Vacuum and basic testing"
+        ]
+      ]
+    },
+    {
+      "group": "pricing",
+      "name": "extra-cost titles",
+      "passed": true,
+      "actual": [
+        "Extra Copper Pipe",
+        "Extra Wiring",
+        "Old Unit Removal",
+        "Additional Work"
+      ],
+      "expected": [
+        "Extra Copper Pipe",
+        "Extra Wiring",
+        "Old Unit Removal",
+        "Additional Work"
+      ]
+    },
+    {
+      "group": "pricing",
+      "name": "extra-cost descriptions",
+      "passed": true,
+      "actual": [
+        "Charged for every foot required after the included 5 feet, based on HP and pipe specification.",
+        "Charged for every foot required after the included 5 feet or when a new power point is needed.",
+        "Quoted separately according to HP, access and site condition.",
+        "Hacking, special brackets, high-level installation and concealed piping are quoted separately."
+      ],
+      "expected": [
+        "Charged for every foot required after the included 5 feet, based on HP and pipe specification.",
+        "Charged for every foot required after the included 5 feet or when a new power point is needed.",
+        "Quoted separately according to HP, access and site condition.",
+        "Hacking, special brackets, high-level installation and concealed piping are quoted separately."
+      ]
+    },
+    {
+      "group": "pricing",
+      "name": "qualification note",
+      "passed": true,
+      "actual": "* RM220 and RM280 apply to basic wall-mounted installation. Any extra material or additional work is explained and charged separately based on actual measurement and site condition.",
+      "expected": "* RM220 and RM280 apply to basic wall-mounted installation. Any extra material or additional work is explained and charged separately based on actual measurement and site condition."
+    },
+    {
+      "group": "content",
+      "name": "gallery paragraph",
+      "passed": true,
+      "actual": "These real work photos show unit preparation, indoor inspection and vacuum pump work.",
+      "expected": "These real work photos show unit preparation, indoor inspection and vacuum pump work."
+    },
+    {
+      "group": "images",
+      "name": "gallery paths",
+      "passed": true,
+      "actual": [
+        "/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg",
+        "/assets/media/721626720-1623451799116891-7023267947651638351-n-dfb212d1.jpg",
+        "/assets/media/723104253-1623451735783564-5450851965206368683-n-3d2cd57b.jpg"
+      ],
+      "expected": [
+        "/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg",
+        "/assets/media/721626720-1623451799116891-7023267947651638351-n-dfb212d1.jpg",
+        "/assets/media/723104253-1623451735783564-5450851965206368683-n-3d2cd57b.jpg"
+      ]
+    },
+    {
+      "group": "images",
+      "name": "gallery alt text",
+      "passed": true,
+      "actual": [
+        "RK Reno technician inspecting an indoor aircond unit after installation in KL",
+        "New aircond unit being prepared for installation in Kuala Lumpur",
+        "Vacuum pump process during aircond installation in KL by RK Reno"
+      ],
+      "expected": [
+        "RK Reno technician inspecting an indoor aircond unit after installation in KL",
+        "New aircond unit being prepared for installation in Kuala Lumpur",
+        "Vacuum pump process during aircond installation in KL by RK Reno"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "gallery captions",
+      "passed": true,
+      "actual": [
+        "Indoor unit inspection after installation.",
+        "New aircond unit prepared before installation.",
+        "Vacuum pump and system checking process."
+      ],
+      "expected": [
+        "Indoor unit inspection after installation.",
+        "New aircond unit prepared before installation.",
+        "Vacuum pump and system checking process."
+      ]
+    },
+    {
+      "group": "content",
+      "name": "process paragraph",
+      "passed": true,
+      "actual": "The exact process can change according to the site, but the basic workflow normally includes the following steps.",
+      "expected": "The exact process can change according to the site, but the basic workflow normally includes the following steps."
+    },
+    {
+      "group": "content",
+      "name": "process titles",
+      "passed": true,
+      "actual": [
+        "Review the Site",
+        "Confirm Scope & Price",
+        "Install & Connect",
+        "Vacuum & Test"
+      ],
+      "expected": [
+        "Review the Site",
+        "Confirm Scope & Price",
+        "Install & Connect",
+        "Vacuum & Test"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "process descriptions",
+      "passed": true,
+      "actual": [
+        "Check the indoor location, outdoor location, electrical point and piping route.",
+        "Explain the base package, additional material and extra work before installation begins.",
+        "Install the units and connect the copper pipe, drainage and wiring according to the agreed scope.",
+        "Carry out vacuum and basic testing after the aircond installation is complete."
+      ],
+      "expected": [
+        "Check the indoor location, outdoor location, electrical point and piping route.",
+        "Explain the base package, additional material and extra work before installation begins.",
+        "Install the units and connect the copper pipe, drainage and wiring according to the agreed scope.",
+        "Carry out vacuum and basic testing after the aircond installation is complete."
+      ]
+    },
+    {
+      "group": "content",
+      "name": "service areas",
+      "passed": true,
+      "actual": [
+        "KLCC",
+        "Setapak",
+        "Wangsa Maju",
+        "Mont Kiara",
+        "Bangsar",
+        "Cheras",
+        "Ampang",
+        "Kepong",
+        "Sentul",
+        "Titiwangsa",
+        "Bukit Bintang",
+        "Sri Hartamas"
+      ],
+      "expected": [
+        "KLCC",
+        "Setapak",
+        "Wangsa Maju",
+        "Mont Kiara",
+        "Bangsar",
+        "Cheras",
+        "Ampang",
+        "Kepong",
+        "Sentul",
+        "Titiwangsa",
+        "Bukit Bintang",
+        "Sri Hartamas"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "related titles",
+      "passed": true,
+      "actual": [
+        "Need a detailed installation guide?",
+        "Need installation in Selangor?",
+        "Need Aircond Servicing?",
+        "Need a New Electrical Point?"
+      ],
+      "expected": [
+        "Need a detailed installation guide?",
+        "Need installation in Selangor?",
+        "Need Aircond Servicing?",
+        "Need a New Electrical Point?"
+      ]
+    },
+    {
+      "group": "content",
+      "name": "related descriptions",
+      "passed": true,
+      "actual": [
+        "Read more about piping, vacuum, wiring, installation cost and common customer questions.",
+        "View the dedicated Aircond Installation Selangor service page.",
+        "For cleaning, maintenance or aircond servicing, visit the dedicated servicing page.",
+        "Extra electrical wiring or a new power point can be handled as a separate service."
+      ],
+      "expected": [
+        "Read more about piping, vacuum, wiring, installation cost and common customer questions.",
+        "View the dedicated Aircond Installation Selangor service page.",
+        "For cleaning, maintenance or aircond servicing, visit the dedicated servicing page.",
+        "Extra electrical wiring or a new power point can be handled as a separate service."
+      ]
+    },
+    {
+      "group": "links",
+      "name": "related destinations",
+      "passed": true,
+      "actual": [
+        "/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/",
+        "/upah-pasang-aircond-selangor/",
+        "/servis-aircond-murah-kl/",
+        "/electrical-services-selangor/"
+      ],
+      "expected": [
+        "/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/",
+        "/upah-pasang-aircond-selangor/",
+        "/servis-aircond-murah-kl/",
+        "/electrical-services-selangor/"
+      ]
+    },
+    {
+      "group": "faq",
+      "name": "FAQ questions",
+      "passed": true,
+      "actual": [
+        "How much is aircond installation for 1.0HP and 1.5HP?",
+        "How much is aircond installation for 2.0HP and 2.5HP?",
+        "What happens if the copper pipe or wiring is longer than 5 feet?",
+        "Can you install an aircond that I bought myself?",
+        "Is removal of the old aircond included in the base price?",
+        "Do I need a site visit before getting a quote?",
+        "Do you install aircond for offices and shops?"
+      ],
+      "expected": [
+        "How much is aircond installation for 1.0HP and 1.5HP?",
+        "How much is aircond installation for 2.0HP and 2.5HP?",
+        "What happens if the copper pipe or wiring is longer than 5 feet?",
+        "Can you install an aircond that I bought myself?",
+        "Is removal of the old aircond included in the base price?",
+        "Do I need a site visit before getting a quote?",
+        "Do you install aircond for offices and shops?"
+      ]
+    },
+    {
+      "group": "faq",
+      "name": "FAQ answers",
+      "passed": true,
+      "actual": [
+        "The base installation price is RM220. It includes 5 feet of copper pipe, 5 feet of wiring, basic drainage connection, vacuum and basic testing.",
+        "The base installation price is RM280. It includes 5 feet of copper pipe, 5 feet of wiring, basic drainage connection, vacuum and basic testing.",
+        "Every additional foot is charged according to the actual measurement, aircond HP, material specification and site condition.",
+        "Yes. Send the brand, model, HP and site photos so the team can review the initial installation scope.",
+        "No. Dismantling an old unit is additional work and is quoted according to HP, access and site condition.",
+        "An initial estimate can be given through WhatsApp when you send your KL location, aircond HP and photos of the indoor and outdoor areas.",
+        "Yes. This service is available for homes, condos, offices, shops and small commercial spaces in Kuala Lumpur."
+      ],
+      "expected": [
+        "The base installation price is RM220. It includes 5 feet of copper pipe, 5 feet of wiring, basic drainage connection, vacuum and basic testing.",
+        "The base installation price is RM280. It includes 5 feet of copper pipe, 5 feet of wiring, basic drainage connection, vacuum and basic testing.",
+        "Every additional foot is charged according to the actual measurement, aircond HP, material specification and site condition.",
+        "Yes. Send the brand, model, HP and site photos so the team can review the initial installation scope.",
+        "No. Dismantling an old unit is additional work and is quoted according to HP, access and site condition.",
+        "An initial estimate can be given through WhatsApp when you send your KL location, aircond HP and photos of the indoor and outdoor areas.",
+        "Yes. This service is available for homes, condos, offices, shops and small commercial spaces in Kuala Lumpur."
+      ]
+    },
+    {
+      "group": "content",
+      "name": "final CTA eyebrow",
+      "passed": true,
+      "actual": "Check Price & Availability",
+      "expected": "Check Price & Availability"
+    },
+    {
+      "group": "content",
+      "name": "final CTA paragraph",
+      "passed": true,
+      "actual": "Send your location, aircond HP and site photos. RK Reno can review the base installation scope, additional materials and any extra work needed.",
+      "expected": "Send your location, aircond HP and site photos. RK Reno can review the base installation scope, additional materials and any extra work needed."
+    },
+    {
+      "group": "links",
+      "name": "final WhatsApp destination",
+      "passed": true,
+      "actual": "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20an%20aircond%20installation%20quote%20in%20KL.%20Location%3A%20%5Barea%5D.%20HP%3A%20%5BHP%5D.%20I%20will%20send%20indoor%20and%20outdoor%20site%20photos.",
+      "expected": "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20an%20aircond%20installation%20quote%20in%20KL.%20Location%3A%20%5Barea%5D.%20HP%3A%20%5BHP%5D.%20I%20will%20send%20indoor%20and%20outdoor%20site%20photos."
+    },
+    {
+      "group": "links",
+      "name": "all WhatsApp destinations",
+      "passed": true,
+      "actual": [
+        "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20a%20quote%20for%20aircond%20installation%20in%20KL.%20Location%3A%20%5Barea%5D.%20Aircond%20HP%3A%20%5B1HP%2F1.5HP%2F2HP%2F2.5HP%5D.%20I%20will%20send%20photos%20of%20the%20installation%20area.",
+        "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20a%20quote%20for%20aircond%20installation%20in%20KL.%20Location%3A%20%5Barea%5D.%20HP%3A%20%5BHP%5D.%20Old%20unit%20removal%3A%20%5Byes%2Fno%5D.%20I%20will%20send%20site%20photos.",
+        "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20an%20aircond%20installation%20quote%20in%20KL.%20Location%3A%20%5Barea%5D.%20HP%3A%20%5BHP%5D.%20I%20will%20send%20indoor%20and%20outdoor%20site%20photos."
+      ],
+      "expected": [
+        "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20a%20quote%20for%20aircond%20installation%20in%20KL.%20Location%3A%20%5Barea%5D.%20Aircond%20HP%3A%20%5B1HP%2F1.5HP%2F2HP%2F2.5HP%5D.%20I%20will%20send%20photos%20of%20the%20installation%20area.",
+        "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20a%20quote%20for%20aircond%20installation%20in%20KL.%20Location%3A%20%5Barea%5D.%20HP%3A%20%5BHP%5D.%20Old%20unit%20removal%3A%20%5Byes%2Fno%5D.%20I%20will%20send%20site%20photos.",
+        "https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20I%20need%20an%20aircond%20installation%20quote%20in%20KL.%20Location%3A%20%5Barea%5D.%20HP%3A%20%5BHP%5D.%20I%20will%20send%20indoor%20and%20outdoor%20site%20photos."
+      ]
+    },
+    {
+      "group": "images",
+      "name": "hero image path",
+      "passed": true,
+      "actual": "/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg",
+      "expected": "/assets/media/721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg"
+    },
+    {
+      "group": "images",
+      "name": "hero image alt",
+      "passed": true,
+      "actual": "RK Reno technician carrying out aircond installation in Kuala Lumpur",
+      "expected": "RK Reno technician carrying out aircond installation in Kuala Lumpur"
+    },
+    {
+      "group": "assets",
+      "name": "RK Reno technician carrying out aircond installation in Kuala Lumpur local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "RK Reno technician inspecting an indoor aircond unit after installation in KL local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "New aircond unit being prepared for installation in Kuala Lumpur local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "assets",
+      "name": "Vacuum pump process during aircond installation in KL by RK Reno local file",
+      "passed": true,
+      "actual": true,
+      "expected": true
+    },
+    {
+      "group": "seo",
+      "name": "title exact",
+      "passed": true,
+      "actual": "Aircond Installation KL | Upah Pasang Aircond RM220",
+      "expected": "Aircond Installation KL | Upah Pasang Aircond RM220"
+    },
+    {
+      "group": "seo",
+      "name": "description exact",
+      "passed": true,
+      "actual": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote.",
+      "expected": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote."
+    },
+    {
+      "group": "seo",
+      "name": "canonical exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/aircond-installation-kl/",
+      "expected": "https://rkrenosolution.com/aircond-installation-kl/"
+    },
+    {
+      "group": "seo",
+      "name": "staging robots exact",
+      "passed": true,
+      "actual": "noindex, nofollow, max-image-preview:large",
+      "expected": "noindex, nofollow, max-image-preview:large"
+    },
+    {
+      "group": "seo",
+      "name": "og:locale exact",
+      "passed": true,
+      "actual": "en_US",
+      "expected": "en_US"
+    },
+    {
+      "group": "seo",
+      "name": "og:site_name exact",
+      "passed": true,
+      "actual": "RK Reno Solution -",
+      "expected": "RK Reno Solution -"
+    },
+    {
+      "group": "seo",
+      "name": "og:type exact",
+      "passed": true,
+      "actual": "article",
+      "expected": "article"
+    },
+    {
+      "group": "seo",
+      "name": "og:title exact",
+      "passed": true,
+      "actual": "Aircond Installation KL | Upah Pasang Aircond RM220",
+      "expected": "Aircond Installation KL | Upah Pasang Aircond RM220"
+    },
+    {
+      "group": "seo",
+      "name": "og:description exact",
+      "passed": true,
+      "actual": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote.",
+      "expected": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote."
+    },
+    {
+      "group": "seo",
+      "name": "og:url exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/aircond-installation-kl/",
+      "expected": "https://rkrenosolution.com/aircond-installation-kl/"
+    },
+    {
+      "group": "seo",
+      "name": "og:image exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+      "expected": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png"
+    },
+    {
+      "group": "seo",
+      "name": "og:image:secure_url exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+      "expected": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png"
+    },
+    {
+      "group": "seo",
+      "name": "og:image:width exact",
+      "passed": true,
+      "actual": "1575",
+      "expected": "1575"
+    },
+    {
+      "group": "seo",
+      "name": "og:image:height exact",
+      "passed": true,
+      "actual": "483",
+      "expected": "483"
+    },
+    {
+      "group": "seo",
+      "name": "article:published_time exact",
+      "passed": true,
+      "actual": "2026-03-28T10:07:44+00:00",
+      "expected": "2026-03-28T10:07:44+00:00"
+    },
+    {
+      "group": "seo",
+      "name": "article:modified_time exact",
+      "passed": true,
+      "actual": "2026-07-17T13:03:28+00:00",
+      "expected": "2026-07-17T13:03:28+00:00"
+    },
+    {
+      "group": "seo",
+      "name": "twitter:card exact",
+      "passed": true,
+      "actual": "summary_large_image",
+      "expected": "summary_large_image"
+    },
+    {
+      "group": "seo",
+      "name": "twitter:title exact",
+      "passed": true,
+      "actual": "Aircond Installation KL | Upah Pasang Aircond RM220",
+      "expected": "Aircond Installation KL | Upah Pasang Aircond RM220"
+    },
+    {
+      "group": "seo",
+      "name": "twitter:description exact",
+      "passed": true,
+      "actual": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote.",
+      "expected": "Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote."
+    },
+    {
+      "group": "seo",
+      "name": "twitter:image exact",
+      "passed": true,
+      "actual": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+      "expected": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png"
+    },
+    {
+      "group": "seo",
+      "name": "JSON-LD exact",
+      "passed": true,
+      "actual": "[{\"@context\":\"https://schema.org\",\"@graph\":[{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#breadcrumblist\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@id\":\"https://rkrenosolution.com#listItem\",\"@type\":\"ListItem\",\"item\":\"https://rkrenosolution.com\",\"name\":\"Home\",\"nextItem\":{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#listItem\",\"@type\":\"ListItem\",\"name\":\"Aircond Installation KL\"},\"position\":1},{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#listItem\",\"@type\":\"ListItem\",\"name\":\"Aircond Installation KL\",\"position\":2,\"previousItem\":{\"@id\":\"https://rkrenosolution.com#listItem\",\"@type\":\"ListItem\",\"name\":\"Home\"}}]},{\"@id\":\"https://rkrenosolution.com/#organization\",\"@type\":\"Organization\",\"image\":{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#organizationLogo\"},\"logo\":{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#organizationLogo\",\"@type\":\"ImageObject\",\"height\":483,\"url\":\"https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png\",\"width\":1575},\"name\":\"RK Reno Solution\",\"url\":\"https://rkrenosolution.com/\"},{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#webpage\",\"@type\":\"WebPage\",\"breadcrumb\":{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#breadcrumblist\"},\"dateModified\":\"2026-07-17T13:03:28+00:00\",\"datePublished\":\"2026-03-28T10:07:44+00:00\",\"description\":\"Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote.\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https://rkrenosolution.com/#website\"},\"name\":\"Aircond Installation KL | Upah Pasang Aircond RM220\",\"url\":\"https://rkrenosolution.com/aircond-installation-kl/\"},{\"@id\":\"https://rkrenosolution.com/#website\",\"@type\":\"WebSite\",\"inLanguage\":\"en-US\",\"name\":\"RK Reno Solution\",\"publisher\":{\"@id\":\"https://rkrenosolution.com/#organization\"},\"url\":\"https://rkrenosolution.com/\"}]}]",
+      "expected": "[{\"@context\":\"https://schema.org\",\"@graph\":[{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#breadcrumblist\",\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@id\":\"https://rkrenosolution.com#listItem\",\"@type\":\"ListItem\",\"item\":\"https://rkrenosolution.com\",\"name\":\"Home\",\"nextItem\":{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#listItem\",\"@type\":\"ListItem\",\"name\":\"Aircond Installation KL\"},\"position\":1},{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#listItem\",\"@type\":\"ListItem\",\"name\":\"Aircond Installation KL\",\"position\":2,\"previousItem\":{\"@id\":\"https://rkrenosolution.com#listItem\",\"@type\":\"ListItem\",\"name\":\"Home\"}}]},{\"@id\":\"https://rkrenosolution.com/#organization\",\"@type\":\"Organization\",\"image\":{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#organizationLogo\"},\"logo\":{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#organizationLogo\",\"@type\":\"ImageObject\",\"height\":483,\"url\":\"https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png\",\"width\":1575},\"name\":\"RK Reno Solution\",\"url\":\"https://rkrenosolution.com/\"},{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#webpage\",\"@type\":\"WebPage\",\"breadcrumb\":{\"@id\":\"https://rkrenosolution.com/aircond-installation-kl/#breadcrumblist\"},\"dateModified\":\"2026-07-17T13:03:28+00:00\",\"datePublished\":\"2026-03-28T10:07:44+00:00\",\"description\":\"Aircond installation KL for homes, condos, offices and shops. Base price from RM220 including 5 feet copper pipe and wiring. WhatsApp for a quote.\",\"inLanguage\":\"en-US\",\"isPartOf\":{\"@id\":\"https://rkrenosolution.com/#website\"},\"name\":\"Aircond Installation KL | Upah Pasang Aircond RM220\",\"url\":\"https://rkrenosolution.com/aircond-installation-kl/\"},{\"@id\":\"https://rkrenosolution.com/#website\",\"@type\":\"WebSite\",\"inLanguage\":\"en-US\",\"name\":\"RK Reno Solution\",\"publisher\":{\"@id\":\"https://rkrenosolution.com/#organization\"},\"url\":\"https://rkrenosolution.com/\"}]}]"
+    },
+    {
+      "group": "seo",
+      "name": "schema type safety",
+      "passed": true,
+      "actual": false,
+      "expected": false
+    },
+    {
+      "group": "links",
+      "name": "internal destinations resolve",
+      "passed": true,
+      "actual": [],
+      "expected": []
+    },
+    {
+      "group": "content",
+      "name": "no generic replacement wording",
+      "passed": true,
+      "actual": [],
+      "expected": []
+    }
+  ]
+}
