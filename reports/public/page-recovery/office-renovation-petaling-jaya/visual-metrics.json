@@ -14,7 +14,7 @@
       "h1Count": 1,
       "cardCount": 0,
       "cardColumns": 0,
-      "bodyMinFont": 16
+      "bodyMinFont": 17
     },
     {
       "target": "article",
@@ -29,7 +29,7 @@
       "h1Count": 1,
       "cardCount": 0,
       "cardColumns": 0,
-      "bodyMinFont": 16
+      "bodyMinFont": 17
     },
     {
       "target": "article",
@@ -44,7 +44,7 @@
       "h1Count": 1,
       "cardCount": 0,
       "cardColumns": 0,
-      "bodyMinFont": 16,
+      "bodyMinFont": 17,
       "mobileMenuOpened": true
     },
     {
