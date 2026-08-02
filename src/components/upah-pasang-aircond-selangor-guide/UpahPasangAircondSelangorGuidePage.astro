@@ -1,0 +1,15 @@
+---
+import { upahPasangAircondSelangorGuide as content } from '../../data/upah-pasang-aircond-selangor-guide';
+import GuideHeroIntro from './GuideHeroIntro.astro';
+import GuideCore from './GuideCore.astro';
+import GuideClosing from './GuideClosing.astro';
+import '../../styles/upah-pasang-aircond-selangor-guide.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const localHref = (href: string) => href.startsWith('/') ? `${base}${href}` : href;
+---
+<article class="airguide-page" data-upah-pasang-aircond-selangor-guide data-article-recovery data-locked-template="article">
+  <GuideHeroIntro content={content} localHref={localHref} />
+  <GuideCore content={content} localHref={localHref} />
+  <GuideClosing content={content} localHref={localHref} />
+</article>

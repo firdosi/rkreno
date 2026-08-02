@@ -1,0 +1,50 @@
+---
+const { content, localHref } = Astro.props as any;
+---
+<header class="airguide-hero" data-airguide-section="hero">
+  <div class="airguide-wide airguide-hero-grid">
+    <div class="airguide-hero-copy">
+      <p class="airguide-kicker">Aircond Installation Guide · 2026</p>
+      <p class="airguide-breadcrumb">{content.breadcrumb}</p>
+      <h1>{content.h1}</h1>
+      <div class="airguide-meta">{content.visibleMeta.map((item: string) => <span>{item}</span>)}</div>
+      <p class="airguide-trust">Transparent base pricing · Actual RK Reno work · Selangor coverage</p>
+    </div>
+    <figure class="airguide-hero-media">
+      <img src={localHref(content.images.hero.src)} alt={content.images.hero.alt} width="540" height="960" fetchpriority="high" />
+      <figcaption>Actual aircond installation work</figcaption>
+    </figure>
+  </div>
+</header>
+
+<section class="airguide-section airguide-intro" data-airguide-section="introduction">
+  <div class="airguide-reading">
+    <p class="airguide-lead">{content.lead}</p>
+    <p>{content.intro[0]}</p>
+    <p>RK Reno Solution menyediakan servis pemasangan untuk rumah, apartment, pejabat, kedai dan ruang komersial kecil di Selangor serta sekitar Lembah Klang. Untuk servis terus, lihat juga halaman <a href={localHref(content.serviceLink.href)}>{content.serviceLink.label}</a>.</p>
+  </div>
+  <div class="airguide-wide airguide-summary" aria-label="Ringkasan harga pemasangan">
+    {content.summary.map((item: any) => <article><strong>{item.value}</strong><span>{item.label}</span></article>)}
+  </div>
+  <aside class="airguide-wide airguide-mini-cta">
+    <div><p class="airguide-kicker">{content.initialCta.label}</p><h3>{content.initialCta.heading}</h3><p>{content.initialCta.text}</p></div>
+    <a class="airguide-button" href={content.initialCta.href} target="_blank" rel="noopener">{content.initialCta.button}</a>
+  </aside>
+  <nav class="airguide-reading airguide-toc" aria-label="Table of Contents">
+    <strong>Table of Contents</strong>
+    <ol>{content.toc.map((item: any) => <li><a href={item.href}>{item.label}</a></li>)}</ol>
+  </nav>
+</section>
+
+<section class="airguide-section airguide-soft" id="include" data-airguide-section="include">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">01</p><h2>{content.include.heading}</h2><p>{content.include.intro}</p></div>
+  <div class="airguide-wide airguide-package-grid">{content.include.items.map((item: any) => <article><strong>{item.value}</strong><span>{item.label}</span></article>)}</div>
+  <div class="airguide-reading"><aside class="airguide-info"><strong>{content.include.boxTitle}</strong><p>{content.include.boxText}</p></aside><p>{content.include.closing}</p></div>
+</section>
+
+<section class="airguide-section" id="photos" data-airguide-section="photos">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">02</p><h2>{content.photos.heading}</h2><p>{content.photos.intro}</p></div>
+  <div class="airguide-wide airguide-photo-grid">
+    {content.images.gallery.map((image: any) => <figure><img src={localHref(image.src)} alt={image.alt} width="540" height="960" loading="lazy" /><figcaption>{image.caption}</figcaption></figure>)}
+  </div>
+</section>

@@ -4,7 +4,7 @@ Status: **PASS** for Prompt 3 blog and article scope only. This is not a product
 
 | Route | Family | Semantic sections | Pricing or comparison | FAQ accordions | Result |
 |---|---|---:|---|---:|---|
-| `/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/` | Aircond | 14 | Structured | 8 | PASS |
+| `/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/` | Aircond | 0 | Missing | Source has no FAQ block | PASS |
 | `/commercial-retail-shop-renovation-in-kuala-lumpur/` | Renovation and commercial | 6 | Structured | Source has no FAQ block | PASS |
 | `/office-renovation-petaling-jaya-corporate-fit-out-experts/` | Renovation and commercial | 6 | Structured | Source has no FAQ block | PASS |
 | `/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/` | Technical and specialist | 7 | Structured | Source has no FAQ block | PASS |

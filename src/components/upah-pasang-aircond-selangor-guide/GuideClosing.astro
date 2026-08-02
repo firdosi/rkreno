@@ -1,0 +1,26 @@
+---
+const { content, localHref } = Astro.props as any;
+---
+<section class="airguide-section airguide-soft" id="suitable" data-airguide-section="suitable"><div class="airguide-reading airguide-heading"><p class="airguide-number">09</p><h2>{content.suitable.heading}</h2><p>{content.suitable.intro}</p><ul class="airguide-check-list">{content.suitable.items.map((item: string) => <li>{item}</li>)}</ul></div></section>
+
+<section class="airguide-section" id="areas" data-airguide-section="areas">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">10</p><h2>{content.areas.heading}</h2><p>{content.areas.intro}</p></div>
+  <div class="airguide-wide airguide-area-grid">{content.areas.items.map((item: string) => <span>{item}</span>)}</div>
+  <p class="airguide-reading">{content.areas.closing} <a href={localHref(content.areas.link.href)}>{content.areas.link.label}</a>.</p>
+</section>
+
+<section class="airguide-section airguide-photo-band" id="vacuum" data-airguide-section="vacuum">
+  <div class="airguide-wide airguide-vacuum-grid">
+    <figure><img src={localHref(content.images.gallery[0].src)} alt={content.images.gallery[0].alt} width="540" height="960" loading="lazy" /></figure>
+    <div class="airguide-heading"><p class="airguide-number">11</p><h2>{content.vacuum.heading}</h2><p>{content.vacuum.intro}</p><aside class="airguide-warning"><strong>{content.vacuum.boxTitle}</strong><p>{content.vacuum.boxText}</p></aside></div>
+  </div>
+</section>
+
+<section class="airguide-section" id="choose" data-airguide-section="choose">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">12</p><h2>{content.choose.heading}</h2><p>{content.choose.intro}</p><ul class="airguide-check-list">{content.choose.items.map((item: any) => <li><strong>{item.heading}</strong> {item.text}</li>)}</ul></div>
+  <aside class="airguide-wide airguide-banner"><div><h3>{content.choose.cta.heading}</h3><p>{content.choose.cta.text}</p></div><a class="airguide-button" href={content.choose.cta.href} target="_blank" rel="noopener">{content.choose.cta.button}</a></aside>
+</section>
+
+<section class="airguide-section airguide-soft" id="faq" data-airguide-section="faq">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">13</p><h2>{content.faqs.heading}</h2><div class="airguide-faq">{content.faqs.items.map((item: any) => <details><summary>{item.question}</summary><div><p>{item.answer}</p></div></details>)}</div></div>
+</section>

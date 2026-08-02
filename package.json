@@ -18,6 +18,8 @@
     "capture:aircond-installation-kl": "node scripts/correction/capture-aircond-installation-kl.mjs",
     "test:house-renovation-kl-cost-guide": "node scripts/correction/validate-house-renovation-kl-cost-guide.mjs",
     "capture:house-renovation-kl-cost-guide": "node scripts/correction/capture-house-renovation-kl-cost-guide.mjs",
+    "test:upah-pasang-aircond-selangor-guide": "node scripts/correction/validate-upah-pasang-aircond-selangor-guide.mjs",
+    "capture:upah-pasang-aircond-selangor-guide": "node scripts/correction/capture-upah-pasang-aircond-selangor-guide.mjs",
     "preview:production": "node scripts/prompt-3-1/production-simulator.mjs",
     "test:production-readiness": "node scripts/prompt-3-1/run-production-readiness.mjs",
     "test:form-security": "node scripts/prompt-3-2/test-form-security.mjs",

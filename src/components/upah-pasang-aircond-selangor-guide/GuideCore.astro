@@ -1,0 +1,31 @@
+---
+const { content, localHref } = Astro.props as any;
+---
+<section class="airguide-section airguide-soft" id="materials" data-airguide-section="materials">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">03</p><h2>{content.materials.heading}</h2>{content.materials.paragraphs.map((item: string) => <p>{item}</p>)}<aside class="airguide-soft-box"><strong>{content.materials.boxTitle}</strong><ul class="airguide-check-list">{content.materials.questions.map((item: string) => <li>{item}</li>)}</ul></aside></div>
+</section>
+
+<section class="airguide-section" id="inverter" data-airguide-section="inverter">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">04</p><h2>{content.inverter.heading}</h2>{content.inverter.paragraphs.map((item: string) => <p>{item}</p>)}</div>
+  <aside class="airguide-wide airguide-banner"><div><h3>{content.inverter.cta.heading}</h3><p>{content.inverter.cta.text}</p></div><a class="airguide-button" href={content.inverter.cta.href} target="_blank" rel="noopener">{content.inverter.cta.button}</a></aside>
+</section>
+
+<section class="airguide-section airguide-navy" id="cost" data-airguide-section="cost">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">05</p><h2>{content.pricing.heading}</h2><p>{content.pricing.intro}</p></div>
+  <div class="airguide-wide airguide-price-grid">{content.pricing.cards.map((card: any) => <article><p class="airguide-price-label">{card.heading}</p><strong class="airguide-price">{card.price}</strong><span>{card.note}</span><ul>{card.items.map((item: string) => <li>{item}</li>)}</ul></article>)}</div>
+  <div class="airguide-wide airguide-extra-grid">{content.pricing.extras.map((item: any) => <article><strong>{item.heading}</strong><p>{item.text}</p></article>)}</div>
+  <aside class="airguide-reading airguide-info"><strong>{content.pricing.noteTitle}</strong><p>{content.pricing.noteText}</p></aside>
+</section>
+
+<section class="airguide-section" id="cost-factors" data-airguide-section="cost-factors">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">06</p><h2>{content.costFactors.heading}</h2><p>{content.costFactors.intro}</p><ul class="airguide-check-list">{content.costFactors.items.map((item: any) => <li><strong>{item.heading}</strong> {item.text}</li>)}</ul><p>{content.costFactors.linkLead} <a href={localHref(content.costFactors.link.href)}>{content.costFactors.link.label}</a>.</p></div>
+</section>
+
+<section class="airguide-section airguide-soft" id="process" data-airguide-section="process">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">07</p><h2>{content.process.heading}</h2><p>{content.process.intro}</p></div>
+  <div class="airguide-wide airguide-step-grid">{content.process.items.map((item: any, index: number) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{item.heading}</h3><p>{item.text}</p></article>)}</div>
+</section>
+
+<section class="airguide-section" id="quote-info" data-airguide-section="quote-info">
+  <div class="airguide-reading airguide-heading"><p class="airguide-number">08</p><h2>{content.quote.heading}</h2><p>{content.quote.intro}</p><ul class="airguide-check-list">{content.quote.items.map((item: string) => <li>{item}</li>)}</ul></div>
+</section>

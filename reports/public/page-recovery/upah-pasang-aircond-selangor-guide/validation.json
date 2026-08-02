@@ -1,0 +1,351 @@
+{
+  "status": "PASSED",
+  "exactContentMatchCount": 26,
+  "missingContentCount": 0,
+  "rewrittenContentCount": 0,
+  "seoRegressionCount": 0,
+  "h1": "PASSED",
+  "toc": "PASSED",
+  "correctOriginalImageCount": 3,
+  "photos": "PASSED",
+  "imageFallbackCount": 0,
+  "basePrices": "PASSED",
+  "packageItems": "PASSED",
+  "costFactors": "PASSED",
+  "processSteps": "PASSED",
+  "serviceAreas": "PASSED",
+  "faqs": "PASSED",
+  "whatsappLinks": "PASSED",
+  "internalLinks": "PASSED",
+  "brokenLinkCount": 0,
+  "brokenImageCount": 0,
+  "overflowCount": 0,
+  "consoleErrorCount": 0,
+  "responsive": "PASSED",
+  "checks": [
+    {
+      "group": "structure",
+      "name": "route-specific renderer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "single exact H1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "breadcrumb exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "visible metadata exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "lead exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "intro exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "summary exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "three CTA copy blocks exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "TOC exact",
+      "passed": true,
+      "detail": "13/13"
+    },
+    {
+      "group": "content",
+      "name": "thirteen H2 headings exact",
+      "passed": true,
+      "detail": "13/13"
+    },
+    {
+      "group": "content",
+      "name": "base package exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "base package note exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "images",
+      "name": "hero image exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "images",
+      "name": "three gallery images exact",
+      "passed": true,
+      "detail": "3/3"
+    },
+    {
+      "group": "images",
+      "name": "three local original files exist at 540x960",
+      "passed": true,
+      "detail": "540x960, 540x960, 540x960"
+    },
+    {
+      "group": "images",
+      "name": "no remote WordPress image dependency",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "materials exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "inverter copy exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "pricing cards exact",
+      "passed": true,
+      "detail": "2/2"
+    },
+    {
+      "group": "content",
+      "name": "four extras exact",
+      "passed": true,
+      "detail": "4/4"
+    },
+    {
+      "group": "content",
+      "name": "six cost factors exact",
+      "passed": true,
+      "detail": "6/6"
+    },
+    {
+      "group": "content",
+      "name": "six process steps exact",
+      "passed": true,
+      "detail": "6/6"
+    },
+    {
+      "group": "content",
+      "name": "quotation checklist exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "suitable places exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "twelve areas exact",
+      "passed": true,
+      "detail": "12/12"
+    },
+    {
+      "group": "content",
+      "name": "vacuum warning exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "five reasons exact",
+      "passed": true,
+      "detail": "5/5"
+    },
+    {
+      "group": "faq",
+      "name": "eight FAQs exact",
+      "passed": true,
+      "detail": "8/8"
+    },
+    {
+      "group": "links",
+      "name": "three WhatsApp links exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "links",
+      "name": "internal link destinations exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "links",
+      "name": "internal links resolve",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "author exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "canonical exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "staging robots exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:locale exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:site_name exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:type exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:url exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:secure_url exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:width exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:height exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "article:published_time exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "article:modified_time exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:card exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:image exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "JSON-LD exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "schema type safety",
+      "passed": true,
+      "detail": "BlogPosting, BreadcrumbList, Organization, Person, WebPage, WebSite"
+    }
+  ]
+}

@@ -14,6 +14,8 @@ const registry = JSON.parse(await readFile(path.join(root, 'config/final-route-r
 const homepageManifest = JSON.parse(await readFile(path.join(root, 'config/homepage-exact-visible-content.json'), 'utf8'));
 const aircondKlManifest = JSON.parse(await readFile(path.join(root, 'config/aircond-installation-kl-content.json'), 'utf8'));
 const costGuideManifest = JSON.parse(await readFile(path.join(root, 'config/house-renovation-kl-cost-guide-content.json'), 'utf8'));
+const aircondSelangorGuideManifest = JSON.parse(await readFile(path.join(root, 'config/upah-pasang-aircond-selangor-guide-content.json'), 'utf8'));
+const aircondSelangorGuideSeo = JSON.parse(await readFile(path.join(root, 'config/upah-pasang-aircond-selangor-guide-seo.json'), 'utf8'));
 await mkdir(reportDir, { recursive: true });
 await mkdir(recoveryReportDir, { recursive: true });
 
@@ -94,11 +96,11 @@ for (const record of lock.records) {
     result(record.route, 'service relevant body image', $('.service-recovery-page img').length >= 2, String($('.service-recovery-page img').length));
     continue;
   }
-  const expected = record.seo;
+  const expected = record.route === aircondSelangorGuideManifest.route ? aircondSelangorGuideSeo : record.seo;
   result(record.route, 'title exact', clean($('title').text()) === expected.title);
   result(record.route, 'description exact', ($('meta[name="description"]').attr('content') || '') === expected.description);
   result(record.route, 'canonical exact', ($('link[rel="canonical"]').attr('href') || '') === expected.canonical);
-    result(record.route, 'safe staging robots', ['/aircond-installation-kl/', costGuideManifest.route].includes(record.route)
+    result(record.route, 'safe staging robots', ['/aircond-installation-kl/', costGuideManifest.route, aircondSelangorGuideManifest.route].includes(record.route)
       ? /^noindex,\s*nofollow,\s*max-image-preview:large$/i.test($('meta[name="robots"]').attr('content') || '')
       : /^noindex,\s*nofollow$/i.test($('meta[name="robots"]').attr('content') || ''));
   for (const [key, value] of Object.entries(expected.openGraph || {})) {
@@ -112,7 +114,7 @@ for (const record of lock.records) {
   }
   const schema = $('script[type="application/ld+json"]').toArray().map((node) => JSON.parse($(node).html() || '{}'));
   result(record.route, 'JSON-LD exact', stable(schema) === stable(expected.jsonLd));
-  const expectedH1 = record.route === '/aircond-installation-kl/' ? aircondKlManifest.hero.h1 : record.route === costGuideManifest.route ? costGuideManifest.h1 : record.content.h1;
+  const expectedH1 = record.route === '/aircond-installation-kl/' ? aircondKlManifest.hero.h1 : record.route === costGuideManifest.route ? costGuideManifest.h1 : record.route === aircondSelangorGuideManifest.route ? aircondSelangorGuideManifest.h1 : record.content.h1;
   result(record.route, 'single exact H1', $('main h1').length === 1 && clean($('main h1').text()) === expectedH1);
 
   if (coreRoutes.has(record.route)) {
@@ -190,6 +192,20 @@ for (const record of lock.records) {
     result(record.route, 'source image purposes retained', $('.costguide-page img').length === 3 && $('.costguide-page img[src*="Home-renovation-service-in-KL-422b205c.jpg"]').length === 3);
     result(record.route, 'no article template artifacts', !/No Comments|Leave A Comment|author avatar|about the author/i.test(mainText) && $('.costguide-page img[src*="gravatar"]').length === 0);
     result(record.route, 'no active content form', $('.costguide-page form').length === 0);
+  } else if (record.route === aircondSelangorGuideManifest.route) {
+    const mainText = clean($('main').text());
+    result(record.route, 'manual article composition', $('[data-upah-pasang-aircond-selangor-guide]').length === 1 && $('.article-recovery-page,.article-recovery-toc').length === 0);
+    result(record.route, 'article family selected', $('[data-article-recovery]').length === 1);
+    result(record.route, 'article metadata', $('.airguide-meta span').length === 3);
+    result(record.route, 'article table of contents', $('.airguide-toc a').length === 13);
+    result(record.route, 'article structured sections', $('[data-airguide-section]').length === 15);
+    result(record.route, 'article pricing structured', $('.airguide-price-grid article').length === 2 && /RM220/.test(mainText) && /RM280/.test(mainText));
+    result(record.route, 'article process steps', $('.airguide-step-grid article').length === 6);
+    result(record.route, 'article FAQ accordions', $('.airguide-faq details').length === 8);
+    result(record.route, 'article WhatsApp CTAs', $('.airguide-page a[href^="https://wa.me/"]').length === 3);
+    result(record.route, 'source image purposes retained', $('.airguide-page img').length === 5 && $('.airguide-page img[src*="721430356-1623451745783563-6720154604310865920-n-b6c68602.jpg"]').length === 2);
+    result(record.route, 'no article template artifacts', !/No Comments|Leave A Comment|author avatar|about the author/i.test(mainText) && $('.airguide-page img[src*="gravatar"]').length === 0);
+    result(record.route, 'no active content form', $('.airguide-page form').length === 0);
   } else {
   const isArticle = articleRoutes.has(record.route);
   const sourceHeadingBlocks = record.content.orderedBlocks.filter((block) => block.type === 'heading');
@@ -302,15 +318,15 @@ try {
       await browserPage.goto(`http://127.0.0.1:${port}/rkreno${route}`, { waitUntil: 'load' });
       const metrics = await browserPage.evaluate(() => {
         const wrappers = [...document.querySelectorAll('.source-locked-table,.article-recovery-source-table')];
-        const page = document.querySelector('.recovery-page,.service-recovery-page,.article-recovery-page,.airkl-page,.costguide-page');
+        const page = document.querySelector('.recovery-page,.service-recovery-page,.article-recovery-page,.airkl-page,.costguide-page,.airguide-page');
         const pageBlocks = page ? [...page.children].filter((node) => node.matches('header,section,nav,aside,div') && node.getBoundingClientRect().height > 0) : [];
         const gaps = pageBlocks.slice(1).map((node, index) => node.getBoundingClientRect().top - pageBlocks[index].getBoundingClientRect().bottom);
         const sparseSections = [...document.querySelectorAll('.recovery-section,.service-recovery-section,.article-recovery-section')].filter((section) => {
           const rect = section.getBoundingClientRect();
           return rect.height > 360 && (section.textContent || '').trim().length < 100 && section.querySelectorAll('img,.recovery-service-card,.recovery-article-card,form,details').length === 0;
         });
-        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow),.service-recovery-page p:not(.service-recovery-eyebrow),.article-recovery-source-paragraph,.airkl-page p:not(.airkl-eyebrow):not(.airkl-price-kicker):not(.airkl-package-label),.costguide-page p:not(.costguide-kicker):not(.costguide-section-number):not(.costguide-breadcrumb)')].filter((node) => node.getBoundingClientRect().height > 0);
-        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap,.service-recovery-page .service-recovery-wrap,.article-recovery-section-inner,.airkl-wrap,.costguide-reading,.costguide-wide')].filter((node) => node.getBoundingClientRect().height > 0);
+        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow),.service-recovery-page p:not(.service-recovery-eyebrow),.article-recovery-source-paragraph,.airkl-page p:not(.airkl-eyebrow):not(.airkl-price-kicker):not(.airkl-package-label),.costguide-page p:not(.costguide-kicker):not(.costguide-section-number):not(.costguide-breadcrumb),.airguide-page p:not(.airguide-kicker):not(.airguide-number):not(.airguide-breadcrumb)')].filter((node) => node.getBoundingClientRect().height > 0);
+        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap,.service-recovery-page .service-recovery-wrap,.article-recovery-section-inner,.airkl-wrap,.costguide-reading,.costguide-wide,.airguide-reading,.airguide-wide')].filter((node) => node.getBoundingClientRect().height > 0);
           return {
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
