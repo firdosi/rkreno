@@ -1,0 +1,18 @@
+---
+const { content } = Astro.props;
+---
+<section class="retail-section retail-trust" id={content.trust.id} data-retail-section>
+  <div class="retail-reading">
+    <p class="retail-kicker">Commercial delivery partner</p>
+    <h2>{content.trust.heading}</h2>
+    <p class="retail-trust__intro">{content.trust.intro}</p>
+    <aside class="retail-guarantee">
+      <span aria-hidden="true">✓</span>
+      <div>
+        <h3>{content.trust.guaranteeHeading}</h3>
+        <p>{content.trust.guarantee}</p>
+      </div>
+    </aside>
+    <p class="retail-closing">{content.trust.closing}</p>
+  </div>
+</section>

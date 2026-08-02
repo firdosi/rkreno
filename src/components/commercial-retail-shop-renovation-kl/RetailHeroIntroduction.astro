@@ -1,0 +1,32 @@
+---
+const { content, image, localHref } = Astro.props;
+---
+<header class="retail-hero">
+  <div class="retail-wide retail-hero__inner">
+    <p class="retail-kicker">{content.hero.eyebrow}</p>
+    <h1>{content.hero.h1}</h1>
+    <div class="retail-meta" aria-label="Article details">
+      {content.hero.meta.map((item, index) => <span><b aria-hidden="true">{String(index + 1).padStart(2, '0')}</b>{item}</span>)}
+    </div>
+  </div>
+</header>
+
+<section class="retail-reading retail-intro" aria-label="Introduction">
+  <p class="retail-lead"><strong>{content.introduction[0]}</strong></p>
+  <p>{content.introduction[1]}</p>
+  <p>At <a href={localHref('/about-us/')} data-source-href="https://rkrenosolution.com/about/">RK Reno Solution</a>, we specialize in high-speed, high-quality <strong>commercial space renovation</strong>. Whether you are launching a flagship boutique in <strong>Bukit Bintang</strong>, a trendy F&amp;B outlet in <strong>TRX</strong>, or a lifestyle store in <strong>Mid Valley Megamall</strong>, our team delivers stunning retail fit-outs on time and within budget.</p>
+  <figure class="retail-feature">
+    <img src={localHref(image.local)} alt={image.alt} width={image.width} height={image.height} loading="eager" />
+    <figcaption>Illustrative retail-interior fallback; not presented as an RK Reno project.</figcaption>
+  </figure>
+</section>
+
+<nav class="retail-reading retail-toc" aria-labelledby="retail-toc-title">
+  <div>
+    <p class="retail-kicker">Navigate this guide</p>
+    <h2 id="retail-toc-title">{content.toc.heading}</h2>
+  </div>
+  <ol>
+    {content.toc.items.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+  </ol>
+</nav>

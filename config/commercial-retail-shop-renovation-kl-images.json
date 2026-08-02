@@ -1,0 +1,18 @@
+{
+  "recoveryChecked": ["repository assets", "restored WordPress uploads", "wp-old-site-backup", "owner Media folder", "exact transformed WordPress HTTPS URL", "base WordPress HTTPS URL"],
+  "images": [{
+    "role":"featured",
+    "originalUrl":"https://rkrenosolution.com/wp-content/uploads/2026/01/Commercial-retail-shop-renovation-in-Kuala-Lumpur-showing-custom-display-shelving.jpeg?q=80&w=1000&auto=format&fit=crop",
+    "baseOriginalUrl":"https://rkrenosolution.com/wp-content/uploads/2026/01/Commercial-retail-shop-renovation-in-Kuala-Lumpur-showing-custom-display-shelving.jpeg",
+    "originalFilename":"Commercial-retail-shop-renovation-in-Kuala-Lumpur-showing-custom-display-shelving.jpeg",
+    "local":"/assets/media/commercial-retail-shop-renovation-kl-illustrative-fallback.png",
+    "width":1672,
+    "height":941,
+    "format":"png",
+    "purpose":"main article feature image; production BlogPosting retains the exact source URL",
+    "alt":"Commercial retail shop renovation in Kuala Lumpur showing custom display shelving",
+    "exactOriginal":false,
+    "fallback":true,
+    "reason":"The exact source asset returned HTTP 404 at both supplied URLs and was absent from every approved local recovery location; this generated retail-interior image is an illustrative, non-project fallback and is not presented as RK Reno work."
+  }]
+}

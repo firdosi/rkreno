@@ -1,0 +1,16 @@
+---
+import { commercialRetailGuide as content, commercialRetailImage as image } from '../../data/commercial-retail-shop-renovation-kl';
+import RetailHeroIntroduction from './RetailHeroIntroduction.astro';
+import RetailChallengesServices from './RetailChallengesServices.astro';
+import RetailPricingWorkflow from './RetailPricingWorkflow.astro';
+import RetailTrust from './RetailTrust.astro';
+import '../../styles/commercial-retail-shop-renovation-kl.css';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const localHref = (href: string) => href.startsWith('/') ? `${base}${href}` : href;
+---
+<article class="retail-page" data-commercial-retail-shop-renovation-kl data-article-recovery data-locked-template="article">
+  <RetailHeroIntroduction content={content} image={image} localHref={localHref} />
+  <RetailChallengesServices content={content} localHref={localHref} />
+  <RetailPricingWorkflow content={content} localHref={localHref} />
+  <RetailTrust content={content} />
+</article>

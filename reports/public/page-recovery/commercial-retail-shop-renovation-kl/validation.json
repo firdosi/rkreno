@@ -1,0 +1,308 @@
+{
+  "status": "PASSED",
+  "exactContentMatch": "PASSED",
+  "missingContentCount": 0,
+  "rewrittenContentCount": 0,
+  "seoRegressionCount": 0,
+  "h1": "PASSED",
+  "toc": "PASSED",
+  "challenges": "PASSED",
+  "services": "PASSED",
+  "priceTiers": "PASSED",
+  "workflow": "PASSED",
+  "correctOriginalImageCount": 0,
+  "imageFallbackCount": 1,
+  "whatsapp": "PASSED",
+  "internalLinks": "PASSED",
+  "routeMapping": "PASSED",
+  "sourceOnlyClaimCount": 13,
+  "brokenLinkCount": 0,
+  "brokenImageCount": 0,
+  "overflowCount": 0,
+  "consoleErrorCount": 0,
+  "responsive": "PASSED",
+  "checks": [
+    {
+      "group": "structure",
+      "name": "route-specific renderer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "single exact H1",
+      "passed": true,
+      "detail": "1"
+    },
+    {
+      "group": "content",
+      "name": "hero eyebrow exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "three metadata items exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "three introductory paragraphs exact",
+      "passed": true,
+      "detail": "3"
+    },
+    {
+      "group": "content",
+      "name": "featured image once",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "featured image alt exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "five-entry TOC exact",
+      "passed": true,
+      "detail": "5"
+    },
+    {
+      "group": "content",
+      "name": "five H2 headings exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "four challenges exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "four services exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "services panel heading exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "commercial CTA exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "links",
+      "name": "one WhatsApp link exact",
+      "passed": true,
+      "detail": "1"
+    },
+    {
+      "group": "pricing",
+      "name": "three table headings exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "pricing",
+      "name": "four pricing tiers exact",
+      "passed": true,
+      "detail": "4"
+    },
+    {
+      "group": "content",
+      "name": "four workflow steps exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "trust section exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "links",
+      "name": "five meaningful internal links exact",
+      "passed": true,
+      "detail": "5"
+    },
+    {
+      "group": "links",
+      "name": "internal links resolve",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "links",
+      "name": "About route mapping documented",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "images",
+      "name": "fallback file and dimensions verified",
+      "passed": true,
+      "detail": "1672x941 png"
+    },
+    {
+      "group": "images",
+      "name": "image recovery status truthful",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "claims",
+      "name": "SOURCE_ONLY claim inventory",
+      "passed": true,
+      "detail": "13"
+    },
+    {
+      "group": "seo",
+      "name": "title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "author exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "canonical exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "staging robots exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:locale exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:site_name exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:type exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:url exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:secure_url exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:width exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:height exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "article:published_time exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "article:modified_time exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:card exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:image exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "JSON-LD exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "schema type safety",
+      "passed": true,
+      "detail": "BlogPosting, BreadcrumbList, Organization, Person, WebPage, WebSite"
+    }
+  ]
+}

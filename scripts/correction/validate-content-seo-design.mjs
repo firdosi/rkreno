@@ -18,6 +18,8 @@ const aircondSelangorGuideManifest = JSON.parse(await readFile(path.join(root, '
 const aircondSelangorGuideSeo = JSON.parse(await readFile(path.join(root, 'config/upah-pasang-aircond-selangor-guide-seo.json'), 'utf8'));
 const cleaningGuideManifest = JSON.parse(await readFile(path.join(root, 'config/pakej-deep-cleaning-rumah-kl-content.json'), 'utf8'));
 const cleaningGuideSeo = JSON.parse(await readFile(path.join(root, 'config/pakej-deep-cleaning-rumah-kl-seo.json'), 'utf8'));
+const retailGuideManifest = JSON.parse(await readFile(path.join(root, 'config/commercial-retail-shop-renovation-kl-content.json'), 'utf8'));
+const retailGuideSeo = JSON.parse(await readFile(path.join(root, 'config/commercial-retail-shop-renovation-kl-seo.json'), 'utf8'));
 await mkdir(reportDir, { recursive: true });
 await mkdir(recoveryReportDir, { recursive: true });
 
@@ -98,11 +100,11 @@ for (const record of lock.records) {
     result(record.route, 'service relevant body image', $('.service-recovery-page img').length >= 2, String($('.service-recovery-page img').length));
     continue;
   }
-  const expected = record.route === cleaningGuideManifest.route ? cleaningGuideSeo : record.route === aircondSelangorGuideManifest.route ? aircondSelangorGuideSeo : record.seo;
+  const expected = record.route === retailGuideManifest.route ? retailGuideSeo : record.route === cleaningGuideManifest.route ? cleaningGuideSeo : record.route === aircondSelangorGuideManifest.route ? aircondSelangorGuideSeo : record.seo;
   result(record.route, 'title exact', clean($('title').text()) === expected.title);
   result(record.route, 'description exact', ($('meta[name="description"]').attr('content') || '') === expected.description);
   result(record.route, 'canonical exact', ($('link[rel="canonical"]').attr('href') || '') === expected.canonical);
-    result(record.route, 'safe staging robots', ['/aircond-installation-kl/', costGuideManifest.route, aircondSelangorGuideManifest.route, cleaningGuideManifest.route].includes(record.route)
+    result(record.route, 'safe staging robots', ['/aircond-installation-kl/', costGuideManifest.route, aircondSelangorGuideManifest.route, cleaningGuideManifest.route, retailGuideManifest.route].includes(record.route)
       ? /^noindex,\s*nofollow,\s*max-image-preview:large$/i.test($('meta[name="robots"]').attr('content') || '')
       : /^noindex,\s*nofollow$/i.test($('meta[name="robots"]').attr('content') || ''));
   for (const [key, value] of Object.entries(expected.openGraph || {})) {
@@ -116,7 +118,7 @@ for (const record of lock.records) {
   }
   const schema = $('script[type="application/ld+json"]').toArray().map((node) => JSON.parse($(node).html() || '{}'));
   result(record.route, 'JSON-LD exact', stable(schema) === stable(expected.jsonLd));
-  const expectedH1 = record.route === '/aircond-installation-kl/' ? aircondKlManifest.hero.h1 : record.route === costGuideManifest.route ? costGuideManifest.h1 : record.route === aircondSelangorGuideManifest.route ? aircondSelangorGuideManifest.h1 : record.route === cleaningGuideManifest.route ? cleaningGuideManifest.hero.h1 : record.content.h1;
+  const expectedH1 = record.route === retailGuideManifest.route ? retailGuideManifest.hero.h1 : record.route === '/aircond-installation-kl/' ? aircondKlManifest.hero.h1 : record.route === costGuideManifest.route ? costGuideManifest.h1 : record.route === aircondSelangorGuideManifest.route ? aircondSelangorGuideManifest.h1 : record.route === cleaningGuideManifest.route ? cleaningGuideManifest.hero.h1 : record.content.h1;
   result(record.route, 'single exact H1', $('main h1').length === 1 && clean($('main h1').text()) === expectedH1);
 
   if (coreRoutes.has(record.route)) {
@@ -178,6 +180,21 @@ for (const record of lock.records) {
     }
       if ((record.content.faqs || []).length) result(record.route, 'visible source-supported FAQs', $('.service-recovery-faqs details').length > 0, String($('.service-recovery-faqs details').length));
     }
+  } else if (record.route === retailGuideManifest.route) {
+    const mainText = clean($('main').text());
+    result(record.route, 'manual article composition', $('[data-commercial-retail-shop-renovation-kl]').length === 1 && $('.article-recovery-page,.article-recovery-toc').length === 0);
+    result(record.route, 'article family selected', $('[data-article-recovery]').length === 1);
+    result(record.route, 'article metadata', $('.retail-meta span').length === 3);
+    result(record.route, 'article table of contents', $('.retail-toc a').length === 5);
+    result(record.route, 'article structured sections', $('[data-retail-section]').length === 5);
+    result(record.route, 'article challenges', $('.retail-challenge-grid article').length === 4);
+    result(record.route, 'article services', $('.retail-services-grid article').length === 4);
+    result(record.route, 'article pricing structured', $('.retail-price-table tbody tr').length === 4 && /RM 50 - RM 90/.test(mainText) && /RM 250 - RM 400\+/.test(mainText));
+    result(record.route, 'article workflow', $('.retail-workflow li').length === 4);
+    result(record.route, 'article WhatsApp CTA', $('.retail-page a[href^="https://wa.me/"]').length === 1);
+    result(record.route, 'source image purpose retained', $('.retail-feature img').length === 1);
+    result(record.route, 'no article template artifacts', !/No Comments|Leave A Comment|author avatar|about the author/i.test(mainText) && $('.retail-page img[src*="gravatar"]').length === 0);
+    result(record.route, 'no active content form', $('.retail-page form').length === 0);
   } else if (record.route === costGuideManifest.route) {
     const mainText = clean($('main').text());
     result(record.route, 'manual article composition', $('[data-house-renovation-kl-cost-guide]').length === 1 && $('.article-recovery-page,.article-recovery-toc').length === 0);
@@ -287,7 +304,7 @@ for (const record of lock.records) {
       return url.origin === 'https://rkrenosolution.com' ? url.pathname.replace(/^\/rkreno(?=\/)/, '') : '';
     } catch { return ''; }
   }));
-  if (!coreRoutes.has(record.route) && ![costGuideManifest.route, aircondSelangorGuideManifest.route, cleaningGuideManifest.route].includes(record.route)) result(record.route, 'source internal destinations retained', expectedInternal.every((href) => actualInternal.has(href)));
+  if (!coreRoutes.has(record.route) && ![retailGuideManifest.route, costGuideManifest.route, aircondSelangorGuideManifest.route, cleaningGuideManifest.route].includes(record.route)) result(record.route, 'source internal destinations retained', expectedInternal.every((href) => actualInternal.has(href)));
   for (const href of actualInternal) {
     if (!href || href.startsWith('/assets/')) continue;
     const linkedFile = href === '/' ? path.join(root, 'dist/index.html') : path.join(root, 'dist', href.replace(/^\//, ''), 'index.html');
@@ -333,15 +350,15 @@ try {
       await browserPage.goto(`http://127.0.0.1:${port}/rkreno${route}`, { waitUntil: 'load' });
       const metrics = await browserPage.evaluate(() => {
         const wrappers = [...document.querySelectorAll('.source-locked-table,.article-recovery-source-table')];
-        const page = document.querySelector('.recovery-page,.service-recovery-page,.article-recovery-page,.airkl-page,.costguide-page,.airguide-page,.cleaning-page');
+        const page = document.querySelector('.recovery-page,.service-recovery-page,.article-recovery-page,.airkl-page,.costguide-page,.airguide-page,.cleaning-page,.retail-page');
         const pageBlocks = page ? [...page.children].filter((node) => node.matches('header,section,nav,aside,div') && node.getBoundingClientRect().height > 0) : [];
         const gaps = pageBlocks.slice(1).map((node, index) => node.getBoundingClientRect().top - pageBlocks[index].getBoundingClientRect().bottom);
         const sparseSections = [...document.querySelectorAll('.recovery-section,.service-recovery-section,.article-recovery-section')].filter((section) => {
           const rect = section.getBoundingClientRect();
           return rect.height > 360 && (section.textContent || '').trim().length < 100 && section.querySelectorAll('img,.recovery-service-card,.recovery-article-card,form,details').length === 0;
         });
-        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow),.service-recovery-page p:not(.service-recovery-eyebrow),.article-recovery-source-paragraph,.airkl-page p:not(.airkl-eyebrow):not(.airkl-price-kicker):not(.airkl-package-label),.costguide-page p:not(.costguide-kicker):not(.costguide-section-number):not(.costguide-breadcrumb),.airguide-page p:not(.airguide-kicker):not(.airguide-number):not(.airguide-breadcrumb),.cleaning-page p:not(.cleaning-label)')].filter((node) => node.getBoundingClientRect().height > 0);
-        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap,.service-recovery-page .service-recovery-wrap,.article-recovery-section-inner,.airkl-wrap,.costguide-reading,.costguide-wide,.airguide-reading,.airguide-wide,.cleaning-reading,.cleaning-wide')].filter((node) => node.getBoundingClientRect().height > 0);
+        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow),.service-recovery-page p:not(.service-recovery-eyebrow),.article-recovery-source-paragraph,.airkl-page p:not(.airkl-eyebrow):not(.airkl-price-kicker):not(.airkl-package-label),.costguide-page p:not(.costguide-kicker):not(.costguide-section-number):not(.costguide-breadcrumb),.airguide-page p:not(.airguide-kicker):not(.airguide-number):not(.airguide-breadcrumb),.cleaning-page p:not(.cleaning-label),.retail-page p:not(.retail-kicker)')].filter((node) => node.getBoundingClientRect().height > 0);
+        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap,.service-recovery-page .service-recovery-wrap,.article-recovery-section-inner,.airkl-wrap,.costguide-reading,.costguide-wide,.airguide-reading,.airguide-wide,.cleaning-reading,.cleaning-wide,.retail-reading,.retail-wide')].filter((node) => node.getBoundingClientRect().height > 0);
           return {
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,

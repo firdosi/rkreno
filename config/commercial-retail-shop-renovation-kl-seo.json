@@ -1,0 +1,87 @@
+{
+  "route": "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+  "title": "Commercial Retail Shop Renovation in Kuala Lumpur - RK Reno Solution",
+  "description": "Commercial › Retail › Kuala Lumpur Commercial Retail Shop Renovation in Kuala Lumpur By RK Commercial Fit-Out Team 7 Minute Read Kuala Lumpur, MY In the highly competitive retail landscape of Kuala Lumpur, your storefront is your most powerful marketing tool. A well-designed shop does not just display products; it pulls foot traffic from the",
+  "author": "raoisrar",
+  "canonical": "https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/",
+  "productionRobots": "max-image-preview:large",
+  "stagingRobots": "noindex, nofollow, max-image-preview:large",
+  "openGraph": {
+    "locale":"en_US",
+    "site_name":"RK Reno Solution -",
+    "type":"article",
+    "title":"Commercial Retail Shop Renovation in Kuala Lumpur - RK Reno Solution",
+    "description":"Commercial › Retail › Kuala Lumpur Commercial Retail Shop Renovation in Kuala Lumpur By RK Commercial Fit-Out Team 7 Minute Read Kuala Lumpur, MY In the highly competitive retail landscape of Kuala Lumpur, your storefront is your most powerful marketing tool. A well-designed shop does not just display products; it pulls foot traffic from the",
+    "url":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/",
+    "image":"https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+    "image:secure_url":"https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+    "image:width":"1575",
+    "image:height":"483"
+  },
+  "article":{"published_time":"2026-04-04T14:10:19+00:00","modified_time":"2026-04-04T14:12:15+00:00"},
+  "twitter": {
+    "card":"summary_large_image",
+    "title":"Commercial Retail Shop Renovation in Kuala Lumpur - RK Reno Solution",
+    "description":"Commercial › Retail › Kuala Lumpur Commercial Retail Shop Renovation in Kuala Lumpur By RK Commercial Fit-Out Team 7 Minute Read Kuala Lumpur, MY In the highly competitive retail landscape of Kuala Lumpur, your storefront is your most powerful marketing tool. A well-designed shop does not just display products; it pulls foot traffic from the",
+    "image":"https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png"
+  },
+  "jsonLd": [{
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"BlogPosting",
+        "@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#blogposting",
+        "name":"Commercial Retail Shop Renovation in Kuala Lumpur - RK Reno Solution",
+        "headline":"Commercial Retail Shop Renovation in Kuala Lumpur",
+        "author":{"@id":"https://rkrenosolution.com/author/raoisrar/#author"},
+        "publisher":{"@id":"https://rkrenosolution.com/#organization"},
+        "image":{"@type":"ImageObject","url":"https://rkrenosolution.com/wp-content/uploads/2026/01/Commercial-retail-shop-renovation-in-Kuala-Lumpur-showing-custom-display-shelving.jpeg?q=80&w=1000&auto=format&fit=crop","@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#articleImage"},
+        "datePublished":"2026-04-04T14:10:19+00:00",
+        "dateModified":"2026-04-04T14:12:15+00:00",
+        "inLanguage":"en-US",
+        "mainEntityOfPage":{"@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#webpage"},
+        "isPartOf":{"@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#webpage"},
+        "articleSection":"Renovation, Interior Finishing"
+      },
+      {
+        "@type":"BreadcrumbList",
+        "@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#breadcrumblist",
+        "itemListElement":[
+          {"@type":"ListItem","@id":"https://rkrenosolution.com#listItem","position":1,"name":"Home","item":"https://rkrenosolution.com","nextItem":{"@type":"ListItem","@id":"https://rkrenosolution.com/category/renovation/#listItem","name":"Renovation"}},
+          {"@type":"ListItem","@id":"https://rkrenosolution.com/category/renovation/#listItem","position":2,"name":"Renovation","item":"https://rkrenosolution.com/category/renovation/","nextItem":{"@type":"ListItem","@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#listItem","name":"Commercial Retail Shop Renovation in Kuala Lumpur"},"previousItem":{"@type":"ListItem","@id":"https://rkrenosolution.com#listItem","name":"Home"}},
+          {"@type":"ListItem","@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#listItem","position":3,"name":"Commercial Retail Shop Renovation in Kuala Lumpur","previousItem":{"@type":"ListItem","@id":"https://rkrenosolution.com/category/renovation/#listItem","name":"Renovation"}}
+        ]
+      },
+      {
+        "@type":"Organization",
+        "@id":"https://rkrenosolution.com/#organization",
+        "name":"RK Reno Solution",
+        "url":"https://rkrenosolution.com/",
+        "logo":{"@type":"ImageObject","url":"https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png","@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#organizationLogo","width":1575,"height":483},
+        "image":{"@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#organizationLogo"}
+      },
+      {
+        "@type":"Person",
+        "@id":"https://rkrenosolution.com/author/raoisrar/#author",
+        "url":"https://rkrenosolution.com/author/raoisrar/",
+        "name":"raoisrar",
+        "image":{"@type":"ImageObject","@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#authorImage","url":"https://secure.gravatar.com/avatar/4c7a7e136a0e22539059a09b5784869ac34f14870c8711497f9feb22be355403?s=96&d=mm&r=g","width":96,"height":96,"caption":"raoisrar"}
+      },
+      {
+        "@type":"WebPage",
+        "@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#webpage",
+        "url":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/",
+        "name":"Commercial Retail Shop Renovation in Kuala Lumpur - RK Reno Solution",
+        "description":"Commercial › Retail › Kuala Lumpur Commercial Retail Shop Renovation in Kuala Lumpur By RK Commercial Fit-Out Team 7 Minute Read Kuala Lumpur, MY In the highly competitive retail landscape of Kuala Lumpur, your storefront is your most powerful marketing tool. A well-designed shop does not just display products; it pulls foot traffic from the",
+        "inLanguage":"en-US",
+        "isPartOf":{"@id":"https://rkrenosolution.com/#website"},
+        "breadcrumb":{"@id":"https://rkrenosolution.com/commercial-retail-shop-renovation-in-kuala-lumpur/#breadcrumblist"},
+        "author":{"@id":"https://rkrenosolution.com/author/raoisrar/#author"},
+        "creator":{"@id":"https://rkrenosolution.com/author/raoisrar/#author"},
+        "datePublished":"2026-04-04T14:10:19+00:00",
+        "dateModified":"2026-04-04T14:12:15+00:00"
+      },
+      {"@type":"WebSite","@id":"https://rkrenosolution.com/#website","url":"https://rkrenosolution.com/","name":"RK Reno Solution","inLanguage":"en-US","publisher":{"@id":"https://rkrenosolution.com/#organization"}}
+    ]
+  }]
+}

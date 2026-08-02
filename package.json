@@ -22,6 +22,8 @@
     "capture:upah-pasang-aircond-selangor-guide": "node scripts/correction/capture-upah-pasang-aircond-selangor-guide.mjs",
     "test:pakej-deep-cleaning-rumah-kl": "node scripts/correction/validate-pakej-deep-cleaning-rumah-kl.mjs",
     "capture:pakej-deep-cleaning-rumah-kl": "node scripts/correction/capture-pakej-deep-cleaning-rumah-kl.mjs",
+    "test:commercial-retail-shop-renovation-kl": "node scripts/correction/validate-commercial-retail-shop-renovation-kl.mjs",
+    "capture:commercial-retail-shop-renovation-kl": "node scripts/correction/capture-commercial-retail-shop-renovation-kl.mjs",
     "preview:production": "node scripts/prompt-3-1/production-simulator.mjs",
     "test:production-readiness": "node scripts/prompt-3-1/run-production-readiness.mjs",
     "test:form-security": "node scripts/prompt-3-2/test-form-security.mjs",

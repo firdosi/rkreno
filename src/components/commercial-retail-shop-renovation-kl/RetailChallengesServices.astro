@@ -1,0 +1,58 @@
+---
+const { content, localHref } = Astro.props;
+const icons = ['AP', 'FS', 'NW', 'HD'];
+---
+<section class="retail-section retail-section--light" id={content.challenges.id} data-retail-section>
+  <div class="retail-wide">
+    <div class="retail-heading">
+      <p class="retail-kicker">Commercial readiness</p>
+      <h2>{content.challenges.heading}</h2>
+      <p>Unlike a <a href={localHref('/house-renovation-in-kuala-lumpur/')}>standard house renovation</a>, building a retail shop in Kuala Lumpur’s top commercial zones comes with strict regulatory and logistical hurdles. As experienced commercial contractors, we expertly handle:</p>
+    </div>
+    <div class="retail-challenge-grid">
+      {content.challenges.items.map((item, index) => (
+        <article>
+          <span aria-hidden="true">{icons[index]}</span>
+          <h3>{item.heading}</h3>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="retail-section retail-section--navy" id={content.services.id} data-retail-section>
+  <div class="retail-wide">
+    <div class="retail-heading retail-heading--inverse">
+      <p class="retail-kicker">End-to-end fit-out</p>
+      <h2>{content.services.heading}</h2>
+      <p>{content.services.intro}</p>
+    </div>
+    <div class="retail-services-panel">
+      <div class="retail-services-title">
+        <span aria-hidden="true">RF</span>
+        <h3>{content.services.panelHeading}</h3>
+      </div>
+      <div class="retail-services-grid">
+        {content.services.items.map((item, index) => (
+          <article>
+            <b aria-hidden="true">0{index + 1}</b>
+            <h3>{item.heading}</h3>
+            {index === 3 ? (
+              <p>From complex <a href={localHref('/electrical-services-selangor/')}>electrical wiring</a> for signage and displays to specialized <a href={localHref('/upah-pasang-aircond-selangor/')}>air-conditioning (cassette/VRV) installation</a>, our M&amp;E team ensures your shop remains safe and comfortable.</p>
+            ) : <p>{item.text}</p>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<aside class="retail-wide retail-quote" aria-labelledby="retail-quote-heading">
+  <div>
+    <p class="retail-kicker">Store launch planning</p>
+    <h2 id="retail-quote-heading">{content.cta.heading}</h2>
+    <p>{content.cta.paragraph}</p>
+  </div>
+  <a href={content.cta.href} target="_blank" rel="noopener">{content.cta.button}</a>
+</aside>

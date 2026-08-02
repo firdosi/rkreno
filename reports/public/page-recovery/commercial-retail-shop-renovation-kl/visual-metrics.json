@@ -1,0 +1,151 @@
+{
+  "status": "PASSED",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "imageCount": 1,
+      "tocCount": 5,
+      "challengeCount": 4,
+      "serviceCount": 4,
+      "priceRowCount": 4,
+      "workflowCount": 4,
+      "whatsappCount": 1,
+      "minBodyFont": 16
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "imageCount": 1,
+      "tocCount": 5,
+      "challengeCount": 4,
+      "serviceCount": 4,
+      "priceRowCount": 4,
+      "workflowCount": 4,
+      "whatsappCount": 1,
+      "minBodyFont": 16
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "imageCount": 1,
+      "tocCount": 5,
+      "challengeCount": 4,
+      "serviceCount": 4,
+      "priceRowCount": 4,
+      "workflowCount": 4,
+      "whatsappCount": 1,
+      "minBodyFont": 17,
+      "mobileMenuOpened": true
+    }
+  ],
+  "smokeRoutes": [
+    {
+      "pathname": "/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/blog/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/aircond-installation-kl/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/upah-pasang-aircond-selangor/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/house-renovation-in-kuala-lumpur/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/electrical-services-selangor/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/plaster-ceiling-contractor-kl/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    },
+    {
+      "pathname": "/contact-us/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "retailGuideCount": 0
+    }
+  ],
+  "failures": []
+}

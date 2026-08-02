@@ -1,0 +1,45 @@
+---
+const { content, localHref } = Astro.props;
+---
+<section class="retail-section retail-section--price" id={content.pricing.id} data-retail-section>
+  <div class="retail-wide">
+    <div class="retail-heading">
+      <p class="retail-kicker">2026 market guide</p>
+      <h2>{content.pricing.heading}</h2>
+      <p>{content.pricing.intro}</p>
+    </div>
+    <div class="retail-table-wrap">
+      <table class="retail-price-table">
+        <thead><tr>{content.pricing.headings.map((heading) => <th scope="col">{heading}</th>)}</tr></thead>
+        <tbody>
+          {content.pricing.rows.map((row, index) => (
+            <tr>
+              <th scope="row" data-label={content.pricing.headings[0]}>{row.tier}</th>
+              <td data-label={content.pricing.headings[1]}><strong>{row.cost}</strong></td>
+              <td data-label={content.pricing.headings[2]}>{index === 1 ? <>Custom POS counter, standard display shelving, M&amp;E works, <a href={localHref('/plaster-ceiling-contractor-kl/')}>plaster ceiling</a>, and commercial flooring.</> : row.included}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="retail-section retail-section--workflow" id={content.workflow.id} data-retail-section>
+  <div class="retail-wide">
+    <div class="retail-heading retail-heading--center">
+      <p class="retail-kicker">From concept to opening</p>
+      <h2>{content.workflow.heading}</h2>
+      <p>{content.workflow.intro}</p>
+    </div>
+    <ol class="retail-workflow">
+      {content.workflow.items.map((item, index) => (
+        <li>
+          <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          <h3>{item.heading}</h3>
+          <p>{item.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
