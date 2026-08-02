@@ -1,0 +1,23 @@
+---
+const { content, images, localHref } = Astro.props as any;
+---
+<section class="cleaning-section cleaning-soft" id="pre-raya" data-cleaning-section="pre-raya">
+  <div class="cleaning-wide cleaning-split cleaning-split-reverse">
+    <figure class="cleaning-photo-card"><img src={localHref(images.preRaya.local)} alt={images.preRaya.alt} width={images.preRaya.width} height={images.preRaya.height} loading="lazy" /><figcaption>{images.preRaya.caption}</figcaption></figure>
+    <div class="cleaning-heading"><p class="cleaning-label">{content.preRaya.label}</p><h2>{content.preRaya.heading}</h2>{content.preRaya.paragraphs.map((item: string) => <p>{item}</p>)}<ul class="cleaning-checks">{content.preRaya.items.map((item: string) => <li>{item}</li>)}</ul></div>
+  </div>
+</section>
+
+<section class="cleaning-section" id="post-renovation" data-cleaning-section="post-renovation">
+  <div class="cleaning-wide cleaning-split">
+    <div class="cleaning-heading"><p class="cleaning-label">{content.postRenovation.label}</p><h2>{content.postRenovation.heading}</h2>{content.postRenovation.paragraphs.map((item: string) => <p>{item}</p>)}<h3>{content.postRenovation.subheading}</h3><ul class="cleaning-checks cleaning-post-list">{content.postRenovation.items.map((item: any) => <li>{item.text ? item.text : <>{item.prefix}<a href={localHref(item.href)}>{item.linkLabel}</a>{item.suffix}</>}</li>)}</ul></div>
+    <figure class="cleaning-photo-card"><img src={localHref(images.postRenovation.local)} alt={images.postRenovation.alt} width={images.postRenovation.width} height={images.postRenovation.height} loading="lazy" /><figcaption>{images.postRenovation.caption}</figcaption></figure>
+  </div>
+</section>
+
+<section class="cleaning-section cleaning-soft" data-cleaning-section="addons">
+  <div class="cleaning-reading cleaning-heading cleaning-center"><p class="cleaning-label">{content.addons.label}</p><h2>{content.addons.heading}</h2><p>{content.addons.paragraph}</p></div>
+  <div class="cleaning-wide cleaning-addon-grid">
+    {content.addons.cards.map((card: any) => <article><img src={localHref(images[card.imageRole].local)} alt={images[card.imageRole].alt} width={images[card.imageRole].width} height={images[card.imageRole].height} loading="lazy" /><div><h3>{card.heading}</h3>{card.text ? <p>{card.text}</p> : <p>{card.textPrefix}<a href={localHref(card.href)}>{card.linkLabel}</a>{card.textSuffix}</p>}</div></article>)}
+  </div>
+</section>

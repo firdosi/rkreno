@@ -1,0 +1,29 @@
+---
+const { content, images, localHref } = Astro.props as any;
+---
+<header class="cleaning-hero" data-cleaning-section="hero">
+  <div class="cleaning-wide cleaning-hero-grid">
+    <div class="cleaning-hero-copy">
+      <p class="cleaning-label">{content.hero.label}</p>
+      <h1>{content.hero.h1}</h1>
+      <p class="cleaning-hero-lead">{content.hero.paragraph}</p>
+      <div class="cleaning-actions">
+        <a class="cleaning-button cleaning-button-orange" href={content.hero.actions[0].href} target="_blank" rel="noopener">{content.hero.actions[0].label}</a>
+        <a class="cleaning-button cleaning-button-outline" href={localHref(content.hero.actions[1].href)}>{content.hero.actions[1].label}</a>
+      </div>
+    </div>
+    <div class="cleaning-hero-visual">
+      <img src={localHref(images.hero.local)} alt="" width={images.hero.width} height={images.hero.height} fetchpriority="high" />
+      <div class="cleaning-hero-points"><ul>{content.hero.points.map((item: string) => <li>{item}</li>)}</ul></div>
+    </div>
+  </div>
+</header>
+
+<section class="cleaning-section cleaning-overview" data-cleaning-section="overview">
+  <div class="cleaning-reading cleaning-heading cleaning-center"><p class="cleaning-label">{content.overview.label}</p><h2>{content.overview.heading}</h2><p>{content.overview.paragraph}</p></div>
+  <div class="cleaning-wide cleaning-type-grid">
+    {content.overview.cards.map((card: any, index: number) => <article><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><h3>{card.heading}</h3><p>{card.text}</p></article>)}
+  </div>
+  <figure class="cleaning-wide cleaning-main-image"><img src={localHref(images.main.local)} alt={images.main.alt} width={images.main.width} height={images.main.height} loading="lazy" /></figure>
+  <nav class="cleaning-reading cleaning-toc" aria-label="Isi Kandungan"><h2>{content.toc.heading}</h2><ol>{content.toc.items.map((item: any) => <li><a href={item.href}>{item.label}</a></li>)}</ol></nav>
+</section>

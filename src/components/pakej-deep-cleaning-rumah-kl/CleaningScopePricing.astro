@@ -1,0 +1,21 @@
+---
+const { content, images, localHref } = Astro.props as any;
+---
+<section class="cleaning-section cleaning-soft" id="apa-termasuk" data-cleaning-section="scope">
+  <div class="cleaning-wide cleaning-split">
+    <div class="cleaning-heading"><p class="cleaning-label">{content.scope.label}</p><h2>{content.scope.heading}</h2>{content.scope.paragraphs.map((item: string) => <p>{item}</p>)}<ul class="cleaning-checks">{content.scope.items.map((item: string) => <li>{item}</li>)}</ul></div>
+    <figure class="cleaning-photo-card"><img src={localHref(images.scope.local)} alt={images.scope.alt} width={images.scope.width} height={images.scope.height} loading="lazy" /><figcaption>{images.scope.caption}</figcaption></figure>
+  </div>
+</section>
+
+<section class="cleaning-section cleaning-pricing" id="harga" data-cleaning-section="pricing">
+  <div class="cleaning-reading cleaning-heading cleaning-center"><p class="cleaning-label">{content.pricing.label}</p><h2>{content.pricing.heading}</h2><p>{content.pricing.intro}</p></div>
+  <div class="cleaning-wide cleaning-table-wrap">
+    <table class="cleaning-price-table">
+      <thead><tr>{content.pricing.headings.map((item: string) => <th>{item}</th>)}</tr></thead>
+      <tbody>{content.pricing.rows.map((row: any) => <tr><td data-label={content.pricing.headings[0]}><strong>{row.type}</strong><span>{row.size}</span></td><td data-label={content.pricing.headings[1]}><strong class="cleaning-price">{row.price}</strong></td><td data-label={content.pricing.headings[2]}>{row.suitable}</td></tr>)}</tbody>
+    </table>
+  </div>
+  <aside class="cleaning-wide cleaning-price-note"><strong>{content.pricing.noteLabel}</strong> {content.pricing.note}</aside>
+  <aside class="cleaning-wide cleaning-quote-cta"><div><h2>{content.pricing.cta.heading}</h2><p>{content.pricing.cta.paragraph}</p></div><a class="cleaning-button cleaning-button-whatsapp" href={content.pricing.cta.href} target="_blank" rel="noopener">{content.pricing.cta.button}</a></aside>
+</section>

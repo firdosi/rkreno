@@ -1,0 +1,71 @@
+{
+  "route": "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+  "hero": {
+    "label": "Servis Pembersihan KL",
+    "h1": "Pakej Cuci Rumah KL: Harga & Servis Deep Cleaning 2026",
+    "paragraph": "Sedang cari pakej cuci rumah untuk kondo, rumah teres, rumah selepas renovasi, atau persediaan sebelum Hari Raya? RK Reno Solution menyediakan servis cuci rumah di Kuala Lumpur, Selangor, Setapak, Cheras, Wangsa Maju, dan kawasan sekitar.",
+    "actions": [
+      {"label":"Semak Harga","href":"https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20saya%20nak%20tanya%20pakej%20cuci%20rumah."},
+      {"label":"Lihat Servis","href":"/servis-cuci-rumah-kl/"}
+    ],
+    "points": [
+      "Sesuai untuk deep cleaning rumah, kondo, apartmen, dan pejabat kecil.",
+      "Boleh digunakan untuk pindah masuk, pindah keluar, dan selepas renovasi.",
+      "Fokus pada dapur, bilik air, tingkap, kipas, lantai, dan kawasan berhabuk.",
+      "Hubungi kami untuk semak harga berdasarkan lokasi dan keadaan rumah."
+    ]
+  },
+  "overview": {
+    "label":"Apa Yang Kami Bantu","heading":"Pakej Cuci Rumah Untuk Ruang Yang Lebih Bersih","paragraph":"Pakej ini sesuai jika anda mahu rumah lebih kemas, segar, dan selesa. Selain itu, ia juga membantu selepas kerja ubah suai yang meninggalkan habuk halus.",
+    "cards":[
+      {"heading":"Deep Cleaning","text":"Kami bersihkan ruang utama, lantai, kipas, tingkap, dapur, bilik air, dan permukaan yang mudah mengumpul habuk.","icon":"sparkle"},
+      {"heading":"Post Renovation","text":"Kami bantu bersihkan habuk simen, sisa cat, kotoran binaan, dan kawasan selepas kerja renovasi rumah.","icon":"home"},
+      {"heading":"Pre-Hari Raya","text":"Rumah lebih bersedia untuk tetamu. Fokus diberikan pada ruang tamu, dapur, bilik air, kipas, tingkap, dan lantai.","icon":"star"}
+    ]
+  },
+  "toc": {"heading":"Isi Kandungan","items":[
+    {"href":"#apa-termasuk","label":"1. Apa Yang Termasuk Dalam Pakej?"},{"href":"#harga","label":"2. Harga Pakej Cuci Rumah KL"},{"href":"#pre-raya","label":"3. Pakej Cuci Rumah Pre-Hari Raya"},{"href":"#post-renovation","label":"4. Cucian Selepas Renovasi"},{"href":"#kenapa-pilih","label":"5. Kenapa Pilih RK Reno Solution?"},{"href":"#faq","label":"6. Soalan Lazim"}
+  ]},
+  "scope": {"label":"Skop Servis","heading":"Apa Yang Termasuk Dalam Pakej Cuci Rumah?","paragraphs":["Pakej cuci rumah bukan sekadar sapu dan mop biasa. Ia lebih terperinci. Jadi, ia sesuai untuk rumah yang perlukan cucian menyeluruh.","Biasanya, servis ini merangkumi beberapa kerja utama. Namun, skop sebenar bergantung kepada saiz rumah dan keadaan rumah anda."],"items":["Sapu dan mop seluruh kawasan rumah.","Vakum lantai, karpet, sofa, dan kawasan berhabuk.","Cuci bilik air, sinki, tandas, dan celah jubin.","Lap kipas, tingkap, grill, kabinet, dan permukaan utama.","Bersihkan dapur, kesan minyak, dan kawasan memasak.","Bersihkan habuk selepas renovasi jika diperlukan."]},
+  "pricing": {
+    "label":"Harga 2026","heading":"Harga Pakej Cuci Rumah KL","intro":"Harga bergantung kepada keluasan rumah, jumlah bilik, tahap kekotoran, dan jenis cucian. Oleh itu, jadual ini hanya anggaran untuk rujukan awal.",
+    "headings":["Jenis Rumah","Anggaran Harga","Sesuai Untuk"],
+    "rows":[
+      {"type":"Kondo / Apartmen","size":"Hingga 1,000 sqft","price":"RM250 - RM350","suitable":"Pindah masuk, pindah keluar, cucian tahunan, atau cucian sebelum perayaan."},
+      {"type":"Rumah 1 Tingkat / Kondo Besar","size":"1,001 - 1,500 sqft","price":"RM380 - RM480","suitable":"Rumah keluarga, dapur berminyak, bilik air kotor, dan ruang yang banyak habuk."},
+      {"type":"Rumah Teres 2 Tingkat","size":"1,501 - 2,000 sqft","price":"RM500 - RM650","suitable":"Cucian penuh rumah, porch, balkoni, kipas, tingkap, bilik air, dan lantai."},
+      {"type":"Post-Renovation Cleaning","size":"Semua saiz","price":"RM0.35 - RM0.50 per sqft","suitable":"Habuk simen, sisa cat, gam, kotoran kerja ubah suai, dan pembersihan selepas kontraktor siap kerja."}
+    ],
+    "noteLabel":"Nota:","note":"Harga sebenar boleh berubah mengikut keadaan rumah. Untuk harga tepat, hantar gambar rumah, lokasi, saiz rumah, dan tarikh yang anda mahu melalui WhatsApp.",
+    "cta":{"heading":"Mahukan Harga Untuk Rumah Anda?","paragraph":"Hantar lokasi, jenis rumah, saiz rumah, dan gambar keadaan rumah. Selepas itu, pasukan kami akan bantu semak anggaran harga yang sesuai.","button":"WhatsApp Untuk Harga","href":"https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20saya%20nak%20semak%20harga%20pakej%20cuci%20rumah."}
+  },
+  "preRaya": {"label":"Musim Perayaan","heading":"Pakej Cuci Rumah Pre-Hari Raya","paragraphs":["Sebelum Hari Raya, ramai orang mahu rumah nampak bersih, wangi, dan selesa untuk keluarga serta tetamu. Jadi, tempahan biasanya meningkat pada musim ini.","Pakej pre-Hari Raya memberi fokus kepada ruang yang selalu digunakan. Contohnya, ruang tamu, dapur, bilik air, tingkap, kipas, dan lantai."],"items":["Sesuai untuk keluarga yang sibuk bekerja.","Membantu rumah nampak lebih kemas sebelum tetamu datang.","Fokus pada dapur, bilik air, ruang tamu, dan kawasan utama.","Boleh digabungkan dengan servis tambahan jika diperlukan."]},
+  "postRenovation": {"label":"Selepas Ubah Suai","heading":"Cucian Selepas Renovasi Rumah","paragraphs":["Selepas kerja renovasi, rumah biasanya penuh dengan habuk halus, sisa simen, kesan cat, dan kotoran binaan. Cucian biasa selalunya tidak cukup.","Oleh sebab itu, post-renovation cleaning lebih sesuai. Ia fokus kepada kawasan yang terkena habuk dan sisa kerja ubah suai."],"subheading":"Servis Ini Sesuai Selepas:","items":[
+    {"prefix":"","linkLabel":"Renovasi rumah","href":"/house-renovation-in-kuala-lumpur/","suffix":" atau kerja naik taraf ruang."},
+    {"prefix":"Pemasangan ","linkLabel":"plaster ceiling","href":"/plaster-ceiling-contractor-kl/","suffix":"."},
+    {"text":"Kerja cat rumah, lantai, atau jubin."},
+    {"prefix":"Kerja ","linkLabel":"waterproofing contractor","href":"/waterproofing-contractor-kuala-lumpur/","suffix":"."},
+    {"text":"Renovasi pejabat, kedai, atau ruang komersial."}
+  ]},
+  "addons": {"label":"Servis Berkaitan","heading":"Servis Tambahan Yang Boleh Digabungkan","paragraph":"Selain pakej cuci rumah, RK Reno Solution juga menyediakan servis lain untuk membantu rumah anda lebih selesa.","cards":[
+    {"imageRole":"kitchen","heading":"Cuci Dapur Berminyak","text":"Dapur biasanya mengumpul minyak, habuk, dan kesan makanan. Oleh itu, kawasan ini perlukan cucian yang lebih teliti."},
+    {"imageRole":"ceiling","heading":"Cuci Habuk Plaster Ceiling","text":"Jika anda baru siap ceiling work, habuk halus boleh melekat pada lantai dan perabot. Kami boleh bantu bersihkan kawasan tersebut."},
+    {"imageRole":"aircond","heading":"Servis Aircond Add-On","textPrefix":"Jika aircond kurang sejuk, anda juga boleh tanya tentang servis berkaitan ","linkLabel":"upah pasang aircond Selangor","href":"/upah-pasang-aircond-selangor/","textSuffix":"."}
+  ]},
+  "whyChoose": {"label":"Kenapa Pilih Kami","heading":"Kenapa Pilih RK Reno Solution?","paragraph":"RK Reno Solution bukan hanya menyediakan servis cuci rumah. Kami juga membantu pelanggan dengan renovasi, waterproofing, plaster ceiling, aircond installation, dan property improvement.","cards":[
+    {"heading":"Pemeriksaan Awal","text":"Kami cuba faham keadaan rumah terlebih dahulu. Jadi, skop kerja lebih jelas sebelum pasukan datang."},
+    {"heading":"Rumah & Pejabat","text":"Servis ini sesuai untuk rumah, kondo, apartmen, pejabat kecil, dan ruang komersial."},
+    {"heading":"Fokus Kawasan Penting","text":"Kami beri perhatian kepada dapur, bilik air, kipas, tingkap, lantai, dan kawasan yang mengumpul habuk."}
+  ],"areaLabel":"Kawasan servis:","area":"Kuala Lumpur, Setapak, Wangsa Maju, Cheras, Selangor, Petaling Jaya, dan kawasan sekitar. Jika kawasan anda tidak tersenarai, hubungi kami untuk semak ketersediaan."},
+  "faqs": {"label":"FAQ","heading":"Soalan Lazim Tentang Pakej Cuci Rumah","items":[
+    {"question":"Berapa harga pakej cuci rumah di KL?","answer":"Harga anggaran bermula sekitar RM250 untuk rumah kecil atau kondo. Namun, harga sebenar bergantung kepada saiz rumah, keadaan rumah, dan jenis cucian yang diperlukan."},
+    {"question":"Apa beza deep cleaning dan cucian biasa?","answer":"Cucian biasa fokus pada sapu, mop, dan lap permukaan. Deep cleaning pula lebih terperinci. Ia termasuk bilik air, dapur, kipas, tingkap, celah jubin, dan kawasan yang susah dicapai."},
+    {"question":"Adakah pakej ini sesuai selepas renovasi?","answer":"Ya, pakej ini sesuai selepas renovasi. Namun, post-renovation cleaning biasanya perlukan skop lebih khusus kerana ia melibatkan habuk simen, sisa cat, dan kotoran kerja ubah suai."},
+    {"question":"Berapa lama masa cuci rumah diambil?","answer":"Untuk rumah bersaiz biasa, kerja boleh mengambil masa sekitar 4 hingga 6 jam. Masa sebenar bergantung kepada saiz rumah, tahap kekotoran, dan jumlah pekerja."},
+    {"question":"Bagaimana cara tempah pakej cuci rumah?","answer":"Anda boleh WhatsApp RK Reno Solution. Kongsi jenis rumah, lokasi, saiz rumah, tarikh yang anda mahu, dan gambar keadaan rumah jika ada."}
+  ]},
+  "finalCta": {"label":"Tempahan","heading":"Tempah Pakej Cuci Rumah Hari Ini","paragraph":"Jika rumah anda perlukan deep cleaning, post-renovation cleaning, atau cucian sebelum Hari Raya, RK Reno Solution boleh bantu.","prompt":"Untuk proses yang lebih cepat, hantar maklumat berikut melalui WhatsApp:","items":["Jenis rumah.","Lokasi rumah.","Saiz rumah.","Tarikh yang anda mahu.","Gambar keadaan rumah jika ada."],"actions":[
+    {"label":"Tempah Sekarang","href":"https://wa.me/601111334496?text=Hi%20RK%20Reno%2C%20saya%20nak%20tempah%20pakej%20cuci%20rumah."},
+    {"label":"Contact RK Reno Solution","href":"/contact-us/"}
+  ]}
+}

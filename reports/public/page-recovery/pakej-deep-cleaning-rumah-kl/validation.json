@@ -1,0 +1,330 @@
+{
+  "status": "PASSED",
+  "exactContentMatchCount": 22,
+  "missingContentCount": 0,
+  "rewrittenContentCount": 0,
+  "seoRegressionCount": 0,
+  "h1": "PASSED",
+  "toc": "PASSED",
+  "priceRows": "PASSED",
+  "priceQualification": "PASSED",
+  "correctOriginalImageCount": 0,
+  "imageFallbackCount": 8,
+  "imagePurposes": "PASSED",
+  "faqs": "PASSED",
+  "whatsapp": "PASSED",
+  "internalLinks": "PASSED",
+  "brokenLinkCount": 0,
+  "brokenImageCount": 0,
+  "overflowCount": 0,
+  "consoleErrorCount": 0,
+  "responsive": "PASSED",
+  "checks": [
+    {
+      "group": "structure",
+      "name": "route-specific renderer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "single exact H1",
+      "passed": true,
+      "detail": "1"
+    },
+    {
+      "group": "content",
+      "name": "hero copy exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "hero actions exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "four hero points exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "overview exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "three overview cards exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "six-entry TOC exact",
+      "passed": true,
+      "detail": "6"
+    },
+    {
+      "group": "content",
+      "name": "service scope paragraphs exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "six service scope items exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "pricing",
+      "name": "four price rows exact",
+      "passed": true,
+      "detail": "4"
+    },
+    {
+      "group": "pricing",
+      "name": "price qualification exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "pricing",
+      "name": "pricing CTA exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "four Pre-Raya items exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "five post-renovation items exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "three add-on cards exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "three why-choose cards exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "service-area paragraph exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "faq",
+      "name": "five FAQs exact",
+      "passed": true,
+      "detail": "5"
+    },
+    {
+      "group": "content",
+      "name": "final booking exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "links",
+      "name": "three WhatsApp links exact",
+      "passed": true,
+      "detail": "3"
+    },
+    {
+      "group": "links",
+      "name": "six internal destinations exact",
+      "passed": true,
+      "detail": "/servis-cuci-rumah-kl/, /house-renovation-in-kuala-lumpur/, /plaster-ceiling-contractor-kl/, /waterproofing-contractor-kuala-lumpur/, /upah-pasang-aircond-selangor/, /contact-us/"
+    },
+    {
+      "group": "links",
+      "name": "internal links resolve",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "images",
+      "name": "eight image purposes rendered",
+      "passed": true,
+      "detail": "8"
+    },
+    {
+      "group": "images",
+      "name": "image paths and seven supplied alts exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "images",
+      "name": "three captions exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "images",
+      "name": "fallback files and dimensions verified",
+      "passed": true,
+      "detail": "1600x900 jpeg, 1600x900 jpeg"
+    },
+    {
+      "group": "images",
+      "name": "image recovery status truthful",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "author exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "canonical exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "staging robots exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:locale exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:site_name exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:type exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:url exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:secure_url exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:width exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:height exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "article:published_time exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "article:modified_time exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:card exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:image exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "JSON-LD exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "schema type safety",
+      "passed": true,
+      "detail": "BlogPosting, BreadcrumbList, Organization, Person, WebPage, WebSite"
+    }
+  ]
+}

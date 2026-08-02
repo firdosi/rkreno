@@ -1,0 +1,20 @@
+---
+const { content, localHref } = Astro.props as any;
+---
+<section class="cleaning-section" id="kenapa-pilih" data-cleaning-section="why-choose">
+  <div class="cleaning-reading cleaning-heading cleaning-center"><p class="cleaning-label">{content.whyChoose.label}</p><h2>{content.whyChoose.heading}</h2><p>{content.whyChoose.paragraph}</p></div>
+  <div class="cleaning-wide cleaning-why-grid">{content.whyChoose.cards.map((card: any, index: number) => <article><span>{String(index + 1).padStart(2, '0')}</span><h3>{card.heading}</h3><p>{card.text}</p></article>)}</div>
+  <aside class="cleaning-wide cleaning-location"><strong>{content.whyChoose.areaLabel}</strong> {content.whyChoose.area}</aside>
+</section>
+
+<section class="cleaning-section cleaning-soft" id="faq" data-cleaning-section="faq">
+  <div class="cleaning-reading cleaning-heading cleaning-center"><p class="cleaning-label">{content.faqs.label}</p><h2>{content.faqs.heading}</h2></div>
+  <div class="cleaning-reading cleaning-faq">{content.faqs.items.map((item: any) => <details><summary>{item.question}</summary><div><p>{item.answer}</p></div></details>)}</div>
+</section>
+
+<section class="cleaning-section cleaning-final" data-cleaning-section="booking">
+  <div class="cleaning-wide cleaning-final-grid">
+    <div><p class="cleaning-label">{content.finalCta.label}</p><h2>{content.finalCta.heading}</h2><p>{content.finalCta.paragraph}</p></div>
+    <div><p>{content.finalCta.prompt}</p><ul class="cleaning-checks cleaning-final-list">{content.finalCta.items.map((item: string) => <li>{item}</li>)}</ul><div class="cleaning-actions"><a class="cleaning-button cleaning-button-orange" href={content.finalCta.actions[0].href} target="_blank" rel="noopener">{content.finalCta.actions[0].label}</a><a class="cleaning-button cleaning-button-outline" href={localHref(content.finalCta.actions[1].href)}>{content.finalCta.actions[1].label}</a></div></div>
+  </div>
+</section>
