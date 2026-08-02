@@ -1,0 +1,211 @@
+{
+  "title": "Office Renovation Petaling Jaya: Corporate Fit-Out Experts - RK Reno Solution",
+  "description": "Services › Commercial › Petaling Jaya Office Renovation Petaling Jaya: Corporate Fit-Out Experts By RK Reno Commercial Team 7 Minute Read Petaling Jaya, Selangor Petaling Jaya is rapidly expanding as Selangor’s premier corporate hub. Your workspace is more than just desks and chairs; it is a critical tool for employee productivity and reflecting your brand",
+  "canonical": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+  "robots": "max-image-preview:large",
+  "openGraph": {
+    "locale": "en_US",
+    "site_name": "RK Reno Solution -",
+    "type": "article",
+    "title": "Office Renovation Petaling Jaya: Corporate Fit-Out Experts - RK Reno Solution",
+    "description": "Services › Commercial › Petaling Jaya Office Renovation Petaling Jaya: Corporate Fit-Out Experts By RK Reno Commercial Team 7 Minute Read Petaling Jaya, Selangor Petaling Jaya is rapidly expanding as Selangor’s premier corporate hub. Your workspace is more than just desks and chairs; it is a critical tool for employee productivity and reflecting your brand",
+    "url": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+    "image": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+    "image:secure_url": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+    "image:width": "1575",
+    "image:height": "483"
+  },
+  "article": {
+    "published_time": "2026-04-04T14:02:23+00:00",
+    "modified_time": "2026-04-04T14:03:02+00:00"
+  },
+  "twitter": {
+    "card": "summary_large_image",
+    "title": "Office Renovation Petaling Jaya: Corporate Fit-Out Experts - RK Reno Solution",
+    "description": "Services › Commercial › Petaling Jaya Office Renovation Petaling Jaya: Corporate Fit-Out Experts By RK Reno Commercial Team 7 Minute Read Petaling Jaya, Selangor Petaling Jaya is rapidly expanding as Selangor’s premier corporate hub. Your workspace is more than just desks and chairs; it is a critical tool for employee productivity and reflecting your brand",
+    "image": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png"
+  },
+  "jsonLd": [
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BlogPosting",
+          "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#blogposting",
+          "name": "Office Renovation Petaling Jaya: Corporate Fit-Out Experts - RK Reno Solution",
+          "headline": "Office Renovation Petaling Jaya: Corporate Fit-Out Experts",
+          "author": {
+            "@id": "https://rkrenosolution.com/author/raoisrar/#author"
+          },
+          "publisher": {
+            "@id": "https://rkrenosolution.com/#organization"
+          },
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://rkrenosolution.com/wp-content/uploads/2026/01/Office-renovation-petaling-jaya-corporate-fit-out-experts.jpeg?q=80&w=1000&auto=format&fit=crop",
+            "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#articleImage"
+          },
+          "datePublished": "2026-04-04T14:02:23+00:00",
+          "dateModified": "2026-04-04T14:03:02+00:00",
+          "inLanguage": "en-US",
+          "mainEntityOfPage": {
+            "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#webpage"
+          },
+          "isPartOf": {
+            "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#webpage"
+          },
+          "articleSection": "Commercial"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#breadcrumblist",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "@id": "https://rkrenosolution.com#listItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://rkrenosolution.com",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://rkrenosolution.com/category/commercial/#listItem",
+                "name": "Commercial"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://rkrenosolution.com/category/commercial/#listItem",
+              "position": 2,
+              "name": "Commercial",
+              "item": "https://rkrenosolution.com/category/commercial/",
+              "nextItem": {
+                "@type": "ListItem",
+                "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#listItem",
+                "name": "Office Renovation Petaling Jaya: Corporate Fit-Out Experts"
+              },
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://rkrenosolution.com#listItem",
+                "name": "Home"
+              }
+            },
+            {
+              "@type": "ListItem",
+              "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#listItem",
+              "position": 3,
+              "name": "Office Renovation Petaling Jaya: Corporate Fit-Out Experts",
+              "previousItem": {
+                "@type": "ListItem",
+                "@id": "https://rkrenosolution.com/category/commercial/#listItem",
+                "name": "Commercial"
+              }
+            }
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://rkrenosolution.com/#organization",
+          "name": "RK Reno Solution",
+          "url": "https://rkrenosolution.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://rkrenosolution.com/wp-content/uploads/2026/03/RK-Reno-Solutions-Logo.png",
+            "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#organizationLogo",
+            "width": 1575,
+            "height": 483
+          },
+          "image": {
+            "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#organizationLogo"
+          }
+        },
+        {
+          "@type": "Person",
+          "@id": "https://rkrenosolution.com/author/raoisrar/#author",
+          "url": "https://rkrenosolution.com/author/raoisrar/",
+          "name": "raoisrar",
+          "image": {
+            "@type": "ImageObject",
+            "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#authorImage",
+            "url": "https://secure.gravatar.com/avatar/4c7a7e136a0e22539059a09b5784869ac34f14870c8711497f9feb22be355403?s=96&d=mm&r=g",
+            "width": 96,
+            "height": 96,
+            "caption": "raoisrar"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#webpage",
+          "url": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+          "name": "Office Renovation Petaling Jaya: Corporate Fit-Out Experts - RK Reno Solution",
+          "description": "Services › Commercial › Petaling Jaya Office Renovation Petaling Jaya: Corporate Fit-Out Experts By RK Reno Commercial Team 7 Minute Read Petaling Jaya, Selangor Petaling Jaya is rapidly expanding as Selangor’s premier corporate hub. Your workspace is more than just desks and chairs; it is a critical tool for employee productivity and reflecting your brand",
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@id": "https://rkrenosolution.com/#website"
+          },
+          "breadcrumb": {
+            "@id": "https://rkrenosolution.com/office-renovation-petaling-jaya-corporate-fit-out-experts/#breadcrumblist"
+          },
+          "author": {
+            "@id": "https://rkrenosolution.com/author/raoisrar/#author"
+          },
+          "creator": {
+            "@id": "https://rkrenosolution.com/author/raoisrar/#author"
+          },
+          "datePublished": "2026-04-04T14:02:23+00:00",
+          "dateModified": "2026-04-04T14:03:02+00:00"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://rkrenosolution.com/#website",
+          "url": "https://rkrenosolution.com/",
+          "name": "RK Reno Solution",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://rkrenosolution.com/#organization"
+          }
+        }
+      ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much does an office renovation cost in Petaling Jaya?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The cost typically ranges from RM 40 to RM 150+ per square foot. This depends on whether you need basic cosmetic updates or a full corporate fit-out with glass partitions, custom carpentry, and M&E works."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you handle office reinstatement in PJ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we specialize in office reinstatement. We help tenants dismantle partitions, remove flooring, and repaint the unit to its original bare condition to meet strict landlord handover requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can your team work on weekends or at night?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. High-rise office buildings in PJ usually prohibit noisy works during business hours. We schedule drilling and hacking for nights and weekends to comply with your building management's rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you assist with MBPJ permits and building management approvals?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We have extensive experience navigating local council (MBPJ) regulations and building management protocols, ensuring all your renovation applications and refundable deposits are processed smoothly."
+          }
+        }
+      ]
+    }
+  ],
+  "author": "raoisrar",
+  "productionRobots": "max-image-preview:large",
+  "stagingRobots": "noindex, nofollow, max-image-preview:large"
+}

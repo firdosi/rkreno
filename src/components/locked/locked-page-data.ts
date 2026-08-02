@@ -1,4 +1,5 @@
 import { createSourceMediaResolver } from '../../lib/source-content';
+import { BLOG_POST_ROUTES } from '../../data/blog-posts';
 
 const routeMediaFallback: Record<string, string> = {
   '/aircond-installation-kl/': '/assets/media/owner/rk-reno-aircond-indoor-unit-service-access-960.webp',
@@ -33,22 +34,7 @@ function mediaResolver(page: any) {
   };
 }
 
-export const ARTICLE_ROUTES = new Set([
-  '/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/',
-  '/commercial-retail-shop-renovation-in-kuala-lumpur/',
-  '/office-renovation-petaling-jaya-corporate-fit-out-experts/',
-  '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/',
-  '/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/',
-  '/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/',
-  '/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/',
-  '/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/',
-  '/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/',
-  '/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/',
-  '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/',
-  '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/',
-  '/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/',
-  '/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/',
-]);
+export const ARTICLE_ROUTES = new Set(BLOG_POST_ROUTES);
 
 export const SERVICE_ROUTES = new Set([
   '/servis-aircond-murah-kl/', '/aircond-installation-kl/', '/upah-pasang-aircond-selangor/',

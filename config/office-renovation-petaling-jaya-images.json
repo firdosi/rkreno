@@ -1,0 +1,23 @@
+{
+  "transformedSourceUrl": "https://rkrenosolution.com/wp-content/uploads/2026/01/Office-renovation-petaling-jaya-corporate-fit-out-experts.jpeg?q=80&w=1000&auto=format&fit=crop",
+  "baseSourceUrl": "https://rkrenosolution.com/wp-content/uploads/2026/01/Office-renovation-petaling-jaya-corporate-fit-out-experts.jpeg",
+  "originalFilename": "Office-renovation-petaling-jaya-corporate-fit-out-experts.jpeg",
+  "images": [
+    {
+      "localPath": "/assets/media/office-renovation-petaling-jaya-illustration.svg",
+      "width": 1200,
+      "height": 760,
+      "format": "svg",
+      "purposes": [
+        "article",
+        "blog-card"
+      ],
+      "alt": "Modern office renovation in Petaling Jaya showing glass partitions and carpet flooring",
+      "exactOriginal": false,
+      "fallback": true,
+      "fallbackReason": "The supplied transformed and base WordPress media URLs returned HTML instead of the source JPEG; a local modern-office illustration is used without project attribution."
+    }
+  ],
+  "correctOriginalCount": 0,
+  "fallbackCount": 1
+}

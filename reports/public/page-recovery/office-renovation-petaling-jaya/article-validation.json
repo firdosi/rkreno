@@ -1,0 +1,180 @@
+{
+  "status": "PASSED",
+  "exactContentMatch": "PASSED",
+  "missingContentCount": 0,
+  "rewrittenContentCount": 0,
+  "seoRegressionCount": 0,
+  "correctOriginalImageCount": 0,
+  "imageFallbackCount": 1,
+  "sourceOnlyClaimCount": 21,
+  "checks": [
+    {
+      "name": "route-specific renderer",
+      "pass": true,
+      "group": "structure",
+      "detail": ""
+    },
+    {
+      "name": "one exact H1",
+      "pass": true,
+      "group": "content",
+      "detail": "1"
+    },
+    {
+      "name": "hero eyebrow",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "three metadata items",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "three introduction paragraphs",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "featured image purpose and alt",
+      "pass": true,
+      "group": "images",
+      "detail": ""
+    },
+    {
+      "name": "five TOC entries and anchors",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "five exact H2 headings",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "three fit-out demands",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "four corporate services",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "CTA exact",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "one exact WhatsApp link",
+      "pass": true,
+      "group": "links",
+      "detail": ""
+    },
+    {
+      "name": "three table headings",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "four price tiers",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "four workflow steps",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "reinstatement exact",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "three internal links and About mapping",
+      "pass": true,
+      "group": "links",
+      "detail": "[{\"anchor\":\"RK Reno Solution\",\"renderedHref\":\"/about-us/\"},{\"anchor\":\"aircond installation\",\"renderedHref\":\"/upah-pasang-aircond-selangor/\"},{\"anchor\":\"interior painting\",\"renderedHref\":\"/house-renovation-in-kuala-lumpur/\"}]"
+    },
+    {
+      "name": "internal links resolve",
+      "pass": true,
+      "group": "links",
+      "detail": ""
+    },
+    {
+      "name": "SOURCE_ONLY claims",
+      "pass": true,
+      "group": "claims",
+      "detail": ""
+    },
+    {
+      "name": "fallback truth recorded",
+      "pass": true,
+      "group": "images",
+      "detail": ""
+    },
+    {
+      "name": "title exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "description exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "canonical exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "staging robots exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "AIOSEO graph exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "separate FAQPage exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "visible FAQ absent",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "schema risk recorded",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    }
+  ]
+}

@@ -34,6 +34,7 @@ import UpahPasangAircondSelangorGuidePage from '@components/upah-pasang-aircond-
 import PakejDeepCleaningRumahKlPage from '@components/pakej-deep-cleaning-rumah-kl/PakejDeepCleaningRumahKlPage.astro';
 import CommercialRetailShopRenovationKlPage from '@components/commercial-retail-shop-renovation-kl/CommercialRetailShopRenovationKlPage.astro';
 import PuInjectionWaterproofingKlPage from '@components/pu-injection-waterproofing-kl/PuInjectionWaterproofingKlPage.astro';
+import OfficeRenovationPetalingJayaPage from '@components/office-renovation-petaling-jaya/OfficeRenovationPetalingJayaPage.astro';
 import LockedStandardPage from '@components/locked/templates/LockedStandardPage.astro';
 import { ARTICLE_ROUTES, SERVICE_ROUTES } from '@components/locked/locked-page-data';
 import pages from '@data/site-pages.json';
@@ -59,6 +60,7 @@ import upahPasangAircondSelangorGuideSeo from '../../config/upah-pasang-aircond-
 import pakejDeepCleaningRumahKlSeo from '../../config/pakej-deep-cleaning-rumah-kl-seo.json';
 import commercialRetailShopRenovationKlSeo from '../../config/commercial-retail-shop-renovation-kl-seo.json';
 import puInjectionWaterproofingKlSeo from '../../config/pu-injection-waterproofing-kl-seo.json';
+import officeRenovationPetalingJayaSeo from '../../config/office-renovation-petaling-jaya-seo.json';
 import { isIndexable } from '../config/runtime';
 
 interface PageRecord {
@@ -132,6 +134,7 @@ const isUpahPasangAircondSelangorGuide = page.path === '/upah-pasang-aircond-sel
 const isPakejDeepCleaningRumahKl = page.path === '/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/';
 const isCommercialRetailShopRenovationKl = page.path === '/commercial-retail-shop-renovation-in-kuala-lumpur/';
 const isPuInjectionWaterproofingKl = page.path === '/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/';
+const isOfficeRenovationPetalingJaya = page.path === '/office-renovation-petaling-jaya-corporate-fit-out-experts/';
 const allLockedRecords = liveWordpressLock.records;
 const pageByRoute = new Map([...(pages as PageRecord[]), demolitionPage].map((item) => [item.path, item]));
 const batchPage = batch1Pages[page.path] || batch1ServicePages[page.path] || batch2Pages[page.path] || batch3Pages[page.path];
@@ -404,22 +407,23 @@ const pageSchema: any[] = isDemolition
 if ((batchArticle || nativeTaxonomy || isHeldRoute) && !pageSchema.some((item) => item['@type'] === 'BreadcrumbList')) pageSchema.push(breadcrumbSchema);
 ---
 <BaseLayout
-  title={isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.title : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.title : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.title : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.title : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.title : isAircondInstallationKl ? aircondInstallationKlSeo.title : lockedTitle}
-  description={isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.description : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.description : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.description : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.description : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.description : isAircondInstallationKl ? aircondInstallationKlSeo.description : lockedRecord ? lockedDescription : heldDescriptions[page.path] || nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
+  title={isOfficeRenovationPetalingJaya ? officeRenovationPetalingJayaSeo.title : isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.title : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.title : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.title : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.title : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.title : isAircondInstallationKl ? aircondInstallationKlSeo.title : lockedTitle}
+  description={isOfficeRenovationPetalingJaya ? officeRenovationPetalingJayaSeo.description : isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.description : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.description : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.description : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.description : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.description : isAircondInstallationKl ? aircondInstallationKlSeo.description : lockedRecord ? lockedDescription : heldDescriptions[page.path] || nativeTaxonomy?.description || batchArticle?.summary || batchPage?.summary || (page.path === '/blog/'
     ? 'Practical renovation and property-service guides from RK Reno Solution.'
     : page.path === '/faq/'
       ? 'Answers about renovation, aircond, electrical, waterproofing, ceiling, quotation and service areas.'
       : page.description)}
-  canonical={isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.canonical : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.canonical : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.canonical : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.canonical : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.canonical : isAircondInstallationKl ? aircondInstallationKlSeo.canonical : lockedCanonical}
+  canonical={isOfficeRenovationPetalingJaya ? officeRenovationPetalingJayaSeo.canonical : isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.canonical : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.canonical : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.canonical : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.canonical : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.canonical : isAircondInstallationKl ? aircondInstallationKlSeo.canonical : lockedCanonical}
   ogImage={catalogArticle?.image || page.og?.image}
-  schema={isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.jsonLd : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.jsonLd : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.jsonLd : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.jsonLd : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.jsonLd : isAircondInstallationKl ? aircondInstallationKlSeo.jsonLd : lockedRecord?.seo.jsonLd || pageSchema}
-  openGraph={isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.openGraph : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.openGraph : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.openGraph : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.openGraph : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.openGraph : isAircondInstallationKl ? aircondInstallationKlSeo.openGraph : lockedRecord?.seo.openGraph}
-  articleMeta={isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.article : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.article : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.article : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.article : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.article : isAircondInstallationKl ? aircondInstallationKlSeo.article : lockedRecord?.seo.article}
-  twitter={isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.twitter : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.twitter : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.twitter : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.twitter : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.twitter : isAircondInstallationKl ? aircondInstallationKlSeo.twitter : lockedRecord?.seo.twitter}
-  author={isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.author : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.author : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.author : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.author : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.author : undefined}
-  pageType={isPuInjectionWaterproofingKl || isCommercialRetailShopRenovationKl || isPakejDeepCleaningRumahKl || isUpahPasangAircondSelangorGuide || isHouseRenovationKlCostGuide ? 'post' : batchArticle ? 'post' : page.type}
+  schema={isOfficeRenovationPetalingJaya ? officeRenovationPetalingJayaSeo.jsonLd : isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.jsonLd : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.jsonLd : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.jsonLd : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.jsonLd : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.jsonLd : isAircondInstallationKl ? aircondInstallationKlSeo.jsonLd : lockedRecord?.seo.jsonLd || pageSchema}
+  openGraph={isOfficeRenovationPetalingJaya ? officeRenovationPetalingJayaSeo.openGraph : isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.openGraph : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.openGraph : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.openGraph : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.openGraph : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.openGraph : isAircondInstallationKl ? aircondInstallationKlSeo.openGraph : lockedRecord?.seo.openGraph}
+  articleMeta={isOfficeRenovationPetalingJaya ? officeRenovationPetalingJayaSeo.article : isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.article : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.article : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.article : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.article : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.article : isAircondInstallationKl ? aircondInstallationKlSeo.article : lockedRecord?.seo.article}
+  twitter={isOfficeRenovationPetalingJaya ? officeRenovationPetalingJayaSeo.twitter : isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.twitter : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.twitter : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.twitter : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.twitter : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.twitter : isAircondInstallationKl ? aircondInstallationKlSeo.twitter : lockedRecord?.seo.twitter}
+  author={isOfficeRenovationPetalingJaya ? officeRenovationPetalingJayaSeo.author : isPuInjectionWaterproofingKl ? puInjectionWaterproofingKlSeo.author : isCommercialRetailShopRenovationKl ? commercialRetailShopRenovationKlSeo.author : isPakejDeepCleaningRumahKl ? pakejDeepCleaningRumahKlSeo.author : isUpahPasangAircondSelangorGuide ? upahPasangAircondSelangorGuideSeo.author : isHouseRenovationKlCostGuide ? houseRenovationKlCostGuideSeo.author : undefined}
+  pageType={isOfficeRenovationPetalingJaya || isPuInjectionWaterproofingKl || isCommercialRetailShopRenovationKl || isPakejDeepCleaningRumahKl || isUpahPasangAircondSelangorGuide || isHouseRenovationKlCostGuide ? 'post' : batchArticle ? 'post' : page.type}
   externalStyles={nativePage ? [] : page.externalStyles}
-  robots={isPuInjectionWaterproofingKl ? (isIndexable ? puInjectionWaterproofingKlSeo.productionRobots : puInjectionWaterproofingKlSeo.stagingRobots)
+  robots={isOfficeRenovationPetalingJaya ? (isIndexable ? officeRenovationPetalingJayaSeo.productionRobots : officeRenovationPetalingJayaSeo.stagingRobots)
+    : isPuInjectionWaterproofingKl ? (isIndexable ? puInjectionWaterproofingKlSeo.productionRobots : puInjectionWaterproofingKlSeo.stagingRobots)
     : isCommercialRetailShopRenovationKl ? (isIndexable ? commercialRetailShopRenovationKlSeo.productionRobots : commercialRetailShopRenovationKlSeo.stagingRobots)
     : isPakejDeepCleaningRumahKl ? (isIndexable ? pakejDeepCleaningRumahKlSeo.productionRobots : pakejDeepCleaningRumahKlSeo.stagingRobots)
     : isUpahPasangAircondSelangorGuide ? (isIndexable ? upahPasangAircondSelangorGuideSeo.productionRobots : upahPasangAircondSelangorGuideSeo.stagingRobots)
@@ -430,7 +434,9 @@ if ((batchArticle || nativeTaxonomy || isHeldRoute) && !pageSchema.some((item) =
   exactHome={page.path === '/'}
   wordpressCore={coreRoutes.includes(page.path) || Boolean(serviceExact) || Boolean(batchArticle) || Boolean(nativeTaxonomy) || isHeldRoute || isDemolition || page.path === '/thank-you/'}
 >
-  {isPuInjectionWaterproofingKl ? (
+  {isOfficeRenovationPetalingJaya ? (
+    <OfficeRenovationPetalingJayaPage />
+  ) : isPuInjectionWaterproofingKl ? (
     <PuInjectionWaterproofingKlPage />
   ) : isCommercialRetailShopRenovationKl ? (
     <CommercialRetailShopRenovationKlPage />

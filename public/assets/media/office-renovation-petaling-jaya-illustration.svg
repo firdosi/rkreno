@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Modern office renovation illustration</title>
+  <desc id="desc">A bright corporate office with glass partitions, carpet tiles and ceiling services.</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf4f8"/><stop offset="1" stop-color="#cad9e2"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d7eef5" stop-opacity=".82"/><stop offset="1" stop-color="#8bb7ca" stop-opacity=".42"/></linearGradient>
+    <pattern id="carpet" width="92" height="92" patternUnits="userSpaceOnUse"><path d="M0 0h92v92H0z" fill="#274559"/><path d="M0 0h92v92H0z" fill="none" stroke="#47687b" stroke-width="2"/></pattern>
+  </defs>
+  <rect width="1200" height="760" fill="url(#wall)"/>
+  <path d="M0 510 1200 430v330H0z" fill="url(#carpet)"/>
+  <path d="M0 0h1200v76H0z" fill="#0d2b3d"/>
+  <g stroke="#f6a24c" stroke-width="9"><path d="M110 76v150M410 76v130M755 76v112M1080 76v145"/></g>
+  <g fill="#fff5dc"><rect x="55" y="210" width="230" height="10" rx="5"/><rect x="860" y="205" width="270" height="10" rx="5"/></g>
+  <g stroke="#153b51" stroke-width="13" fill="url(#glass)"><path d="M330 95h430v444H330z"/><path d="M545 95v444"/><path d="M330 348h430"/></g>
+  <g stroke="#17394b" stroke-width="10" fill="url(#glass)"><path d="M830 128h320v343H830z"/><path d="M990 128v343"/></g>
+  <g fill="#f7f3e8" stroke="#18384a" stroke-width="7"><path d="m83 540 233-22 110 65-240 28z"/><path d="m850 515 220-19 80 53-226 26z"/></g>
+  <g fill="#f47b20"><path d="M158 600h18v90h-18zM357 579h18v91h-18zM902 566h18v82h-18zM1102 545h18v84h-18z"/></g>
+  <g fill="#6fa36c"><circle cx="90" cy="468" r="55"/><circle cx="155" cy="477" r="44"/><rect x="109" y="492" width="30" height="77" fill="#a87546"/></g>
+  <g fill="#17394b"><rect x="470" y="605" width="220" height="30" rx="8"/><rect x="555" y="630" width="48" height="76"/></g>
+  <text x="54" y="55" fill="#fff" font-family="Arial, sans-serif" font-size="25" font-weight="700" letter-spacing="4">CORPORATE FIT-OUT • PETALING JAYA</text>
+</svg>

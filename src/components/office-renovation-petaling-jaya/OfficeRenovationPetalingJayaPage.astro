@@ -1,0 +1,43 @@
+---
+import { pjOfficeContent as content, pjOfficeImage as image } from '../../data/office-renovation-petaling-jaya';
+import '../../styles/office-renovation-petaling-jaya.css';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const local = (href: string) => href.startsWith('/') ? `${base}${href}` : href;
+const [aboutLink, aircondLink, paintingLink] = content.links;
+---
+<article class="pj-office" data-office-renovation-petaling-jaya data-article-recovery data-locked-template="article">
+  <header class="pj-hero">
+    <div class="pj-wrap pj-hero-grid">
+      <div><p class="pj-kicker">{content.hero.eyebrow}</p><h1>{content.hero.title}</h1>
+        <div class="pj-meta">{content.hero.metadata.map((item) => <span>{item}</span>)}</div>
+      </div>
+      <div class="pj-plan" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    </div>
+  </header>
+
+  <section class="pj-intro pj-reading">
+    <p class="pj-lead">{content.introduction[0]}</p>
+    <p>{content.introduction[1]}</p>
+    <p>At <a href={local(aboutLink.renderedHref)}>RK Reno Solution</a>, we deliver end-to-end corporate fit-outs and office reinstatement services across PJ. From the bustling tech hubs of Bandar Utama and Mutiara Damansara, to the established commercial centers in SS2 and Kelana Jaya, we build workspaces that inspire.</p>
+    <figure><img src={local(image.localPath)} width={image.width} height={image.height} alt={image.alt} /><figcaption>Illustrative modern-office fit-out reference; not represented as RK Reno project work.</figcaption></figure>
+    <nav class="pj-toc" aria-label="Table of contents"><strong>On this page</strong><ol>{content.toc.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ol></nav>
+  </section>
+
+  <section id="demands" class="pj-section pj-wide"><p class="pj-kicker">Compliance & infrastructure</p><h2>{content.demands.heading}</h2><p class="pj-section-intro">{content.demands.intro}</p>
+    <div class="pj-three">{content.demands.items.map(([title, text], index) => <article><span>0{index + 1}</span><h3>{title}</h3>{title === 'M&E Precision' ? <p>Modern offices rely heavily on seamless Mechanical and Electrical (M&E) systems, requiring flawless CAT6 data cabling, server room cooling, and adequate <a href={local(aircondLink.renderedHref)}>aircond installation</a>.</p> : <p>{text}</p>}</article>)}</div>
+  </section>
+
+  <section id="services" class="pj-section pj-services"><div class="pj-wide"><p class="pj-kicker">End-to-end fit-out</p><h2>{content.services.heading}</h2><p class="pj-section-intro">{content.services.intro}</p>
+    <div class="pj-service-panel"><div class="pj-panel-heading"><span>Corporate scope</span><h3>{content.services.panelTitle}</h3></div><div class="pj-service-grid">{content.services.items.map(([title, text]) => <article><h3>{title}</h3>{title === 'Corporate Identity' ? <p>Custom reception counters, built-in pantry cabinets, and professional <a href={local(paintingLink.renderedHref)}>interior painting</a> to match your brand's specific color palette.</p> : <p>{text}</p>}</article>)}</div></div>
+  </div></section>
+
+  <aside class="pj-cta pj-wide"><div><p class="pj-kicker">Project planning</p><h2>{content.cta.heading}</h2><p>{content.cta.paragraph}</p></div><a href={content.cta.href} target="_blank" rel="noopener">{content.cta.label}<span aria-hidden="true">↗</span></a></aside>
+
+  <section id="cost" class="pj-section pj-wide"><p class="pj-kicker">2026 planning ranges</p><h2>{content.cost.heading}</h2><p class="pj-section-intro">{content.cost.intro}</p>
+    <div class="pj-table-wrap"><table><thead><tr>{content.cost.headers.map((header) => <th>{header}</th>)}</tr></thead><tbody>{content.cost.rows.map((row) => <tr>{row.map((cell, index) => <td class:list={{ price: index === 1 }}>{cell}</td>)}</tr>)}</tbody></table></div>
+  </section>
+
+  <section id="process" class="pj-section pj-process"><div class="pj-wide"><p class="pj-kicker">Controlled delivery</p><h2>{content.process.heading}</h2><p class="pj-section-intro">{content.process.intro}</p><ol>{content.process.items.map(([title, text], index) => <li><span>0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></div></section>
+
+  <section id="reinstatement" class="pj-section pj-reading"><p class="pj-kicker">End-of-tenancy works</p><h2>{content.reinstatement.heading}</h2><p>{content.reinstatement.intro}</p><aside class="pj-alert"><span>Restore</span><h3>{content.reinstatement.calloutHeading}</h3><p>{content.reinstatement.callout}</p></aside><p class="pj-closing">{content.reinstatement.closing}</p></section>
+</article>

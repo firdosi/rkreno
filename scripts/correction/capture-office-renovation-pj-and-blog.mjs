@@ -1,0 +1,65 @@
+import { createReadStream, existsSync } from 'node:fs';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { createServer } from 'node:http';
+import path from 'node:path';
+import { chromium } from 'playwright';
+
+const root = process.cwd();
+const dist = path.join(root, 'dist');
+const reportDir = path.join(root, 'reports/public/page-recovery/office-renovation-petaling-jaya');
+await mkdir(reportDir, { recursive: true });
+const mime = { '.html':'text/html; charset=utf-8', '.css':'text/css', '.js':'text/javascript', '.png':'image/png', '.jpg':'image/jpeg', '.jpeg':'image/jpeg', '.webp':'image/webp', '.svg':'image/svg+xml' };
+const server = createServer((request, response) => {
+  const url = new URL(request.url, 'http://127.0.0.1');
+  const pathname = decodeURIComponent(url.pathname).replace(/^\/rkreno(?=\/|$)/, '') || '/';
+  let file = path.join(dist, pathname.replace(/^\//, ''));
+  if (pathname.endsWith('/')) file = path.join(file, 'index.html');
+  if (!existsSync(file)) return response.writeHead(404).end('Not found');
+  response.setHeader('content-type', mime[path.extname(file).toLowerCase()] || 'application/octet-stream');
+  createReadStream(file).pipe(response);
+});
+await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+const port = server.address().port;
+const browser = await chromium.launch({ headless: true });
+const viewports = [{name:'desktop',width:1440,height:1000},{name:'tablet',width:768,height:1024},{name:'mobile',width:390,height:844}];
+const targets = [
+  { name:'article', route:'/office-renovation-petaling-jaya-corporate-fit-out-experts/', root:'.pj-office', expectedCards:0 },
+  { name:'blog', route:'/blog/', root:'.recovery-blog', expectedCards:14 }
+];
+const results = [];
+const smoke = [];
+try {
+  for (const target of targets) for (const viewport of viewports) {
+    const page = await browser.newPage({ viewport });
+    const consoleErrors = [], failedRequests = [];
+    page.on('console', (message) => message.type() === 'error' && consoleErrors.push(message.text()));
+    page.on('requestfailed', (request) => failedRequests.push(request.url()));
+    const response = await page.goto(`http://127.0.0.1:${port}/rkreno${target.route}`, { waitUntil:'networkidle' });
+    await page.evaluate(() => { document.querySelectorAll('img').forEach((image) => image.loading='eager'); window.scrollTo(0, document.documentElement.scrollHeight); });
+    await page.waitForTimeout(120);
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await page.addStyleTag({content:'.rk-header.is-stuck .rk-header__desktop,.rk-header__desktop,.rk-header.is-stuck .rk-mobilebar,.rk-mobilebar{position:static!important;inset:auto!important}.skip-link:not(:focus){position:fixed!important;top:-1000px!important}'});
+    const metrics = await page.evaluate(({root,expectedCards}) => {
+      const cards=[...document.querySelectorAll('.recovery-article-card')];
+      const topPositions=[...new Set(cards.map((card)=>Math.round(card.getBoundingClientRect().top)))];
+      return { overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth, brokenImages:[...document.images].filter((image)=>image.complete&&image.naturalWidth===0).length, h1Count:document.querySelectorAll(`${root} h1`).length, cardCount:cards.length, cardColumns:expectedCards ? Math.max(...topPositions.map((top)=>cards.filter((card)=>Math.abs(card.getBoundingClientRect().top-top)<2).length)) : 0, bodyMinFont:Math.min(...[...document.querySelectorAll(`${root} p,${root} li,${root} td`)].filter((node)=>node.getBoundingClientRect().height>0).map((node)=>parseFloat(getComputedStyle(node).fontSize))) };
+    }, {root:target.root, expectedCards:target.expectedCards});
+    if (viewport.name === 'mobile') {
+      const menu = page.getByRole('button', {name:/open navigation/i}).first();
+      await menu.click(); metrics.mobileMenuOpened = await page.locator('.rk-header.is-drawer-open').count() === 1; await page.keyboard.press('Escape');
+    }
+    await page.screenshot({ path:path.join(reportDir,`${target.name}-${viewport.name}.png`), fullPage:true });
+    results.push({ target:target.name, ...viewport, status:response?.status() || 0, consoleErrors, failedRequests, ...metrics });
+    await page.close();
+  }
+  const page = await browser.newPage({viewport:{width:390,height:844}});
+  const routes=['/','/services/','/blog/','/office-renovation-in-kuala-lumpur/','/aircond-installation-kl/','/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/','/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/','/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/','/commercial-retail-shop-renovation-in-kuala-lumpur/','/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/','/about-us/','/contact-us/'];
+  for (const route of routes) { const response=await page.goto(`http://127.0.0.1:${port}/rkreno${route}`,{waitUntil:'networkidle'}); smoke.push({route,status:response?.status()||0,h1:await page.locator('h1').count(),header:await page.locator('.rk-header').count(),footer:await page.locator('[data-shared-footer]').count()}); }
+  await page.close();
+} finally { await browser.close(); await new Promise((resolve) => server.close(resolve)); }
+const failures=[];
+for(const item of results){if(item.status!==200)failures.push(`${item.target}-${item.name}: HTTP ${item.status}`);if(item.overflow>1)failures.push(`${item.target}-${item.name}: overflow ${item.overflow}`);if(item.brokenImages)failures.push(`${item.target}-${item.name}: broken images ${item.brokenImages}`);if(item.consoleErrors.length)failures.push(`${item.target}-${item.name}: console errors`);if(item.failedRequests.length)failures.push(`${item.target}-${item.name}: failed requests`);if(item.h1Count!==1)failures.push(`${item.target}-${item.name}: H1 ${item.h1Count}`);if(item.target==='blog'&&item.cardCount!==14)failures.push(`${item.target}-${item.name}: cards ${item.cardCount}`);if(item.target==='blog'&&item.cardColumns!==({desktop:3,tablet:2,mobile:1}[item.name]))failures.push(`${item.target}-${item.name}: columns ${item.cardColumns}`);if(item.name==='mobile'&&!item.mobileMenuOpened)failures.push(`${item.target}-mobile: menu`);}
+for(const item of smoke)if(item.status!==200||item.h1!==1||item.header!==1||item.footer!==1)failures.push(`smoke ${item.route}: ${JSON.stringify(item)}`);
+const report={status:failures.length?'FAILED':'PASSED',results,smoke,failures};
+await writeFile(path.join(reportDir,'visual-metrics.json'),`${JSON.stringify(report,null,2)}\n`);
+console.log(`PJ ARTICLE + BLOG VISUAL ${report.status}`); results.forEach((item)=>console.log(`${item.target}-${item.name}: overflow=${item.overflow}, broken=${item.brokenImages}, columns=${item.cardColumns}, console=${item.consoleErrors.length}`)); if(failures.length){failures.forEach((failure)=>console.error(`FAIL ${failure}`));process.exitCode=1;}
