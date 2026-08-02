@@ -1,0 +1,20 @@
+---
+const { content, localHref } = Astro.props;
+const definitionParts=content.definition.closing.split('plaster ceilings');
+---
+<section class="pu-section pu-definition" id={content.definition.id} data-pu-section>
+  <div class="pu-reading">
+    <p class="pu-kicker">Inside the concrete</p><h2>{content.definition.heading}</h2><p>{content.definition.intro}</p>
+    <aside class="pu-science">
+      <div class="pu-flow" aria-hidden="true"><span>01</span><i></i><span>02</span><i></i><span>03</span></div>
+      <div><p class="pu-kicker">Technical principle</p><h3>{content.definition.scienceHeading}</h3><p>{content.definition.science}</p></div>
+    </aside>
+    <p>{definitionParts[0]}<a href={localHref('/plaster-ceiling-contractor-kl/')}>plaster ceilings</a>{definitionParts[1]}</p>
+  </div>
+</section>
+<section class="pu-section pu-causes" id={content.causes.id} data-pu-section>
+  <div class="pu-wide">
+    <div class="pu-heading"><p class="pu-kicker">Leak diagnosis</p><h2>{content.causes.heading}</h2><p>{content.causes.intro}</p></div>
+    <div class="pu-cause-grid">{content.causes.items.map((item,index)=><article><span aria-hidden="true">0{index+1}</span><h3>{item.heading}</h3><p>{item.text}</p></article>)}</div>
+  </div>
+</section>

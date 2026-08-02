@@ -1,0 +1,13 @@
+---
+const { content, localHref } = Astro.props;
+const linkedNotes=content.pricing.rows[2].notes.split('house renovation');
+---
+<section class="pu-section pu-pricing" id={content.pricing.id} data-pu-section>
+  <div class="pu-wide">
+    <div class="pu-heading"><p class="pu-kicker">2026 comparison</p><h2>{content.pricing.heading}</h2><p>{content.pricing.intro}</p></div>
+    <div class="pu-table-wrap"><table class="pu-price-table"><thead><tr>{content.pricing.headings.map((heading)=><th scope="col">{heading}</th>)}</tr></thead><tbody>{content.pricing.rows.map((row,index)=><tr><th scope="row" data-label={content.pricing.headings[0]}>{row.method}</th><td data-label={content.pricing.headings[1]}><strong>{row.cost}</strong></td><td data-label={content.pricing.headings[2]}>{index===2?<>{linkedNotes[0]}<a href={localHref('/house-renovation-in-kuala-lumpur/')}>house renovation</a>{linkedNotes[1]}</>:row.notes}</td></tr>)}</tbody></table></div>
+  </div>
+</section>
+<section class="pu-section pu-warranty" id={content.whyChoose.id} data-pu-section>
+  <div class="pu-reading"><p class="pu-kicker">Precision matters</p><h2>{content.whyChoose.heading}</h2><p class="pu-why-intro">{content.whyChoose.intro}</p><aside><span aria-hidden="true">WR</span><div><h3>{content.whyChoose.warrantyHeading}</h3><p>{content.whyChoose.warranty}</p></div></aside><p class="pu-closing">{content.whyChoose.closing}</p></div>
+</section>

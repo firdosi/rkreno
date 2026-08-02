@@ -15,7 +15,7 @@ Status: **PASS** for Prompt 3 blog and article scope only. This is not a product
 | `/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/` | Renovation and commercial | 7 | Structured | Source has no FAQ block | PASS |
 | `/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/` | Renovation and commercial | 8 | Structured | Source has no FAQ block | PASS |
 | `/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/` | Cleaning | 0 | Missing | Source has no FAQ block | PASS |
-| `/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/` | Technical and specialist | 6 | Structured | Source has no FAQ block | PASS |
+| `/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/` | Technical and specialist | 0 | Missing | Source has no FAQ block | PASS |
 | `/servis-aircond-murah-kl-the-ultimate-2026-guide-to-a-colder-home/` | Aircond | 7 | Structured | Source has no FAQ block | PASS |
 | `/servis-cuci-rumah-kl-the-ultimate-2026-guide-to-a-spotless-home/` | Cleaning | 7 | Structured | Source has no FAQ block | PASS |
 

@@ -1,0 +1,16 @@
+---
+import { puInjectionGuide as content, puInjectionImage as image } from '../../data/pu-injection-waterproofing-kl';
+import PuHeroIntroduction from './PuHeroIntroduction.astro';
+import PuScienceCauses from './PuScienceCauses.astro';
+import PuProcessCta from './PuProcessCta.astro';
+import PuPricingWarranty from './PuPricingWarranty.astro';
+import '../../styles/pu-injection-waterproofing-kl.css';
+const base=import.meta.env.BASE_URL.replace(/\/$/,'');
+const localHref=(href:string)=>href.startsWith('/')?`${base}${href}`:href;
+---
+<article class="pu-page" data-pu-injection-waterproofing-kl data-article-recovery data-locked-template="article">
+  <PuHeroIntroduction content={content} image={image} localHref={localHref}/>
+  <PuScienceCauses content={content} localHref={localHref}/>
+  <PuProcessCta content={content}/>
+  <PuPricingWarranty content={content} localHref={localHref}/>
+</article>

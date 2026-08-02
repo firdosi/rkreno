@@ -1,0 +1,21 @@
+---
+const { content, image, localHref } = Astro.props;
+const linkedIntro = content.introduction[2].split('RK Reno Solution');
+---
+<header class="pu-hero">
+  <div class="pu-wide pu-hero__inner">
+    <p class="pu-kicker">{content.hero.eyebrow}</p>
+    <h1>{content.hero.h1}</h1>
+    <div class="pu-meta" aria-label="Article details">{content.hero.meta.map((item,index)=><span><b aria-hidden="true">{String(index+1).padStart(2,'0')}</b>{item}</span>)}</div>
+  </div>
+</header>
+<section class="pu-reading pu-intro" aria-label="Introduction">
+  <p class="pu-lead"><strong>{content.introduction[0]}</strong></p>
+  <p>{content.introduction[1]}</p>
+  <p>{linkedIntro[0]}<a href={localHref('/waterproofing-contractor-kuala-lumpur/')}>RK Reno Solution</a>{linkedIntro[1]}</p>
+  <figure class="pu-feature"><img src={localHref(image.local)} alt={image.alt} width={image.width} height={image.height} loading="eager"/><figcaption>Illustrative wall-crack-injection fallback; not presented as an RK Reno project.</figcaption></figure>
+</section>
+<nav class="pu-reading pu-toc" aria-labelledby="pu-toc-title">
+  <div><p class="pu-kicker">Guide map</p><h2 id="pu-toc-title">{content.toc.heading}</h2></div>
+  <ol>{content.toc.items.map((item)=><li><a href={item.href}>{item.label}</a></li>)}</ol>
+</nav>

@@ -1,0 +1,10 @@
+---
+const { content } = Astro.props;
+---
+<section class="pu-section pu-process" id={content.process.id} data-pu-section>
+  <div class="pu-wide">
+    <div class="pu-heading pu-heading--inverse"><p class="pu-kicker">No-hack sequence</p><h2>{content.process.heading}</h2><p>{content.process.intro}</p></div>
+    <ol class="pu-process-list">{content.process.items.map((item,index)=><li><span aria-hidden="true">{String(index+1).padStart(2,'0')}</span><div><h3>{item.heading}</h3><p>{item.text}</p></div></li>)}</ol>
+  </div>
+</section>
+<aside class="pu-wide pu-quote" aria-labelledby="pu-quote-title"><div><p class="pu-kicker">Leak response</p><h2 id="pu-quote-title">{content.cta.heading}</h2><p>{content.cta.paragraph}</p></div><a href={content.cta.href} target="_blank" rel="noopener">{content.cta.button}</a></aside>
