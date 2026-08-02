@@ -29,6 +29,8 @@
     "test:office-renovation-petaling-jaya": "node scripts/correction/validate-office-renovation-petaling-jaya.mjs",
     "test:blog-post-index": "node scripts/correction/validate-blog-post-index.mjs",
     "capture:office-renovation-petaling-jaya": "node scripts/correction/capture-office-renovation-pj-and-blog.mjs",
+    "test:waterproofing-contractor-kl-complete-guide": "node scripts/correction/validate-waterproofing-contractor-kl-complete-guide.mjs",
+    "capture:waterproofing-contractor-kl-complete-guide": "node scripts/correction/capture-waterproofing-guide-and-blog.mjs",
     "preview:production": "node scripts/prompt-3-1/production-simulator.mjs",
     "test:production-readiness": "node scripts/prompt-3-1/run-production-readiness.mjs",
     "test:form-security": "node scripts/prompt-3-2/test-form-security.mjs",

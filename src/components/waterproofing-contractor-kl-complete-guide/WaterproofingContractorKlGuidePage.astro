@@ -1,0 +1,43 @@
+---
+import { waterproofingGuideContent as content, waterproofingGuideImage as image } from '../../data/waterproofing-contractor-kl-complete-guide';
+import '../../styles/waterproofing-contractor-kl-complete-guide.css';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const local = (href: string) => href.startsWith('/') ? `${base}${href}` : href;
+const [homeLink, plasterLink, renovationLink] = content.links;
+---
+<article class="wpg" data-waterproofing-contractor-kl-complete-guide data-article-recovery data-locked-template="article">
+  <header class="wpg-hero">
+    <div class="wpg-wide wpg-hero-grid">
+      <div><p class="wpg-kicker">{content.hero.eyebrow}</p><h1>{content.hero.title}</h1><div class="wpg-meta">{content.hero.metadata.map((item) => <span>{item}</span>)}</div></div>
+      <div class="wpg-roof" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+    </div>
+  </header>
+
+  <section class="wpg-reading wpg-intro">
+    <p class="wpg-lead">{content.introduction[0]}</p>
+    <p>In Malaysia's torrential monsoon climate, the integrity of your roof and bathrooms is constantly tested. Finding a reliable <strong>Waterproofing Contractor Kuala Lumpur</strong> is critical because improper fixes—like just slapping a coat of silicone over a crack—will fail within months.</p>
+    <p>At <a href={local(homeLink.renderedHref)}>RK Reno Solution</a>, we don't just patch leaks; we cure them. From modern PU injection to heavy-duty torch-on membranes, this guide explains how we permanently protect your property.</p>
+    <figure><img src={local(image.localPath)} width={image.width} height={image.height} alt={image.alt}/><figcaption>Illustrative technical reference; not represented as RK Reno project work.</figcaption></figure>
+    <nav class="wpg-toc" aria-label="Table of Contents"><strong>Table of Contents</strong><ol>{content.toc.map((item) => <li><a href={item.href}>{item.label}</a></li>)}</ol></nav>
+  </section>
+
+  <section id="common" class="wpg-section wpg-wide"><p class="wpg-kicker">Source diagnosis</p><h2>{content.common.heading}</h2><p class="wpg-section-intro">{content.common.intro}</p>
+    <div class="wpg-diagnosis">{content.common.items.map(([title,text],index) => <div><span>0{index+1}</span><h3>{title}</h3>{index===0 ? <p>If you live in a condo or a double-storey house, a dripping <a href={local(plasterLink.renderedHref)}>plaster ceiling</a> is usually caused by the bathroom directly above it. The original waterproof membrane beneath the bathroom tiles has degraded, allowing water to seep into the concrete slab.</p> : index===2 ? <p>Heavy driving rain can penetrate porous brick walls or degraded exterior paint, causing the paint on your <strong>interior walls</strong> to bubble, peel, or grow mold.</p> : <p>{text}</p>}</div>)}</div>
+  </section>
+
+  <section id="pu" class="wpg-section wpg-pu"><div class="wpg-wide"><p class="wpg-kicker">No-hack repair</p><h2>{content.pu.heading}</h2>{content.pu.paragraphs.map((text) => <p class="wpg-section-intro">{text}</p>)}
+    <div class="wpg-pu-panel"><div class="wpg-flow" aria-hidden="true"><span>Drill</span><i></i><span>Inject</span><i></i><span>Expand</span><i></i><span>Seal</span></div><div><h3>{content.pu.panelHeading}</h3><p>{content.pu.panelText}</p></div></div>
+  </div></section>
+
+  <section id="membrane" class="wpg-section wpg-wide wpg-membrane"><div><p class="wpg-kicker">Exposed-area defence</p><h2>{content.membrane.heading}</h2><p>{content.membrane.paragraphs[0]}</p><p>We use <strong>Torch-On Bituminous Membrane.</strong> This involves rolling out sheets of modified asphalt (bitumen) reinforced with polyester. We use a blowtorch to melt the underside of the sheet, fusing it directly to the concrete. This creates an <strong>impenetrable, flexible layer</strong> that can withstand structural movements and severe weather.</p></div><div class="wpg-layers" aria-label="Illustrative membrane layers"><span>UV-resistant finish</span><span>Modified bitumen</span><span>Polyester reinforcement</span><span>Prepared concrete</span></div></section>
+
+  <aside class="wpg-cta wpg-wide"><div><p class="wpg-kicker">Leak assessment</p><h2>{content.cta.heading}</h2><p>{content.cta.paragraph}</p></div><a href={content.cta.href} target="_blank" rel="noopener">{content.cta.label}<span aria-hidden="true">↗</span></a></aside>
+
+  <section id="process" class="wpg-section wpg-process"><div class="wpg-wide"><p class="wpg-kicker">Systematic repair</p><h2>{content.process.heading}</h2><p class="wpg-section-intro">{content.process.intro}</p><ol>{content.process.items.map(([title,text],index) => <li><span>0{index+1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ol></div></section>
+
+  <section id="cost" class="wpg-section wpg-wide"><p class="wpg-kicker">2026 market estimates</p><h2>{content.cost.heading}</h2><p class="wpg-section-intro">{content.cost.intro}</p>
+    <div class="wpg-pricing"><table><thead><tr>{content.cost.headers.map((header)=><th>{header}</th>)}</tr></thead><tbody>{content.cost.rows.map((row,rowIndex)=><tr>{row.map((cell,index)=><td data-label={content.cost.headers[index]} class:list={{price:index===1}}>{rowIndex===3 && index===2 ? <>Underneath tiles during new <a href={local(renovationLink.renderedHref)}>house renovation</a>.</> : cell}</td>)}</tr>)}</tbody></table></div>
+  </section>
+
+  <section id="choose" class="wpg-section wpg-reading wpg-choose"><p class="wpg-kicker">Technical accountability</p><h2>{content.choose.heading}</h2><p>{content.choose.intro}</p><aside><span>Written protection</span><h3>{content.choose.warrantyHeading}</h3><p>{content.choose.warranty}</p></aside><p class="wpg-closing">{content.choose.closing}</p></section>
+</article>

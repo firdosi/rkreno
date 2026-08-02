@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Waterproofing Contractor Kuala Lumpur technician injecting PU grout</title>
+  <desc id="desc">Technical illustration of a ceiling leak inspection and polyurethane injection repair. Illustrative, not project photography.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#071f31"/><stop offset="1" stop-color="#145472"/></linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#61c8e8"/><stop offset="1" stop-color="#176d94"/></linearGradient>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0H0v44" fill="none" stroke="#fff" stroke-opacity=".05"/></pattern>
+  </defs>
+  <rect width="1200" height="720" fill="url(#bg)"/><rect width="1200" height="720" fill="url(#grid)"/>
+  <path d="M0 102h1200v246H0z" fill="#dce6e8"/><path d="M0 348h1200v34H0z" fill="#aebdc1"/>
+  <path d="M590 103c18 47-40 63-7 104 35 43-8 86 26 141" fill="none" stroke="#49636b" stroke-width="8"/>
+  <path d="M542 143c33 18 54 33 72 70m-29 18c-24 17-37 32-48 56" fill="none" stroke="#49636b" stroke-width="5"/>
+  <g fill="url(#water)"><path d="M603 368c0 25-17 44-38 44s-38-19-38-44c0-20 38-72 38-72s38 52 38 72z"/><path d="M676 409c0 17-12 31-27 31s-27-14-27-31c0-14 27-51 27-51s27 37 27 51z"/></g>
+  <g transform="translate(730 245)"><circle cx="112" cy="68" r="48" fill="#c88864"/><path d="M63 66c3-67 98-75 106-4-27-18-76-18-106 4z" fill="#f47b20"/><path d="M58 91h112l31 215H23z" fill="#f47b20"/><path d="M82 101h56l28 205H55z" fill="#14394f"/><path d="M36 131l-96 137 39 25 104-116m102-42 86 96-31 31-95-82" fill="none" stroke="#c88864" stroke-width="34" stroke-linecap="round"/><path d="M-40 262l-92-73" stroke="#e8f1f3" stroke-width="16" stroke-linecap="round"/><path d="M-133 191l-86-52" stroke="#f47b20" stroke-width="27" stroke-linecap="round"/><path d="M-219 139l-75-18" stroke="#1b252a" stroke-width="18"/><path d="M-294 121l-29-4" stroke="#61c8e8" stroke-width="8"/></g>
+  <g transform="translate(70 505)" font-family="Arial, sans-serif"><text fill="#69cce9" font-size="20" font-weight="700" letter-spacing="4">LEAK PATH DIAGNOSIS</text><text y="52" fill="#fff" font-size="42" font-weight="800">PU INJECTION REPAIR</text><text y="91" fill="#c6dce4" font-size="19">Route-specific technical illustration · not RK Reno project photography</text></g>
+</svg>

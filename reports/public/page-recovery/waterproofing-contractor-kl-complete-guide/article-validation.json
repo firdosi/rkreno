@@ -1,0 +1,204 @@
+{
+  "status": "PASSED",
+  "exactContentMatch": "PASSED",
+  "missingContentCount": 0,
+  "rewrittenContentCount": 0,
+  "seoRegressionCount": 0,
+  "correctOriginalImageCount": 0,
+  "imageFallbackCount": 1,
+  "sourceOnlyClaimCount": 30,
+  "checks": [
+    {
+      "name": "route-specific renderer",
+      "pass": true,
+      "group": "structure",
+      "detail": ""
+    },
+    {
+      "name": "one exact H1",
+      "pass": true,
+      "group": "content",
+      "detail": "1"
+    },
+    {
+      "name": "hero eyebrow",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "three metadata items",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "three introductory paragraphs",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "one feature image and alt",
+      "pass": true,
+      "group": "images",
+      "detail": ""
+    },
+    {
+      "name": "six TOC entries",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "six exact H2 headings",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "three leakage areas",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "two PU introductions",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "PU explanation",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "torch-on paragraphs",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "one exact WhatsApp CTA",
+      "pass": true,
+      "group": "links",
+      "detail": ""
+    },
+    {
+      "name": "CTA wording",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "five process steps",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "pricing headers",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "four pricing rows",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "why trust and warranty",
+      "pass": true,
+      "group": "content",
+      "detail": ""
+    },
+    {
+      "name": "three exact internal links",
+      "pass": true,
+      "group": "links",
+      "detail": "[{\"anchor\":\"RK Reno Solution\",\"renderedHref\":\"/\"},{\"anchor\":\"plaster ceiling\",\"renderedHref\":\"/plaster-ceiling-contractor-kl/\"},{\"anchor\":\"house renovation\",\"renderedHref\":\"/house-renovation-in-kuala-lumpur/\"}]"
+    },
+    {
+      "name": "internal links resolve",
+      "pass": true,
+      "group": "links",
+      "detail": ""
+    },
+    {
+      "name": "SOURCE_ONLY inventory",
+      "pass": true,
+      "group": "claims",
+      "detail": ""
+    },
+    {
+      "name": "fallback documented",
+      "pass": true,
+      "group": "images",
+      "detail": ""
+    },
+    {
+      "name": "title exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "description exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "canonical exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "staging robots exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "Open Graph exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "Twitter exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "AIOSEO graph exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "separate FAQPage exact",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "visible FAQ absent",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    },
+    {
+      "name": "schema risk recorded",
+      "pass": true,
+      "group": "seo",
+      "detail": ""
+    }
+  ]
+}

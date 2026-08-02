@@ -1,0 +1,12 @@
+{
+  "route":"/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+  "risks":[{
+    "code":"FAQ_SCHEMA_WITHOUT_VISIBLE_FAQ",
+    "status":"SEO_RISK",
+    "sourceStatus":"SOURCE_ONLY",
+    "schema":"FAQPage",
+    "questionCount":4,
+    "visibleFaqPresent":false,
+    "action":"Owner review required before production indexing. Preserve on staging for exact source parity."
+  }]
+}

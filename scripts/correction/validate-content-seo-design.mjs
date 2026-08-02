@@ -24,6 +24,8 @@ const puGuideManifest = JSON.parse(await readFile(path.join(root, 'config/pu-inj
 const puGuideSeo = JSON.parse(await readFile(path.join(root, 'config/pu-injection-waterproofing-kl-seo.json'), 'utf8'));
 const pjGuideManifest = JSON.parse(await readFile(path.join(root, 'config/office-renovation-petaling-jaya-content.json'), 'utf8'));
 const pjGuideSeo = JSON.parse(await readFile(path.join(root, 'config/office-renovation-petaling-jaya-seo.json'), 'utf8'));
+const waterproofingGuideManifest = JSON.parse(await readFile(path.join(root, 'config/waterproofing-contractor-kl-complete-guide-content.json'), 'utf8'));
+const waterproofingGuideSeo = JSON.parse(await readFile(path.join(root, 'config/waterproofing-contractor-kl-complete-guide-seo.json'), 'utf8'));
 await mkdir(reportDir, { recursive: true });
 await mkdir(recoveryReportDir, { recursive: true });
 
@@ -104,11 +106,11 @@ for (const record of lock.records) {
     result(record.route, 'service relevant body image', $('.service-recovery-page img').length >= 2, String($('.service-recovery-page img').length));
     continue;
   }
-  const expected = record.route === pjGuideManifest.route ? pjGuideSeo : record.route === puGuideManifest.route ? puGuideSeo : record.route === retailGuideManifest.route ? retailGuideSeo : record.route === cleaningGuideManifest.route ? cleaningGuideSeo : record.route === aircondSelangorGuideManifest.route ? aircondSelangorGuideSeo : record.seo;
+  const expected = record.route === waterproofingGuideManifest.route ? waterproofingGuideSeo : record.route === pjGuideManifest.route ? pjGuideSeo : record.route === puGuideManifest.route ? puGuideSeo : record.route === retailGuideManifest.route ? retailGuideSeo : record.route === cleaningGuideManifest.route ? cleaningGuideSeo : record.route === aircondSelangorGuideManifest.route ? aircondSelangorGuideSeo : record.seo;
   result(record.route, 'title exact', clean($('title').text()) === expected.title);
   result(record.route, 'description exact', ($('meta[name="description"]').attr('content') || '') === expected.description);
   result(record.route, 'canonical exact', ($('link[rel="canonical"]').attr('href') || '') === expected.canonical);
-    result(record.route, 'safe staging robots', ['/aircond-installation-kl/', costGuideManifest.route, aircondSelangorGuideManifest.route, cleaningGuideManifest.route, retailGuideManifest.route, puGuideManifest.route, pjGuideManifest.route].includes(record.route)
+    result(record.route, 'safe staging robots', ['/aircond-installation-kl/', costGuideManifest.route, aircondSelangorGuideManifest.route, cleaningGuideManifest.route, retailGuideManifest.route, puGuideManifest.route, pjGuideManifest.route, waterproofingGuideManifest.route].includes(record.route)
       ? /^noindex,\s*nofollow,\s*max-image-preview:large$/i.test($('meta[name="robots"]').attr('content') || '')
       : /^noindex,\s*nofollow$/i.test($('meta[name="robots"]').attr('content') || ''));
   for (const [key, value] of Object.entries(expected.openGraph || {})) {
@@ -184,6 +186,20 @@ for (const record of lock.records) {
     }
       if ((record.content.faqs || []).length) result(record.route, 'visible source-supported FAQs', $('.service-recovery-faqs details').length > 0, String($('.service-recovery-faqs details').length));
     }
+  } else if (record.route === waterproofingGuideManifest.route) {
+    const mainText = clean($('main').text());
+    result(record.route, 'manual article composition', $('[data-waterproofing-contractor-kl-complete-guide]').length === 1 && $('.article-recovery-page,.article-recovery-toc').length === 0);
+    result(record.route, 'article family selected', $('[data-article-recovery]').length === 1);
+    result(record.route, 'article metadata', $('.wpg-meta span').length === 3);
+    result(record.route, 'article table of contents', $('.wpg-toc a').length === 6);
+    result(record.route, 'article leakage areas', $('.wpg-diagnosis>div').length === 3);
+    result(record.route, 'article process steps', $('.wpg-process li').length === 5);
+    result(record.route, 'article pricing structured', $('.wpg tbody tr').length === 4 && /RM 150 - RM 300/.test(mainText) && /RM 5 - RM 10/.test(mainText));
+    result(record.route, 'article WhatsApp CTA', $('.wpg a[href^="https://wa.me/"]').length === 1);
+    result(record.route, 'source image purpose retained', $('.wpg-intro figure img').length === 1);
+    result(record.route, 'visible FAQ absent', $('.wpg details,.wpg [data-faq]').length === 0 && !/Frequently Asked Questions/i.test(mainText));
+    result(record.route, 'no article template artifacts', !/No Comments|Leave A Comment|author avatar|about the author/i.test(mainText) && $('.wpg img[src*="gravatar"]').length === 0);
+    result(record.route, 'no active content form', $('.wpg form').length === 0);
   } else if (record.route === pjGuideManifest.route) {
     const mainText = clean($('main').text());
     result(record.route, 'manual article composition', $('[data-office-renovation-petaling-jaya]').length === 1 && $('.article-recovery-page,.article-recovery-toc').length === 0);
@@ -339,7 +355,7 @@ for (const record of lock.records) {
       return url.origin === 'https://rkrenosolution.com' ? url.pathname.replace(/^\/rkreno(?=\/)/, '') : '';
     } catch { return ''; }
   }));
-  if (!coreRoutes.has(record.route) && ![pjGuideManifest.route, puGuideManifest.route, retailGuideManifest.route, costGuideManifest.route, aircondSelangorGuideManifest.route, cleaningGuideManifest.route].includes(record.route)) result(record.route, 'source internal destinations retained', expectedInternal.every((href) => actualInternal.has(href)));
+  if (!coreRoutes.has(record.route) && ![waterproofingGuideManifest.route, pjGuideManifest.route, puGuideManifest.route, retailGuideManifest.route, costGuideManifest.route, aircondSelangorGuideManifest.route, cleaningGuideManifest.route].includes(record.route)) result(record.route, 'source internal destinations retained', expectedInternal.every((href) => actualInternal.has(href)));
   for (const href of actualInternal) {
     if (!href || href.startsWith('/assets/')) continue;
     const linkedFile = href === '/' ? path.join(root, 'dist/index.html') : path.join(root, 'dist', href.replace(/^\//, ''), 'index.html');
@@ -384,22 +400,22 @@ try {
       consoleErrors.length = 0;
       await browserPage.goto(`http://127.0.0.1:${port}/rkreno${route}`, { waitUntil: 'load' });
       const metrics = await browserPage.evaluate(() => {
-        const wrappers = [...document.querySelectorAll('.source-locked-table,.article-recovery-source-table')];
-        const page = document.querySelector('.recovery-page,.service-recovery-page,.article-recovery-page,.airkl-page,.costguide-page,.airguide-page,.cleaning-page,.retail-page,.pu-page,.pj-office');
+        const wrappers = [...document.querySelectorAll('.source-locked-table,.article-recovery-source-table,.wpg-pricing')];
+        const page = document.querySelector('.recovery-page,.service-recovery-page,.article-recovery-page,.airkl-page,.costguide-page,.airguide-page,.cleaning-page,.retail-page,.pu-page,.pj-office,.wpg');
         const pageBlocks = page ? [...page.children].filter((node) => node.matches('header,section,nav,aside,div') && node.getBoundingClientRect().height > 0) : [];
         const gaps = pageBlocks.slice(1).map((node, index) => node.getBoundingClientRect().top - pageBlocks[index].getBoundingClientRect().bottom);
         const sparseSections = [...document.querySelectorAll('.recovery-section,.service-recovery-section,.article-recovery-section')].filter((section) => {
           const rect = section.getBoundingClientRect();
           return rect.height > 360 && (section.textContent || '').trim().length < 100 && section.querySelectorAll('img,.recovery-service-card,.recovery-article-card,form,details').length === 0;
         });
-        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow),.service-recovery-page p:not(.service-recovery-eyebrow),.article-recovery-source-paragraph,.airkl-page p:not(.airkl-eyebrow):not(.airkl-price-kicker):not(.airkl-package-label),.costguide-page p:not(.costguide-kicker):not(.costguide-section-number):not(.costguide-breadcrumb),.airguide-page p:not(.airguide-kicker):not(.airguide-number):not(.airguide-breadcrumb),.cleaning-page p:not(.cleaning-label),.retail-page p:not(.retail-kicker),.pu-page p:not(.pu-kicker),.pj-office p:not(.pj-kicker)')].filter((node) => node.getBoundingClientRect().height > 0);
-        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap,.service-recovery-page .service-recovery-wrap,.article-recovery-section-inner,.airkl-wrap,.costguide-reading,.costguide-wide,.airguide-reading,.airguide-wide,.cleaning-reading,.cleaning-wide,.retail-reading,.retail-wide,.pu-reading,.pu-wide,.pj-reading,.pj-wide')].filter((node) => node.getBoundingClientRect().height > 0);
+        const paragraphs = [...document.querySelectorAll('.recovery-page p:not(.recovery-eyebrow),.service-recovery-page p:not(.service-recovery-eyebrow),.article-recovery-source-paragraph,.airkl-page p:not(.airkl-eyebrow):not(.airkl-price-kicker):not(.airkl-package-label),.costguide-page p:not(.costguide-kicker):not(.costguide-section-number):not(.costguide-breadcrumb),.airguide-page p:not(.airguide-kicker):not(.airguide-number):not(.airguide-breadcrumb),.cleaning-page p:not(.cleaning-label),.retail-page p:not(.retail-kicker),.pu-page p:not(.pu-kicker),.pj-office p:not(.pj-kicker),.wpg p:not(.wpg-kicker)')].filter((node) => node.getBoundingClientRect().height > 0);
+        const wraps = [...document.querySelectorAll('.recovery-page .recovery-wrap,.service-recovery-page .service-recovery-wrap,.article-recovery-section-inner,.airkl-wrap,.costguide-reading,.costguide-wide,.airguide-reading,.airguide-wide,.cleaning-reading,.cleaning-wide,.retail-reading,.retail-wide,.pu-reading,.pu-wide,.pj-reading,.pj-wide,.wpg-reading,.wpg-wide')].filter((node) => node.getBoundingClientRect().height > 0);
           return {
           overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
           brokenImages: [...document.images].filter((image) => image.complete && image.naturalWidth === 0).length,
           tables: wrappers.every((wrapper) => getComputedStyle(wrapper).overflowX === 'auto'),
           structured: Boolean(page) && pageBlocks.length >= 3,
-          tocMobile: innerWidth > 560 || !document.querySelector('.source-locked-toc ol,.article-recovery-toc ol') || getComputedStyle(document.querySelector('.source-locked-toc ol,.article-recovery-toc ol')).columnCount === '1',
+          tocMobile: innerWidth > 560 || !document.querySelector('.source-locked-toc ol,.article-recovery-toc ol,.wpg-toc ol') || getComputedStyle(document.querySelector('.source-locked-toc ol,.article-recovery-toc ol,.wpg-toc ol')).columnCount === '1',
           excessiveGaps: gaps.filter((gap) => gap > 180).length + sparseSections.length,
           minBodyFont: paragraphs.length ? Math.min(...paragraphs.map((node) => parseFloat(getComputedStyle(node).fontSize))) : 16,
           minContentWidth: innerWidth < 1000 || !wraps.length ? 999 : Math.min(...wraps.map((node) => node.getBoundingClientRect().width)),

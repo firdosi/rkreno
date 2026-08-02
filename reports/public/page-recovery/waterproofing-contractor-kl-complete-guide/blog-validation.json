@@ -1,0 +1,27 @@
+{
+  "status": "PASSED",
+  "expectedPostCount": 14,
+  "renderedCardCount": 14,
+  "missingPostCount": 0,
+  "duplicatePostCount": 0,
+  "extraNonPostCardCount": 0,
+  "brokenCardLinkCount": 0,
+  "brokenCardImageCount": 0,
+  "wrongTitleCount": 0,
+  "publicationDateOrdering": "PASSED",
+  "petalingJayaCard": "PASSED",
+  "recoveredPosts": "PASSED",
+  "checks": {
+    "expectedCount": true,
+    "renderedCount": true,
+    "exactRoutesOnce": true,
+    "newestFirst": true,
+    "routesReturn200": true,
+    "localImages": true,
+    "exactTitles": true,
+    "noContamination": true,
+    "petalingJayaOnce": true,
+    "waterproofingGuideOnce": true,
+    "recoveredPostsPresent": true
+  }
+}

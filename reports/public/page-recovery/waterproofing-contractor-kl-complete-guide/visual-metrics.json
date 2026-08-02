@@ -1,0 +1,205 @@
+{
+  "status": "PASSED",
+  "results": [
+    {
+      "target": "article",
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "cardCount": 0,
+      "cardColumns": 0,
+      "bodyMinFont": 12
+    },
+    {
+      "target": "article",
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "status": 200,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "cardCount": 0,
+      "cardColumns": 0,
+      "bodyMinFont": 12
+    },
+    {
+      "target": "article",
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "cardCount": 0,
+      "cardColumns": 0,
+      "bodyMinFont": 12,
+      "mobileMenuOpened": true
+    },
+    {
+      "target": "blog",
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "status": 200,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "cardCount": 14,
+      "cardColumns": 3,
+      "bodyMinFont": 12.48
+    },
+    {
+      "target": "blog",
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "status": 200,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "cardCount": 14,
+      "cardColumns": 2,
+      "bodyMinFont": 12.48
+    },
+    {
+      "target": "blog",
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "cardCount": 14,
+      "cardColumns": 1,
+      "bodyMinFont": 12.48,
+      "mobileMenuOpened": true
+    }
+  ],
+  "smoke": [
+    {
+      "route": "/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/services/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/blog/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/waterproofing-contractor-kuala-lumpur/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/plaster-ceiling-contractor-kl/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/house-renovation-in-kuala-lumpur/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/office-renovation-petaling-jaya-corporate-fit-out-experts/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/aircond-installation-kl/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/commercial-retail-shop-renovation-in-kuala-lumpur/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/about-us/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    },
+    {
+      "route": "/contact-us/",
+      "status": 200,
+      "h1": 1,
+      "header": 1,
+      "footer": 1
+    }
+  ],
+  "failures": []
+}

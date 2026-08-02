@@ -1,0 +1,18 @@
+{
+  "route":"/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/",
+  "expectedOriginalCount":1,
+  "images":[{
+    "transformedSourceUrl":"https://rkrenosolution.com/wp-content/uploads/2026/01/Waterproofing-Contractor-Kuala-Lumpur-technician-inspecting-ceiling-leak-for-PU-injection-repair.jpeg?q=80&w=1000&auto=format&fit=crop",
+    "baseSourceUrl":"https://rkrenosolution.com/wp-content/uploads/2026/01/Waterproofing-Contractor-Kuala-Lumpur-technician-inspecting-ceiling-leak-for-PU-injection-repair.jpeg",
+    "originalFilename":"Waterproofing-Contractor-Kuala-Lumpur-technician-inspecting-ceiling-leak-for-PU-injection-repair.jpeg",
+    "localPath":"/assets/media/waterproofing-contractor-kl-leak-inspection-illustration.svg",
+    "width":1200,
+    "height":720,
+    "format":"svg",
+    "purposes":["article feature image","blog archive card"],
+    "alt":"Waterproofing Contractor Kuala Lumpur technician injecting PU grout",
+    "exactOriginal":false,
+    "fallback":true,
+    "fallbackReason":"The supplied WordPress source image returns HTTP 404 and was not present in repository, restored uploads, backup, or available owner media. Route-specific technical illustration; not RK Reno project photography."
+  }]
+}

@@ -28,11 +28,12 @@ const checks = {
   exactTitles: wrongTitles.length === 0,
   noContamination: forbidden.length === 0,
   petalingJayaOnce: routes.filter((route) => route === '/office-renovation-petaling-jaya-corporate-fit-out-experts/').length === 1,
+  waterproofingGuideOnce: routes.filter((route) => route === '/waterproofing-contractor-kuala-lumpur-the-complete-guide-to-stopping-leaks-2026/').length === 1,
   recoveredPostsPresent: ['/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/','/upah-pasang-aircond-selangor-panduan-harga-pemasangan-2026/','/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/','/commercial-retail-shop-renovation-in-kuala-lumpur/','/pu-injection-waterproofing-kl-how-to-fix-wall-cracks-permanently/'].every((route) => routes.includes(route))
 };
 const failures = Object.entries(checks).filter(([, pass]) => !pass);
 const result = { status: failures.length ? 'FAILED' : 'PASSED', expectedPostCount: manifest.expectedPostCount, renderedCardCount: cards.length, missingPostCount: missing.length, duplicatePostCount: duplicates.length, extraNonPostCardCount: extra.length + forbidden.length, brokenCardLinkCount: brokenRoutes.length, brokenCardImageCount: brokenImages.length + wrongImages.length, wrongTitleCount: wrongTitles.length, publicationDateOrdering: checks.newestFirst ? 'PASSED' : 'FAILED', petalingJayaCard: checks.petalingJayaOnce ? 'PASSED' : 'FAILED', recoveredPosts: checks.recoveredPostsPresent ? 'PASSED' : 'FAILED', checks };
-const reportDir = path.join(root, 'reports/public/page-recovery/office-renovation-petaling-jaya');
+const reportDir = path.join(root, 'reports/public/page-recovery/waterproofing-contractor-kl-complete-guide');
 fs.mkdirSync(reportDir, { recursive: true });
 fs.writeFileSync(path.join(reportDir, 'blog-validation.json'), `${JSON.stringify(result, null, 2)}\n`);
 console.log(`BLOG POST INDEX ${result.status}: ${cards.length}/${manifest.expectedPostCount}`);
