@@ -1,0 +1,45 @@
+---
+const { content, localHref } = Astro.props as any;
+---
+<header class="costguide-hero" data-costguide-section="hero">
+  <div class="costguide-wide costguide-hero-grid">
+    <div class="costguide-hero-copy">
+      <p class="costguide-kicker">Renovation Cost Guide</p>
+      <p class="costguide-breadcrumb">{content.breadcrumb}</p>
+      <h1>{content.h1}</h1>
+      <div class="costguide-meta">{content.visibleMeta.map((item: string) => <span>{item}</span>)}</div>
+    </div>
+    <figure class="costguide-hero-media">
+      <img src={localHref(content.images.fallback)} alt={content.images.hero.alt} width="1200" height="800" fetchpriority="high" />
+      <figcaption>{content.images.hero.caption}</figcaption>
+    </figure>
+  </div>
+</header>
+
+<section class="costguide-section costguide-intro" data-costguide-section="introduction">
+  <div class="costguide-reading">
+    <p class="costguide-lead">{content.lead}</p>
+    <p>{content.intro[0]}</p>
+    <p>For contractor services rather than general cost information, visit the <a href={localHref(content.introLinks[0].href)}>{content.introLinks[0].label}</a> service page or the <a href={localHref(content.introLinks[1].href)}>{content.introLinks[1].label}</a> page.</p>
+  </div>
+  <div class="costguide-wide costguide-summary" aria-label="Renovation starting-price summary">
+    {content.summaryPrices.map((item: any) => <article><strong>{item.price}</strong><span>{item.label}</span></article>)}
+  </div>
+  <aside class="costguide-wide costguide-mini-cta">
+    <div><p class="costguide-kicker">{content.initialCta.label}</p><h3>{content.initialCta.heading}</h3><p>{content.initialCta.text}</p></div>
+    <a class="costguide-button costguide-button-whatsapp" href={content.initialCta.href} target="_blank" rel="noopener">{content.initialCta.button}</a>
+  </aside>
+  <nav class="costguide-reading costguide-toc" aria-label="Table of Contents">
+    <strong>Table of Contents</strong>
+    <ol>{content.toc.map((item: any) => <li><a href={item.href}>{item.label}</a></li>)}</ol>
+  </nav>
+</section>
+
+<section class="costguide-section costguide-soft" id="quick-answer" data-costguide-section="quick-answer">
+  <div class="costguide-reading">
+    <p class="costguide-section-number">01</p><h2>{content.quickAnswer.heading}</h2>
+    <p>{content.quickAnswer.intro}</p>
+    <aside class="costguide-info"><strong>{content.quickAnswer.boxTitle}</strong><p>{content.quickAnswer.boxText}</p></aside>
+    <p>{content.quickAnswer.warning}</p>
+  </div>
+</section>

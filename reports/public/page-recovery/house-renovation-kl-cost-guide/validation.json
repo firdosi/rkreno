@@ -1,0 +1,406 @@
+{
+  "status": "PASSED",
+  "exactContentMatchCount": 20,
+  "missingContentCount": 0,
+  "rewrittenContentCount": 0,
+  "seoRegressionCount": 0,
+  "correctOriginalImageCount": 0,
+  "imageFallbackCount": 3,
+  "sixPriceCards": "PASSED",
+  "fourBudgetBands": "PASSED",
+  "sixProcessSteps": "PASSED",
+  "nineFaqs": "PASSED",
+  "relatedServices": "PASSED",
+  "whatsappLinks": "PASSED",
+  "brokenLinkCount": 0,
+  "brokenImageCount": 0,
+  "overflowCount": 0,
+  "consoleErrorCount": 0,
+  "responsive": "PASSED",
+  "checks": [
+    {
+      "group": "structure",
+      "name": "one shared main",
+      "passed": true,
+      "detail": "1"
+    },
+    {
+      "group": "structure",
+      "name": "no nested main",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "structure",
+      "name": "one page article",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "structure",
+      "name": "page-specific renderer",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "H1 exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "breadcrumb exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "visible meta exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "lead exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "intro exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "summary prices exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "initial CTA exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "TOC exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "H2 sequence exact",
+      "passed": true,
+      "detail": "12/12"
+    },
+    {
+      "group": "content",
+      "name": "quick answer exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "scope introduction exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "scope cards exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "scope warning exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "pricing",
+      "name": "six price cards exact",
+      "passed": true,
+      "detail": "6/6"
+    },
+    {
+      "group": "pricing",
+      "name": "pricing introduction exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "pricing",
+      "name": "pricing note exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "budgets",
+      "name": "four budget bands exact",
+      "passed": true,
+      "detail": "4/4"
+    },
+    {
+      "group": "budgets",
+      "name": "budget introduction exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "property comparison exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "seven cost factors exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "process",
+      "name": "six process steps exact",
+      "passed": true,
+      "detail": "6/6"
+    },
+    {
+      "group": "process",
+      "name": "process introduction exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "images",
+      "name": "three source image purposes retained",
+      "passed": true,
+      "detail": "3"
+    },
+    {
+      "group": "images",
+      "name": "image alts exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "images",
+      "name": "captions exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "images",
+      "name": "original image count",
+      "passed": true,
+      "detail": "0"
+    },
+    {
+      "group": "images",
+      "name": "documented fallback count",
+      "passed": true,
+      "detail": "3"
+    },
+    {
+      "group": "images",
+      "name": "fallback file exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "hidden costs exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "quotation exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "quotation information exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "approval exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "final CTA exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "related",
+      "name": "six related services exact",
+      "passed": true,
+      "detail": "6/6"
+    },
+    {
+      "group": "faq",
+      "name": "nine FAQs exact",
+      "passed": true,
+      "detail": "9/9"
+    },
+    {
+      "group": "links",
+      "name": "WhatsApp links exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "links",
+      "name": "internal links resolve",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "author exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "canonical exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "staging robots exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:locale exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:site_name exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:type exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:url exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:secure_url exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:width exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "og:image:height exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "article:published_time exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "article:modified_time exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:card exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:title exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:description exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "twitter:image exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "JSON-LD exact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "group": "seo",
+      "name": "schema type safety",
+      "passed": true,
+      "detail": "BlogPosting, BreadcrumbList, Organization, Person, WebPage, WebSite"
+    }
+  ]
+}

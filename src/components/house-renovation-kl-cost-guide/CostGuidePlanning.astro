@@ -1,0 +1,48 @@
+---
+const { content, localHref } = Astro.props as any;
+---
+<section class="costguide-section" id="property" data-costguide-section="property">
+  <div class="costguide-wide">
+    <header class="costguide-heading"><p class="costguide-section-number">05</p><h2>{content.property.heading}</h2></header>
+    <div class="costguide-comparison">{content.property.cards.map((card: any) => <article><h3>{card.heading}</h3><p>{card.text}</p><ul>{card.items.map((item: string) => <li>{item}</li>)}</ul></article>)}</div>
+  </div>
+</section>
+
+<section class="costguide-section costguide-soft" id="factors" data-costguide-section="factors">
+  <div class="costguide-wide">
+    <header class="costguide-heading"><p class="costguide-section-number">06</p><h2>{content.factors.heading}</h2></header>
+    <ul class="costguide-factor-grid">{content.factors.items.map((item: any) => <li><strong>{item.label}</strong> {item.text}</li>)}</ul>
+  </div>
+</section>
+
+<section class="costguide-section" id="sequence" data-costguide-section="sequence">
+  <div class="costguide-wide">
+    <header class="costguide-heading"><p class="costguide-section-number">07</p><h2>{content.sequence.heading}</h2><p>{content.sequence.intro}</p></header>
+    <ol class="costguide-process">{content.sequence.steps.map((step: any, index: number) => <li><span>{String(index + 1).padStart(2, '0')}</span><h3>{step.heading}</h3><p>{step.text}</p></li>)}</ol>
+    <div class="costguide-gallery">{content.images.gallery.map((image: any) => <figure><img src={localHref(content.images.fallback)} alt={image.alt} width="1200" height="800" loading="lazy" /><figcaption>{image.caption}</figcaption></figure>)}</div>
+  </div>
+</section>
+
+<section class="costguide-section costguide-dark" id="hidden-costs" data-costguide-section="hidden-costs">
+  <div class="costguide-wide costguide-dark-layout">
+    <div><p class="costguide-section-number">08</p><h2>{content.hiddenCosts.heading}</h2><p>{content.hiddenCosts.intro}</p></div>
+    <ul>{content.hiddenCosts.items.map((item: string) => <li>{item}</li>)}</ul>
+  </div>
+  <aside class="costguide-wide costguide-warning costguide-warning-dark"><strong>{content.hiddenCosts.warningTitle}</strong><p>{content.hiddenCosts.warningText}</p></aside>
+</section>
+
+<section class="costguide-section" id="quotation" data-costguide-section="quotation">
+  <div class="costguide-wide">
+    <header class="costguide-heading"><p class="costguide-section-number">09</p><h2>{content.quotation.heading}</h2><p>{content.quotation.intro}</p></header>
+    <ol class="costguide-quote-list">{content.quotation.items.map((item: any, index: number) => <li><span>{String(index + 1).padStart(2, '0')}</span><p><strong>{item.label}</strong> {item.text}</p></li>)}</ol>
+    <aside class="costguide-info"><strong>{content.quotation.boxTitle}</strong><p>{content.quotation.boxText}</p></aside>
+  </div>
+</section>
+
+<section class="costguide-section costguide-soft" id="approval" data-costguide-section="approval">
+  <div class="costguide-wide">
+    <header class="costguide-heading"><p class="costguide-section-number">10</p><h2>{content.approval.heading}</h2><p>{content.approval.intro}</p></header>
+    <div class="costguide-comparison">{content.approval.cards.map((card: any) => <article><h3>{card.heading}</h3><p>{card.text}</p></article>)}</div>
+    <p class="costguide-caution">{content.approval.caution}</p>
+  </div>
+</section>

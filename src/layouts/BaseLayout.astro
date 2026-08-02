@@ -49,6 +49,7 @@ interface Props {
   openGraph?: Record<string, string>;
   twitter?: Record<string, string>;
   articleMeta?: Record<string, string>;
+  author?: string;
 }
 
 const {
@@ -64,7 +65,8 @@ const {
   wordpressCore = false,
   openGraph = {},
   twitter = {},
-  articleMeta = {}
+  articleMeta = {},
+  author
 } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const socialImage = ogImage || '/assets/media/RK-Reno-Solutions-Logo-942f64bb.png';
@@ -89,6 +91,7 @@ const twitterValues = { card: 'summary_large_image', ...twitter };
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {author && <meta name="author" content={author} />}
     <link rel="canonical" href={canonical} />
     <meta name="robots" content={robots || (isIndexable ? 'index, follow' : 'noindex, nofollow')} />
     {Object.entries(openGraphValues).filter(([, content]) => content).map(([key, content]) => <meta property={`og:${key}`} content={content} />)}

@@ -1,0 +1,25 @@
+---
+const { content } = Astro.props as any;
+---
+<section class="costguide-section" id="scope" data-costguide-section="scope">
+  <div class="costguide-wide">
+    <header class="costguide-heading"><p class="costguide-section-number">02</p><h2>{content.scope.heading}</h2><p>{content.scope.intro}</p></header>
+    <div class="costguide-scope-grid">{content.scope.cards.map((card: any) => <article><h3>{card.heading}</h3><strong>{card.price}</strong><p>{card.text}</p></article>)}</div>
+    <aside class="costguide-warning"><strong>{content.scope.warningTitle}</strong><p>{content.scope.warningText}</p></aside>
+  </div>
+</section>
+
+<section class="costguide-section costguide-pricing" id="room-costs" data-costguide-section="room-costs">
+  <div class="costguide-wide">
+    <header class="costguide-heading"><p class="costguide-section-number">03</p><h2>{content.roomPrices.heading}</h2><p>{content.roomPrices.intro}</p></header>
+    <div class="costguide-price-grid">{content.roomPrices.cards.map((card: any) => <article><h3>{card.heading}</h3><strong class="costguide-price">{card.price}</strong><span>{card.note}</span><ul>{card.items.map((item: string) => <li>{item}</li>)}</ul></article>)}</div>
+    <aside class="costguide-pricing-note"><strong>{content.roomPrices.noteTitle}</strong><p>{content.roomPrices.noteText}</p></aside>
+  </div>
+</section>
+
+<section class="costguide-section costguide-soft" id="budgets" data-costguide-section="budgets">
+  <div class="costguide-wide">
+    <header class="costguide-heading"><p class="costguide-section-number">04</p><h2>{content.budgets.heading}</h2><p>{content.budgets.intro}</p></header>
+    <div class="costguide-budget-grid">{content.budgets.bands.map((band: any, index: number) => <article><span>0{index + 1}</span><h3>{band.heading}</h3><p>{band.text}</p></article>)}</div>
+  </div>
+</section>

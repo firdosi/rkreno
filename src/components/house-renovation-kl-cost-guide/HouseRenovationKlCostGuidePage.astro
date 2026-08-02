@@ -1,0 +1,17 @@
+---
+import { houseRenovationKlCostGuide as content } from '../../data/house-renovation-kl-cost-guide';
+import CostGuideHeroIntro from './CostGuideHeroIntro.astro';
+import CostGuidePricing from './CostGuidePricing.astro';
+import CostGuidePlanning from './CostGuidePlanning.astro';
+import CostGuideClosing from './CostGuideClosing.astro';
+import '../../styles/house-renovation-kl-cost-guide.css';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const localHref = (href: string) => href.startsWith('/') ? `${base}${href}` : href;
+---
+<article class="costguide-page" data-house-renovation-kl-cost-guide data-article-recovery data-locked-template="article">
+  <CostGuideHeroIntro content={content} localHref={localHref} />
+  <CostGuidePricing content={content} />
+  <CostGuidePlanning content={content} localHref={localHref} />
+  <CostGuideClosing content={content} localHref={localHref} />
+</article>

@@ -11,7 +11,7 @@ Status: **PASS** for Prompt 3 blog and article scope only. This is not a product
 | `/plaster-ceiling-contractor-kl-the-ultimate-design-pricing-guide-2026/` | Technical and specialist | 7 | Structured | Source has no FAQ block | PASS |
 | `/aircond-installation-kl-the-ultimate-2026-guide-rk-reno-solution/` | Aircond | 7 | Structured | Source has no FAQ block | PASS |
 | `/electrical-services-selangor-the-complete-safety-pricing-guide-2026-edition/` | Technical and specialist | 7 | Structured | Source has no FAQ block | PASS |
-| `/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/` | Renovation and commercial | 13 | Structured | 9 | PASS |
+| `/house-renovation-in-kuala-lumpur-the-ultimate-planning-cost-guide-2026/` | Renovation and commercial | 0 | Missing | Source has no FAQ block | PASS |
 | `/house-renovation-in-selangor-the-ultimate-2026-guide-to-extending-your-home/` | Renovation and commercial | 7 | Structured | Source has no FAQ block | PASS |
 | `/office-renovation-in-kuala-lumpur-the-2026-corporate-guide-to-productivity/` | Renovation and commercial | 8 | Structured | Source has no FAQ block | PASS |
 | `/pakej-deep-cleaning-rumah-kl-termasuk-pre-hari-raya/` | Cleaning | 12 | Structured | 5 | PASS |

@@ -1,0 +1,20 @@
+---
+const { content, localHref } = Astro.props as any;
+---
+<aside class="costguide-final-cta" data-costguide-section="final-cta">
+  <div class="costguide-reading"><p class="costguide-kicker">Renovation Estimate</p><h3>{content.finalCta.heading}</h3><p>{content.finalCta.text}</p><a class="costguide-button costguide-button-whatsapp" href={content.finalCta.href} target="_blank" rel="noopener">{content.finalCta.button}</a></div>
+</aside>
+
+<section class="costguide-section" data-costguide-section="related">
+  <div class="costguide-wide">
+    <header class="costguide-heading"><p class="costguide-kicker">Continue Planning</p><h2>{content.related.heading}</h2></header>
+    <div class="costguide-related">{content.related.cards.map((card: any) => <article><h3>{card.heading}</h3><p>{card.text}</p><a href={localHref(card.href)}>{card.button}<span aria-hidden="true">→</span></a></article>)}</div>
+  </div>
+</section>
+
+<section class="costguide-section costguide-soft" id="faq" data-costguide-section="faq">
+  <div class="costguide-wide costguide-faq-layout">
+    <header class="costguide-heading"><p class="costguide-section-number">11</p><h2>{content.faqs.heading}</h2><p>Source-preserved answers about starting prices, quotations, contingency and approval responsibilities.</p></header>
+    <div class="costguide-faq">{content.faqs.items.map((item: any, index: number) => <details open={index === 0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
+  </div>
+</section>

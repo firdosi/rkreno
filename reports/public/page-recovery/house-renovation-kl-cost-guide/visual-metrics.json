@@ -1,0 +1,100 @@
+{
+  "status": "PASSED",
+  "viewports": [
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "sectionCount": 15,
+      "priceCardCount": 6,
+      "faqCount": 9,
+      "minBodyFont": 17
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "sectionCount": 15,
+      "priceCardCount": 6,
+      "faqCount": 9,
+      "minBodyFont": 17
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844,
+      "consoleErrors": [],
+      "failedRequests": [],
+      "overflow": 0,
+      "brokenImages": 0,
+      "h1Count": 1,
+      "sectionCount": 15,
+      "priceCardCount": 6,
+      "faqCount": 9,
+      "minBodyFont": 16,
+      "faqKeyboardToggle": true,
+      "mobileMenuOpened": true
+    }
+  ],
+  "smokeRoutes": [
+    {
+      "pathname": "/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "costGuideCount": 0
+    },
+    {
+      "pathname": "/house-renovation-in-kuala-lumpur/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "costGuideCount": 0
+    },
+    {
+      "pathname": "/house-renovation-in-selangor/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "costGuideCount": 0
+    },
+    {
+      "pathname": "/aircond-installation-kl/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "costGuideCount": 0
+    },
+    {
+      "pathname": "/blog/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "costGuideCount": 0
+    },
+    {
+      "pathname": "/contact-us/",
+      "status": 200,
+      "h1Count": 1,
+      "headerCount": 1,
+      "footerCount": 1,
+      "costGuideCount": 0
+    }
+  ],
+  "failures": []
+}
